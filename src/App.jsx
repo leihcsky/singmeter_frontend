@@ -1,10 +1,10 @@
-import VocalTest from './components/VocalTest'
+import ModernVocalTest from './components/ModernVocalTest'
 import './App.css'
 
 function App() {
   return (
     <div className="App">
-      <VocalTest />
+      <ModernVocalTest />
     </div>
   )
 }

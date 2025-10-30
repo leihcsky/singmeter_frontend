@@ -13,12 +13,14 @@ const PitchVisualizer = memo(({ currentPitch, currentNote, lowestPitch, highestP
   const lowestPitchRef = useRef(lowestPitch);
   const highestPitchRef = useRef(highestPitch);
 
-  // Update refs when props change (doesn't restart animation)
-  useEffect(() => {
-    currentPitchRef.current = currentPitch;
-    lowestPitchRef.current = lowestPitch;
-    highestPitchRef.current = highestPitch;
-  }, [currentPitch, lowestPitch, highestPitch]);
+  // Smooth transition for pitch position
+  const targetYRef = useRef(0);
+  const currentYRef = useRef(0);
+
+  // Update refs immediately when props change (doesn't restart animation)
+  currentPitchRef.current = currentPitch;
+  lowestPitchRef.current = lowestPitch;
+  highestPitchRef.current = highestPitch;
 
   // Animation loop - only runs once on mount
   useEffect(() => {
@@ -53,28 +55,49 @@ const PitchVisualizer = memo(({ currentPitch, currentNote, lowestPitch, highestP
       if (pitch && lowest && highest) {
         const range = highest - lowest || 100;
         const position = ((pitch - lowest) / range) * height;
-        const y = height - position;
+        targetYRef.current = height - position;
 
-        // Draw current pitch line
-        ctx.strokeStyle = '#8B5CF6';
-        ctx.lineWidth = 3;
+        // Smooth interpolation for more responsive feel
+        const smoothingFactor = 0.3; // Higher = more responsive (0-1)
+        currentYRef.current += (targetYRef.current - currentYRef.current) * smoothingFactor;
+        const y = currentYRef.current;
+
+        // Draw current pitch line with gradient
+        const lineGradient = ctx.createLinearGradient(0, y - 2, 0, y + 2);
+        lineGradient.addColorStop(0, 'rgba(139, 92, 246, 0.3)');
+        lineGradient.addColorStop(0.5, 'rgba(139, 92, 246, 1)');
+        lineGradient.addColorStop(1, 'rgba(139, 92, 246, 0.3)');
+
+        ctx.strokeStyle = lineGradient;
+        ctx.lineWidth = 4;
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(width, y);
         ctx.stroke();
 
-        // Draw pitch dot
+        // Draw pitch dot with glow effect
+        const dotGradient = ctx.createRadialGradient(width / 2, y, 0, width / 2, y, 20);
+        dotGradient.addColorStop(0, '#8B5CF6');
+        dotGradient.addColorStop(0.7, '#8B5CF6');
+        dotGradient.addColorStop(1, 'rgba(139, 92, 246, 0)');
+
+        ctx.fillStyle = dotGradient;
+        ctx.beginPath();
+        ctx.arc(width / 2, y, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Inner solid dot
         ctx.fillStyle = '#8B5CF6';
         ctx.beginPath();
-        ctx.arc(width / 2, y, 15, 0, Math.PI * 2);
+        ctx.arc(width / 2, y, 12, 0, Math.PI * 2);
         ctx.fill();
 
         // Draw pulsing outer circle animation
         const time = Date.now() / 1000;
-        const pulseRadius = 15 + Math.sin(time * 3) * 5;
+        const pulseRadius = 18 + Math.sin(time * 4) * 4;
         ctx.strokeStyle = '#8B5CF6';
         ctx.lineWidth = 2;
-        ctx.globalAlpha = 0.5;
+        ctx.globalAlpha = 0.6 - (Math.sin(time * 4) * 0.2);
         ctx.beginPath();
         ctx.arc(width / 2, y, pulseRadius, 0, Math.PI * 2);
         ctx.stroke();
@@ -83,18 +106,27 @@ const PitchVisualizer = memo(({ currentPitch, currentNote, lowestPitch, highestP
 
       // Draw lowest and highest pitch markers
       if (lowest && highest) {
-        // Lowest pitch marker
-        ctx.fillStyle = '#3B82F6';
-        ctx.fillRect(0, height - 5, width, 5);
-        ctx.fillStyle = '#3B82F6';
-        ctx.font = '14px sans-serif';
-        ctx.fillText('Lowest', 10, height - 10);
+        // Lowest pitch marker (bottom)
+        const lowestGradient = ctx.createLinearGradient(0, height - 8, 0, height);
+        lowestGradient.addColorStop(0, 'rgba(59, 130, 246, 0.3)');
+        lowestGradient.addColorStop(1, 'rgba(59, 130, 246, 0.8)');
+        ctx.fillStyle = lowestGradient;
+        ctx.fillRect(0, height - 8, width, 8);
 
-        // Highest pitch marker
+        ctx.fillStyle = '#3B82F6';
+        ctx.font = 'bold 14px sans-serif';
+        ctx.fillText('Lowest', 10, height - 12);
+
+        // Highest pitch marker (top)
+        const highestGradient = ctx.createLinearGradient(0, 0, 0, 8);
+        highestGradient.addColorStop(0, 'rgba(239, 68, 68, 0.8)');
+        highestGradient.addColorStop(1, 'rgba(239, 68, 68, 0.3)');
+        ctx.fillStyle = highestGradient;
+        ctx.fillRect(0, 0, width, 8);
+
         ctx.fillStyle = '#EF4444';
-        ctx.fillRect(0, 0, width, 5);
-        ctx.fillStyle = '#EF4444';
-        ctx.fillText('Highest', 10, 20);
+        ctx.font = 'bold 14px sans-serif';
+        ctx.fillText('Highest', 10, 22);
       }
 
       animationRef.current = requestAnimationFrame(draw);
@@ -110,20 +142,20 @@ const PitchVisualizer = memo(({ currentPitch, currentNote, lowestPitch, highestP
   }, []); // Empty dependency array - only run once on mount
 
   return (
-    <div className="bg-gray-50 rounded-2xl p-6">
+    <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-6">
       {/* Current note display - use fixed height to prevent layout shift */}
-      <div className="text-center mb-4 h-24 flex flex-col items-center justify-center">
+      <div className="text-center mb-3 sm:mb-4 h-20 sm:h-24 flex flex-col items-center justify-center">
         {currentNote ? (
           <div className="will-change-contents">
-            <div className="text-6xl font-bold text-purple-600 mb-2" style={{ minHeight: '72px' }}>
+            <div className="text-4xl sm:text-6xl font-bold text-purple-600 mb-1 sm:mb-2" style={{ minHeight: '48px' }}>
               {currentNote.fullNote}
             </div>
-            <div className="text-sm text-gray-500" style={{ minHeight: '20px' }}>
+            <div className="text-xs sm:text-sm text-gray-500" style={{ minHeight: '16px' }}>
               {currentPitch ? `${currentPitch.toFixed(2)} Hz` : ''}
             </div>
           </div>
         ) : (
-          <div className="text-2xl text-gray-400" style={{ minHeight: '72px', display: 'flex', alignItems: 'center' }}>
+          <div className="text-lg sm:text-2xl text-gray-400" style={{ minHeight: '48px', display: 'flex', alignItems: 'center' }}>
             Make a sound...
           </div>
         )}
@@ -134,12 +166,12 @@ const PitchVisualizer = memo(({ currentPitch, currentNote, lowestPitch, highestP
         ref={canvasRef}
         width={600}
         height={300}
-        className="w-full rounded-xl border-2 border-gray-200"
-        style={{ display: 'block' }}
+        className="w-full rounded-lg sm:rounded-xl border-2 border-gray-200"
+        style={{ display: 'block', maxHeight: '200px' }}
       />
 
       {/* Range display - use fixed height to prevent layout shift */}
-      <div className="mt-4 flex justify-between text-sm" style={{ minHeight: '48px' }}>
+      <div className="mt-3 sm:mt-4 flex justify-between text-xs sm:text-sm" style={{ minHeight: '40px' }}>
         {lowestPitch && highestPitch ? (
           <>
             <div className="text-blue-600">

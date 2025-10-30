@@ -121,11 +121,11 @@ export class AudioPitchDetector {
     this.isRunning = true;
 
     // 人声频率范围：
-    // 男低音最低约 E2 (82 Hz)
-    // 女高音最高约 C6 (1046 Hz)
-    // 为了安全，我们扩展范围到 C2 (65 Hz) - E6 (1318 Hz)
-    const MIN_HUMAN_FREQUENCY = 65;   // C2
-    const MAX_HUMAN_FREQUENCY = 1318; // E6
+    // 标准范围：E2 (82 Hz) - C6 (1046 Hz)
+    // 为了安全过滤噪音，我们扩展到 C2 (65 Hz) - E6 (1318 Hz)
+    // 这样可以捕捉到极少数 Basso Profundo 的超低音
+    const MIN_HUMAN_FREQUENCY = 65;   // C2 (extended range for noise filtering)
+    const MAX_HUMAN_FREQUENCY = 1318; // E6 (extended range for noise filtering)
 
     const detect = () => {
       if (!this.isRunning) return;
