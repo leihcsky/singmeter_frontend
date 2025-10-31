@@ -147,7 +147,7 @@ const ResultScreen = ({ result, onReset }) => {
     // Add call to action
     shareText += `\n\nDiscover YOUR voice on SingMeter! 🎤`;
 
-    const url = 'https://singmeter.com';
+    const url = 'https://www.singmeter.com';
 
     switch(platform) {
       case 'twitter':
