@@ -1,0 +1,148 @@
+<svg width="800" height="200" viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 主渐变色 -->
+    <linearGradient id="hGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- 波形渐变 -->
+    <linearGradient id="waveH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- 文字渐变 -->
+    <linearGradient id="textGradH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- 发光效果 -->
+    <filter id="glowH">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="200" fill="#FFFFFF"/>
+
+  <!-- Logo 图标（左侧） -->
+  <g transform="translate(100, 100)">
+
+    <!-- 背景装饰圆 -->
+    <circle cx="0" cy="0" r="85" fill="url(#hGrad)" opacity="0.06"/>
+
+    <!-- 音频频谱条 -->
+    <g>
+      <!-- 左侧 -->
+      <rect x="-70" y="-5" width="4" height="10" rx="2" fill="url(#hGrad)" opacity="0.5"/>
+      <rect x="-62" y="-9" width="4" height="18" rx="2" fill="url(#hGrad)" opacity="0.6"/>
+      <rect x="-54" y="-14" width="4" height="28" rx="2" fill="url(#hGrad)" opacity="0.7"/>
+      <rect x="-46" y="-19" width="4" height="38" rx="2" fill="url(#hGrad)" opacity="0.8"/>
+      <rect x="-38" y="-24" width="4" height="48" rx="2" fill="url(#hGrad)" opacity="0.9"/>
+      <rect x="-30" y="-28" width="4" height="56" rx="2" fill="url(#hGrad)"/>
+
+      <!-- 右侧 -->
+      <rect x="26" y="-28" width="4" height="56" rx="2" fill="url(#hGrad)"/>
+      <rect x="34" y="-24" width="4" height="48" rx="2" fill="url(#hGrad)" opacity="0.9"/>
+      <rect x="42" y="-19" width="4" height="38" rx="2" fill="url(#hGrad)" opacity="0.8"/>
+      <rect x="50" y="-14" width="4" height="28" rx="2" fill="url(#hGrad)" opacity="0.7"/>
+      <rect x="58" y="-9" width="4" height="18" rx="2" fill="url(#hGrad)" opacity="0.6"/>
+      <rect x="66" y="-5" width="4" height="10" rx="2" fill="url(#hGrad)" opacity="0.5"/>
+    </g>
+
+    <!-- 波形线条 -->
+    <g opacity="0.35">
+      <path d="M -25 -35 Q -20 -42, -15 -35 T -5 -35 T 5 -35 T 15 -35 T 25 -35"
+            stroke="url(#waveH)"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"/>
+      <path d="M -25 35 Q -20 42, -15 35 T -5 35 T 5 35 T 15 35 T 25 35"
+            stroke="url(#waveH)"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"/>
+    </g>
+
+    <!-- 麦克风 - 带发光效果 -->
+    <g filter="url(#glowH)">
+      <!-- 麦克风头部 -->
+      <ellipse cx="0" cy="-20" rx="14" ry="16" fill="url(#hGrad)"/>
+      <ellipse cx="0" cy="-20" rx="12" ry="14" fill="#1F2937"/>
+
+      <!-- 网格 -->
+      <g stroke="url(#hGrad)" stroke-width="1.2" opacity="0.85">
+        <line x1="-9" y1="-28" x2="9" y2="-28"/>
+        <line x1="-10" y1="-23" x2="10" y2="-23"/>
+        <line x1="-11" y1="-18" x2="11" y2="-18"/>
+        <line x1="-10" y1="-13" x2="10" y2="-13"/>
+        <line x1="-9" y1="-8" x2="9" y2="-8"/>
+      </g>
+
+      <!-- 主体 -->
+      <rect x="-10" y="-5" width="20" height="22" rx="2" fill="#374151"/>
+      <rect x="-9" y="-4" width="18" height="20" rx="1.5" fill="#1F2937"/>
+
+      <!-- 细节线条 -->
+      <g stroke="url(#hGrad)" stroke-width="1" opacity="0.65">
+        <line x1="-9" y1="0" x2="9" y2="0"/>
+        <line x1="-9" y1="5" x2="9" y2="5"/>
+        <line x1="-9" y1="10" x2="9" y2="10"/>
+      </g>
+
+      <!-- 连接器 -->
+      <ellipse cx="0" cy="17" rx="10" ry="2.5" fill="#374151"/>
+
+      <!-- 支架 -->
+      <line x1="0" y1="17" x2="0" y2="32" stroke="#374151" stroke-width="4" stroke-linecap="round"/>
+      <line x1="-12" y1="32" x2="12" y2="32" stroke="#374151" stroke-width="4" stroke-linecap="round"/>
+
+      <!-- 支架装饰 -->
+      <circle cx="-12" cy="32" r="2" fill="url(#hGrad)"/>
+      <circle cx="12" cy="32" r="2" fill="url(#hGrad)"/>
+    </g>
+
+    <!-- 测量刻度圆弧 -->
+    <g opacity="0.25">
+      <path d="M -60 -60 A 85 85 0 0 1 -42 -70" stroke="url(#hGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M 42 -70 A 85 85 0 0 1 60 -60" stroke="url(#hGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+
+  </g>
+
+  <!-- SINGMETER 文字 -->
+  <g>
+    <!-- "SING" 带渐变 -->
+    <text x="230" y="115"
+          font-family="'Inter', 'SF Pro Display', -apple-system, system-ui, sans-serif"
+          font-size="80"
+          font-weight="900"
+          fill="url(#textGradH)"
+          letter-spacing="8">SING</text>
+
+    <!-- "METER" 深灰色 -->
+    <text x="455" y="115"
+          font-family="'Inter', 'SF Pro Display', -apple-system, system-ui, sans-serif"
+          font-size="80"
+          font-weight="900"
+          fill="#1F2937"
+          letter-spacing="8">METER</text>
+
+    <!-- 标语 -->
+    <text x="230" y="155"
+          font-family="'Inter', 'SF Pro Display', -apple-system, system-ui, sans-serif"
+          font-size="24"
+          font-weight="600"
+          fill="#6B7280"
+          letter-spacing="8">SEE YOUR VOICE</text>
+  </g>
+</svg>

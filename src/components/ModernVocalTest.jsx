@@ -105,6 +105,35 @@ const ModernVocalTest = () => {
     });
   }, []);
 
+  // Return to home page
+  const handleReturnHome = () => {
+    // Stop any ongoing detection
+    if (detectorRef.current) {
+      detectorRef.current.cleanup();
+      detectorRef.current = null;
+    }
+
+    // Reset all states
+    setTestPhase('welcome');
+    setCurrentStep(0);
+    setIsRecording(false);
+    setCountdown(3);
+    setCurrentPitch(null);
+    setCurrentNote(null);
+    setLowestPitch(null);
+    setHighestPitch(null);
+    setTestResult(null);
+    setError(null);
+
+    // Reset refs
+    pitchHistoryRef.current = [];
+    lowestPitchRef.current = null;
+    highestPitchRef.current = null;
+
+    // Close mobile menu if open
+    setShowMobileMenu(false);
+  };
+
   // Initialize and start test
   const handleStartTest = async () => {
     setError(null);
@@ -293,17 +322,18 @@ const ModernVocalTest = () => {
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center">
-                <span className="text-xl sm:text-2xl">🎵</span>
-              </div>
-              <div>
-                <h1 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                  SingMeter
-                </h1>
-                <p className="text-xs text-gray-500 hidden sm:block">Vocal Range Test</p>
-              </div>
-            </div>
+            {/* 横版 Logo（包含品牌名） */}
+            <button
+              onClick={handleReturnHome}
+              className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-lg -m-2 p-2"
+              aria-label="Return to home"
+            >
+              <img
+                src="/logo-horizontal.svg"
+                alt="SingMeter"
+                className="h-16 sm:h-20 w-auto hover:scale-105 transition-transform duration-200 cursor-pointer"
+              />
+            </button>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6 text-sm">

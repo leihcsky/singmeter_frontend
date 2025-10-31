@@ -3,6 +3,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
+import PianoKeyboard from './PianoKeyboard';
 
 const ResultScreen = ({ result, onReset }) => {
   const [showShareMenu, setShowShareMenu] = useState(false);
@@ -25,7 +26,7 @@ const ResultScreen = ({ result, onReset }) => {
     };
   }, [showShareMenu]);
   
-  // Voice type info
+  // Voice type info with detailed explanations
   const voiceTypeInfo = {
     'Bass': {
       color: 'from-blue-600 to-blue-800',
@@ -33,7 +34,12 @@ const ResultScreen = ({ result, onReset }) => {
       textColor: 'text-blue-700',
       icon: '🎻',
       description: 'Deep and powerful voice with rich, resonant tones',
-      famous: 'Barry White, Johnny Cash'
+      famous: 'Barry White, Johnny Cash',
+      explanation: 'The lowest male voice type, known for its depth and power',
+      typicalRange: 'E2 to E4',
+      characteristics: 'Rich, warm, and commanding presence',
+      bestFor: 'Blues, soul, opera bass roles',
+      funFact: 'Only 2% of men are true basses!'
     },
     'Baritone': {
       color: 'from-blue-500 to-indigo-600',
@@ -41,7 +47,12 @@ const ResultScreen = ({ result, onReset }) => {
       textColor: 'text-blue-700',
       icon: '🎸',
       description: 'Warm and versatile voice with natural appeal',
-      famous: 'Frank Sinatra, Elvis Presley'
+      famous: 'Frank Sinatra, Elvis Presley',
+      explanation: 'The most common male voice type, balanced and versatile',
+      typicalRange: 'A2 to A4',
+      characteristics: 'Warm, smooth, and naturally appealing',
+      bestFor: 'Pop, rock, jazz, musical theater',
+      funFact: 'Most male pop stars are baritones!'
     },
     'Tenor': {
       color: 'from-indigo-500 to-purple-600',
@@ -49,7 +60,12 @@ const ResultScreen = ({ result, onReset }) => {
       textColor: 'text-indigo-700',
       icon: '🎺',
       description: 'Bright and soaring voice with clarity and power',
-      famous: 'Freddie Mercury, Pavarotti'
+      famous: 'Freddie Mercury, Pavarotti',
+      explanation: 'The highest common male voice, prized for its brightness',
+      typicalRange: 'C3 to C5',
+      characteristics: 'Bright, powerful, and emotionally expressive',
+      bestFor: 'Rock, opera, R&B, power ballads',
+      funFact: 'Tenors often steal the show with high notes!'
     },
     'Alto': {
       color: 'from-orange-500 to-red-600',
@@ -57,7 +73,12 @@ const ResultScreen = ({ result, onReset }) => {
       textColor: 'text-orange-700',
       icon: '🎼',
       description: 'Rich and full-bodied voice with warmth',
-      famous: 'Adele, Amy Winehouse'
+      famous: 'Adele, Amy Winehouse',
+      explanation: 'The lowest female voice type, rare and distinctive',
+      typicalRange: 'F3 to F5',
+      characteristics: 'Rich, warm, and soulful depth',
+      bestFor: 'Soul, jazz, blues, folk',
+      funFact: 'True altos are rare gems in the vocal world!'
     },
     'Mezzo-Soprano': {
       color: 'from-pink-500 to-rose-600',
@@ -65,7 +86,12 @@ const ResultScreen = ({ result, onReset }) => {
       textColor: 'text-pink-700',
       icon: '🎵',
       description: 'Versatile voice blending warmth and brightness',
-      famous: 'Beyoncé, Lady Gaga'
+      famous: 'Beyoncé, Lady Gaga',
+      explanation: 'The most common female voice, perfectly balanced',
+      typicalRange: 'A3 to A5',
+      characteristics: 'Versatile, expressive, and dynamic',
+      bestFor: 'Pop, R&B, musical theater, opera',
+      funFact: 'The Swiss Army knife of female voices!'
     },
     'Soprano': {
       color: 'from-rose-500 to-pink-600',
@@ -73,7 +99,12 @@ const ResultScreen = ({ result, onReset }) => {
       textColor: 'text-rose-700',
       icon: '🦜',
       description: 'Crystal clear and agile voice with high range',
-      famous: 'Mariah Carey, Ariana Grande'
+      famous: 'Mariah Carey, Ariana Grande',
+      explanation: 'The highest female voice type, known for dazzling highs',
+      typicalRange: 'C4 to C6',
+      characteristics: 'Bright, agile, and crystalline clarity',
+      bestFor: 'Pop, opera, classical, coloratura',
+      funFact: 'Can hit notes that make dogs jealous! 🐕'
     },
   };
 
@@ -81,32 +112,55 @@ const ResultScreen = ({ result, onReset }) => {
   const octaves = parseFloat(result.octaves);
   const isUnusualRange = octaves > 5;
 
-  // Calculate visual range position (E2 to C6 as reference range)
-  // E2 is the standard lowest note for Bass singers
-  const minFreq = 82.41; // E2 (Bass lowest note)
-  const maxFreq = 1046.50; // C6 (Soprano highest note)
-  const lowestFreq = result.lowestFrequency;
-  const highestFreq = result.highestFrequency;
-
-  // Calculate percentage positions
-  const startPercent = Math.max(0, Math.min(100, ((lowestFreq - minFreq) / (maxFreq - minFreq)) * 100));
-  const endPercent = Math.max(0, Math.min(100, ((highestFreq - minFreq) / (maxFreq - minFreq)) * 100));
-  const rangeWidth = endPercent - startPercent;
-
   const handleShare = (platform) => {
-    const text = `I just tested my vocal range on SingMeter! 🎵\nRange: ${result.lowestNote} - ${result.highestNote} (${result.octaves} octaves)\nVoice Type: ${result.voiceType}`;
+    // Generate fun, engaging share text based on voice type and range
+    const octaves = parseFloat(result.octaves);
+    const voiceEmoji = info.icon;
+
+    // Create personalized, fun messages
+    let shareText = '';
+
+    // Add voice type specific opening
+    const openings = {
+      'Bass': `🎻 Just discovered I'm a Bass! My voice goes DEEP ${result.lowestNote} - ${result.highestNote}`,
+      'Baritone': `🎸 Turns out I'm a Baritone! Vocal range: ${result.lowestNote} - ${result.highestNote}`,
+      'Tenor': `🎺 I'm officially a Tenor! Hitting those high notes: ${result.lowestNote} - ${result.highestNote}`,
+      'Alto': `🎼 Rare find: I'm an Alto! My soulful range: ${result.lowestNote} - ${result.highestNote}`,
+      'Mezzo-Soprano': `🎵 I'm a Mezzo-Soprano! My versatile range: ${result.lowestNote} - ${result.highestNote}`,
+      'Soprano': `🦜 Sky-high Soprano here! My range: ${result.lowestNote} - ${result.highestNote}`
+    };
+
+    shareText = openings[result.voiceType] || `${voiceEmoji} My vocal range: ${result.lowestNote} - ${result.highestNote}`;
+
+    // Add range commentary
+    if (octaves >= 4) {
+      shareText += ` (${result.octaves} octaves - that's HUGE! 🤯)`;
+    } else if (octaves >= 3) {
+      shareText += ` (${result.octaves} octaves - pretty impressive! 🎉)`;
+    } else {
+      shareText += ` (${result.octaves} octaves)`;
+    }
+
+    // Add famous comparison
+    shareText += `\n\nSame voice type as ${info.famous}! 🌟`;
+
+    // Add call to action
+    shareText += `\n\nDiscover YOUR voice on SingMeter! 🎤`;
+
     const url = 'https://singmeter.com';
-    
+
     switch(platform) {
       case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${url}`, '_blank');
+        // Twitter has character limit, use shorter version
+        const twitterText = `${voiceEmoji} Just tested my vocal range: ${result.lowestNote}-${result.highestNote} (${result.octaves} octaves)! I'm a ${result.voiceType} like ${info.famous.split(',')[0]}! 🎤 Test yours:`;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}&url=${url}`, '_blank');
         break;
       case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(shareText)}`, '_blank');
         break;
       case 'copy':
-        navigator.clipboard.writeText(`${text}\n${url}`);
-        alert('Results copied to clipboard!');
+        navigator.clipboard.writeText(`${shareText}\n\n${url}`);
+        alert('🎉 Results copied to clipboard! Share your vocal journey!');
         break;
     }
     setShowShareMenu(false);
@@ -194,98 +248,142 @@ const ResultScreen = ({ result, onReset }) => {
           </div>
         </div>
 
-        {/* Visual Range Bar */}
-        <div className="px-4 sm:px-8 pb-4 sm:pb-8">
-          <div className="mb-3 sm:mb-4">
-            <h3 className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">Your Vocal Range Visualization</h3>
-            <p className="text-[10px] sm:text-xs text-gray-500">
-              The dark bar shows your tested range within the typical vocal range (E2-C6)
-            </p>
-          </div>
-
-          {/* Full spectrum bar with reference markers */}
-          <div className="relative h-12 sm:h-14 bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100 rounded-lg border border-gray-200 overflow-visible">
-            {/* Reference markers (E2, C4, C6) */}
-            <div className="absolute top-0 bottom-0 left-0 w-px bg-gray-300"></div>
-            <div className="absolute top-0 bottom-0 left-1/2 w-px bg-gray-300"></div>
-            <div className="absolute top-0 bottom-0 right-0 w-px bg-gray-300"></div>
-
-            {/* User's actual range (highlighted) */}
-            <div
-              className="absolute top-1 bottom-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded shadow-lg transition-all duration-500"
-              style={{
-                left: `${startPercent}%`,
-                width: `${rangeWidth}%`
-              }}
-            >
-              {/* Shimmer effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
-            </div>
-
-            {/* Start marker (lowest note) */}
-            <div
-              className="absolute top-0 bottom-0 w-0.5 bg-yellow-400 shadow-md z-10"
-              style={{ left: `${startPercent}%` }}
-            >
-              <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-400 rounded-full"></div>
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-400 rounded-full"></div>
-            </div>
-
-            {/* End marker (highest note) */}
-            <div
-              className="absolute top-0 bottom-0 w-0.5 bg-yellow-400 shadow-md z-10"
-              style={{ left: `${endPercent}%` }}
-            >
-              <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-400 rounded-full"></div>
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-yellow-400 rounded-full"></div>
-            </div>
-          </div>
-
-          {/* User's range labels */}
-          <div className="relative mt-3 sm:mt-4">
-            <div className="flex items-center justify-between">
-              <div className="text-left" style={{ marginLeft: `${startPercent}%` }}>
-                <div className="text-xs sm:text-sm font-bold text-indigo-600">{result.lowestNote}</div>
-                <div className="text-[10px] sm:text-xs text-gray-500">Lowest</div>
-                <div className="text-[10px] text-gray-400">{result.lowestFrequency.toFixed(1)} Hz</div>
+        {/* Voice Type Explanation Card */}
+        <div className="px-4 sm:px-8 pb-6 sm:pb-8 border-t border-gray-100">
+          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200">
+            <div className="flex items-start space-x-3 mb-4">
+              <div className="text-2xl sm:text-3xl">{info.icon}</div>
+              <div className="flex-1">
+                <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1">
+                  What is a {result.voiceType}?
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  {info.explanation}
+                </p>
               </div>
-              <div className="text-center">
-                <div className="text-sm sm:text-base font-bold text-purple-600">{result.octaves} octaves</div>
-                <div className="text-[10px] sm:text-xs text-gray-500">Your Range</div>
-                <div className="text-[10px] text-gray-400">{result.semitones} semitones</div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+              {/* Typical Range */}
+              <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200">
+                <div className="flex items-center space-x-2 mb-2">
+                  <span className="text-base sm:text-lg">📊</span>
+                  <span className="text-xs sm:text-sm font-semibold text-gray-700">Typical Range</span>
+                </div>
+                <div className={`text-sm sm:text-base font-bold ${info.textColor}`}>
+                  {info.typicalRange}
+                </div>
               </div>
-              <div className="text-right" style={{ marginRight: `${100 - endPercent}%` }}>
-                <div className="text-xs sm:text-sm font-bold text-purple-600">{result.highestNote}</div>
-                <div className="text-[10px] sm:text-xs text-gray-500">Highest</div>
-                <div className="text-[10px] text-gray-400">{result.highestFrequency.toFixed(1)} Hz</div>
+
+              {/* Characteristics */}
+              <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200">
+                <div className="flex items-center space-x-2 mb-2">
+                  <span className="text-base sm:text-lg">✨</span>
+                  <span className="text-xs sm:text-sm font-semibold text-gray-700">Characteristics</span>
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600">
+                  {info.characteristics}
+                </div>
+              </div>
+
+              {/* Best For */}
+              <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200">
+                <div className="flex items-center space-x-2 mb-2">
+                  <span className="text-base sm:text-lg">🎵</span>
+                  <span className="text-xs sm:text-sm font-semibold text-gray-700">Best For</span>
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600">
+                  {info.bestFor}
+                </div>
+              </div>
+
+              {/* Fun Fact */}
+              <div className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200">
+                <div className="flex items-center space-x-2 mb-2">
+                  <span className="text-base sm:text-lg">💡</span>
+                  <span className="text-xs sm:text-sm font-semibold text-gray-700">Fun Fact</span>
+                </div>
+                <div className="text-xs sm:text-sm text-gray-600">
+                  {info.funFact}
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Reference scale */}
-          <div className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-gray-200">
-            <div className="flex justify-between text-[10px] sm:text-xs text-gray-400 mb-1">
-              <span>E2</span>
-              <span>C4</span>
-              <span>C6</span>
+        {/* Piano Keyboard Visualization */}
+        <div className="px-4 sm:px-8 pb-6 sm:pb-8 border-t border-gray-100">
+          <div className="mt-6 sm:mt-8">
+            <div className="mb-4 sm:mb-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2 flex items-center">
+                <span className="mr-2">🎹</span>
+                Your Range on Piano Keyboard
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-600">
+                See your vocal range mapped to piano keys. Each key represents one semitone (half step) in music.
+              </p>
             </div>
-            <div className="flex justify-between text-[9px] sm:text-[10px] text-gray-400">
-              <span>82 Hz (Bass Low)</span>
-              <span>262 Hz (Middle C)</span>
-              <span>1046 Hz (Soprano High)</span>
-            </div>
-          </div>
 
-          {/* Explanation */}
-          <div className="mt-3 sm:mt-4 bg-blue-50 rounded-lg p-3 sm:p-4">
-            <div className="flex items-start space-x-2">
-              <span className="text-lg flex-shrink-0">💡</span>
-              <div className="text-[10px] sm:text-xs text-blue-800">
-                <strong>How to read this:</strong> The gray background represents the typical vocal range (E2-C6),
-                covering all standard voice types from Bass to Soprano.
-                The colored bar shows your tested range from {result.lowestNote} ({result.lowestFrequency.toFixed(1)} Hz)
-                to {result.highestNote} ({result.highestFrequency.toFixed(1)} Hz).
-                Yellow markers indicate your lowest and highest notes.
+            {/* Piano Keyboard Component */}
+            <PianoKeyboard
+              lowestNote={result.lowestNote}
+              highestNote={result.highestNote}
+              lowestFreq={result.lowestFrequency}
+              highestFreq={result.highestFrequency}
+            />
+
+            {/* Quick Stats */}
+            <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-3 sm:p-4 border border-indigo-100">
+                <div className="text-xs sm:text-sm text-indigo-600 font-medium mb-1">Lowest Note</div>
+                <div className="text-lg sm:text-xl font-bold text-indigo-700">{result.lowestNote}</div>
+                <div className="text-xs text-indigo-500">{result.lowestFrequency.toFixed(1)} Hz</div>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 sm:p-4 border border-purple-100">
+                <div className="text-xs sm:text-sm text-purple-600 font-medium mb-1">Range Width</div>
+                <div className="text-lg sm:text-xl font-bold text-purple-700">{result.octaves} octaves</div>
+                <div className="text-xs text-purple-500">{result.semitones} semitones</div>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-lg p-3 sm:p-4 border border-pink-100">
+                <div className="text-xs sm:text-sm text-pink-600 font-medium mb-1">Highest Note</div>
+                <div className="text-lg sm:text-xl font-bold text-pink-700">{result.highestNote}</div>
+                <div className="text-xs text-pink-500">{result.highestFrequency.toFixed(1)} Hz</div>
+              </div>
+            </div>
+
+            {/* Understanding Your Result */}
+            <div className="mt-6 sm:mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 border border-blue-100">
+              <div className="flex items-start space-x-3">
+                <span className="text-2xl flex-shrink-0">💡</span>
+                <div>
+                  <h4 className="text-sm sm:text-base font-bold text-gray-800 mb-3">Understanding Your Result</h4>
+                  <ul className="space-y-2 text-xs sm:text-sm text-gray-700">
+                    <li className="flex items-start">
+                      <span className="mr-2 text-indigo-500">•</span>
+                      <span>Your range spans <strong>{result.semitones} keys</strong> on a piano keyboard</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2 text-indigo-500">•</span>
+                      <span>
+                        Middle C (C4) is {
+                          result.lowestFrequency > 262 ? 'below' :
+                          result.highestFrequency < 262 ? 'above' :
+                          'within'
+                        } your range
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2 text-indigo-500">•</span>
+                      <span>You can sing notes from <strong>{result.lowestNote}</strong> to <strong>{result.highestNote}</strong></span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2 text-indigo-500">•</span>
+                      <span>Try finding these notes on a piano or keyboard to hear your range!</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
