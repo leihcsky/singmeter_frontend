@@ -8,7 +8,8 @@ import { AudioPitchDetector, frequencyToNote, getVoiceType } from '../utils/pitc
 import WelcomeScreen from './WelcomeScreen';
 import TestingScreen from './TestingScreen';
 import ResultScreen from './ResultScreen';
-import { PrivacyModal, ContactModal, AboutModal } from './Modals';
+import { PrivacyModal, ContactModal, AboutModal, TermsModal } from './Modals';
+import { Link } from 'react-router-dom';
 
 const ModernVocalTest = () => {
   // Test states
@@ -29,6 +30,7 @@ const ModernVocalTest = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
   const [showMicPermission, setShowMicPermission] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
@@ -337,6 +339,9 @@ const ModernVocalTest = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6 text-sm">
+              <Link to="/blog" className="text-gray-600 hover:text-indigo-600 transition">
+                Blog
+              </Link>
               <button onClick={() => setShowAbout(true)} className="text-gray-600 hover:text-indigo-600 transition">
                 About
               </button>
@@ -345,6 +350,9 @@ const ModernVocalTest = () => {
               </button>
               <button onClick={() => setShowPrivacy(true)} className="text-gray-600 hover:text-indigo-600 transition">
                 Privacy
+              </button>
+              <button onClick={() => setShowTerms(true)} className="text-gray-600 hover:text-indigo-600 transition">
+                Terms
               </button>
             </nav>
 
@@ -368,6 +376,13 @@ const ModernVocalTest = () => {
           {showMobileMenu && (
             <div className="md:hidden mt-3 pt-3 border-t border-gray-200 animate-fadeIn">
               <nav className="flex flex-col space-y-2">
+                <Link
+                  to="/blog"
+                  className="text-left px-3 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition"
+                  onClick={() => setShowMobileMenu(false)}
+                >
+                  Blog
+                </Link>
                 <button
                   onClick={() => { setShowAbout(true); setShowMobileMenu(false); }}
                   className="text-left px-3 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition"
@@ -385,6 +400,12 @@ const ModernVocalTest = () => {
                   className="text-left px-3 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition"
                 >
                   Privacy
+                </button>
+                <button
+                  onClick={() => { setShowTerms(true); setShowMobileMenu(false); }}
+                  className="text-left px-3 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition"
+                >
+                  Terms
                 </button>
               </nav>
             </div>
@@ -426,7 +447,11 @@ const ModernVocalTest = () => {
           <div className="text-center text-xs sm:text-sm text-gray-600">
             <p className="mb-2">© 2025 SingMeter. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-x-3 sm:gap-x-4 gap-y-1">
+              <Link to="/blog" className="hover:text-indigo-600 transition">Blog</Link>
+              <span className="hidden sm:inline">•</span>
               <button onClick={() => setShowPrivacy(true)} className="hover:text-indigo-600 transition">Privacy Policy</button>
+              <span className="hidden sm:inline">•</span>
+              <button onClick={() => setShowTerms(true)} className="hover:text-indigo-600 transition">Terms of Service</button>
               <span className="hidden sm:inline">•</span>
               <button onClick={() => setShowContact(true)} className="hover:text-indigo-600 transition">Contact Us</button>
               <span className="hidden sm:inline">•</span>
@@ -438,6 +463,7 @@ const ModernVocalTest = () => {
 
       {/* Modals */}
       {showPrivacy && <PrivacyModal onClose={() => setShowPrivacy(false)} />}
+      {showTerms && <TermsModal onClose={() => setShowTerms(false)} />}
       {showContact && <ContactModal onClose={() => setShowContact(false)} />}
       {showAbout && <AboutModal onClose={() => setShowAbout(false)} />}
       {showMicPermission && (

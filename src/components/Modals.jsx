@@ -288,6 +288,181 @@ export const AboutModal = ({ onClose }) => {
   );
 };
 
+// Terms of Service Modal
+export const TermsModal = ({ onClose }) => {
+  return (
+    <Modal isOpen={true} onClose={onClose} title="Terms of Service">
+      <div className="prose prose-sm max-w-none">
+        <p className="text-gray-600 mb-4">
+          <strong>Last Updated:</strong> {new Date().toLocaleDateString()}
+        </p>
+
+        <p className="text-gray-600 mb-6">
+          Welcome to SingMeter! By accessing or using our website and services, you agree to be bound by these Terms of Service.
+          Please read them carefully before using our vocal range testing service.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">1. Acceptance of Terms</h4>
+        <p className="text-gray-600 mb-4">
+          By accessing and using SingMeter ("the Service"), you accept and agree to be bound by the terms and provisions of this agreement.
+          If you do not agree to these terms, please do not use the Service.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">2. Description of Service</h4>
+        <p className="text-gray-600 mb-4">
+          SingMeter provides a free online vocal range testing tool that analyzes your voice using your device's microphone.
+          The Service uses Web Audio API technology to detect pitch and determine your vocal range and voice type.
+          All voice analysis is performed locally in your web browser.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">3. User Eligibility</h4>
+        <p className="text-gray-600 mb-4">
+          You must be at least 13 years old to use this Service. If you are under 18, you must have permission from a parent
+          or legal guardian to use the Service. By using the Service, you represent and warrant that you meet these eligibility requirements.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">4. Microphone Access and Privacy</h4>
+        <p className="text-gray-600 mb-4">
+          The Service requires access to your device's microphone to analyze your voice. By granting microphone access, you acknowledge that:
+        </p>
+        <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4 ml-4">
+          <li>Your voice is processed in real-time in your browser</li>
+          <li>No audio recordings are made, stored, or transmitted to our servers</li>
+          <li>All voice analysis happens locally on your device</li>
+          <li>You can revoke microphone access at any time through your browser settings</li>
+        </ul>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">5. Acceptable Use</h4>
+        <p className="text-gray-600 mb-4">
+          You agree to use the Service only for lawful purposes and in accordance with these Terms. You agree NOT to:
+        </p>
+        <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4 ml-4">
+          <li>Use the Service in any way that violates any applicable law or regulation</li>
+          <li>Attempt to interfere with, compromise, or disrupt the Service or servers</li>
+          <li>Use any automated system or software to extract data from the Service</li>
+          <li>Attempt to gain unauthorized access to any portion of the Service</li>
+          <li>Use the Service to transmit any malicious code or harmful content</li>
+          <li>Impersonate or attempt to impersonate SingMeter or any other person or entity</li>
+        </ul>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">6. Intellectual Property Rights</h4>
+        <p className="text-gray-600 mb-4">
+          The Service and its original content, features, and functionality are owned by SingMeter and are protected by
+          international copyright, trademark, patent, trade secret, and other intellectual property laws.
+        </p>
+        <p className="text-gray-600 mb-4">
+          You may not copy, modify, distribute, sell, or lease any part of our Service or included software, nor may you
+          reverse engineer or attempt to extract the source code of that software, unless laws prohibit these restrictions
+          or you have our written permission.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">7. Disclaimer of Warranties</h4>
+        <p className="text-gray-600 mb-4">
+          THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT ANY WARRANTIES OF ANY KIND,
+          EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO:
+        </p>
+        <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4 ml-4">
+          <li>Warranties of merchantability, fitness for a particular purpose, or non-infringement</li>
+          <li>Warranties that the Service will be uninterrupted, secure, or error-free</li>
+          <li>Warranties regarding the accuracy, reliability, or completeness of test results</li>
+        </ul>
+        <p className="text-gray-600 mb-4">
+          The vocal range test results are for informational and educational purposes only. They should not be considered
+          as professional medical or vocal coaching advice.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">8. Limitation of Liability</h4>
+        <p className="text-gray-600 mb-4">
+          TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL SINGMETER, ITS AFFILIATES, DIRECTORS, EMPLOYEES,
+          OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT
+          NOT LIMITED TO:
+        </p>
+        <ul className="list-disc list-inside text-gray-600 space-y-2 mb-4 ml-4">
+          <li>Loss of profits, data, use, goodwill, or other intangible losses</li>
+          <li>Damages resulting from your access to or use of (or inability to access or use) the Service</li>
+          <li>Damages resulting from any conduct or content of any third party on the Service</li>
+          <li>Unauthorized access, use, or alteration of your transmissions or content</li>
+        </ul>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">9. Indemnification</h4>
+        <p className="text-gray-600 mb-4">
+          You agree to defend, indemnify, and hold harmless SingMeter and its affiliates, licensors, and service providers
+          from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including
+          reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Service.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">10. Third-Party Services</h4>
+        <p className="text-gray-600 mb-4">
+          The Service may contain links to third-party websites or services that are not owned or controlled by SingMeter.
+          We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any
+          third-party websites or services. You acknowledge and agree that SingMeter shall not be responsible or liable
+          for any damage or loss caused by your use of any such third-party content or services.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">11. Advertising</h4>
+        <p className="text-gray-600 mb-4">
+          The Service may display advertisements from third-party advertising networks, including Google AdSense.
+          These advertisements may use cookies and other tracking technologies to serve ads based on your browsing activity.
+          We do not control the content of these advertisements or the practices of the advertisers.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">12. Changes to the Service</h4>
+        <p className="text-gray-600 mb-4">
+          We reserve the right to modify, suspend, or discontinue the Service (or any part thereof) at any time,
+          with or without notice, for any reason. We shall not be liable to you or any third party for any modification,
+          suspension, or discontinuance of the Service.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">13. Changes to Terms</h4>
+        <p className="text-gray-600 mb-4">
+          We reserve the right to modify these Terms at any time. We will notify users of any material changes by
+          posting the new Terms on this page and updating the "Last Updated" date. Your continued use of the Service
+          after any such changes constitutes your acceptance of the new Terms.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">14. Governing Law</h4>
+        <p className="text-gray-600 mb-4">
+          These Terms shall be governed by and construed in accordance with the laws of the United States,
+          without regard to its conflict of law provisions. Any legal action or proceeding arising under these Terms
+          will be brought exclusively in the federal or state courts located in the United States.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">15. Severability</h4>
+        <p className="text-gray-600 mb-4">
+          If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions
+          of these Terms will remain in effect. The invalid or unenforceable provision will be deemed modified to the
+          extent necessary to make it valid and enforceable.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">16. Entire Agreement</h4>
+        <p className="text-gray-600 mb-4">
+          These Terms constitute the entire agreement between you and SingMeter regarding the use of the Service,
+          superseding any prior agreements between you and SingMeter relating to your use of the Service.
+        </p>
+
+        <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">17. Contact Information</h4>
+        <p className="text-gray-600 mb-4">
+          If you have any questions about these Terms of Service, please contact us through our contact form.
+        </p>
+
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mt-6 rounded-r-lg">
+          <div className="flex items-start">
+            <svg className="w-5 h-5 text-blue-500 mt-0.5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            </svg>
+            <div>
+              <h5 className="font-semibold text-blue-800 mb-1">Important Notice</h5>
+              <p className="text-sm text-blue-700">
+                By using SingMeter, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
 // Import useState for ContactModal
 import { useState } from 'react';
 

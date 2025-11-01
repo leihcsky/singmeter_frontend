@@ -57,10 +57,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3293976111230987"
-     crossorigin="anonymous"></script>
-     <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LPZ98PGRSL"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -69,8 +66,137 @@
 
       gtag('config', 'G-LPZ98PGRSL');
     </script>
+
+    <!-- Delay AdSense loading until user interaction -->
+    <script>
+      // Load AdSense after user interaction or after 3 seconds
+      function loadAdSense() {
+        if (window.adsenseLoaded) return;
+        window.adsenseLoaded = true;
+
+        const script = document.createElement('script');
+        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3293976111230987';
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        document.head.appendChild(script);
+      }
+
+      // Load on user interaction
+      ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
+        window.addEventListener(event, loadAdSense, { once: true, passive: true });
+      });
+
+      // Fallback: load after 3 seconds
+      setTimeout(loadAdSense, 3000);
+    </script>
   </head>
   <body>
+    <!-- Static SEO Content (visible even with JS disabled) -->
+    <noscript>
+      <div style="max-width: 1200px; margin: 0 auto; padding: 20px; font-family: system-ui, -apple-system, sans-serif;">
+        <header style="text-align: center; margin-bottom: 40px;">
+          <h1 style="font-size: 2.5rem; font-weight: bold; color: #1f2937; margin-bottom: 16px;">
+            SingMeter - Free Online Vocal Range Test
+          </h1>
+          <p style="font-size: 1.25rem; color: #6b7280; margin-bottom: 12px;">
+            Discover Your Singing Range and Voice Type in Minutes
+          </p>
+        </header>
+
+        <main style="line-height: 1.8; color: #374151;">
+          <section style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.875rem; font-weight: bold; color: #1f2937; margin-bottom: 16px;">
+              What is a Vocal Range Test?
+            </h2>
+            <p style="margin-bottom: 16px;">
+              A <strong>vocal range test</strong> is a professional assessment that measures the span between your lowest and highest singable notes.
+              Understanding your <strong>singing range</strong> is essential for singers of all levels, from beginners exploring their voice to
+              professional vocalists refining their craft. Your vocal range helps you choose appropriate songs, identify your voice type
+              (Bass, Baritone, Tenor, Alto, Mezzo-Soprano, or Soprano), and track your vocal development over time.
+            </p>
+            <p style="margin-bottom: 16px;">
+              Most people have a natural vocal range of 1.5 to 2.5 octaves, while trained singers often achieve 3 to 4 octaves or more.
+              Professional singers and vocal coaches use vocal range tests to assess vocal capabilities, plan training programs, and select
+              repertoire that suits the singer's natural abilities.
+            </p>
+          </section>
+
+          <section style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.875rem; font-weight: bold; color: #1f2937; margin-bottom: 16px;">
+              Why Test Your Vocal Range?
+            </h2>
+            <p style="margin-bottom: 16px;">
+              Testing your <strong>vocal range online</strong> provides valuable insights into your singing abilities:
+            </p>
+            <ul style="margin-left: 24px; margin-bottom: 16px;">
+              <li style="margin-bottom: 8px;"><strong>Identify Your Voice Type:</strong> Discover whether you're a Bass, Tenor, Alto, Soprano, or another voice classification</li>
+              <li style="margin-bottom: 8px;"><strong>Choose Suitable Songs:</strong> Select music that fits comfortably within your range</li>
+              <li style="margin-bottom: 8px;"><strong>Track Progress:</strong> Monitor how your range expands with practice and training</li>
+              <li style="margin-bottom: 8px;"><strong>Avoid Vocal Strain:</strong> Understand your limits to prevent vocal damage</li>
+              <li style="margin-bottom: 8px;"><strong>Join Choirs:</strong> Know which vocal section (soprano, alto, tenor, bass) suits you best</li>
+              <li style="margin-bottom: 8px;"><strong>Professional Development:</strong> Essential information for auditions and vocal coaching</li>
+            </ul>
+          </section>
+
+          <section style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.875rem; font-weight: bold; color: #1f2937; margin-bottom: 16px;">
+              How SingMeter Helps You
+            </h2>
+            <p style="margin-bottom: 16px;">
+              SingMeter is a <strong>free online vocal range test</strong> that uses advanced Web Audio API technology to accurately detect
+              and analyze your vocal pitch in real-time. Our professional-grade <strong>singing range test</strong> provides:
+            </p>
+            <ul style="margin-left: 24px; margin-bottom: 16px;">
+              <li style="margin-bottom: 8px;"><strong>Instant Results:</strong> Get your vocal range analysis in just 3 minutes</li>
+              <li style="margin-bottom: 8px;"><strong>Professional Accuracy:</strong> Advanced pitch detection algorithms used by vocal professionals</li>
+              <li style="margin-bottom: 8px;"><strong>Complete Privacy:</strong> All voice analysis happens locally in your browser - nothing is recorded or stored</li>
+              <li style="margin-bottom: 8px;"><strong>No Signup Required:</strong> Start testing immediately without creating an account</li>
+              <li style="margin-bottom: 8px;"><strong>Detailed Analysis:</strong> Receive comprehensive information about your voice type and capabilities</li>
+              <li style="margin-bottom: 8px;"><strong>Mobile Friendly:</strong> Works on any device with a microphone - phone, tablet, or computer</li>
+            </ul>
+            <p style="margin-bottom: 16px;">
+              Trusted by thousands of singers worldwide, SingMeter combines ease of use with professional-grade accuracy.
+              Whether you're preparing for an audition, joining a choir, or simply curious about your singing abilities,
+              our <strong>vocal range finder</strong> provides the insights you need to develop your voice.
+            </p>
+          </section>
+
+          <section style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.875rem; font-weight: bold; color: #1f2937; margin-bottom: 16px;">
+              How to Use SingMeter
+            </h2>
+            <p style="margin-bottom: 16px;">
+              Taking your <strong>vocal range test</strong> is simple and takes less than 3 minutes:
+            </p>
+            <ol style="margin-left: 24px; margin-bottom: 16px;">
+              <li style="margin-bottom: 8px;"><strong>Allow Microphone Access:</strong> Grant permission when prompted so we can analyze your voice</li>
+              <li style="margin-bottom: 8px;"><strong>Sing Three Notes:</strong> Follow the instructions to sing your natural, lowest, and highest comfortable notes</li>
+              <li style="margin-bottom: 8px;"><strong>Get Your Results:</strong> Instantly receive your vocal range, voice type, and detailed analysis</li>
+            </ol>
+            <p style="margin-bottom: 16px;">
+              For best results, take the test in a quiet environment and use a quality microphone. You can retake the test
+              as many times as you like to track your progress as your vocal range expands with practice.
+            </p>
+          </section>
+
+          <section style="background: #f3f4f6; padding: 24px; border-radius: 12px; margin-bottom: 40px;">
+            <p style="font-size: 1.125rem; color: #1f2937; margin-bottom: 12px;">
+              <strong>Ready to discover your singing potential?</strong>
+            </p>
+            <p style="color: #6b7280;">
+              Enable JavaScript to start your free vocal range test now. Join thousands of singers who have discovered
+              their voice type and singing capabilities with SingMeter.
+            </p>
+          </section>
+        </main>
+
+        <footer style="text-align: center; padding-top: 40px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 0.875rem;">
+          <p>© 2025 SingMeter. All rights reserved.</p>
+          <p style="margin-top: 8px;">Free Online Vocal Range Test | Singing Range Finder | Voice Type Test</p>
+        </footer>
+      </div>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
