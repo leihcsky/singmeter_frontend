@@ -8,7 +8,6 @@ import { AudioPitchDetector, frequencyToNote, getVoiceType } from '../utils/pitc
 import WelcomeScreen from './WelcomeScreen';
 import TestingScreen from './TestingScreen';
 import ResultScreen from './ResultScreen';
-import { PrivacyModal, ContactModal, AboutModal, TermsModal } from './Modals';
 import { Link } from 'react-router-dom';
 
 const ModernVocalTest = () => {
@@ -27,10 +26,6 @@ const ModernVocalTest = () => {
   const [error, setError] = useState(null);
   
   // Modal states
-  const [showPrivacy, setShowPrivacy] = useState(false);
-  const [showContact, setShowContact] = useState(false);
-  const [showAbout, setShowAbout] = useState(false);
-  const [showTerms, setShowTerms] = useState(false);
   const [showMicPermission, setShowMicPermission] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
@@ -342,18 +337,18 @@ const ModernVocalTest = () => {
               <Link to="/blog" className="text-gray-600 hover:text-indigo-600 transition">
                 Blog
               </Link>
-              <button onClick={() => setShowAbout(true)} className="text-gray-600 hover:text-indigo-600 transition">
+              <Link to="/about" className="text-gray-600 hover:text-indigo-600 transition">
                 About
-              </button>
-              <button onClick={() => setShowContact(true)} className="text-gray-600 hover:text-indigo-600 transition">
+              </Link>
+              <Link to="/contact" className="text-gray-600 hover:text-indigo-600 transition">
                 Contact
-              </button>
-              <button onClick={() => setShowPrivacy(true)} className="text-gray-600 hover:text-indigo-600 transition">
+              </Link>
+              <Link to="/privacy" className="text-gray-600 hover:text-indigo-600 transition">
                 Privacy
-              </button>
-              <button onClick={() => setShowTerms(true)} className="text-gray-600 hover:text-indigo-600 transition">
+              </Link>
+              <Link to="/terms" className="text-gray-600 hover:text-indigo-600 transition">
                 Terms
-              </button>
+              </Link>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -383,30 +378,34 @@ const ModernVocalTest = () => {
                 >
                   Blog
                 </Link>
-                <button
-                  onClick={() => { setShowAbout(true); setShowMobileMenu(false); }}
+                <Link
+                  to="/about"
                   className="text-left px-3 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition"
+                  onClick={() => setShowMobileMenu(false)}
                 >
                   About
-                </button>
-                <button
-                  onClick={() => { setShowContact(true); setShowMobileMenu(false); }}
+                </Link>
+                <Link
+                  to="/contact"
                   className="text-left px-3 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition"
+                  onClick={() => setShowMobileMenu(false)}
                 >
                   Contact
-                </button>
-                <button
-                  onClick={() => { setShowPrivacy(true); setShowMobileMenu(false); }}
+                </Link>
+                <Link
+                  to="/privacy"
                   className="text-left px-3 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition"
+                  onClick={() => setShowMobileMenu(false)}
                 >
                   Privacy
-                </button>
-                <button
-                  onClick={() => { setShowTerms(true); setShowMobileMenu(false); }}
+                </Link>
+                <Link
+                  to="/terms"
                   className="text-left px-3 py-2 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition"
+                  onClick={() => setShowMobileMenu(false)}
                 >
                   Terms
-                </button>
+                </Link>
               </nav>
             </div>
           )}
@@ -449,23 +448,19 @@ const ModernVocalTest = () => {
             <div className="flex flex-wrap justify-center gap-x-3 sm:gap-x-4 gap-y-1">
               <Link to="/blog" className="hover:text-indigo-600 transition">Blog</Link>
               <span className="hidden sm:inline">•</span>
-              <button onClick={() => setShowPrivacy(true)} className="hover:text-indigo-600 transition">Privacy Policy</button>
+              <Link to="/privacy" className="hover:text-indigo-600 transition">Privacy Policy</Link>
               <span className="hidden sm:inline">•</span>
-              <button onClick={() => setShowTerms(true)} className="hover:text-indigo-600 transition">Terms of Service</button>
+              <Link to="/terms" className="hover:text-indigo-600 transition">Terms of Service</Link>
               <span className="hidden sm:inline">•</span>
-              <button onClick={() => setShowContact(true)} className="hover:text-indigo-600 transition">Contact Us</button>
+              <Link to="/contact" className="hover:text-indigo-600 transition">Contact Us</Link>
               <span className="hidden sm:inline">•</span>
-              <button onClick={() => setShowAbout(true)} className="hover:text-indigo-600 transition">About</button>
+              <Link to="/about" className="hover:text-indigo-600 transition">About</Link>
             </div>
           </div>
         </div>
       </footer>
 
       {/* Modals */}
-      {showPrivacy && <PrivacyModal onClose={() => setShowPrivacy(false)} />}
-      {showTerms && <TermsModal onClose={() => setShowTerms(false)} />}
-      {showContact && <ContactModal onClose={() => setShowContact(false)} />}
-      {showAbout && <AboutModal onClose={() => setShowAbout(false)} />}
       {showMicPermission && (
         <MicrophonePermissionModal
           onClose={() => setShowMicPermission(false)}
