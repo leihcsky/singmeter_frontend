@@ -334,6 +334,9 @@ const ModernVocalTest = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-6 text-sm">
+              <Link to="/" className="text-gray-600 hover:text-indigo-600 transition">
+                Home
+              </Link>
               <Link to="/blog" className="text-gray-600 hover:text-indigo-600 transition">
                 Blog
               </Link>
@@ -342,12 +345,6 @@ const ModernVocalTest = () => {
               </Link>
               <Link to="/contact" className="text-gray-600 hover:text-indigo-600 transition">
                 Contact
-              </Link>
-              <Link to="/privacy" className="text-gray-600 hover:text-indigo-600 transition">
-                Privacy
-              </Link>
-              <Link to="/terms" className="text-gray-600 hover:text-indigo-600 transition">
-                Terms
               </Link>
             </nav>
 

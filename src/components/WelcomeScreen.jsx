@@ -1,8 +1,33 @@
 /**
  * Welcome Screen - Hero section with CTA
  */
+import { Link } from 'react-router-dom';
 
 const WelcomeScreen = ({ onStart, error }) => {
+  // Blog articles data for preview
+  const blogArticles = [
+    {
+      slug: 'how-to-test-vocal-range',
+      title: 'How to Test Your Vocal Range',
+      excerpt: 'Learn the professional methods to accurately test and measure your singing range.',
+      category: 'Guides',
+      readTime: '5 min read'
+    },
+    {
+      slug: 'singing-high-notes-techniques',
+      title: 'How to Sing High Notes',
+      excerpt: 'Master the art of singing high notes with proven vocal techniques and exercises.',
+      category: 'Techniques',
+      readTime: '6 min read'
+    },
+    {
+      slug: 'songs-for-your-voice-type',
+      title: 'Best Songs for Your Voice Type',
+      excerpt: 'Discover the perfect songs that match your vocal range and voice classification.',
+      category: 'Song Lists',
+      readTime: '7 min read'
+    }
+  ];
   return (
     <div className="max-w-6xl mx-auto">
       {/* Hero Section */}
@@ -65,6 +90,65 @@ const WelcomeScreen = ({ onStart, error }) => {
         )}
       </div>
 
+      {/* Main Content Section - 实质性内容提升到首屏 */}
+      <div className="max-w-4xl mx-auto mb-12 px-4">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+            What is a Vocal Range Test?
+          </h2>
+          <p className="text-base sm:text-lg text-gray-600 mb-4 leading-relaxed">
+            A <strong>vocal range test</strong> is a professional assessment that measures the span between your lowest and highest singable notes.
+            Understanding your <strong>singing range</strong> is essential for singers of all levels, from beginners exploring their voice to
+            professional vocalists refining their craft. Your vocal range helps you choose appropriate songs, identify your voice type
+            (Bass, Baritone, Tenor, Alto, Mezzo-Soprano, or Soprano), and track your vocal development over time.
+          </p>
+          <p className="text-base sm:text-lg text-gray-600 mb-4 leading-relaxed">
+            Most people have a natural vocal range of 1.5 to 2.5 octaves, while trained singers often achieve 3 to 4 octaves or more.
+            Professional singers and vocal coaches use vocal range tests to assess vocal capabilities, plan training programs, and select
+            repertoire that suits the singer's natural abilities.
+          </p>
+
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 mt-6">
+            Why Test Your Vocal Range?
+          </h3>
+          <p className="text-base sm:text-lg text-gray-600 mb-3 leading-relaxed">
+            Testing your <strong>vocal range online</strong> provides valuable insights into your singing abilities:
+          </p>
+          <ul className="space-y-2 text-base sm:text-lg text-gray-600 mb-4">
+            <li className="flex items-start">
+              <span className="text-indigo-600 mr-2 mt-1">✓</span>
+              <span><strong>Identify Your Voice Type:</strong> Discover whether you're a Bass, Tenor, Alto, Soprano, or another voice classification</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-indigo-600 mr-2 mt-1">✓</span>
+              <span><strong>Choose Suitable Songs:</strong> Select music that fits comfortably within your range</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-indigo-600 mr-2 mt-1">✓</span>
+              <span><strong>Track Progress:</strong> Monitor how your range expands with practice and training</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-indigo-600 mr-2 mt-1">✓</span>
+              <span><strong>Avoid Vocal Strain:</strong> Understand your limits to prevent vocal damage</span>
+            </li>
+            <li className="flex items-start">
+              <span className="text-indigo-600 mr-2 mt-1">✓</span>
+              <span><strong>Professional Development:</strong> Essential information for auditions and vocal coaching</span>
+            </li>
+          </ul>
+
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 mt-6">
+            How SingMeter Works
+          </h3>
+          <p className="text-base sm:text-lg text-gray-600 mb-4 leading-relaxed">
+            SingMeter is a <strong>free online vocal range test</strong> that uses advanced Web Audio API technology to accurately detect
+            and analyze your vocal pitch in real-time. Our professional-grade <strong>singing range test</strong> provides instant results
+            in just 3 minutes. All voice analysis happens locally in your browser - we never record or store your voice data, ensuring
+            100% privacy. Trusted by thousands of singers worldwide, SingMeter combines ease of use with professional-grade accuracy.
+          </p>
+        </div>
+      </div>
+
       {/* Features Grid */}
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16">
         <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-100 hover:shadow-md transition">
@@ -95,6 +179,62 @@ const WelcomeScreen = ({ onStart, error }) => {
           <p className="text-sm sm:text-base text-gray-600">
             Your voice data is processed locally in your browser. Nothing is recorded or stored
           </p>
+        </div>
+      </div>
+
+      {/* Blog Articles Preview Section */}
+      <div className="mb-16">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+            Learn About Vocal Range
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Explore our expert guides on vocal techniques, range testing, and singing tips
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {blogArticles.map((article) => (
+            <Link
+              key={article.slug}
+              to={`/blog/${article.slug}`}
+              className="group bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:border-indigo-200 transition-all duration-200"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+                  {article.category}
+                </span>
+                <span className="text-xs text-gray-500">{article.readTime}</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">
+                {article.title}
+              </h3>
+
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                {article.excerpt}
+              </p>
+
+              <div className="flex items-center text-indigo-600 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                Read Article
+                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Link
+            to="/blog"
+            className="inline-flex items-center px-6 py-3 bg-white text-indigo-600 font-semibold rounded-xl border-2 border-indigo-600 hover:bg-indigo-600 hover:text-white transition-all duration-200"
+          >
+            View All Articles
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Link>
         </div>
       </div>
 
@@ -196,30 +336,6 @@ const WelcomeScreen = ({ onStart, error }) => {
         </div>
       </div>
 
-      {/* SEO Content */}
-      <div className="max-w-4xl mx-auto prose prose-lg mb-16">
-        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            About Vocal Range Testing
-          </h2>
-          <p className="text-gray-600 mb-4">
-            Understanding your <strong>vocal range</strong> is essential for singers of all levels. 
-            Whether you're a beginner exploring your voice or a professional vocalist refining your craft, 
-            knowing your <strong>singing range</strong> helps you choose appropriate songs, identify your voice type, 
-            and track your vocal development over time.
-          </p>
-          <p className="text-gray-600 mb-4">
-            A <strong>vocal range test</strong> measures the distance between your lowest and highest singable notes, 
-            typically expressed in octaves or semitones. Most people have a range of 1.5 to 2.5 octaves, 
-            while trained singers often achieve 3 to 4 octaves or more.
-          </p>
-          <p className="text-gray-600">
-            SingMeter's free online <strong>singing range test</strong> uses advanced Web Audio API technology 
-            to accurately detect and analyze your vocal pitch in real-time. Our tool is trusted by thousands 
-            of singers worldwide for its accuracy, ease of use, and instant results.
-          </p>
-        </div>
-      </div>
     </div>
   );
 };
