@@ -2,7 +2,9 @@
  * Testing Screen - Active test interface
  */
 
+import { useState } from 'react';
 import PitchVisualizer from './PitchVisualizer';
+import PianoSelector from './PianoSelector';
 
 const TestingScreen = ({
   currentStep,
@@ -16,9 +18,13 @@ const TestingScreen = ({
   onNext,
   onCancel,
   onPrevious,
-  nextButtonText
+  nextButtonText,
+  inputMode,
+  onInputModeChange,
+  manualPitch,
+  onManualPitchSelect
 }) => {
-  const steps = ['Natural Voice', 'Lowest Note', 'Highest Note'];
+  const steps = ['Lowest Note', 'Highest Note'];
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -66,33 +72,116 @@ const TestingScreen = ({
           <p className="text-xs sm:text-sm opacity-75">{stepInfo.tip}</p>
         </div>
 
-        {/* Countdown or Recording Indicator */}
-        <div className="p-4 sm:p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
-          {!isRecording && countdown > 0 ? (
-            <div className="text-center py-6 sm:py-8">
-              <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full shadow-lg mb-3 sm:mb-4">
-                <span className="text-4xl sm:text-5xl font-bold text-indigo-600">{countdown}</span>
+        {/* Input Mode Selection */}
+        <div className="p-4 sm:p-6 border-b border-gray-200">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            {/* Sing It Option */}
+            <button
+              onClick={() => onInputModeChange('sing')}
+              className={`
+                flex-1 p-4 rounded-xl border-2 transition-all duration-200
+                ${inputMode === 'sing'
+                  ? 'border-indigo-500 bg-indigo-50 shadow-md'
+                  : 'border-gray-200 bg-white hover:border-indigo-300 hover:bg-indigo-50'
+                }
+              `}
+            >
+              <div className="flex items-center justify-center space-x-2">
+                <span className="text-2xl">🎤</span>
+                <div className="text-left">
+                  <div className={`font-semibold ${inputMode === 'sing' ? 'text-indigo-700' : 'text-gray-700'}`}>
+                    Sing It
+                  </div>
+                  <div className="text-xs text-gray-500">Use your voice</div>
+                </div>
+                {inputMode === 'sing' && (
+                  <div className="ml-auto">
+                    <div className="w-5 h-5 bg-indigo-500 rounded-full flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
               </div>
-              <p className="text-base sm:text-lg text-gray-600">Get ready...</p>
-            </div>
-          ) : (
-            <div className="text-center py-3 sm:py-4">
-              <div className="inline-flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-red-500 text-white rounded-full animate-pulse">
-                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
-                <span className="text-sm sm:text-base font-semibold">Recording...</span>
+            </button>
+
+            {/* Select Manually Option */}
+            <button
+              onClick={() => onInputModeChange('manual')}
+              className={`
+                flex-1 p-4 rounded-xl border-2 transition-all duration-200
+                ${inputMode === 'manual'
+                  ? 'border-indigo-500 bg-indigo-50 shadow-md'
+                  : 'border-gray-200 bg-white hover:border-indigo-300 hover:bg-indigo-50'
+                }
+              `}
+            >
+              <div className="flex items-center justify-center space-x-2">
+                <span className="text-2xl">🎹</span>
+                <div className="text-left">
+                  <div className={`font-semibold ${inputMode === 'manual' ? 'text-indigo-700' : 'text-gray-700'}`}>
+                    Select Manually
+                  </div>
+                  <div className="text-xs text-gray-500">Click piano keys</div>
+                </div>
+                {inputMode === 'manual' && (
+                  <div className="ml-auto">
+                    <div className="w-5 h-5 bg-indigo-500 rounded-full flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            </button>
+          </div>
         </div>
 
-        {/* Pitch Visualizer */}
-        {isRecording && (
+        {/* Sing It Mode */}
+        {inputMode === 'sing' && (
+          <>
+            {/* Countdown or Recording Indicator */}
+            <div className="p-4 sm:p-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+              {!isRecording && countdown > 0 ? (
+                <div className="text-center py-6 sm:py-8">
+                  <div className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-full shadow-lg mb-3 sm:mb-4">
+                    <span className="text-4xl sm:text-5xl font-bold text-indigo-600">{countdown}</span>
+                  </div>
+                  <p className="text-base sm:text-lg text-gray-600">Get ready...</p>
+                </div>
+              ) : (
+                <div className="text-center py-3 sm:py-4">
+                  <div className="inline-flex items-center space-x-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-red-500 text-white rounded-full animate-pulse">
+                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
+                    <span className="text-sm sm:text-base font-semibold">Recording...</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Pitch Visualizer */}
+            {isRecording && (
+              <div className="p-4 sm:p-6">
+                <PitchVisualizer
+                  currentPitch={currentPitch}
+                  currentNote={currentNote}
+                  lowestPitch={lowestPitch}
+                  highestPitch={highestPitch}
+                />
+              </div>
+            )}
+          </>
+        )}
+
+        {/* Manual Selection Mode */}
+        {inputMode === 'manual' && (
           <div className="p-4 sm:p-6">
-            <PitchVisualizer
-              currentPitch={currentPitch}
-              currentNote={currentNote}
-              lowestPitch={lowestPitch}
-              highestPitch={highestPitch}
+            <PianoSelector
+              mode={currentStep === 0 ? 'lowest' : 'highest'}
+              selectedPitch={manualPitch}
+              onSelect={onManualPitchSelect}
             />
           </div>
         )}
@@ -141,9 +230,9 @@ const TestingScreen = ({
             </button>
             <button
               onClick={onNext}
-              disabled={!isRecording}
+              disabled={inputMode === 'sing' ? !isRecording : !manualPitch}
               className={`w-full sm:flex-[1.5] px-4 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold rounded-lg sm:rounded-xl transition-all whitespace-nowrap ${
-                isRecording
+                (inputMode === 'sing' ? isRecording : manualPitch)
                   ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg transform hover:scale-105'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
               }`}

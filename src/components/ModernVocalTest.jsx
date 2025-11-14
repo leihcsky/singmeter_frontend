@@ -36,23 +36,22 @@ const ModernVocalTest = () => {
   const highestPitchRef = useRef(null);
   const animationFrameRef = useRef(null);
 
+  // Input mode: 'sing' or 'manual'
+  const [inputMode, setInputMode] = useState('sing');
+  const [manualLowestPitch, setManualLowestPitch] = useState(null);
+  const [manualHighestPitch, setManualHighestPitch] = useState(null);
+
   const stepInstructions = [
     {
-      title: 'Find Your Natural Voice',
-      instruction: 'Sing "Ahh" in your comfortable speaking range',
-      tip: 'Just like talking, but sustained',
-      icon: '🎤'
-    },
-    {
-      title: 'Go Low',
-      instruction: 'Now sing your lowest comfortable note',
-      tip: 'Don\'t strain - stay comfortable',
+      title: 'Find Your Lowest Note',
+      instruction: 'Sing or select your lowest comfortable note',
+      tip: 'You can sing it or click on the piano keyboard below',
       icon: '🔽'
     },
     {
-      title: 'Reach High',
-      instruction: 'Finally, hit your highest note',
-      tip: 'Protect your voice - don\'t push too hard',
+      title: 'Find Your Highest Note',
+      instruction: 'Sing or select your highest comfortable note',
+      tip: 'You can sing it or click on the piano keyboard below',
       icon: '🔼'
     },
   ];
@@ -62,24 +61,32 @@ const ModernVocalTest = () => {
     if (!detectorRef.current) return;
 
     let lastUpdateTime = 0;
-    const UPDATE_INTERVAL = 150;
+    const UPDATE_INTERVAL = 100; // Reduced from 150ms to 100ms for better responsiveness
 
     detectorRef.current.startDetection((pitch, clarity) => {
       if (pitch) {
         const note = frequencyToNote(pitch);
         pitchHistoryRef.current.push({ pitch, note, timestamp: Date.now() });
 
-        if (!lowestPitchRef.current || pitch < lowestPitchRef.current) {
+        // Update lowest pitch
+        const isNewLowest = !lowestPitchRef.current || pitch < lowestPitchRef.current;
+        if (isNewLowest) {
           lowestPitchRef.current = pitch;
-        }
-        if (!highestPitchRef.current || pitch > highestPitchRef.current) {
-          highestPitchRef.current = pitch;
+          console.log(`🔽 New Lowest: ${note.fullNote} (${pitch.toFixed(1)} Hz)`);
         }
 
+        // Update highest pitch
+        const isNewHighest = !highestPitchRef.current || pitch > highestPitchRef.current;
+        if (isNewHighest) {
+          highestPitchRef.current = pitch;
+          console.log(`🔼 New Highest: ${note.fullNote} (${pitch.toFixed(1)} Hz)`);
+        }
+
+        // Throttled UI updates
         const now = Date.now();
         if (now - lastUpdateTime >= UPDATE_INTERVAL) {
           lastUpdateTime = now;
-          
+
           if (animationFrameRef.current) {
             cancelAnimationFrame(animationFrameRef.current);
           }
@@ -97,6 +104,7 @@ const ModernVocalTest = () => {
         }
         animationFrameRef.current = requestAnimationFrame(() => {
           setCurrentPitch(null);
+          setCurrentNote(null);
         });
       }
     });
@@ -121,6 +129,9 @@ const ModernVocalTest = () => {
     setHighestPitch(null);
     setTestResult(null);
     setError(null);
+    setInputMode('sing');
+    setManualLowestPitch(null);
+    setManualHighestPitch(null);
 
     // Reset refs
     pitchHistoryRef.current = [];
@@ -134,6 +145,12 @@ const ModernVocalTest = () => {
   // Initialize and start test
   const handleStartTest = async () => {
     setError(null);
+
+    // If in manual mode, skip microphone initialization
+    if (inputMode === 'manual') {
+      setTestPhase('testing');
+      return;
+    }
 
     // Clean up existing detector if it exists
     if (detectorRef.current) {
@@ -174,15 +191,30 @@ const ModernVocalTest = () => {
   // Next step
   const handleNextStep = () => {
     if (currentStep < stepInstructions.length - 1) {
+      // If in manual mode, just move to next step
+      if (inputMode === 'manual') {
+        setCurrentStep(prev => prev + 1);
+        return;
+      }
+
+      // Stop detection during countdown to avoid interference
+      if (detectorRef.current) {
+        detectorRef.current.stopDetection();
+        console.log(`⏸️ Stopped detection for step ${currentStep} → ${currentStep + 1}`);
+      }
+
       setCurrentStep(prev => prev + 1);
       setIsRecording(false);
       setCountdown(3);
-      
+
       const countdownInterval = setInterval(() => {
         setCountdown(prev => {
           if (prev <= 1) {
             clearInterval(countdownInterval);
             setIsRecording(true);
+            // Restart detection after countdown
+            console.log(`▶️ Restarted detection for step ${currentStep + 1}`);
+            startDetection();
             return 0;
           }
           return prev - 1;
@@ -193,17 +225,48 @@ const ModernVocalTest = () => {
     }
   };
 
+  // Handle input mode change
+  const handleInputModeChange = (mode) => {
+    setInputMode(mode);
+
+    if (mode === 'manual') {
+      // Stop recording when switching to manual mode
+      if (detectorRef.current) {
+        detectorRef.current.stopDetection();
+      }
+      setIsRecording(false);
+    } else if (mode === 'sing') {
+      // Start recording when switching to sing mode
+      setIsRecording(true);
+      startDetection();
+    }
+  };
+
+  // Handle manual pitch selection
+  const handleManualPitchSelect = (frequency, note) => {
+    if (currentStep === 0) {
+      // Lowest note
+      setManualLowestPitch(frequency);
+      console.log(`🎹 Manual Lowest: ${note} (${frequency.toFixed(1)} Hz)`);
+    } else {
+      // Highest note
+      setManualHighestPitch(frequency);
+      console.log(`🎹 Manual Highest: ${note} (${frequency.toFixed(1)} Hz)`);
+    }
+  };
+
   // Complete test
   const completeTest = () => {
     if (detectorRef.current) {
       detectorRef.current.stopDetection();
     }
 
-    const finalLowest = lowestPitchRef.current;
-    const finalHighest = highestPitchRef.current;
+    // Use manual pitch if selected, otherwise use detected pitch
+    const finalLowest = manualLowestPitch || lowestPitchRef.current;
+    const finalHighest = manualHighestPitch || highestPitchRef.current;
 
     if (!finalLowest || !finalHighest) {
-      setError('No voice detected. Please try again.');
+      setError('Please select or sing both your lowest and highest notes.');
       return;
     }
 
@@ -230,6 +293,11 @@ const ModernVocalTest = () => {
   // Previous step
   const handlePreviousStep = () => {
     if (currentStep > 0) {
+      // Stop detection during countdown to avoid interference
+      if (detectorRef.current) {
+        detectorRef.current.stopDetection();
+      }
+
       setCurrentStep(prev => prev - 1);
       setIsRecording(false);
       setCountdown(3);
@@ -239,6 +307,8 @@ const ModernVocalTest = () => {
           if (prev <= 1) {
             clearInterval(countdownInterval);
             setIsRecording(true);
+            // Restart detection after countdown
+            startDetection();
             return 0;
           }
           return prev - 1;
@@ -429,6 +499,10 @@ const ModernVocalTest = () => {
             onPrevious={handlePreviousStep}
             onCancel={handleCancelTest}
             nextButtonText={nextButtonText}
+            inputMode={inputMode}
+            onInputModeChange={handleInputModeChange}
+            manualPitch={currentStep === 0 ? manualLowestPitch : manualHighestPitch}
+            onManualPitchSelect={handleManualPitchSelect}
           />
         )}
         

@@ -143,7 +143,7 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
                 className={`
                   flex-1 rounded-b-md transition-all duration-200 relative
                   ${key.isInUserRange
-                    ? 'bg-gradient-to-b from-indigo-400 to-purple-500'
+                    ? 'bg-gradient-to-b from-green-400 to-green-600'
                     : 'bg-white'
                   }
                   ${key.isLowest || key.isHighest ? 'ring-4 ring-yellow-400 ring-opacity-90 z-10' : ''}
@@ -182,7 +182,7 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
                   className={`
                     absolute top-0 rounded-b-sm transition-all duration-200 z-20
                     ${key.isInUserRange
-                      ? 'bg-gradient-to-b from-indigo-600 to-indigo-800'
+                      ? 'bg-gradient-to-b from-green-600 to-green-800'
                       : 'bg-black'
                     }
                     ${key.isLowest || key.isHighest ? 'ring-4 ring-yellow-400 ring-opacity-90' : ''}
@@ -200,7 +200,7 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
                     <span className={`
                       text-[7px] sm:text-[8px] font-medium
                       ${key.isInUserRange
-                        ? 'text-indigo-200 font-bold'
+                        ? 'text-green-200 font-bold'
                         : 'text-gray-400'
                       }
                     `}>
@@ -226,7 +226,7 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
         
         <div className="text-center px-4">
           <div className="text-gray-500 text-[10px] sm:text-xs">Your Range</div>
-          <div className="font-bold text-indigo-600">
+          <div className="font-bold text-green-600">
             {userMidiEnd - userMidiStart + 1} keys
           </div>
         </div>
@@ -243,7 +243,7 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
       {/* Legend */}
       <div className="mt-4 flex flex-wrap gap-3 sm:gap-4 justify-center text-[10px] sm:text-xs text-gray-600">
         <div className="flex items-center space-x-1.5">
-          <div className="w-4 h-6 bg-gradient-to-b from-indigo-400 to-purple-500 border border-indigo-600 rounded"></div>
+          <div className="w-4 h-6 bg-gradient-to-b from-green-400 to-green-600 border border-green-600 rounded"></div>
           <span>Your Range</span>
         </div>
         <div className="flex items-center space-x-1.5">

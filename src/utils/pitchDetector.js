@@ -118,7 +118,14 @@ export class AudioPitchDetector {
       return;
     }
 
+    // 如果已经在运行，先停止
+    if (this.isRunning) {
+      console.warn('⚠️ Detection already running, stopping first...');
+      this.stopDetection();
+    }
+
     this.isRunning = true;
+    console.log('✅ Started pitch detection');
 
     // 人声频率范围：
     // 标准范围：E2 (82 Hz) - C6 (1046 Hz)
@@ -136,14 +143,43 @@ export class AudioPitchDetector {
       // 检测音高
       const [pitch, clarity] = this.detector.findPitch(this.buffer, this.audioContext.sampleRate);
 
+      // 计算音量（RMS - Root Mean Square）
+      let sum = 0;
+      for (let i = 0; i < this.buffer.length; i++) {
+        sum += this.buffer[i] * this.buffer[i];
+      }
+      const rms = Math.sqrt(sum / this.buffer.length);
+      const volume = rms * 100; // 转换为 0-100 的范围
+
       // 过滤条件：
-      // 1. 清晰度足够高 (> 0.9)
-      // 2. 频率在人声范围内
-      // 3. 频率为正数
-      if (clarity > 0.9 &&
-          pitch > 0 &&
+      // 1. 频率为正数且在人声范围内
+      // 2. 清晰度要求（动态调整）：
+      //    - 极低音（< 150 Hz）：clarity > 0.75（很宽松，因为极低音很难检测）
+      //    - 低音（150-300 Hz）：clarity > 0.80（宽松，因为低音清晰度较低）
+      //    - 中音（300-500 Hz）：clarity > 0.85（适中）
+      //    - 高音（>= 500 Hz）：clarity > 0.85（适中，高音通常清晰度也不高）
+      // 3. 音量足够（> 0.3，确保用户在发声，过滤极小的噪音）
+      let clarityThreshold;
+      if (pitch < 150) {
+        clarityThreshold = 0.75; // 极低音
+      } else if (pitch < 300) {
+        clarityThreshold = 0.80; // 低音
+      } else {
+        clarityThreshold = 0.85; // 中高音
+      }
+
+      // 调试：每秒输出一次检测状态
+      const now = Date.now();
+      if (!this.lastDebugTime || now - this.lastDebugTime > 1000) {
+        this.lastDebugTime = now;
+        console.log(`🎵 Pitch: ${pitch?.toFixed(1) || 'null'} Hz, Clarity: ${clarity.toFixed(2)}, Volume: ${volume.toFixed(2)}, Threshold: ${clarityThreshold}`);
+      }
+
+      if (pitch > 0 &&
           pitch >= MIN_HUMAN_FREQUENCY &&
-          pitch <= MAX_HUMAN_FREQUENCY) {
+          pitch <= MAX_HUMAN_FREQUENCY &&
+          clarity > clarityThreshold &&
+          volume > 0.3) {
         callback(pitch, clarity);
       } else {
         callback(null, clarity);
@@ -160,6 +196,9 @@ export class AudioPitchDetector {
    * 停止检测
    */
   stopDetection() {
+    if (this.isRunning) {
+      console.log('⏹️ Stopped pitch detection');
+    }
     this.isRunning = false;
   }
 
