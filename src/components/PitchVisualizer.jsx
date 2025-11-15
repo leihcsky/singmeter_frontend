@@ -48,8 +48,18 @@ const PitchVisualizer = memo(({ currentPitch, currentNote, lowestPitch, highestP
 
       // Get current values from refs
       const pitch = currentPitchRef.current;
-      const lowest = lowestPitchRef.current;
-      const highest = highestPitchRef.current;
+      let lowest = lowestPitchRef.current;
+      let highest = highestPitchRef.current;
+
+      // If we have pitch but missing lowest/highest, use pitch as reference
+      if (pitch) {
+        if (!lowest || lowest === 0) {
+          lowest = pitch * 0.8; // 20% lower than current pitch
+        }
+        if (!highest || highest === 0) {
+          highest = pitch * 1.2; // 20% higher than current pitch
+        }
+      }
 
       // If there's current pitch, draw pitch indicator
       if (pitch && lowest && highest) {
@@ -172,16 +182,30 @@ const PitchVisualizer = memo(({ currentPitch, currentNote, lowestPitch, highestP
 
       {/* Range display - use fixed height to prevent layout shift */}
       <div className="mt-3 sm:mt-4 flex justify-between text-xs sm:text-sm" style={{ minHeight: '40px' }}>
-        {lowestPitch && highestPitch ? (
+        {(lowestPitch && lowestPitch > 0) || (highestPitch && highestPitch > 0) ? (
           <>
-            <div className="text-blue-600">
-              <div className="font-semibold">Lowest</div>
-              <div>{lowestPitch.toFixed(2)} Hz</div>
-            </div>
-            <div className="text-red-600">
-              <div className="font-semibold">Highest</div>
-              <div>{highestPitch.toFixed(2)} Hz</div>
-            </div>
+            {lowestPitch && lowestPitch > 0 ? (
+              <div className="text-blue-600">
+                <div className="font-semibold">Lowest</div>
+                <div>{lowestPitch.toFixed(2)} Hz</div>
+              </div>
+            ) : (
+              <div className="text-gray-400">
+                <div className="font-semibold">Lowest</div>
+                <div>--</div>
+              </div>
+            )}
+            {highestPitch && highestPitch > 0 ? (
+              <div className="text-red-600">
+                <div className="font-semibold">Highest</div>
+                <div>{highestPitch.toFixed(2)} Hz</div>
+              </div>
+            ) : (
+              <div className="text-gray-400">
+                <div className="font-semibold">Highest</div>
+                <div>--</div>
+              </div>
+            )}
           </>
         ) : (
           <div className="w-full"></div>

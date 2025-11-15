@@ -259,9 +259,9 @@ const WelcomeScreen = ({ onStart, error }) => {
             <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mx-auto mb-4">
               <span className="text-3xl">2️⃣</span>
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Sing 3 Notes</h3>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Sing 2 Notes</h3>
             <p className="text-gray-600">
-              Follow the simple instructions to sing your natural, lowest, and highest notes
+              Follow the simple instructions to sing your lowest, and highest notes
             </p>
           </div>
 

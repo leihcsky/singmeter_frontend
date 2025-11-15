@@ -3,9 +3,121 @@
  * Displays vocal range on a piano keyboard with logarithmic (musical) scale
  */
 
-import { useMemo } from 'react';
+import { useMemo, useRef, useEffect, useState } from 'react';
 
 const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => {
+  // Audio context for playing notes
+  const audioContextRef = useRef(null);
+  const [hoveredKey, setHoveredKey] = useState(null);
+
+  // Initialize audio context
+  useEffect(() => {
+    audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+
+    return () => {
+      if (audioContextRef.current) {
+        audioContextRef.current.close();
+      }
+    };
+  }, []);
+  // Play note sound with frequency-adjusted volume (same as PianoSelector)
+  const playNote = (frequency) => {
+    if (!audioContextRef.current) return;
+
+    const context = audioContextRef.current;
+
+    // Create oscillators for richer sound (fundamental + harmonics)
+    const oscillator1 = context.createOscillator(); // Fundamental
+    const oscillator2 = context.createOscillator(); // 2nd harmonic
+    const oscillator3 = context.createOscillator(); // 3rd harmonic
+
+    const gainNode1 = context.createGain();
+    const gainNode2 = context.createGain();
+    const gainNode3 = context.createGain();
+    const masterGain = context.createGain();
+
+    // Connect oscillators to their gain nodes
+    oscillator1.connect(gainNode1);
+    oscillator2.connect(gainNode2);
+    oscillator3.connect(gainNode3);
+
+    // Connect gain nodes to master gain
+    gainNode1.connect(masterGain);
+    gainNode2.connect(masterGain);
+    gainNode3.connect(masterGain);
+
+    // Connect master gain to destination
+    masterGain.connect(context.destination);
+
+    // Set frequencies (fundamental + harmonics for richer sound)
+    oscillator1.frequency.value = frequency;
+    oscillator2.frequency.value = frequency * 2; // Octave above
+    oscillator3.frequency.value = frequency * 3; // Fifth above octave
+
+    // Use triangle wave for warmer sound
+    oscillator1.type = 'triangle';
+    oscillator2.type = 'triangle';
+    oscillator3.type = 'sine';
+
+    // Calculate volume based on frequency
+    let baseVolume;
+    if (frequency < 150) {
+      baseVolume = 0.6 + (150 - frequency) / 150 * 0.3; // 0.6 to 0.9
+    } else if (frequency < 250) {
+      baseVolume = 0.5 + (250 - frequency) / 100 * 0.1; // 0.5 to 0.6
+    } else if (frequency < 400) {
+      baseVolume = 0.4;
+    } else {
+      baseVolume = 0.35;
+    }
+
+    // ADSR envelope
+    const now = context.currentTime;
+    const attackTime = 0.02;
+    const decayTime = 0.1;
+    const sustainLevel = 0.7;
+    const releaseTime = 0.3;
+    const duration = 0.8;
+
+    // Oscillator 1 (fundamental) - loudest
+    gainNode1.gain.setValueAtTime(0, now);
+    gainNode1.gain.linearRampToValueAtTime(baseVolume, now + attackTime);
+    gainNode1.gain.linearRampToValueAtTime(baseVolume * sustainLevel, now + attackTime + decayTime);
+    gainNode1.gain.setValueAtTime(baseVolume * sustainLevel, now + duration - releaseTime);
+    gainNode1.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+    // Oscillator 2 (2nd harmonic) - medium volume
+    gainNode2.gain.setValueAtTime(0, now);
+    gainNode2.gain.linearRampToValueAtTime(baseVolume * 0.3, now + attackTime);
+    gainNode2.gain.linearRampToValueAtTime(baseVolume * 0.3 * sustainLevel, now + attackTime + decayTime);
+    gainNode2.gain.setValueAtTime(baseVolume * 0.3 * sustainLevel, now + duration - releaseTime);
+    gainNode2.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+    // Oscillator 3 (3rd harmonic) - quietest
+    gainNode3.gain.setValueAtTime(0, now);
+    gainNode3.gain.linearRampToValueAtTime(baseVolume * 0.15, now + attackTime);
+    gainNode3.gain.linearRampToValueAtTime(baseVolume * 0.15 * sustainLevel, now + attackTime + decayTime);
+    gainNode3.gain.setValueAtTime(baseVolume * 0.15 * sustainLevel, now + duration - releaseTime);
+    gainNode3.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+    // Master gain
+    masterGain.gain.setValueAtTime(1, now);
+
+    // Start and stop oscillators
+    oscillator1.start(now);
+    oscillator2.start(now);
+    oscillator3.start(now);
+
+    oscillator1.stop(now + duration);
+    oscillator2.stop(now + duration);
+    oscillator3.stop(now + duration);
+  };
+
+  // Convert MIDI number to frequency
+  const midiToFrequency = (midi) => {
+    return 440 * Math.pow(2, (midi - 69) / 12);
+  };
+
   // Note names in chromatic scale
   const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
   
@@ -137,21 +249,27 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
         <div className="relative min-w-[600px] sm:min-w-[700px] h-32 sm:h-40">
           {/* White keys */}
           <div className="absolute inset-0 flex gap-[1px]">
-            {whiteKeys.map((key, index) => (
+            {whiteKeys.map((key) => (
               <div
                 key={key.midi}
                 className={`
-                  flex-1 rounded-b-md transition-all duration-200 relative
+                  flex-1 rounded-b-md transition-all duration-200 relative cursor-pointer
                   ${key.isInUserRange
-                    ? 'bg-gradient-to-b from-green-400 to-green-600'
-                    : 'bg-white'
+                    ? 'bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-700'
+                    : 'bg-white hover:bg-gray-100'
                   }
                   ${key.isLowest || key.isHighest ? 'ring-4 ring-yellow-400 ring-opacity-90 z-10' : ''}
+                  ${hoveredKey === key.midi ? 'transform scale-y-[0.98]' : ''}
                 `}
                 style={{
                   border: '1px solid #000',
-                  boxShadow: 'inset 0 -2px 4px rgba(0, 0, 0, 0.1)',
+                  boxShadow: hoveredKey === key.midi
+                    ? 'inset 0 2px 8px rgba(0, 0, 0, 0.3)'
+                    : 'inset 0 -2px 4px rgba(0, 0, 0, 0.1)',
                 }}
+                onClick={() => playNote(midiToFrequency(key.midi))}
+                onMouseEnter={() => setHoveredKey(key.midi)}
+                onMouseLeave={() => setHoveredKey(null)}
               >
                 {/* Note label at bottom */}
                 <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end pb-1">
@@ -180,20 +298,26 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
                 <div
                   key={key.midi}
                   className={`
-                    absolute top-0 rounded-b-sm transition-all duration-200 z-20
+                    absolute top-0 rounded-b-sm transition-all duration-200 z-20 cursor-pointer pointer-events-auto
                     ${key.isInUserRange
-                      ? 'bg-gradient-to-b from-green-600 to-green-800'
-                      : 'bg-black'
+                      ? 'bg-gradient-to-b from-green-600 to-green-800 hover:from-green-700 hover:to-green-900'
+                      : 'bg-black hover:bg-gray-800'
                     }
                     ${key.isLowest || key.isHighest ? 'ring-4 ring-yellow-400 ring-opacity-90' : ''}
+                    ${hoveredKey === key.midi ? 'transform scale-y-[0.96]' : ''}
                   `}
                   style={{
                     left: `${leftPercent}%`,
                     width: `${whiteKeyWidth * 0.6}%`,
                     height: '58%',
                     border: '1px solid #000',
-                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.4)',
+                    boxShadow: hoveredKey === key.midi
+                      ? '0 4px 8px rgba(0, 0, 0, 0.6)'
+                      : '0 2px 4px rgba(0, 0, 0, 0.4)',
                   }}
+                  onClick={() => playNote(midiToFrequency(key.midi))}
+                  onMouseEnter={() => setHoveredKey(key.midi)}
+                  onMouseLeave={() => setHoveredKey(null)}
                 >
                   {/* Note label */}
                   <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end pb-1">

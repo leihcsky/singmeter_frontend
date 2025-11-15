@@ -20,25 +20,106 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
     };
   }, []);
 
-  // Play note sound
+  // Play note sound with frequency-adjusted volume
   const playNote = (frequency) => {
     if (!audioContextRef.current) return;
 
     const context = audioContextRef.current;
-    const oscillator = context.createOscillator();
-    const gainNode = context.createGain();
 
-    oscillator.connect(gainNode);
-    gainNode.connect(context.destination);
+    // Create oscillators for richer sound (fundamental + harmonics)
+    const oscillator1 = context.createOscillator(); // Fundamental
+    const oscillator2 = context.createOscillator(); // 2nd harmonic
+    const oscillator3 = context.createOscillator(); // 3rd harmonic
 
-    oscillator.frequency.value = frequency;
-    oscillator.type = 'sine';
+    const gainNode1 = context.createGain();
+    const gainNode2 = context.createGain();
+    const gainNode3 = context.createGain();
+    const masterGain = context.createGain();
 
-    gainNode.gain.setValueAtTime(0.3, context.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.5);
+    // Connect oscillators to their gain nodes
+    oscillator1.connect(gainNode1);
+    oscillator2.connect(gainNode2);
+    oscillator3.connect(gainNode3);
 
-    oscillator.start(context.currentTime);
-    oscillator.stop(context.currentTime + 0.5);
+    // Connect gain nodes to master gain
+    gainNode1.connect(masterGain);
+    gainNode2.connect(masterGain);
+    gainNode3.connect(masterGain);
+
+    // Connect master gain to destination
+    masterGain.connect(context.destination);
+
+    // Set frequencies (fundamental + harmonics for richer sound)
+    oscillator1.frequency.value = frequency;
+    oscillator2.frequency.value = frequency * 2; // Octave above
+    oscillator3.frequency.value = frequency * 3; // Fifth above octave
+
+    // Use triangle wave for warmer sound
+    oscillator1.type = 'triangle';
+    oscillator2.type = 'triangle';
+    oscillator3.type = 'sine';
+
+    // Calculate volume based on frequency (human ear is less sensitive to low frequencies)
+    // Low frequencies (< 150 Hz) need more volume
+    // Mid frequencies (150-400 Hz) need moderate volume
+    // High frequencies (> 400 Hz) need less volume
+    let baseVolume;
+    if (frequency < 150) {
+      // Very low frequencies: boost significantly
+      baseVolume = 0.6 + (150 - frequency) / 150 * 0.3; // 0.6 to 0.9
+    } else if (frequency < 250) {
+      // Low-mid frequencies: moderate boost
+      baseVolume = 0.5 + (250 - frequency) / 100 * 0.1; // 0.5 to 0.6
+    } else if (frequency < 400) {
+      // Mid frequencies: normal volume
+      baseVolume = 0.4;
+    } else {
+      // High frequencies: reduce slightly
+      baseVolume = 0.35;
+    }
+
+    // Set individual oscillator volumes (fundamental is loudest)
+    const now = context.currentTime;
+    const attackTime = 0.02; // Quick attack
+    const decayTime = 0.1;   // Short decay
+    const sustainLevel = 0.7; // Sustain at 70%
+    const releaseTime = 0.3;  // Medium release
+    const duration = 0.8;     // Total note duration
+
+    // Oscillator 1 (fundamental) - loudest
+    gainNode1.gain.setValueAtTime(0, now);
+    gainNode1.gain.linearRampToValueAtTime(baseVolume, now + attackTime);
+    gainNode1.gain.linearRampToValueAtTime(baseVolume * sustainLevel, now + attackTime + decayTime);
+    gainNode1.gain.setValueAtTime(baseVolume * sustainLevel, now + duration - releaseTime);
+    gainNode1.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+    // Oscillator 2 (2nd harmonic) - medium volume
+    gainNode2.gain.setValueAtTime(0, now);
+    gainNode2.gain.linearRampToValueAtTime(baseVolume * 0.3, now + attackTime);
+    gainNode2.gain.linearRampToValueAtTime(baseVolume * 0.3 * sustainLevel, now + attackTime + decayTime);
+    gainNode2.gain.setValueAtTime(baseVolume * 0.3 * sustainLevel, now + duration - releaseTime);
+    gainNode2.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+    // Oscillator 3 (3rd harmonic) - quietest
+    gainNode3.gain.setValueAtTime(0, now);
+    gainNode3.gain.linearRampToValueAtTime(baseVolume * 0.15, now + attackTime);
+    gainNode3.gain.linearRampToValueAtTime(baseVolume * 0.15 * sustainLevel, now + attackTime + decayTime);
+    gainNode3.gain.setValueAtTime(baseVolume * 0.15 * sustainLevel, now + duration - releaseTime);
+    gainNode3.gain.exponentialRampToValueAtTime(0.01, now + duration);
+
+    // Master gain (overall volume control)
+    masterGain.gain.setValueAtTime(1, now);
+
+    // Start and stop oscillators
+    oscillator1.start(now);
+    oscillator2.start(now);
+    oscillator3.start(now);
+
+    oscillator1.stop(now + duration);
+    oscillator2.stop(now + duration);
+    oscillator3.stop(now + duration);
+
+    console.log(`🎹 Playing note: ${frequency.toFixed(2)} Hz, Base volume: ${baseVolume.toFixed(2)}`);
   };
 
   // Piano keys configuration
@@ -132,13 +213,13 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
 
       {/* Piano Keyboard */}
       <div className="relative bg-white rounded-lg p-2 sm:p-3 overflow-x-auto">
-        <div className="flex items-end justify-center min-w-max mx-auto" style={{ height: '120px' }}>
+        <div className="flex items-start justify-center min-w-max mx-auto" style={{ height: '140px' }}>
           {keys.map((key, index) => {
             const selected = isSelected(key.frequency);
             const hovered = hoveredKey === key.note;
 
             if (key.isBlack) {
-              // Black key - 缩小尺寸
+              // Black key - 在上方（约 65% 高度）
               return (
                 <button
                   key={key.note}
@@ -146,7 +227,7 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
                   onMouseEnter={() => setHoveredKey(key.note)}
                   onMouseLeave={() => setHoveredKey(null)}
                   className={`
-                    relative -mx-2 z-10 w-7 h-20 rounded-b-md
+                    relative -mx-2 z-10 w-7 rounded-b-md
                     transition-all duration-150 cursor-pointer
                     ${selected
                       ? 'bg-gradient-to-b from-yellow-400 to-yellow-600 shadow-lg scale-105'
@@ -157,7 +238,7 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
                     hover:scale-105 active:scale-95
                     border ${selected ? 'border-yellow-500' : 'border-gray-900'}
                   `}
-                  style={{ marginTop: '0' }}
+                  style={{ height: '90px' }}
                 >
                   <span className={`
                     absolute bottom-1 left-1/2 transform -translate-x-1/2
@@ -169,7 +250,7 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
                 </button>
               );
             } else {
-              // White key - 缩小尺寸
+              // White key - 全高
               return (
                 <button
                   key={key.note}
@@ -177,7 +258,7 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
                   onMouseEnter={() => setHoveredKey(key.note)}
                   onMouseLeave={() => setHoveredKey(null)}
                   className={`
-                    relative w-9 h-28 rounded-b-md
+                    relative w-9 h-full rounded-b-md
                     transition-all duration-150 cursor-pointer
                     ${selected
                       ? 'bg-gradient-to-b from-yellow-200 to-yellow-400 shadow-lg scale-105'

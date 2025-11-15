@@ -41,7 +41,11 @@ const ModernVocalTest = () => {
   const [manualLowestPitch, setManualLowestPitch] = useState(null);
   const [manualHighestPitch, setManualHighestPitch] = useState(null);
 
-  const stepInstructions = [
+  // Step-specific pitch tracking (to lock values after each step)
+  const [step0LowestPitch, setStep0LowestPitch] = useState(null);
+  const [step1HighestPitch, setStep1HighestPitch] = useState(null);
+
+  const stepInstructions = useMemo(() => [
     {
       title: 'Find Your Lowest Note',
       instruction: 'Sing or select your lowest comfortable note',
@@ -54,7 +58,15 @@ const ModernVocalTest = () => {
       tip: 'You can sing it or click on the piano keyboard below',
       icon: '🔼'
     },
-  ];
+  ], []);
+
+  // Ref to track current step (to avoid closure issues)
+  const currentStepRef = useRef(0);
+
+  // Update currentStepRef when currentStep changes
+  useEffect(() => {
+    currentStepRef.current = currentStep;
+  }, [currentStep]);
 
   // Start detection with throttled updates
   const startDetection = useCallback(() => {
@@ -68,18 +80,22 @@ const ModernVocalTest = () => {
         const note = frequencyToNote(pitch);
         pitchHistoryRef.current.push({ pitch, note, timestamp: Date.now() });
 
-        // Update lowest pitch
-        const isNewLowest = !lowestPitchRef.current || pitch < lowestPitchRef.current;
-        if (isNewLowest) {
-          lowestPitchRef.current = pitch;
-          console.log(`🔽 New Lowest: ${note.fullNote} (${pitch.toFixed(1)} Hz)`);
-        }
-
-        // Update highest pitch
-        const isNewHighest = !highestPitchRef.current || pitch > highestPitchRef.current;
-        if (isNewHighest) {
-          highestPitchRef.current = pitch;
-          console.log(`🔼 New Highest: ${note.fullNote} (${pitch.toFixed(1)} Hz)`);
+        // Update pitch based on current step (use ref to avoid closure issues)
+        const step = currentStepRef.current;
+        if (step === 0) {
+          // Step 0: Find Lowest Note - only update lowest
+          const isNewLowest = !lowestPitchRef.current || pitch < lowestPitchRef.current;
+          if (isNewLowest) {
+            lowestPitchRef.current = pitch;
+            console.log(`🔽 Step 0 - New Lowest: ${note.fullNote} (${pitch.toFixed(1)} Hz)`);
+          }
+        } else if (step === 1) {
+          // Step 1: Find Highest Note - only update highest
+          const isNewHighest = !highestPitchRef.current || pitch > highestPitchRef.current;
+          if (isNewHighest) {
+            highestPitchRef.current = pitch;
+            console.log(`🔼 Step 1 - New Highest: ${note.fullNote} (${pitch.toFixed(1)} Hz)`);
+          }
         }
 
         // Throttled UI updates
@@ -92,8 +108,15 @@ const ModernVocalTest = () => {
           }
 
           animationFrameRef.current = requestAnimationFrame(() => {
+            console.log(`🎵 UI Update - Step ${currentStepRef.current}:`, {
+              pitch: pitch.toFixed(1),
+              note: note.fullNote,
+              lowestPitchRef: lowestPitchRef.current?.toFixed(1),
+              highestPitchRef: highestPitchRef.current?.toFixed(1)
+            });
             setCurrentPitch(pitch);
             setCurrentNote(note);
+            // Always update both lowest and highest for UI display
             setLowestPitch(lowestPitchRef.current);
             setHighestPitch(highestPitchRef.current);
           });
@@ -108,7 +131,7 @@ const ModernVocalTest = () => {
         });
       }
     });
-  }, []);
+  }, []); // Remove currentStep from dependencies
 
   // Return to home page
   const handleReturnHome = () => {
@@ -132,6 +155,8 @@ const ModernVocalTest = () => {
     setInputMode('sing');
     setManualLowestPitch(null);
     setManualHighestPitch(null);
+    setStep0LowestPitch(null);
+    setStep1HighestPitch(null);
 
     // Reset refs
     pitchHistoryRef.current = [];
@@ -191,6 +216,22 @@ const ModernVocalTest = () => {
   // Next step
   const handleNextStep = () => {
     if (currentStep < stepInstructions.length - 1) {
+      // Lock the result from step 0 before moving to step 1
+      if (currentStep === 0) {
+        const lockedLowest = manualLowestPitch || lowestPitchRef.current;
+        if (lockedLowest) {
+          setStep0LowestPitch(lockedLowest);
+          console.log(`🔒 Locked Step 0 Lowest: ${lockedLowest.toFixed(1)} Hz`);
+        }
+
+        // Initialize highestPitchRef for step 1 (set to a very low value to ensure any sung note will be higher)
+        if (inputMode === 'sing') {
+          highestPitchRef.current = 0;
+          setHighestPitch(null); // Clear UI display
+          console.log(`🔄 Initialized highestPitchRef for step 1`);
+        }
+      }
+
       // If in manual mode, just move to next step
       if (inputMode === 'manual') {
         setCurrentStep(prev => prev + 1);
@@ -257,16 +298,45 @@ const ModernVocalTest = () => {
 
   // Complete test
   const completeTest = () => {
+    console.log('🎯 completeTest called');
+
     if (detectorRef.current) {
       detectorRef.current.stopDetection();
     }
 
-    // Use manual pitch if selected, otherwise use detected pitch
-    const finalLowest = manualLowestPitch || lowestPitchRef.current;
-    const finalHighest = manualHighestPitch || highestPitchRef.current;
+    // Lock step 1 result
+    const lockedHighest = manualHighestPitch || (highestPitchRef.current > 0 ? highestPitchRef.current : null);
+    if (lockedHighest) {
+      setStep1HighestPitch(lockedHighest);
+      console.log(`🔒 Locked Step 1 Highest: ${lockedHighest.toFixed(1)} Hz`);
+    }
+
+    // Use locked values from each step
+    // Priority: manual selection > locked step value > ref value (fallback)
+    const finalLowest = manualLowestPitch || step0LowestPitch || lowestPitchRef.current;
+    const finalHighest = manualHighestPitch || lockedHighest || (highestPitchRef.current > 0 ? highestPitchRef.current : null);
+
+    console.log('📊 Final values:', {
+      manualLowestPitch,
+      step0LowestPitch,
+      lowestPitchRef: lowestPitchRef.current,
+      finalLowest,
+      manualHighestPitch,
+      lockedHighest,
+      highestPitchRef: highestPitchRef.current,
+      finalHighest
+    });
 
     if (!finalLowest || !finalHighest) {
+      console.error('❌ Missing pitch values');
       setError('Please select or sing both your lowest and highest notes.');
+      return;
+    }
+
+    // Validation: Ensure lowest is actually lower than highest
+    if (finalLowest >= finalHighest) {
+      console.error(`❌ Invalid range: Lowest (${finalLowest.toFixed(1)} Hz) >= Highest (${finalHighest.toFixed(1)} Hz)`);
+      setError('Invalid range detected. Please ensure your lowest note is lower than your highest note. Try again.');
       return;
     }
 
@@ -335,6 +405,11 @@ const ModernVocalTest = () => {
     setHighestPitch(null);
     setTestResult(null);
     setError(null);
+    setInputMode('sing');
+    setManualLowestPitch(null);
+    setManualHighestPitch(null);
+    setStep0LowestPitch(null);
+    setStep1HighestPitch(null);
 
     pitchHistoryRef.current = [];
     lowestPitchRef.current = null;
@@ -358,6 +433,11 @@ const ModernVocalTest = () => {
     setHighestPitch(null);
     setTestResult(null);
     setError(null);
+    setInputMode('sing');
+    setManualLowestPitch(null);
+    setManualHighestPitch(null);
+    setStep0LowestPitch(null);
+    setStep1HighestPitch(null);
 
     pitchHistoryRef.current = [];
     lowestPitchRef.current = null;
@@ -377,10 +457,10 @@ const ModernVocalTest = () => {
   }, []);
 
   // Memoized values
-  const currentStepInfo = useMemo(() => stepInstructions[currentStep], [currentStep]);
-  const nextButtonText = useMemo(() => 
+  const currentStepInfo = useMemo(() => stepInstructions[currentStep], [currentStep, stepInstructions]);
+  const nextButtonText = useMemo(() =>
     currentStep < stepInstructions.length - 1 ? 'Next Step →' : 'See My Results 🎉',
-    [currentStep]
+    [currentStep, stepInstructions.length]
   );
 
   return (
