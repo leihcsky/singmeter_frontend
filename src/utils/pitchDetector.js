@@ -76,35 +76,138 @@ export class AudioPitchDetector {
    */
   async initialize() {
     try {
-      // 创建音频上下文
-      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      
-      // 获取麦克风权限
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        audio: {
-          echoCancellation: true,
-          noiseSuppression: true,
-          autoGainControl: false
-        } 
-      });
+      console.log('🎤 Starting microphone initialization...');
 
-      // 创建音频源
-      this.microphone = this.audioContext.createMediaStreamSource(stream);
-      
-      // 创建分析器
-      this.analyser = this.audioContext.createAnalyser();
-      this.analyser.fftSize = 2048;
-      this.microphone.connect(this.analyser);
+      // Check if getUserMedia is supported
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        console.error('❌ getUserMedia is not supported in this browser');
 
-      // 创建音高检测器
-      const sampleRate = this.audioContext.sampleRate;
-      this.detector = PitchDetector.forFloat32Array(this.analyser.fftSize);
-      this.buffer = new Float32Array(this.analyser.fftSize);
+        // Try legacy API
+        const getUserMedia = navigator.getUserMedia ||
+                           navigator.webkitGetUserMedia ||
+                           navigator.mozGetUserMedia ||
+                           navigator.msGetUserMedia;
 
+        if (!getUserMedia) {
+          throw new Error('getUserMedia is not supported in this browser');
+        }
+
+        console.log('⚠️ Using legacy getUserMedia API');
+
+        // Use legacy API with Promise wrapper
+        return new Promise((resolve, reject) => {
+          getUserMedia.call(navigator, { audio: true },
+            (stream) => {
+              this.initializeAudioContext(stream);
+              resolve({ success: true });
+            },
+            (error) => {
+              console.error('❌ Legacy getUserMedia failed:', error);
+              reject(error);
+            }
+          );
+        });
+      }
+
+      console.log('✅ getUserMedia is supported');
+      console.log('🔒 Current protocol:', window.location.protocol);
+      console.log('🌐 Current host:', window.location.host);
+
+      // Check if we're on HTTPS or localhost
+      const isSecureContext = window.isSecureContext;
+      console.log('🔐 Is secure context:', isSecureContext);
+
+      if (!isSecureContext && window.location.protocol !== 'http:') {
+        console.warn('⚠️ Not in secure context, getUserMedia may fail');
+      }
+
+      // Try with simple constraints first (better mobile compatibility)
+      console.log('📱 Requesting microphone access with simple constraints...');
+      let stream;
+
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        console.log('✅ Got microphone stream with simple constraints');
+      } catch (simpleError) {
+        console.warn('⚠️ Simple constraints failed, trying with detailed constraints:', simpleError);
+
+        // Try with detailed constraints
+        stream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: false
+          }
+        });
+        console.log('✅ Got microphone stream with detailed constraints');
+      }
+
+      // Initialize audio context
+      this.initializeAudioContext(stream);
+
+      console.log('✅ Microphone initialization complete');
       return { success: true };
+
     } catch (error) {
-      console.error('初始化音频失败:', error);
-      return { success: false, error: error.message };
+      console.error('❌ Microphone initialization failed:', error);
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+
+      // 返回详细的错误信息
+      return {
+        success: false,
+        error: error.message,
+        errorName: error.name, // NotAllowedError, NotFoundError, etc.
+        errorType: this.getErrorType(error)
+      };
+    }
+  }
+
+  /**
+   * 初始化音频上下文
+   */
+  initializeAudioContext(stream) {
+    console.log('🎵 Initializing audio context...');
+
+    // 创建音频上下文
+    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    console.log('✅ Audio context created, sample rate:', this.audioContext.sampleRate);
+
+    // 创建音频源
+    this.microphone = this.audioContext.createMediaStreamSource(stream);
+    console.log('✅ Media stream source created');
+
+    // 创建分析器
+    this.analyser = this.audioContext.createAnalyser();
+    this.analyser.fftSize = 2048;
+    this.microphone.connect(this.analyser);
+    console.log('✅ Analyser created and connected');
+
+    // 创建音高检测器
+    this.detector = PitchDetector.forFloat32Array(this.analyser.fftSize);
+    this.buffer = new Float32Array(this.analyser.fftSize);
+    console.log('✅ Pitch detector created');
+  }
+
+  /**
+   * 获取错误类型
+   */
+  getErrorType(error) {
+    if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+      return 'permission_denied';
+    } else if (error.name === 'NotFoundError' || error.name === 'DevicesNotFoundError') {
+      return 'no_device';
+    } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
+      return 'device_in_use';
+    } else if (error.name === 'OverconstrainedError' || error.name === 'ConstraintNotSatisfiedError') {
+      return 'constraints_error';
+    } else if (error.name === 'TypeError') {
+      return 'type_error';
+    } else if (error.name === 'SecurityError') {
+      return 'security_error';
+    } else {
+      return 'unknown_error';
     }
   }
 

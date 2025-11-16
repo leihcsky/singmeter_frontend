@@ -27,6 +27,7 @@ const ModernVocalTest = () => {
   
   // Modal states
   const [showMicPermission, setShowMicPermission] = useState(false);
+  const [micPermissionError, setMicPermissionError] = useState('permission_denied');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   // Refs
@@ -169,31 +170,65 @@ const ModernVocalTest = () => {
 
   // Initialize and start test
   const handleStartTest = async () => {
+    console.log('🚀 handleStartTest called');
+    console.log('📱 User agent:', navigator.userAgent);
+    console.log('🔒 Protocol:', window.location.protocol);
+    console.log('🌐 Host:', window.location.host);
+    console.log('🔐 Is secure context:', window.isSecureContext);
+    console.log('🎤 Input mode:', inputMode);
+
     setError(null);
 
     // If in manual mode, skip microphone initialization
     if (inputMode === 'manual') {
+      console.log('✅ Manual mode, skipping microphone initialization');
       setTestPhase('testing');
       return;
     }
 
+    console.log('🎤 Sing mode, initializing microphone...');
+
     // Clean up existing detector if it exists
     if (detectorRef.current) {
+      console.log('🧹 Cleaning up existing detector');
       detectorRef.current.cleanup();
       detectorRef.current = null;
     }
 
     // Create new detector and request permission
+    console.log('🎵 Creating new AudioPitchDetector...');
     detectorRef.current = new AudioPitchDetector();
+
+    console.log('🎤 Calling initialize()...');
     const result = await detectorRef.current.initialize();
+    console.log('📊 Initialize result:', result);
 
     if (!result.success) {
-      // Permission denied - show modal with instructions
+      console.log('🔴 Microphone initialization failed:', result);
+      console.log('❌ Error type:', result.errorType);
+      console.log('❌ Error name:', result.errorName);
+      console.log('❌ Error message:', result.error);
+
+      // Show modal with error type
       setShowMicPermission(true);
-      setError('Microphone access is required to test your vocal range.');
+      setMicPermissionError(result.errorType || 'permission_denied');
+
+      // Set appropriate error message
+      if (result.errorType === 'no_device') {
+        setError('No microphone found. Please connect a microphone and try again.');
+      } else if (result.errorType === 'device_in_use') {
+        setError('Microphone is being used by another application. Please close other apps and try again.');
+      } else if (result.errorType === 'security_error') {
+        setError('Microphone access requires a secure connection (HTTPS).');
+      } else {
+        setError('Microphone access is required to test your vocal range.');
+      }
+
       detectorRef.current = null;
       return;
     }
+
+    console.log('✅ Microphone initialized successfully');
 
     // Start countdown
     setTestPhase('testing');
@@ -616,6 +651,7 @@ const ModernVocalTest = () => {
         <MicrophonePermissionModal
           onClose={() => setShowMicPermission(false)}
           onRetry={handleStartTest}
+          errorType={micPermissionError}
         />
       )}
     </div>
@@ -623,13 +659,16 @@ const ModernVocalTest = () => {
 };
 
 // Microphone Permission Modal
-const MicrophonePermissionModal = ({ onClose, onRetry }) => {
+const MicrophonePermissionModal = ({ onClose, onRetry, errorType = 'permission_denied' }) => {
   const [showInstructions, setShowInstructions] = useState(false);
 
   const handleRetry = () => {
     onClose();
     onRetry();
   };
+
+  // Check if this is a permission error (can retry) or other error (need manual fix)
+  const canRetry = errorType === 'permission_denied' || errorType === 'unknown_error';
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
@@ -655,35 +694,51 @@ const MicrophonePermissionModal = ({ onClose, onRetry }) => {
           <div className="px-4 sm:px-6 py-4 sm:py-6">
             <div className="mb-4 sm:mb-6">
               <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4">
-                SingMeter needs access to your microphone to analyze your vocal range.
-                Your voice is <strong>never recorded or stored</strong> - all analysis happens locally in your browser.
+                {errorType === 'no_device' ? (
+                  <>
+                    <strong>No microphone detected.</strong> Please connect a microphone to your device and try again.
+                  </>
+                ) : errorType === 'device_in_use' ? (
+                  <>
+                    <strong>Microphone is in use.</strong> Please close other applications that might be using your microphone and try again.
+                  </>
+                ) : (
+                  <>
+                    SingMeter needs access to your microphone to analyze your vocal range.
+                    Your voice is <strong>never recorded or stored</strong> - all analysis happens locally in your browser.
+                  </>
+                )}
               </p>
 
-              <div className="bg-green-50 border-l-4 border-green-400 p-3 sm:p-4 rounded-r-lg mb-3 sm:mb-4">
-                <div className="flex items-start">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mt-0.5 mr-2 sm:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <div>
-                    <h5 className="text-sm sm:text-base font-semibold text-green-800 mb-1">100% Private & Safe</h5>
-                    <p className="text-xs sm:text-sm text-green-700">
-                      No recording, no storage, no transmission. Your privacy is fully protected.
-                    </p>
+              {errorType === 'permission_denied' && (
+                <div className="bg-green-50 border-l-4 border-green-400 p-3 sm:p-4 rounded-r-lg mb-3 sm:mb-4">
+                  <div className="flex items-start">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mt-0.5 mr-2 sm:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <h5 className="text-sm sm:text-base font-semibold text-green-800 mb-1">100% Private & Safe</h5>
+                      <p className="text-xs sm:text-sm text-green-700">
+                        No recording, no storage, no transmission. Your privacy is fully protected.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
-              {!showInstructions ? (
-                <button
-                  onClick={() => setShowInstructions(true)}
-                  className="text-indigo-600 hover:text-indigo-700 text-xs sm:text-sm font-medium flex items-center"
-                >
-                  <span>How do I enable microphone access?</span>
-                  <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-              ) : (
+              {errorType === 'permission_denied' && (
+                <>
+                  {!showInstructions ? (
+                    <button
+                      onClick={() => setShowInstructions(true)}
+                      className="text-indigo-600 hover:text-indigo-700 text-xs sm:text-sm font-medium flex items-center"
+                    >
+                      <span>How do I enable microphone access?</span>
+                      <svg className="w-3 h-3 sm:w-4 sm:h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  ) : (
                 <div className="bg-blue-50 rounded-lg p-3 sm:p-4 space-y-2 sm:space-y-3">
                   <h4 className="text-sm sm:text-base font-semibold text-blue-900 mb-2">Enable Microphone Access:</h4>
 
@@ -739,23 +794,36 @@ const MicrophonePermissionModal = ({ onClose, onRetry }) => {
                   </p>
                 </div>
               )}
+                </>
+              )}
             </div>
           </div>
 
           {/* Footer */}
           <div className="bg-gray-50 px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 flex flex-col sm:flex-row gap-2 sm:gap-3">
-            <button
-              onClick={handleRetry}
-              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm sm:text-base font-bold rounded-lg hover:shadow-lg transition"
-            >
-              Try Again
-            </button>
-            <button
-              onClick={onClose}
-              className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border-2 border-gray-300 text-gray-700 text-sm sm:text-base font-semibold rounded-lg hover:bg-gray-50 transition"
-            >
-              Cancel
-            </button>
+            {canRetry ? (
+              <>
+                <button
+                  onClick={handleRetry}
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm sm:text-base font-bold rounded-lg hover:shadow-lg transition"
+                >
+                  Try Again
+                </button>
+                <button
+                  onClick={onClose}
+                  className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 bg-white border-2 border-gray-300 text-gray-700 text-sm sm:text-base font-semibold rounded-lg hover:bg-gray-50 transition"
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={onClose}
+                className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm sm:text-base font-bold rounded-lg hover:shadow-lg transition"
+              >
+                Got It
+              </button>
+            )}
           </div>
         </div>
       </div>
