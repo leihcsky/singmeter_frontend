@@ -2,7 +2,7 @@
  * Testing Screen - Active test interface
  */
 
-import { useState } from 'react';
+import { useEffect } from 'react';
 import PitchVisualizer from './PitchVisualizer';
 import PianoSelector from './PianoSelector';
 
@@ -22,9 +22,22 @@ const TestingScreen = ({
   inputMode,
   onInputModeChange,
   manualPitch,
-  onManualPitchSelect
+  onManualPitchSelect,
+  canProceed
 }) => {
   const steps = ['Lowest Note', 'Highest Note'];
+
+  // Debug: Log props changes
+  useEffect(() => {
+    console.log('📊 TestingScreen props:', {
+      currentStep,
+      isRecording,
+      countdown,
+      inputMode,
+      currentPitch: currentPitch?.toFixed(2),
+      currentNote: currentNote?.fullNote
+    });
+  }, [currentStep, isRecording, countdown, inputMode, currentPitch, currentNote]);
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -213,9 +226,9 @@ const TestingScreen = ({
             </button>
             <button
               onClick={onNext}
-              disabled={inputMode === 'sing' ? !isRecording : !manualPitch}
+              disabled={!canProceed}
               className={`flex-[2] px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all ${
-                (inputMode === 'sing' ? isRecording : manualPitch)
+                canProceed
                   ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg'
                   : 'bg-gray-200 text-gray-400 cursor-not-allowed'
               }`}

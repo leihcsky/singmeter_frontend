@@ -4,12 +4,28 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Homepage / Vocal Range Test -->
+  <!-- Homepage / Tools Collection -->
   <url>
     <loc>https://www.singmeter.com/</loc>
-    <lastmod>2025-01-31</lastmod>
+    <lastmod>2025-02-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Vocal Range Test Tool -->
+  <url>
+    <loc>https://www.singmeter.com/vocal-range-test</loc>
+    <lastmod>2025-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Pitch Detector Tool -->
+  <url>
+    <loc>https://www.singmeter.com/pitch-detector</loc>
+    <lastmod>2025-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- Blog Page -->

@@ -3,114 +3,15 @@
  * Displays vocal range on a piano keyboard with logarithmic (musical) scale
  */
 
-import { useMemo, useRef, useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { playPianoNote } from '../utils/pianoAudio';
 
 const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => {
-  // Audio context for playing notes
-  const audioContextRef = useRef(null);
   const [hoveredKey, setHoveredKey] = useState(null);
 
-  // Initialize audio context
-  useEffect(() => {
-    audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-
-    return () => {
-      if (audioContextRef.current) {
-        audioContextRef.current.close();
-      }
-    };
-  }, []);
-  // Play note sound with frequency-adjusted volume (same as PianoSelector)
+  // Play note sound using realistic piano audio
   const playNote = (frequency) => {
-    if (!audioContextRef.current) return;
-
-    const context = audioContextRef.current;
-
-    // Create oscillators for richer sound (fundamental + harmonics)
-    const oscillator1 = context.createOscillator(); // Fundamental
-    const oscillator2 = context.createOscillator(); // 2nd harmonic
-    const oscillator3 = context.createOscillator(); // 3rd harmonic
-
-    const gainNode1 = context.createGain();
-    const gainNode2 = context.createGain();
-    const gainNode3 = context.createGain();
-    const masterGain = context.createGain();
-
-    // Connect oscillators to their gain nodes
-    oscillator1.connect(gainNode1);
-    oscillator2.connect(gainNode2);
-    oscillator3.connect(gainNode3);
-
-    // Connect gain nodes to master gain
-    gainNode1.connect(masterGain);
-    gainNode2.connect(masterGain);
-    gainNode3.connect(masterGain);
-
-    // Connect master gain to destination
-    masterGain.connect(context.destination);
-
-    // Set frequencies (fundamental + harmonics for richer sound)
-    oscillator1.frequency.value = frequency;
-    oscillator2.frequency.value = frequency * 2; // Octave above
-    oscillator3.frequency.value = frequency * 3; // Fifth above octave
-
-    // Use triangle wave for warmer sound
-    oscillator1.type = 'triangle';
-    oscillator2.type = 'triangle';
-    oscillator3.type = 'sine';
-
-    // Calculate volume based on frequency
-    let baseVolume;
-    if (frequency < 150) {
-      baseVolume = 0.6 + (150 - frequency) / 150 * 0.3; // 0.6 to 0.9
-    } else if (frequency < 250) {
-      baseVolume = 0.5 + (250 - frequency) / 100 * 0.1; // 0.5 to 0.6
-    } else if (frequency < 400) {
-      baseVolume = 0.4;
-    } else {
-      baseVolume = 0.35;
-    }
-
-    // ADSR envelope
-    const now = context.currentTime;
-    const attackTime = 0.02;
-    const decayTime = 0.1;
-    const sustainLevel = 0.7;
-    const releaseTime = 0.3;
-    const duration = 0.8;
-
-    // Oscillator 1 (fundamental) - loudest
-    gainNode1.gain.setValueAtTime(0, now);
-    gainNode1.gain.linearRampToValueAtTime(baseVolume, now + attackTime);
-    gainNode1.gain.linearRampToValueAtTime(baseVolume * sustainLevel, now + attackTime + decayTime);
-    gainNode1.gain.setValueAtTime(baseVolume * sustainLevel, now + duration - releaseTime);
-    gainNode1.gain.exponentialRampToValueAtTime(0.01, now + duration);
-
-    // Oscillator 2 (2nd harmonic) - medium volume
-    gainNode2.gain.setValueAtTime(0, now);
-    gainNode2.gain.linearRampToValueAtTime(baseVolume * 0.3, now + attackTime);
-    gainNode2.gain.linearRampToValueAtTime(baseVolume * 0.3 * sustainLevel, now + attackTime + decayTime);
-    gainNode2.gain.setValueAtTime(baseVolume * 0.3 * sustainLevel, now + duration - releaseTime);
-    gainNode2.gain.exponentialRampToValueAtTime(0.01, now + duration);
-
-    // Oscillator 3 (3rd harmonic) - quietest
-    gainNode3.gain.setValueAtTime(0, now);
-    gainNode3.gain.linearRampToValueAtTime(baseVolume * 0.15, now + attackTime);
-    gainNode3.gain.linearRampToValueAtTime(baseVolume * 0.15 * sustainLevel, now + attackTime + decayTime);
-    gainNode3.gain.setValueAtTime(baseVolume * 0.15 * sustainLevel, now + duration - releaseTime);
-    gainNode3.gain.exponentialRampToValueAtTime(0.01, now + duration);
-
-    // Master gain
-    masterGain.gain.setValueAtTime(1, now);
-
-    // Start and stop oscillators
-    oscillator1.start(now);
-    oscillator2.start(now);
-    oscillator3.start(now);
-
-    oscillator1.stop(now + duration);
-    oscillator2.stop(now + duration);
-    oscillator3.stop(now + duration);
+    playPianoNote(frequency, 1.5, 0.7); // duration: 1.5s, velocity: 0.7
   };
 
   // Convert MIDI number to frequency
@@ -203,10 +104,12 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
       }
     }
 
-    // Black key is positioned between the last white key and the next white key
-    // If there are N white keys before this black key, the last white key is at position N-1
-    // So the black key is at position (N-1) + 0.5 = N - 0.5
-    return whiteKeyCount - 0.5;
+    // Black key should be centered between two white keys
+    // If there are N white keys before this black key, the black key is between
+    // white key N-1 and white key N
+    // Position at the right edge of white key N-1, which is at position N
+    // We'll use transform: translateX(-50%) to center the black key
+    return whiteKeyCount;
   };
   
   // Reference markers (E2, C4, C6)
@@ -304,12 +207,14 @@ const PianoKeyboard = ({ lowestNote, highestNote, lowestFreq, highestFreq }) => 
                       : 'bg-black hover:bg-gray-800'
                     }
                     ${key.isLowest || key.isHighest ? 'ring-4 ring-yellow-400 ring-opacity-90' : ''}
-                    ${hoveredKey === key.midi ? 'transform scale-y-[0.96]' : ''}
                   `}
                   style={{
                     left: `${leftPercent}%`,
                     width: `${whiteKeyWidth * 0.6}%`,
                     height: '58%',
+                    transform: hoveredKey === key.midi
+                      ? 'translateX(-50%) scaleY(0.96)'
+                      : 'translateX(-50%)',
                     border: '1px solid #000',
                     boxShadow: hoveredKey === key.midi
                       ? '0 4px 8px rgba(0, 0, 0, 0.6)'

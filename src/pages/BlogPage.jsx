@@ -3,6 +3,7 @@
  */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 // Blog Articles Data
 export const blogArticles = [
@@ -304,30 +305,7 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            {/* 横版 Logo（与首页保持一致） */}
-            <Link
-              to="/"
-              className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-lg -m-2 p-2"
-              aria-label="Return to home"
-            >
-              <img
-                src="/logo-horizontal.svg"
-                alt="SingMeter"
-                className="h-16 sm:h-20 w-auto hover:scale-105 transition-transform duration-200 cursor-pointer"
-              />
-            </Link>
-            <Link
-              to="/"
-              className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition"
-            >
-              Test Your Range
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

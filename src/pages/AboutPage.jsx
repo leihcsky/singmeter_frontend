@@ -2,35 +2,13 @@
  * About Page
  */
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Header */}
-      <header className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            {/* 横版 Logo（与首页保持一致） */}
-            <Link 
-              to="/" 
-              className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-lg -m-2 p-2"
-              aria-label="Return to home"
-            >
-              <img
-                src="/logo-horizontal.svg"
-                alt="SingMeter"
-                className="h-16 sm:h-20 w-auto hover:scale-105 transition-transform duration-200 cursor-pointer"
-              />
-            </Link>
-            <Link 
-              to="/" 
-              className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition"
-            >
-              Test Your Range
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -61,42 +39,45 @@ const AboutPage = () => {
             <div className="prose prose-lg max-w-none">
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Mission</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter is dedicated to making vocal range testing accessible to everyone. Whether you're a professional 
-                singer, a choir member, a karaoke enthusiast, or just curious about your voice, we provide a free, 
-                easy-to-use tool that helps you discover your vocal capabilities.
+                SingMeter is dedicated to making vocal training and assessment accessible to everyone. Whether you're a professional
+                singer, a choir member, a karaoke enthusiast, or just curious about your voice, we provide free,
+                easy-to-use tools that help you discover and improve your vocal capabilities.
               </p>
 
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">What We Do</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Tools</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Our advanced pitch detection technology analyzes your voice in real-time to determine:
+                SingMeter offers a comprehensive suite of vocal assessment and training tools:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Your Vocal Range:</strong> The span from your lowest to highest singable notes</li>
-                <li><strong>Your Voice Type:</strong> Classification as Bass, Baritone, Tenor, Alto, Mezzo-Soprano, or Soprano</li>
-                <li><strong>Detailed Analysis:</strong> Insights into your vocal characteristics and capabilities</li>
+                <li><strong>Vocal Range Test:</strong> Discover your lowest and highest notes, identify your voice type (Bass, Baritone, Tenor, Alto, Mezzo-Soprano, Soprano), and get personalized song recommendations</li>
+                <li><strong>Pitch Detector:</strong> Real-time pitch detection to help you practice singing in tune, see your notes instantly, and improve your pitch accuracy</li>
+                <li><strong>Educational Resources:</strong> Expert articles, tips, and guides on vocal technique, range development, and song selection</li>
               </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How It Works</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter uses cutting-edge Web Audio API technology to analyze your voice directly in your browser. 
+                SingMeter uses cutting-edge Web Audio API technology to analyze your voice directly in your browser.
                 Here's what makes us special:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
                 <li><strong>Privacy First:</strong> All audio processing happens locally on your device - we never record or store your voice</li>
-                <li><strong>Instant Results:</strong> Get your vocal range analysis in just 60 seconds</li>
-                <li><strong>Professional Accuracy:</strong> Our algorithm is calibrated to provide reliable, professional-grade results</li>
-                <li><strong>Free Forever:</strong> No sign-up, no credit card, no hidden fees</li>
+                <li><strong>Instant Results:</strong> Get real-time feedback and analysis as you sing</li>
+                <li><strong>Professional Accuracy:</strong> Our algorithms are calibrated to provide reliable, professional-grade results</li>
+                <li><strong>Free Forever:</strong> No sign-up, no credit card, no hidden fees - all tools are completely free</li>
+                <li><strong>Works Everywhere:</strong> Use on any device with a microphone - desktop, laptop, tablet, or smartphone</li>
               </ul>
 
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Why Vocal Range Matters</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Why Use SingMeter</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Understanding your vocal range is essential for:
+                Our tools help you:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Song Selection:</strong> Choose songs that showcase your voice at its best</li>
-                <li><strong>Vocal Training:</strong> Work with teachers to expand your range safely</li>
-                <li><strong>Auditions:</strong> Know your voice type for choir, musical theater, or professional opportunities</li>
-                <li><strong>Vocal Health:</strong> Avoid strain by staying within your comfortable range</li>
+                <li><strong>Discover Your Voice:</strong> Learn your vocal range, voice type, and unique characteristics</li>
+                <li><strong>Improve Pitch Accuracy:</strong> Practice singing in tune with real-time visual feedback</li>
+                <li><strong>Choose Better Songs:</strong> Find songs that match your range and showcase your voice</li>
+                <li><strong>Track Progress:</strong> Monitor your vocal development over time</li>
+                <li><strong>Prepare for Auditions:</strong> Know your voice type for choir, musical theater, or professional opportunities</li>
+                <li><strong>Protect Your Voice:</strong> Avoid strain by staying within your comfortable range</li>
               </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Technology</h2>
@@ -104,22 +85,24 @@ const AboutPage = () => {
                 SingMeter is built with modern web technologies:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Web Audio API:</strong> For real-time audio processing</li>
-                <li><strong>Advanced Pitch Detection:</strong> Using the Pitchy library for accurate frequency analysis</li>
-                <li><strong>React:</strong> For a smooth, responsive user interface</li>
-                <li><strong>Privacy-Focused Design:</strong> No server-side audio processing or storage</li>
+                <li><strong>Web Audio API:</strong> For real-time audio processing and analysis</li>
+                <li><strong>Advanced Pitch Detection:</strong> Using the Pitchy library for accurate frequency analysis (±1 cent accuracy)</li>
+                <li><strong>React 19:</strong> For a smooth, responsive, and modern user interface</li>
+                <li><strong>Privacy-Focused Design:</strong> All processing happens in your browser - no server-side audio processing or storage</li>
+                <li><strong>Responsive Design:</strong> Works seamlessly on desktop, tablet, and mobile devices</li>
               </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who We Serve</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter is designed for:
+                SingMeter is designed for singers of all levels:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
                 <li><strong>Aspiring Singers:</strong> Discover your voice type and potential</li>
-                <li><strong>Vocal Students:</strong> Track your progress and range development</li>
-                <li><strong>Choir Members:</strong> Find your perfect vocal part</li>
-                <li><strong>Music Teachers:</strong> A quick tool for student assessment</li>
-                <li><strong>Karaoke Lovers:</strong> Find songs that fit your range</li>
+                <li><strong>Vocal Students:</strong> Track your progress and improve pitch accuracy</li>
+                <li><strong>Choir Members:</strong> Find your perfect vocal part and practice staying in tune</li>
+                <li><strong>Music Teachers:</strong> Quick assessment tools for students</li>
+                <li><strong>Karaoke Enthusiasts:</strong> Find songs that fit your range and practice before performing</li>
+                <li><strong>Professional Singers:</strong> Warm up and maintain vocal health</li>
                 <li><strong>Curious Minds:</strong> Anyone who wants to learn about their voice</li>
               </ul>
 
@@ -128,23 +111,24 @@ const AboutPage = () => {
                 We are committed to:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Accessibility:</strong> Keeping the service free and easy to use</li>
+                <li><strong>Accessibility:</strong> Keeping all tools free and easy to use for everyone</li>
                 <li><strong>Privacy:</strong> Never recording, storing, or sharing your audio data</li>
-                <li><strong>Accuracy:</strong> Continuously improving our pitch detection algorithms</li>
-                <li><strong>Education:</strong> Providing helpful resources about vocal health and technique</li>
-                <li><strong>Innovation:</strong> Adding new features based on user feedback</li>
+                <li><strong>Accuracy:</strong> Continuously improving our pitch detection and analysis algorithms</li>
+                <li><strong>Education:</strong> Providing helpful resources about vocal health, technique, and development</li>
+                <li><strong>Innovation:</strong> Adding new tools and features based on user feedback</li>
+                <li><strong>Quality:</strong> Maintaining professional-grade accuracy and reliability</li>
               </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Get in Touch</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                We love hearing from our users! Whether you have questions, feedback, or suggestions, please don't 
+                We love hearing from our users! Whether you have questions, feedback, suggestions, or need support, please don't
                 hesitate to <Link to="/contact" className="text-indigo-600 hover:text-indigo-700 underline">contact us</Link>.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Join Our Community</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Thousands of singers worldwide use SingMeter to discover and develop their voices. Join our community 
-                and start your vocal journey today!
+                Thousands of singers worldwide use SingMeter to discover and develop their voices. Join our community
+                and start your vocal journey today - completely free, no sign-up required!
               </p>
             </div>
           </div>
@@ -156,14 +140,22 @@ const AboutPage = () => {
             Ready to Discover Your Voice?
           </h2>
           <p className="text-indigo-100 mb-6 text-lg">
-            Test your vocal range now and unlock your singing potential
+            Try our free vocal tools and unlock your singing potential
           </p>
-          <Link
-            to="/"
-            className="inline-block px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
-          >
-            Start Your Test Now →
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/vocal-range-test"
+              className="inline-block px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
+            >
+              Test Your Range →
+            </Link>
+            <Link
+              to="/pitch-detector"
+              className="inline-block px-8 py-3 bg-white text-purple-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
+            >
+              Try Pitch Detector →
+            </Link>
+          </div>
         </div>
       </main>
 
