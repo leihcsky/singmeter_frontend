@@ -13,7 +13,7 @@ export const blogArticles = [
     title: 'How to Improve Your Singing Pitch: Complete Training Guide',
     category: 'Guides',
     readTime: '8 min read',
-    date: '2025-02-01',
+    date: '2025-11-21',
     excerpt: 'Learn proven exercises and techniques to improve your singing pitch accuracy. Master how to sing in tune with our complete training guide and 15-minute practice routine.',
     content: `
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Pitch Accuracy Matters</h2>
@@ -309,7 +309,7 @@ export const blogArticles = [
     title: 'How to Test Your Vocal Range: A Complete Guide',
     category: 'Guides',
     readTime: '5 min read',
-    date: '2025-01-31',
+    date: '2025-11-11',
     excerpt: 'Learn the professional methods to accurately test and measure your singing range. Discover online tools, piano methods, and tips for accurate results.',
     content: `
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Understanding Vocal Range</h2>
