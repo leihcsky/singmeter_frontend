@@ -15,6 +15,40 @@ const VocalRangeTestPage = () => {
   const [testPhase, setTestPhase] = useState('testing');
   const [testResult, setTestResult] = useState(null);
 
+  // Set document title and meta tags
+  useEffect(() => {
+    document.title = 'Free Vocal Range Test - Find Your Voice Type in 3 Minutes | SingMeter';
+
+    const setMetaTag = (name, content, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let element = document.querySelector(`meta[${attribute}="${name}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attribute, name);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
+    };
+
+    const setLinkTag = (rel, href) => {
+      let element = document.querySelector(`link[rel="${rel}"]`);
+      if (!element) {
+        element = document.createElement('link');
+        element.setAttribute('rel', rel);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('href', href);
+    };
+
+    setMetaTag('description', 'Test your vocal range online for free. Discover your voice type (Soprano, Alto, Tenor, Bass) and get personalized song recommendations. No signup required, works in your browser.');
+    setMetaTag('keywords', 'vocal range test, voice type test, singing range test, vocal range finder, voice classification, soprano alto tenor bass, vocal assessment, singing test');
+    setLinkTag('canonical', 'https://www.singmeter.com/vocal-range-test');
+
+    return () => {
+      document.title = 'SingMeter';
+    };
+  }, []);
+
   // Modal states
   const [showMicPermission, setShowMicPermission] = useState(false);
   const [micPermissionError, setMicPermissionError] = useState('permission_denied');
@@ -346,7 +380,8 @@ const VocalRangeTestPage = () => {
       setTestPhase('result');
     } else {
       console.error('❌ Invalid pitch values:', { finalLowest, finalHighest });
-      setError('Unable to calculate results. Please try again.');
+      // Invalid result - user needs to restart the test
+      alert('Unable to calculate results. Please try again.');
     }
   };
 
@@ -414,28 +449,6 @@ const VocalRangeTestPage = () => {
 
   return (
     <>
-      {/* SEO Meta Tags */}
-      <title>Free Vocal Range Test - Find Your Voice Type in 3 Minutes | SingMeter</title>
-      <meta name="description" content="Test your vocal range online for free. Discover your voice type (Soprano, Alto, Tenor, Bass) and get personalized song recommendations. No signup required, works in your browser." />
-      <meta name="keywords" content="vocal range test, voice type test, singing range test, vocal range finder, voice classification, soprano alto tenor bass, vocal assessment, singing test" />
-      <link rel="canonical" href="https://www.singmeter.com/vocal-range-test" />
-
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://www.singmeter.com/vocal-range-test" />
-      <meta property="og:title" content="Free Vocal Range Test - Find Your Voice Type | SingMeter" />
-      <meta property="og:description" content="Test your vocal range online for free. Discover your voice type and get personalized song recommendations." />
-      <meta property="og:image" content="https://www.singmeter.com/og-image.svg" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="SingMeter" />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content="https://www.singmeter.com/vocal-range-test" />
-      <meta name="twitter:title" content="Free Vocal Range Test - Find Your Voice Type | SingMeter" />
-      <meta name="twitter:description" content="Test your vocal range online for free. Discover your voice type and get personalized song recommendations." />
-      <meta name="twitter:image" content="https://www.singmeter.com/twitter-image.svg" />
 
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">

@@ -2,6 +2,7 @@
  * Blog Article Page - Individual Article View
  */
 import { useParams, Link, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { blogArticles } from './BlogPage';
 import Header from '../components/Header';
 
@@ -18,6 +19,86 @@ const BlogArticlePage = () => {
   const relatedArticles = blogArticles
     .filter(a => a.id !== article.id)
     .slice(0, 2);
+
+  // Set document title and meta tags
+  useEffect(() => {
+    // Set title
+    document.title = `${article.title} | SingMeter Blog`;
+
+    // Set or update meta tags
+    const setMetaTag = (name, content, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let element = document.querySelector(`meta[${attribute}="${name}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attribute, name);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
+    };
+
+    // Basic meta tags
+    setMetaTag('description', article.excerpt);
+    setMetaTag('keywords', `singing, vocal training, ${article.category.toLowerCase()}, music education`);
+
+    // Open Graph tags
+    setMetaTag('og:type', 'article', true);
+    setMetaTag('og:title', article.title, true);
+    setMetaTag('og:description', article.excerpt, true);
+    setMetaTag('og:url', `https://singmeter.com/blog/${article.slug}`, true);
+    setMetaTag('article:published_time', article.date, true);
+    setMetaTag('article:section', article.category, true);
+
+    // Twitter tags
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', article.title);
+    setMetaTag('twitter:description', article.excerpt);
+
+    // Add JSON-LD structured data
+    const existingScript = document.querySelector('script[data-article-schema]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = document.createElement('script');
+    script.setAttribute('type', 'application/ld+json');
+    script.setAttribute('data-article-schema', 'true');
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": article.title,
+      "description": article.excerpt,
+      "datePublished": article.date,
+      "dateModified": article.date,
+      "author": {
+        "@type": "Organization",
+        "name": "SingMeter",
+        "url": "https://singmeter.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SingMeter",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://singmeter.com/logo-horizontal.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `https://singmeter.com/blog/${article.slug}`
+      },
+      "articleSection": article.category,
+      "keywords": article.slug === 'improve-singing-pitch'
+        ? "improve singing pitch, how to sing in tune, pitch accuracy exercises, singing pitch training, vocal pitch improvement, pitch control techniques"
+        : "singing, vocal training, music education"
+    });
+    document.head.appendChild(script);
+
+    // Cleanup function
+    return () => {
+      document.title = 'SingMeter';
+    };
+  }, [article]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">

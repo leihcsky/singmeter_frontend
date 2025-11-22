@@ -2,6 +2,7 @@
  * Home Page - Tools Collection Landing Page
  */
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { getActiveTools, getComingSoonTools } from '../config/tools';
 import Header from '../components/Header';
 
@@ -10,7 +11,48 @@ const HomePage = () => {
   const activeTools = getActiveTools();
   const comingSoonTools = getComingSoonTools();
 
+  // Set document title and meta tags
+  useEffect(() => {
+    document.title = 'SingMeter - Free Vocal Range Test & Pitch Detector | Online Singing Tools';
+
+    const setMetaTag = (name, content, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let element = document.querySelector(`meta[${attribute}="${name}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attribute, name);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
+    };
+
+    const setLinkTag = (rel, href) => {
+      let element = document.querySelector(`link[rel="${rel}"]`);
+      if (!element) {
+        element = document.createElement('link');
+        element.setAttribute('rel', rel);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('href', href);
+    };
+
+    setMetaTag('description', 'Free online singing tools for everyone. Test your vocal range, detect pitch in real-time, and improve your singing. No signup required, works in your browser.');
+    setMetaTag('keywords', 'vocal range test, pitch detector, singing tools, voice type test, vocal range finder, singing test, pitch test, voice analysis, free singing tools');
+    setLinkTag('canonical', 'https://www.singmeter.com/');
+
+    return () => {
+      document.title = 'SingMeter';
+    };
+  }, []);
+
   const blogArticles = [
+    {
+      slug: 'improve-singing-pitch',
+      title: 'How to Improve Your Singing Pitch: Complete Training Guide',
+      excerpt: 'Learn proven exercises and techniques to improve your singing pitch accuracy and sing in tune consistently.',
+      category: 'Guides',
+      readTime: '8 min read'
+    },
     {
       slug: 'how-to-test-vocal-range',
       title: 'How to Test Your Vocal Range',
@@ -36,28 +78,6 @@ const HomePage = () => {
 
   return (
     <>
-      {/* SEO Meta Tags */}
-      <title>SingMeter - Free Vocal Range Test & Pitch Detector | Online Singing Tools</title>
-      <meta name="description" content="Free online singing tools for everyone. Test your vocal range, detect pitch in real-time, and improve your singing. No signup required, works in your browser." />
-      <meta name="keywords" content="vocal range test, pitch detector, singing tools, voice type test, vocal range finder, singing test, pitch test, voice analysis, free singing tools" />
-      <link rel="canonical" href="https://www.singmeter.com/" />
-
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://www.singmeter.com/" />
-      <meta property="og:title" content="SingMeter - Free Vocal Range Test & Pitch Detector" />
-      <meta property="og:description" content="Free online singing tools for everyone. Test your vocal range, detect pitch in real-time, and improve your singing." />
-      <meta property="og:image" content="https://www.singmeter.com/og-image.svg" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="SingMeter" />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content="https://www.singmeter.com/" />
-      <meta name="twitter:title" content="SingMeter - Free Vocal Range Test & Pitch Detector" />
-      <meta name="twitter:description" content="Free online singing tools for everyone. Test your vocal range, detect pitch in real-time, and improve your singing." />
-      <meta name="twitter:image" content="https://www.singmeter.com/twitter-image.svg" />
 
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">

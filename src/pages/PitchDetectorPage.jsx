@@ -20,6 +20,40 @@ const PitchDetectorPage = () => {
   const detectorRef = useRef(null);
   const historyRef = useRef([]);
 
+  // Set document title and meta tags
+  useEffect(() => {
+    document.title = 'Free Online Pitch Detector - Real-Time Vocal Pitch Analysis | SingMeter';
+
+    const setMetaTag = (name, content, isProperty = false) => {
+      const attribute = isProperty ? 'property' : 'name';
+      let element = document.querySelector(`meta[${attribute}="${name}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attribute, name);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
+    };
+
+    const setLinkTag = (rel, href) => {
+      let element = document.querySelector(`link[rel="${rel}"]`);
+      if (!element) {
+        element = document.createElement('link');
+        element.setAttribute('rel', rel);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('href', href);
+    };
+
+    setMetaTag('description', 'Detect your singing pitch in real-time with our free online pitch detector. See your pitch accuracy, improve your singing, and practice with instant feedback. No download required.');
+    setMetaTag('keywords', 'pitch detector, pitch test, vocal pitch detector, singing pitch test, pitch accuracy, vocal tuner, singing tuner, pitch analyzer, voice pitch test');
+    setLinkTag('canonical', 'https://www.singmeter.com/pitch-detector');
+
+    return () => {
+      document.title = 'SingMeter';
+    };
+  }, []);
+
   // Start listening
   const handleStartListening = async () => {
     console.log('🎵 Starting pitch detector...');
@@ -124,28 +158,6 @@ const PitchDetectorPage = () => {
 
   return (
     <>
-      {/* SEO Meta Tags */}
-      <title>Free Online Pitch Detector - Real-Time Vocal Pitch Analysis | SingMeter</title>
-      <meta name="description" content="Detect your singing pitch in real-time with our free online pitch detector. See your pitch accuracy, improve your singing, and practice with instant feedback. No download required." />
-      <meta name="keywords" content="pitch detector, pitch test, vocal pitch detector, singing pitch test, pitch accuracy, vocal tuner, singing tuner, pitch analyzer, voice pitch test" />
-      <link rel="canonical" href="https://www.singmeter.com/pitch-detector" />
-
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://www.singmeter.com/pitch-detector" />
-      <meta property="og:title" content="Free Online Pitch Detector - Real-Time Vocal Pitch Analysis | SingMeter" />
-      <meta property="og:description" content="Detect your singing pitch in real-time. See your pitch accuracy and improve your singing with instant feedback." />
-      <meta property="og:image" content="https://www.singmeter.com/og-image.svg" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="SingMeter" />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content="https://www.singmeter.com/pitch-detector" />
-      <meta name="twitter:title" content="Free Online Pitch Detector - Real-Time Vocal Pitch Analysis | SingMeter" />
-      <meta name="twitter:description" content="Detect your singing pitch in real-time. See your pitch accuracy and improve your singing with instant feedback." />
-      <meta name="twitter:image" content="https://www.singmeter.com/twitter-image.svg" />
 
       {/* JSON-LD Structured Data */}
       <script type="application/ld+json">
@@ -530,6 +542,128 @@ const PitchDetectorPage = () => {
                 For best results, use in a quiet environment with a good quality microphone, and sing clearly and steadily.
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* Practice Guide Section */}
+        <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border-2 border-indigo-200">
+          <div className="flex items-start gap-4 mb-6">
+            <div className="text-4xl">📚</div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Complete Practice Guide</h2>
+              <p className="text-gray-600">
+                Want to master pitch accuracy? Learn proven exercises and techniques to improve your singing with our comprehensive guide.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {/* Exercise Preview 1 */}
+            <div className="bg-white rounded-xl p-5 shadow-sm border border-indigo-100">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">🎯</span>
+                <h3 className="font-bold text-gray-900">Single Note Accuracy</h3>
+              </div>
+              <p className="text-sm text-gray-600 mb-3">
+                Learn to hit and sustain a single note perfectly in tune. Master the foundation of pitch accuracy with step-by-step guidance.
+              </p>
+              <div className="text-xs text-indigo-600 font-semibold">
+                ✓ 6-step detailed method
+              </div>
+            </div>
+
+            {/* Exercise Preview 2 */}
+            <div className="bg-white rounded-xl p-5 shadow-sm border border-purple-100">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">🎼</span>
+                <h3 className="font-bold text-gray-900">Scale & Interval Training</h3>
+              </div>
+              <p className="text-sm text-gray-600 mb-3">
+                Improve pitch accuracy across multiple notes. Practice scales and intervals with real-time feedback to identify problem areas.
+              </p>
+              <div className="text-xs text-purple-600 font-semibold">
+                ✓ Common issues & solutions
+              </div>
+            </div>
+
+            {/* Exercise Preview 3 */}
+            <div className="bg-white rounded-xl p-5 shadow-sm border border-pink-100">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">🎵</span>
+                <h3 className="font-bold text-gray-900">Song Application</h3>
+              </div>
+              <p className="text-sm text-gray-600 mb-3">
+                Apply pitch accuracy to real songs. Learn how to practice effectively and identify phrases where you go off-pitch.
+              </p>
+              <div className="text-xs text-pink-600 font-semibold">
+                ✓ 5-step practice method
+              </div>
+            </div>
+
+            {/* Exercise Preview 4 */}
+            <div className="bg-white rounded-xl p-5 shadow-sm border border-indigo-100">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-2xl">🔧</span>
+                <h3 className="font-bold text-gray-900">Problem Solving</h3>
+              </div>
+              <p className="text-sm text-gray-600 mb-3">
+                Fix common pitch problems like singing flat, sharp, or unstable. Get specific solutions for each issue with expert tips.
+              </p>
+              <div className="text-xs text-indigo-600 font-semibold">
+                ✓ 4 common problems solved
+              </div>
+            </div>
+          </div>
+
+          {/* What You'll Learn */}
+          <div className="bg-white rounded-xl p-5 mb-6 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+              <span className="text-xl">✨</span>
+              What You'll Learn in the Complete Guide
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-gray-600">
+              <div className="flex items-start gap-2">
+                <span className="text-green-600 font-bold">✓</span>
+                <span>5 proven exercises for pitch accuracy</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-green-600 font-bold">✓</span>
+                <span>Understanding cents and deviation</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-green-600 font-bold">✓</span>
+                <span>Common pitch problems & solutions</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-green-600 font-bold">✓</span>
+                <span>15-minute daily practice routine</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-green-600 font-bold">✓</span>
+                <span>Professional accuracy standards</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-green-600 font-bold">✓</span>
+                <span>Advanced tips for maximum improvement</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center">
+            <Link
+              to="/blog/improve-singing-pitch"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+            >
+              <span>📖</span>
+              <span>Read the Complete Guide</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+            <p className="text-sm text-gray-600 mt-3">
+              8-minute read • Comprehensive exercises • Expert tips
+            </p>
           </div>
         </div>
 
