@@ -3,22 +3,37 @@
  */
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { blogArticles } from './BlogPage';
+import { blogIndex } from '../blog';
 import Header from '../components/Header';
 
 const BlogArticlePage = () => {
   const { slug } = useParams();
-  const article = blogArticles.find(a => a.slug === slug);
+  const article = blogIndex.find((a) => a.slug === slug);
 
-  // If article not found, redirect to blog page
-  if (!article) {
-    return <Navigate to="/blog" replace />;
-  }
+	// If article not found, redirect to blog page
+	if (!article) {
+		return <Navigate to="/blog" replace />;
+	}
 
-  // Get related articles (other articles in same category or just other articles)
-  const relatedArticles = blogArticles
-    .filter(a => a.id !== article.id)
-    .slice(0, 2);
+	// Get related articles (other articles in same category or just other articles)
+	const relatedArticles = blogIndex
+		.filter(a => a.id !== article.id)
+		.slice(0, 2);
+
+	// Dates and author information
+	const publishedDate = new Date(article.date);
+	const updatedDate = article.updatedDate ? new Date(article.updatedDate) : publishedDate;
+	const hasBeenUpdated = !!article.updatedDate && article.updatedDate !== article.date;
+	const formattedPublishedDate = publishedDate.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+	const formattedUpdatedDate = updatedDate.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
 
   // Set document title and meta tags
   useEffect(() => {
@@ -37,24 +52,44 @@ const BlogArticlePage = () => {
       element.setAttribute('content', content);
     };
 
-    // Basic meta tags
-    setMetaTag('description', article.excerpt);
-    setMetaTag('keywords', `singing, vocal training, ${article.category.toLowerCase()}, music education`);
+	    const setLinkTag = (rel, href) => {
+	      let element = document.querySelector(`link[rel="${rel}"]`);
+	      if (!element) {
+	        element = document.createElement('link');
+	        element.setAttribute('rel', rel);
+	        document.head.appendChild(element);
+	      }
+	      element.setAttribute('href', href);
+	    };
 
-    // Open Graph tags
-    setMetaTag('og:type', 'article', true);
-    setMetaTag('og:title', article.title, true);
-    setMetaTag('og:description', article.excerpt, true);
-    setMetaTag('og:url', `https://singmeter.com/blog/${article.slug}`, true);
-    setMetaTag('article:published_time', article.date, true);
-    setMetaTag('article:section', article.category, true);
+		const canonicalUrl = `https://www.singmeter.com/blog/${article.slug}`;
+
+		// Basic meta tags
+		setMetaTag('description', article.excerpt);
+		setMetaTag(
+			'keywords',
+			article.seoKeywords || `singing, vocal training, ${article.category.toLowerCase()}, music education`
+		);
+		setMetaTag('author', article.author || 'SingMeter Team');
+
+		// Open Graph tags
+		setMetaTag('og:type', 'article', true);
+		setMetaTag('og:title', article.title, true);
+		setMetaTag('og:description', article.excerpt, true);
+			setMetaTag('og:url', canonicalUrl, true);
+		setMetaTag('article:published_time', article.date, true);
+		setMetaTag('article:modified_time', article.updatedDate || article.date, true);
+		setMetaTag('article:section', article.category, true);
 
     // Twitter tags
     setMetaTag('twitter:card', 'summary_large_image');
     setMetaTag('twitter:title', article.title);
     setMetaTag('twitter:description', article.excerpt);
 
-    // Add JSON-LD structured data
+			// Canonical link
+			setLinkTag('canonical', canonicalUrl);
+
+		// Add JSON-LD structured data
     const existingScript = document.querySelector('script[data-article-schema]');
     if (existingScript) {
       existingScript.remove();
@@ -63,35 +98,33 @@ const BlogArticlePage = () => {
     const script = document.createElement('script');
     script.setAttribute('type', 'application/ld+json');
     script.setAttribute('data-article-schema', 'true');
-    script.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": article.title,
-      "description": article.excerpt,
-      "datePublished": article.date,
-      "dateModified": article.date,
-      "author": {
-        "@type": "Organization",
-        "name": "SingMeter",
-        "url": "https://singmeter.com"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "SingMeter",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://singmeter.com/logo-horizontal.svg"
-        }
-      },
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `https://singmeter.com/blog/${article.slug}`
-      },
-      "articleSection": article.category,
-      "keywords": article.slug === 'improve-singing-pitch'
-        ? "improve singing pitch, how to sing in tune, pitch accuracy exercises, singing pitch training, vocal pitch improvement, pitch control techniques"
-        : "singing, vocal training, music education"
-    });
+		script.textContent = JSON.stringify({
+		  "@context": "https://schema.org",
+		  "@type": "Article",
+		  "headline": article.title,
+		  "description": article.excerpt,
+		  "datePublished": article.date,
+		  "dateModified": article.updatedDate || article.date,
+				  "author": {
+				    "@type": "Organization",
+				    "name": article.author || "SingMeter Team",
+				    "url": "https://www.singmeter.com"
+				  },
+				  "publisher": {
+				    "@type": "Organization",
+				    "name": "SingMeter",
+				    "logo": {
+				      "@type": "ImageObject",
+				      "url": "https://www.singmeter.com/logo-horizontal.svg"
+				    }
+				  },
+				  "mainEntityOfPage": {
+				    "@type": "WebPage",
+				    "@id": canonicalUrl
+				  },
+		  "articleSection": article.category,
+		  "keywords": article.seoKeywords || "singing, vocal training, music education"
+		});
     document.head.appendChild(script);
 
     // Cleanup function
@@ -139,13 +172,14 @@ const BlogArticlePage = () => {
                 {article.category}
               </span>
               <span className="text-gray-500 text-sm">{article.readTime}</span>
-              <span className="text-gray-500 text-sm">
-                {new Date(article.date).toLocaleDateString('en-US', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}
-              </span>
+	              <span className="text-gray-500 text-sm">
+	                By <span className="font-medium text-gray-700">{article.author || 'SingMeter Team'}</span>
+	              </span>
+	              <span className="text-gray-500 text-sm">
+	                {hasBeenUpdated
+	                  ? `Published on ${formattedPublishedDate} · Updated on ${formattedUpdatedDate}`
+	                  : `Published on ${formattedPublishedDate}`}
+	              </span>
             </div>
 
             {/* Title */}
@@ -160,12 +194,20 @@ const BlogArticlePage = () => {
 
             {/* Divider */}
             <div className="border-t border-gray-200 mb-8"></div>
-
             {/* Article Content */}
-            <div 
-              className="prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+            <div className="prose prose-lg max-w-none">
+              {article.component && <article.component />}
+            </div>
+	            {/* Author Bio */}
+	            <div className="mt-10 p-6 bg-indigo-50 border border-indigo-100 rounded-xl">
+	              <h2 className="text-base font-semibold text-indigo-800 mb-2">About SingMeter Team</h2>
+	              <p className="text-sm text-indigo-900 leading-relaxed">
+	                SingMeter started as a side project by a singer who is also a software developer. Today, the SingMeter Team brings
+	                together a vocal enthusiast, a programmer, an audio engineer, and a vocal coach from a music conservatory.
+	                We are not a big company - just a small group of people who love singing and technology, and we build simple,
+	                accurate online tools and practical guides to help everyday singers understand, train, and take care of their voices.
+	              </p>
+	            </div>
           </div>
         </article>
 

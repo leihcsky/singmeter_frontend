@@ -667,19 +667,146 @@ const PitchDetectorPage = () => {
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-center text-white mb-8">
-          <h2 className="text-2xl font-bold mb-3">Want to know your vocal range?</h2>
-          <p className="text-indigo-100 mb-6">
-            Take our free vocal range test to discover your voice type and get personalized song recommendations.
-          </p>
-          <Link
-            to="/vocal-range-test"
-            className="inline-block px-6 py-3 bg-white text-indigo-600 font-bold rounded-xl hover:bg-indigo-50 transition"
-          >
-            Test Your Vocal Range →
-          </Link>
-        </div>
+	        {/* More Pitch & Intonation Articles */}
+	        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border border-gray-100">
+	          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
+	            Deepen Your <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Pitch &amp; Intonation</span> Training
+	          </h2>
+	          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-6">
+	            Use the SingMeter Pitch Detector together with these step-by-step guides to fix flat notes, train your ear,
+	            and practice singing in tune without an instrument.
+	          </p>
+	          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+	            <Link
+	              to="/blog/why-you-sing-flat"
+	              className="group bg-indigo-50 rounded-2xl p-4 hover:bg-indigo-100 transition flex flex-col justify-between"
+	            >
+	              <div>
+	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-indigo-700">
+	                  Why You Sing Flat (&amp; How to Fix It)
+	                </h3>
+	                <p className="text-xs text-gray-600 leading-relaxed">
+	                  Understand the real reasons pitches sag and follow targeted exercises using the detector as feedback.
+	                </p>
+	              </div>
+	              <span className="mt-3 text-xs font-semibold text-indigo-700 flex items-center group-hover:translate-x-1 transition-transform">
+	                Read article
+	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+	                </svg>
+	              </span>
+	            </Link>
+
+	            <Link
+	              to="/blog/ear-training-for-singers"
+	              className="group bg-purple-50 rounded-2xl p-4 hover:bg-purple-100 transition flex flex-col justify-between"
+	            >
+	              <div>
+	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-purple-700">
+	                  Ear Training for Singers
+	                </h3>
+	                <p className="text-xs text-gray-600 leading-relaxed">
+	                  Build a reliable musical ear so you can hear intervals and keys clearly and match them with your voice.
+	                </p>
+	              </div>
+	              <span className="mt-3 text-xs font-semibold text-purple-700 flex items-center group-hover:translate-x-1 transition-transform">
+	                Start training
+	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+	                </svg>
+	              </span>
+	            </Link>
+
+	            <Link
+	              to="/blog/sing-in-tune-without-piano"
+	              className="group bg-pink-50 rounded-2xl p-4 hover:bg-pink-100 transition flex flex-col justify-between"
+	            >
+	              <div>
+	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-pink-700">
+	                  Sing in Tune Without a Piano
+	                </h3>
+	                <p className="text-xs text-gray-600 leading-relaxed">
+	                  Learn how to stay in key and practice melodies even when you do not have an instrument nearby.
+	                </p>
+	              </div>
+	              <span className="mt-3 text-xs font-semibold text-pink-700 flex items-center group-hover:translate-x-1 transition-transform">
+	                View guide
+	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+	                </svg>
+	              </span>
+	            </Link>
+
+	            <Link
+	              to="/blog/use-pitch-detector-for-training"
+	              className="group bg-indigo-50 rounded-2xl p-4 hover:bg-indigo-100 transition flex flex-col justify-between"
+	            >
+	              <div>
+	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-indigo-700">
+	                  Use a Pitch Detector for Training
+	                </h3>
+	                <p className="text-xs text-gray-600 leading-relaxed">
+	                  Turn this tool into a daily coach for warm-ups, scales, and fixing your most common pitch issues.
+	                </p>
+	              </div>
+	              <span className="mt-3 text-xs font-semibold text-indigo-700 flex items-center group-hover:translate-x-1 transition-transform">
+	                See how
+	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+	                </svg>
+	              </span>
+	            </Link>
+	          </div>
+	        </div>
+
+	        {/* About SingMeter Pitch Detector & Limitations */}
+	        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border border-gray-100">
+	          <h2 className="text-2xl font-bold text-gray-900 mb-4">About This Pitch Detector</h2>
+	          <p className="text-gray-600 text-sm leading-relaxed mb-4">
+	            SingMeter's pitch detector is a practice and learning tool. It gives you real-time visual feedback so you can train your
+	            ear and voice, but it is not a medical device and does not replace a qualified teacher.
+	          </p>
+	          <div className="grid sm:grid-cols-2 gap-6 text-sm text-gray-600">
+	            <div>
+	              <h3 className="font-semibold text-gray-900 mb-2">What this tool is great for</h3>
+	              <ul className="list-disc list-inside space-y-1">
+	                <li>Seeing whether you are sharp, flat, or in tune in real time.</li>
+	                <li>Practicing scales, intervals, and songs with objective feedback.</li>
+	                <li>Building awareness of how your technique affects pitch stability.</li>
+	              </ul>
+	            </div>
+	            <div>
+	              <h3 className="font-semibold text-gray-900 mb-2">Important limitations</h3>
+	              <ul className="list-disc list-inside space-y-1">
+	                <li>Accuracy depends on your microphone, device, and background noise.</li>
+	                <li>It cannot diagnose vocal health issues or hearing problems.</li>
+	                <li>Avoid over-fixing tiny deviations — musical expression matters too.</li>
+	              </ul>
+	            </div>
+	          </div>
+	          <p className="text-gray-600 text-xs mt-4 leading-relaxed">
+	            If you experience pain, strain, or persistent hoarseness, stop practicing and seek advice from a voice specialist or
+	            medical professional. To learn more about SingMeter or get in touch, visit our
+	            <Link to="/about" className="text-indigo-600 hover:text-indigo-700 font-semibold ml-1">About</Link>
+	            <span> page or </span>
+	            <Link to="/contact" className="text-indigo-600 hover:text-indigo-700 font-semibold">Contact</Link>
+	            <span> page.</span>
+	          </p>
+	        </div>
+
+	        {/* CTA */}
+	        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-center text-white mb-8">
+	          <h2 className="text-2xl font-bold mb-3">Want to know your vocal range?</h2>
+	          <p className="text-indigo-100 mb-6">
+	            Take our free vocal range test to discover your voice type and get personalized song recommendations.
+	          </p>
+	          <Link
+	            to="/vocal-range-test"
+	            className="inline-block px-6 py-3 bg-white text-indigo-600 font-bold rounded-xl hover:bg-indigo-50 transition"
+	          >
+	            Test Your Vocal Range →
+	          </Link>
+	        </div>
       </main>
 
         {/* Microphone Permission Modal */}

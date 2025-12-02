@@ -1,10 +1,49 @@
 /**
  * Privacy Policy Page
  */
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 
 const PrivacyPage = () => {
+	useEffect(() => {
+		document.title = 'Privacy Policy | SingMeter - Free Online Vocal Tools';
+
+		const setMetaTag = (name, content) => {
+			let element = document.querySelector(`meta[name="${name}"]`);
+			if (!element) {
+				element = document.createElement('meta');
+				element.setAttribute('name', name);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('content', content);
+		};
+
+		const setLinkTag = (rel, href) => {
+			let element = document.querySelector(`link[rel="${rel}"]`);
+			if (!element) {
+				element = document.createElement('link');
+				element.setAttribute('rel', rel);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('href', href);
+		};
+
+		setMetaTag(
+			'description',
+			'Read the SingMeter privacy policy. Learn how we handle data, microphone access, cookies, analytics and Google AdSense when you use our vocal range test, pitch detector and educational blog.'
+		);
+		setMetaTag(
+			'keywords',
+			'singmeter privacy policy, data privacy, microphone access, cookies, google adsense, vocal range test privacy, pitch detector privacy'
+		);
+		setLinkTag('canonical', 'https://www.singmeter.com/privacy');
+
+		return () => {
+			document.title = 'SingMeter';
+		};
+	}, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Header */}

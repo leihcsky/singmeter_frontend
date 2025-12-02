@@ -709,7 +709,100 @@ const VocalRangeTestPage = () => {
                 </div>
               </section>
 
-              {/* CTA to Pitch Detector */}
+	              {/* Learn More: Vocal Range & Voice Types */}
+	              <section className="mb-16">
+	                <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
+	                  Learn More About <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Vocal Range &amp; Voice Types</span>
+	                </h2>
+	                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
+	                  Ready to go deeper? Explore our in-depth guides on how vocal range, tessitura, and famous singers' ranges
+	                  connect to your own results from this test.
+	                </p>
+	                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+	                  <Link
+	                    to="/blog/how-to-find-your-voice-type"
+	                    className="group bg-white rounded-2xl p-5 shadow-md hover:shadow-xl transition border border-gray-100 hover:border-indigo-200 flex flex-col justify-between"
+	                  >
+	                    <div>
+	                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition">
+	                        How to Find Your Voice Type
+	                      </h3>
+	                      <p className="text-sm text-gray-600 leading-relaxed">
+	                        Step-by-step method to figure out whether you lean more toward Soprano, Alto, Tenor, or Bass using your
+	                        range and tessitura.
+	                      </p>
+	                    </div>
+	                    <div className="mt-3 flex items-center text-indigo-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">
+	                      Read article
+	                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+	                      </svg>
+	                    </div>
+	                  </Link>
+
+	                  <Link
+	                    to="/blog/vocal-range-chart"
+	                    className="group bg-white rounded-2xl p-5 shadow-md hover:shadow-xl transition border border-gray-100 hover:border-indigo-200 flex flex-col justify-between"
+	                  >
+	                    <div>
+	                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition">
+	                        Vocal Range Chart
+	                      </h3>
+	                      <p className="text-sm text-gray-600 leading-relaxed">
+	                        See typical ranges for common voice types and learn how to compare your own test results to them.
+	                      </p>
+	                    </div>
+	                    <div className="mt-3 flex items-center text-indigo-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">
+	                      View chart
+	                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+	                      </svg>
+	                    </div>
+	                  </Link>
+
+	                  <Link
+	                    to="/blog/tessitura-and-comfortable-range"
+	                    className="group bg-white rounded-2xl p-5 shadow-md hover:shadow-xl transition border border-gray-100 hover:border-indigo-200 flex flex-col justify-between"
+	                  >
+	                    <div>
+	                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition">
+	                        Tessitura &amp; Comfortable Range
+	                      </h3>
+	                      <p className="text-sm text-gray-600 leading-relaxed">
+	                        Learn why your everyday comfort zone matters more than the very highest or lowest notes you can touch.
+	                      </p>
+	                    </div>
+	                    <div className="mt-3 flex items-center text-indigo-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">
+	                      Learn more
+	                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+	                      </svg>
+	                    </div>
+	                  </Link>
+
+	                  <Link
+	                    to="/blog/famous-singers-vocal-ranges"
+	                    className="group bg-white rounded-2xl p-5 shadow-md hover:shadow-xl transition border border-gray-100 hover:border-indigo-200 flex flex-col justify-between"
+	                  >
+	                    <div>
+	                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition">
+	                        Famous Singers' Vocal Ranges
+	                      </h3>
+	                      <p className="text-sm text-gray-600 leading-relaxed">
+	                        Compare your range in a healthy way and see what you can actually learn from famous singers' ranges.
+	                      </p>
+	                    </div>
+	                    <div className="mt-3 flex items-center text-indigo-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">
+	                      Get inspired
+	                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+	                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+	                      </svg>
+	                    </div>
+	                  </Link>
+	                </div>
+	              </section>
+
+	              {/* CTA to Pitch Detector */}
               <section>
                 <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-center text-white">
                   <h2 className="text-2xl font-bold mb-3">Want to practice your pitch accuracy?</h2>
@@ -723,10 +816,47 @@ const VocalRangeTestPage = () => {
                     Try Pitch Detector →
                   </Link>
                 </div>
-              </section>
-            </div>
-          )}
-        </main>
+	              </section>
+	            </div>
+	          )}
+
+	          {/* About SingMeter Vocal Range Test & Limitations */}
+	          <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+	            <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 sm:p-8">
+	              <h2 className="text-2xl font-bold text-gray-900 mb-4">About This Vocal Range Test</h2>
+	              <p className="text-gray-600 text-sm leading-relaxed mb-4">
+	                SingMeter's vocal range test is designed for education and practice. It helps you understand your usable range
+	                and voice type so you can choose better songs and keys, but it does not replace a vocal coach or medical advice.
+	              </p>
+	              <div className="grid sm:grid-cols-2 gap-6 text-sm text-gray-600">
+	                <div>
+	                  <h3 className="font-semibold text-gray-900 mb-2">What this tool is great for</h3>
+	                  <ul className="list-disc list-inside space-y-1">
+	                    <li>Getting a quick snapshot of your current vocal range.</li>
+	                    <li>Tracking progress as you train and your range expands.</li>
+	                    <li>Choosing more comfortable keys and song arrangements.</li>
+	                  </ul>
+	                </div>
+	                <div>
+	                  <h3 className="font-semibold text-gray-900 mb-2">Important limitations</h3>
+	                  <ul className="list-disc list-inside space-y-1">
+	                    <li>Results depend on your microphone, environment, and how you use your voice.</li>
+	                    <li>It cannot diagnose vocal health problems or replace professional evaluation.</li>
+	                    <li>Avoid forcing extreme notes — stay with clear, comfortable sounds.</li>
+	                  </ul>
+	                </div>
+	              </div>
+	              <p className="text-gray-600 text-xs mt-4 leading-relaxed">
+	                If you ever feel pain, discomfort, or persistent hoarseness while singing, stop using the tool and consult a
+	                qualified voice teacher or medical professional. For general questions about SingMeter, you can also visit our
+	                <Link to="/about" className="text-indigo-600 hover:text-indigo-700 font-semibold ml-1">About</Link>
+	                <span> page or </span>
+	                <Link to="/contact" className="text-indigo-600 hover:text-indigo-700 font-semibold">Contact</Link>
+	                <span> us.</span>
+	              </p>
+	            </div>
+	          </section>
+	        </main>
 
         {/* Microphone Permission Modal */}
         {showMicPermission && (

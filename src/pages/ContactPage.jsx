@@ -1,7 +1,7 @@
 /**
  * Contact Page
  */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 
@@ -13,6 +13,44 @@ const ContactPage = () => {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+
+	useEffect(() => {
+		document.title = 'Contact SingMeter - Feedback, Support & Business Inquiries';
+
+		const setMetaTag = (name, content) => {
+			let element = document.querySelector(`meta[name="${name}"]`);
+			if (!element) {
+				element = document.createElement('meta');
+				element.setAttribute('name', name);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('content', content);
+		};
+
+		const setLinkTag = (rel, href) => {
+			let element = document.querySelector(`link[rel="${rel}"]`);
+			if (!element) {
+				element = document.createElement('link');
+				element.setAttribute('rel', rel);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('href', href);
+		};
+
+		setMetaTag(
+			'description',
+			'Contact the SingMeter team with questions, feedback, bug reports, feature requests or business inquiries about our free vocal range test, pitch detector and singing resources.'
+		);
+		setMetaTag(
+			'keywords',
+			'contact singmeter, singmeter support, singing tool feedback, pitch detector contact, vocal range test contact'
+		);
+		setLinkTag('canonical', 'https://www.singmeter.com/contact');
+
+		return () => {
+			document.title = 'SingMeter';
+		};
+	}, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -233,7 +271,7 @@ const ContactPage = () => {
                   </p>
                   <div className="flex space-x-4">
                     {/* Add social media links here if needed */}
-                    <p className="text-gray-500 text-sm italic">Coming soon...</p>
+                    {/* <p className="text-gray-500 text-sm italic">Coming soon...</p> */}
                   </div>
                 </div>
               </div>

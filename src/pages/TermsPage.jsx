@@ -1,10 +1,49 @@
 /**
  * Terms of Service Page
  */
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 
 const TermsPage = () => {
+	useEffect(() => {
+		document.title = 'Terms of Service | SingMeter - Free Vocal Range Test & Pitch Detector';
+
+		const setMetaTag = (name, content) => {
+			let element = document.querySelector(`meta[name="${name}"]`);
+			if (!element) {
+				element = document.createElement('meta');
+				element.setAttribute('name', name);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('content', content);
+		};
+
+		const setLinkTag = (rel, href) => {
+			let element = document.querySelector(`link[rel="${rel}"]`);
+			if (!element) {
+				element = document.createElement('link');
+				element.setAttribute('rel', rel);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('href', href);
+		};
+
+		setMetaTag(
+			'description',
+			'Review the SingMeter terms of service covering acceptable use, limitations of liability, microphone access, advertising and other legal information for our free vocal tools.'
+		);
+		setMetaTag(
+			'keywords',
+			'singmeter terms of service, terms and conditions, vocal range test terms, pitch detector terms, legal information'
+		);
+		setLinkTag('canonical', 'https://www.singmeter.com/terms');
+
+		return () => {
+			document.title = 'SingMeter';
+		};
+	}, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Header */}

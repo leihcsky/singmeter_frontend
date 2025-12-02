@@ -13,7 +13,7 @@ const HomePage = () => {
 
   // Set document title and meta tags
   useEffect(() => {
-    document.title = 'SingMeter - Free Vocal Range Test & Pitch Detector | Online Singing Tools';
+    document.title = 'SingMeter - Online Singing Tools | Free Vocal Range Test & Pitch Detector';
 
     const setMetaTag = (name, content, isProperty = false) => {
       const attribute = isProperty ? 'property' : 'name';
@@ -36,8 +36,11 @@ const HomePage = () => {
       element.setAttribute('href', href);
     };
 
-    setMetaTag('description', 'Free online singing tools for everyone. Test your vocal range, detect pitch in real-time, and improve your singing. No signup required, works in your browser.');
-    setMetaTag('keywords', 'vocal range test, pitch detector, singing tools, voice type test, vocal range finder, singing test, pitch test, voice analysis, free singing tools');
+    	setMetaTag('description', 'Online singing tools for everyone. Test your vocal range, detect pitch in real time, and practice smarter with interactive tools. No signup required, works in your browser.');
+	    setMetaTag(
+	      'keywords',
+	      'online singing tools, vocal range test, pitch detector, singing tools, voice type test, vocal range finder, singing practice, singing exercises, pitch test, voice analysis, free singing tools'
+	    );
     setLinkTag('canonical', 'https://www.singmeter.com/');
 
     return () => {
@@ -108,7 +111,7 @@ const HomePage = () => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          "name": "SingMeter - Free Vocal Range Test & Pitch Detector",
+	          "name": "SingMeter - Online Singing Tools",
           "url": "https://www.singmeter.com",
           "applicationCategory": "MultimediaApplication",
           "operatingSystem": "Any",
@@ -117,7 +120,7 @@ const HomePage = () => {
             "price": "0",
             "priceCurrency": "USD"
           },
-          "description": "Free online singing tools including vocal range test and pitch detector. No signup required, works in your browser.",
+	          "description": "Online singing tools including vocal range test, pitch detector, and more. No signup required, works in your browser.",
           "featureList": [
             "Vocal Range Test - Find your voice type",
             "Pitch Detector - Real-time pitch analysis",
@@ -183,22 +186,24 @@ const HomePage = () => {
             <div className="text-sm text-gray-600">Free</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-pink-600">2</div>
+	            <div className="text-3xl font-bold text-pink-600">{activeTools.length}</div>
             <div className="text-sm text-gray-600">Tools</div>
           </div>
         </div>
       </section>
 
-      {/* Tools Section */}
-      <section id="tools" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Our Tools
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Easy-to-use singing tools for everyone - from shower singers to stage performers. No signup, no download, no experience required.
-          </p>
-        </div>
+	      {/* Tools Section */}
+	      <section id="tools" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+	        <div className="text-center mb-12">
+	          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+	            Our Tools
+	          </h2>
+	          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+		            Easy-to-use singing tools for everyone – from shower singers to stage performers. Start by measuring your vocal
+		            range, then use the pitch detector and other tools to train your ear, improve pitch accuracy, and support your daily
+		            practice. No signup, no download, no prior music theory required.
+	          </p>
+	        </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {activeTools.map((tool) => (
@@ -264,10 +269,10 @@ const HomePage = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl p-8 sm:p-12">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-            How to Test Your Vocal Range
+            How SingMeter Works
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Our vocal range test is simple, accurate, and takes just 3 minutes. Here's how it works:
+            SingMeter offers simple, accurate singing tools you can start using in minutes. Here's how most singers use them:
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -275,10 +280,11 @@ const HomePage = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🎤</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Step 1: Allow Microphone Access</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Step 1: Choose a Tool & Allow Microphone Access</h3>
               <p className="text-gray-600 text-center leading-relaxed">
-                Click "Start Your Test" and allow your browser to access your microphone.
-                Your voice is never recorded or stored - all analysis happens locally in your browser for complete privacy.
+                Pick a tool like the vocal range test or pitch detector and click "Start". If the tool needs your microphone,
+                allow your browser to access it. Your voice is never recorded or stored - all analysis happens locally in your
+                browser for complete privacy.
               </p>
             </div>
 
@@ -286,10 +292,11 @@ const HomePage = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🎵</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Step 2: Find Your Range</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Step 2: Follow the On-Screen Instructions</h3>
               <p className="text-gray-600 text-center leading-relaxed">
-                Sing your lowest comfortable note, then your highest. You can also use the
-                interactive piano keyboard to select notes manually if you prefer not to sing.
+                For the vocal range test, sing your lowest comfortable note and then your highest, or use the interactive piano
+                keyboard to select notes manually. For other tools, simply follow the clear on-screen guidance – no music
+                theory knowledge required.
               </p>
             </div>
 
@@ -297,10 +304,11 @@ const HomePage = () => {
               <div className="w-16 h-16 bg-gradient-to-br from-pink-600 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">📊</span>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Step 3: Get Your Results</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Step 3: Get Clear, Actionable Results</h3>
               <p className="text-gray-600 text-center leading-relaxed">
-                Instantly see your vocal range, voice type classification (Soprano, Alto, Tenor, Bass),
-                and personalized song recommendations that match your range perfectly.
+                Instantly see easy-to-understand results like your vocal range, voice type classification (Soprano, Alto, Tenor,
+                Bass), pitch accuracy, or song recommendations that match your voice. Use them to pick songs, plan practice, and
+                track your progress over time.
               </p>
             </div>
           </div>
@@ -314,7 +322,8 @@ const HomePage = () => {
             Understanding Voice Types
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Your voice type is determined by your vocal range and the quality of your voice. Here are the main classifications:
+            Your voice type is determined by your vocal range and the quality of your voice. Our vocal range test helps you
+            understand which category you fall into. Here are the main classifications:
           </p>
         </div>
 
@@ -381,13 +390,13 @@ const HomePage = () => {
       {/* Example Results Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Example Test Results
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Here's what your results will look like after completing the vocal range test:
-          </p>
-        </div>
+	          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+	            Example Results from the Vocal Range Test
+	          </h2>
+	          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+	            Here's an example of what your results can look like after using the vocal range test:
+	          </p>
+	        </div>
 
         <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 sm:p-12 shadow-xl">
           <div className="text-center mb-8">
@@ -452,38 +461,38 @@ const HomePage = () => {
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-gray-600">
-            Everything you need to know about testing your vocal range
+            Everything you need to know about using SingMeter's singing tools
           </p>
         </div>
 
         <div className="space-y-4">
           <details className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition group">
             <summary className="font-bold text-lg text-gray-900 cursor-pointer list-none flex items-center justify-between">
-              <span>How accurate is the vocal range test?</span>
+              <span>How accurate are SingMeter's tools?</span>
               <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Our vocal range test uses advanced pitch detection technology that analyzes
-              your voice in real-time with professional-grade accuracy. The results depend on your microphone quality and
-              singing technique, but most users find results within 1-2 semitones of
-              professional vocal assessments. For best results, use the test in a quiet environment with a good quality microphone.
+              Our tools use advanced pitch detection and audio analysis technology that analyzes your voice in real-time with
+              professional-grade accuracy. For example, the vocal range test typically stays within 1-2 semitones of professional
+              vocal assessments. Results still depend on your microphone quality and singing technique, so for best accuracy use
+              the tools in a quiet environment with a good quality microphone.
             </p>
           </details>
 
           <details className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition group">
             <summary className="font-bold text-lg text-gray-900 cursor-pointer list-none flex items-center justify-between">
-              <span>Do I need singing experience to take the test?</span>
+              <span>Do I need singing experience to use these tools?</span>
               <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              No! Our test is designed for everyone, from complete beginners to professional
-              singers. If you're new to singing, we recommend using the manual piano selection
-              mode to find notes you can comfortably sing. The test will help you discover your natural vocal range
-              regardless of your experience level.
+              No! SingMeter is designed for everyone, from complete beginners to professional singers. If you're new to singing,
+              the vocal range test and pitch detector can help you find notes you can comfortably sing. You can also use the
+              manual piano selection mode in the range test to explore safely and discover your natural vocal range regardless of
+              your experience level.
             </p>
           </details>
 
@@ -495,10 +504,9 @@ const HomePage = () => {
               </svg>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Absolutely not! All voice analysis happens locally in your browser using
-              Web Audio API technology. Your voice is never recorded, stored, or transmitted to any server.
-              Your privacy is 100% protected. We don't even have access to your microphone data -
-              everything stays on your device.
+              Absolutely not! For tools that use the microphone, all voice analysis happens locally in your browser using Web
+              Audio API technology. Your voice is never recorded, stored, or transmitted to any server. Your privacy is 100%
+              protected. We don't even have access to your microphone data - everything stays on your device.
             </p>
           </details>
 
@@ -510,10 +518,10 @@ const HomePage = () => {
               </svg>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Yes! With proper vocal training and exercises, most people can expand their
-              vocal range by 3-6 semitones or more. Regular practice, proper breathing technique,
-              vocal warm-ups, and working with a vocal coach are key to developing your range safely.
-              Take the test regularly to track your progress over time.
+              Yes! With proper vocal training and exercises, most people can expand their vocal range by 3-6 semitones or more.
+              Regular practice, proper breathing technique, vocal warm-ups, and working with a vocal coach are key to developing
+              your range safely. Use SingMeter's tools – especially the vocal range test – regularly to track your progress over
+              time.
             </p>
           </details>
 
@@ -525,23 +533,24 @@ const HomePage = () => {
               </svg>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              You only need a device with a microphone (computer, phone, or tablet) and a modern web browser
-              (Chrome, Firefox, Safari, or Edge). For best results, use the test in a quiet environment.
-              While built-in microphones work fine, an external microphone can provide more accurate results.
+              You only need a device with a microphone (computer, phone, or tablet) and a modern web browser (Chrome, Firefox,
+              Safari, or Edge). For best results, use the tools in a quiet environment. While built-in microphones work fine, an
+              external microphone can provide more accurate results.
             </p>
           </details>
 
           <details className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition group">
             <summary className="font-bold text-lg text-gray-900 cursor-pointer list-none flex items-center justify-between">
-              <span>Can I take the test multiple times?</span>
+              <span>Can I use the tools or take the tests multiple times?</span>
               <svg className="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Yes! Feel free to take the test as many times as you like - it's completely free.
-              Your vocal range can vary based on factors like time of day, vocal warm-up, and overall health.
-              Taking the test regularly can help you track your vocal development and improvement over time.
+              Yes! Feel free to use the tools and repeat tests as many times as you like - everything is completely free. Your
+              vocal range and pitch control can vary based on factors like time of day, vocal warm-up, and overall health.
+              Checking in regularly with the vocal range test or pitch detector can help you track your vocal development over
+              time.
             </p>
           </details>
         </div>

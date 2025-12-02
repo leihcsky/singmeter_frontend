@@ -1,10 +1,49 @@
 /**
  * About Page
  */
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 
 const AboutPage = () => {
+	useEffect(() => {
+		document.title = 'About SingMeter - Free Vocal Range Test & Pitch Detector Team';
+
+		const setMetaTag = (name, content) => {
+			let element = document.querySelector(`meta[name="${name}"]`);
+			if (!element) {
+				element = document.createElement('meta');
+				element.setAttribute('name', name);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('content', content);
+		};
+
+		const setLinkTag = (rel, href) => {
+			let element = document.querySelector(`link[rel="${rel}"]`);
+			if (!element) {
+				element = document.createElement('link');
+				element.setAttribute('rel', rel);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('href', href);
+		};
+
+		setMetaTag(
+			'description',
+			'Learn about SingMeter, the team behind the free online vocal range test, pitch detector, and vocal training blog. Our mission is to make accurate vocal tools and clear guidance accessible to every singer.'
+		);
+		setMetaTag(
+			'keywords',
+			'about singmeter, singmeter team, vocal range test team, pitch detector team, about singing tools, who made singmeter'
+		);
+		setLinkTag('canonical', 'https://www.singmeter.com/about');
+
+		return () => {
+			document.title = 'SingMeter';
+		};
+	}, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Header */}
@@ -92,10 +131,18 @@ const AboutPage = () => {
                 <li><strong>Responsive Design:</strong> Works seamlessly on desktop, tablet, and mobile devices</li>
               </ul>
 
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who We Serve</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter is designed for singers of all levels:
-              </p>
+	            	  <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">SingMeter Team</h2>
+	            	  <p className="text-gray-600 mb-4 leading-relaxed">
+	            	    SingMeter started as a side project by a singer who is also a software developer. Today, the SingMeter Team brings
+	            	    together a vocal enthusiast, a programmer, an audio engineer, and a vocal coach from a music conservatory.
+	            	    We are not a big company - just a small group of people who love singing and technology, and we want to make
+	            	    professional-quality vocal tools and clear, practical guidance available to more singers around the world.
+	            	  </p>
+
+	            	  <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who We Serve</h2>
+	            	  <p className="text-gray-600 mb-4 leading-relaxed">
+	            	    SingMeter is designed for singers of all levels:
+	            	  </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
                 <li><strong>Aspiring Singers:</strong> Discover your voice type and potential</li>
                 <li><strong>Vocal Students:</strong> Track your progress and improve pitch accuracy</li>

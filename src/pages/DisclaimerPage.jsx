@@ -1,10 +1,49 @@
 /**
  * Disclaimer Page
  */
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 
 const DisclaimerPage = () => {
+	useEffect(() => {
+		document.title = 'Disclaimer | SingMeter Vocal Tools & Educational Blog';
+
+		const setMetaTag = (name, content) => {
+			let element = document.querySelector(`meta[name="${name}"]`);
+			if (!element) {
+				element = document.createElement('meta');
+				element.setAttribute('name', name);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('content', content);
+		};
+
+		const setLinkTag = (rel, href) => {
+			let element = document.querySelector(`link[rel="${rel}"]`);
+			if (!element) {
+				element = document.createElement('link');
+				element.setAttribute('rel', rel);
+				document.head.appendChild(element);
+			}
+			element.setAttribute('href', href);
+		};
+
+		setMetaTag(
+			'description',
+			"Important disclaimer for SingMeter's vocal range test, pitch detector and educational content. Learn about limitations, no medical or vocal advice, and use-at-your-own-risk statements."
+		);
+		setMetaTag(
+			'keywords',
+			'singmeter disclaimer, medical disclaimer, vocal tool limitations, educational content disclaimer'
+		);
+		setLinkTag('canonical', 'https://www.singmeter.com/disclaimer');
+
+		return () => {
+			document.title = 'SingMeter';
+		};
+	}, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Header */}
