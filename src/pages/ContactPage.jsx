@@ -288,7 +288,7 @@ const ContactPage = () => {
             Discover your vocal range in just 60 seconds
           </p>
           <Link
-            to="/"
+            to="/vocal-range-test"
             className="inline-block px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
           >
             Start Your Test Now →

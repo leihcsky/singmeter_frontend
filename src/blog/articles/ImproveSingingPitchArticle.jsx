@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+	      <div class="mb-8">
+	        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Singer practicing pitch accuracy with pitch detector" class="w-full rounded-xl shadow-lg" />
+	        <p class="text-sm text-gray-500 mt-2 text-center">Improving pitch accuracy is essential for professional-sounding performances</p>
+	      </div>
+
 	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Pitch Accuracy Matters</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Singing in tune</strong> is one of the most fundamental skills in vocal performance. Even the most beautiful
@@ -44,6 +49,9 @@ const content = `
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Tools for Pitch Training</h2>
+	      <div class="my-6">
+	        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Pitch detector tool showing visual feedback" class="w-full rounded-xl shadow-md" />
+	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        While this guide focuses on exercises and techniques, using the right tools can accelerate your progress.
 	        A <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
@@ -62,6 +70,9 @@ const content = `
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5 Proven Exercises to Improve Your Singing Pitch</h2>
+	      <div class="my-6">
+	        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Vocal exercises for pitch accuracy training" class="w-full rounded-xl shadow-md" />
+	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        These exercises are designed to progressively build your pitch accuracy. Start with Exercise 1 and work your way
 	        through. For best results, use a <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
@@ -138,6 +149,9 @@ const content = `
 	      </ol>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Understanding Cents and Pitch Deviation</h2>
+	      <div class="my-6">
+	        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Pitch deviation chart showing cents measurement" class="w-full rounded-xl shadow-md" />
+	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        The pitch detector shows deviation in <strong>cents</strong>. Here's what you need to know:
 	      </p>

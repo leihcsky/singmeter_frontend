@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+  <div class="mb-8">
+    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&h=600&fit=crop" alt="Different voice types classification" class="w-full rounded-xl shadow-lg" />
+    <p class="text-sm text-gray-500 mt-2 text-center">Understanding your voice type helps you choose better songs and communicate with vocal coaches</p>
+  </div>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Your Voice Type Matters (But Not Too Much)</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Knowing your <strong>voice type</strong> (Bass, Baritone, Tenor, Alto, Mezzo, Soprano) can help you
@@ -45,6 +50,9 @@ const content = `
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 2: Find Your Tessitura (Comfort Zone)</h2>
+  <div class="my-6">
+    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Vocal range chart showing tessitura" class="w-full rounded-xl shadow-md" />
+  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Your <strong>tessitura</strong> is the part of your range where your voice feels easiest and sounds
     the best. This is often <strong>more important</strong> than your extreme highest or lowest notes.

@@ -3,6 +3,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import PianoKeyboard from './PianoKeyboard';
 
 const ResultScreen = ({ result, onReset }) => {
@@ -111,6 +112,66 @@ const ResultScreen = ({ result, onReset }) => {
   const info = voiceTypeInfo[result.voiceType] || voiceTypeInfo['Baritone'];
   const octaves = parseFloat(result.octaves);
   const isUnusualRange = octaves > 5;
+
+  // Famous singers with detailed vocal ranges
+  const famousSingers = {
+    // Male Singers
+    'Freddie Mercury': { range: 'F2-F6', octaves: 4, type: 'Tenor', genre: 'Rock', overlap: 0 },
+    'Johnny Cash': { range: 'E2-B4', octaves: 2.5, type: 'Bass/Baritone', genre: 'Country', overlap: 0 },
+    'Bruno Mars': { range: 'A2-D6', octaves: 3.5, type: 'Tenor', genre: 'Pop', overlap: 0 },
+    'Frank Sinatra': { range: 'A2-A4', octaves: 2, type: 'Baritone', genre: 'Jazz', overlap: 0 },
+    'Elvis Presley': { range: 'A2-E5', octaves: 2.5, type: 'Baritone', genre: 'Rock', overlap: 0 },
+    'Michael Jackson': { range: 'F#2-E6', octaves: 3.5, type: 'Tenor', genre: 'Pop', overlap: 0 },
+    'Luciano Pavarotti': { range: 'C3-C5', octaves: 2, type: 'Tenor', genre: 'Opera', overlap: 0 },
+    
+    // Female Singers
+    'Whitney Houston': { range: 'A2-C6', octaves: 3.3, type: 'Mezzo-Soprano', genre: 'R&B', overlap: 0 },
+    'Ariana Grande': { range: 'D3-E7', octaves: 4.2, type: 'Soprano', genre: 'Pop', overlap: 0 },
+    'Adele': { range: 'C3-F5', octaves: 2.5, type: 'Mezzo-Soprano', genre: 'Soul', overlap: 0 },
+    'Mariah Carey': { range: 'F2-G7', octaves: 5, type: 'Soprano', genre: 'Pop', overlap: 0 },
+    'Beyoncé': { range: 'A2-E6', octaves: 3.5, type: 'Mezzo-Soprano', genre: 'R&B', overlap: 0 },
+    'Lady Gaga': { range: 'F3-G6', octaves: 3, type: 'Mezzo-Soprano', genre: 'Pop', overlap: 0 },
+    'Celine Dion': { range: 'B2-C6', octaves: 3.3, type: 'Mezzo-Soprano', genre: 'Pop', overlap: 0 },
+  };
+
+  // Helper function to convert note to semitone number (C4 = 60)
+  const noteToSemitone = (note) => {
+    const noteMap = { 'C': 0, 'C#': 1, 'D': 2, 'D#': 3, 'E': 4, 'F': 5, 'F#': 6, 'G': 7, 'G#': 8, 'A': 9, 'A#': 10, 'B': 11 };
+    const match = note.match(/([A-G]#?)(\d+)/);
+    if (!match) return 0;
+    const [, noteName, octave] = match;
+    return noteMap[noteName] + (parseInt(octave) + 1) * 12;
+  };
+
+  // Calculate overlap between user range and famous singer range
+  const calculateOverlap = (singerRange) => {
+    const [singerLow, singerHigh] = singerRange.split('-').map(noteToSemitone);
+    const userLow = noteToSemitone(result.lowestNote);
+    const userHigh = noteToSemitone(result.highestNote);
+    
+    const overlapStart = Math.max(singerLow, userLow);
+    const overlapEnd = Math.min(singerHigh, userHigh);
+    const overlap = Math.max(0, overlapEnd - overlapStart);
+    const userRange = userHigh - userLow;
+    
+    return userRange > 0 ? Math.round((overlap / userRange) * 100) : 0;
+  };
+
+  // Find similar singers
+  const similarSingers = Object.entries(famousSingers)
+    .map(([name, data]) => ({
+      name,
+      ...data,
+      overlap: calculateOverlap(data.range)
+    }))
+    .filter(singer => {
+      // Filter by same voice type or similar range
+      const sameType = singer.type.includes(result.voiceType) || result.voiceType.includes(singer.type.split('/')[0]);
+      const similarOctaves = Math.abs(singer.octaves - octaves) < 1.5;
+      return sameType || (similarOctaves && singer.overlap > 20);
+    })
+    .sort((a, b) => b.overlap - a.overlap)
+    .slice(0, 6); // Show top 6 similar singers
 
   const handleShare = (platform) => {
     // Generate fun, engaging share text based on voice type and range
@@ -436,6 +497,80 @@ const ResultScreen = ({ result, onReset }) => {
           </div>
         </div>
       </div>
+
+      {/* Famous Singers Comparison Section */}
+      {similarSingers.length > 0 && (
+        <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 border border-purple-100">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">🌟 Compare with Famous Singers</h3>
+              <p className="text-sm sm:text-base text-gray-600">
+                See how your vocal range compares to famous singers with similar voice types
+              </p>
+            </div>
+            <span className="text-3xl sm:text-4xl">🎤</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            {similarSingers.map((singer, index) => (
+              <div
+                key={singer.name}
+                className="bg-white rounded-xl p-4 sm:p-5 border-2 border-purple-100 hover:border-purple-300 transition-all shadow-sm hover:shadow-md"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <h4 className="font-bold text-gray-900 text-sm sm:text-base mb-1">{singer.name}</h4>
+                    <p className="text-xs text-gray-500 mb-2">{singer.genre}</p>
+                    <div className="flex items-center space-x-2 mb-2">
+                      <span className="text-xs font-semibold text-purple-600 bg-purple-50 px-2 py-1 rounded">
+                        {singer.type}
+                      </span>
+                      <span className="text-xs text-gray-600">
+                        {singer.octaves} octaves
+                      </span>
+                    </div>
+                    <div className="text-xs sm:text-sm font-mono text-gray-700 mb-2">
+                      Range: {singer.range}
+                    </div>
+                    {singer.overlap > 0 && (
+                      <div className="mt-2">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs text-gray-600">Range Overlap</span>
+                          <span className="text-xs font-bold text-purple-600">{singer.overlap}%</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all"
+                            style={{ width: `${singer.overlap}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-purple-200">
+            <div className="flex items-start space-x-3">
+              <span className="text-2xl">💡</span>
+              <div className="flex-1">
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Note:</strong> These ranges are approximate and based on public analyses. 
+                  What matters most is how you use your range musically, not just how wide it is.
+                </p>
+                <Link
+                  to="/blog/famous-singers-vocal-ranges"
+                  className="text-sm text-purple-600 hover:text-purple-700 font-semibold underline inline-flex items-center"
+                >
+                  Learn more about famous singers' vocal ranges →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Tips Section */}
       <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">

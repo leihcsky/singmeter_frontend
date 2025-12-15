@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+      <div class="mb-8">
+        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Practicing singing in tune without piano using phone and tools" class="w-full rounded-xl shadow-lg" />
+        <p class="text-sm text-gray-500 mt-2 text-center">You can practice pitch accuracy anywhere using just your phone and online tools</p>
+      </div>
+
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">You Can Practice Pitch Without a Piano</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Many singers think they cannot train their pitch unless they have a piano or full karaoke backing tracks. In reality,
@@ -21,7 +26,10 @@ const content = `
         to practice singing in tune <strong>anywhere</strong>, even if you do not play an instrument.
       </p>
 
-      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Tool 1: Use a Pitch Detector as Your “Digital Piano”</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Tool 1: Use a Pitch Detector as Your "Digital Piano"</h2>
+      <div class="my-6">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Pitch detector used as digital piano replacement" class="w-full rounded-xl shadow-md" />
+      </div>
       <p class="text-gray-600 mb-4 leading-relaxed">
         A pitch detector turns your browser into a real-time tuner for your voice. Instead of playing notes on a piano, you sing
         and watch the screen to see whether you are on pitch, sharp, or flat.

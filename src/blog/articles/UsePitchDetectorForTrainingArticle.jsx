@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+      <div class="mb-8">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Using pitch detector for vocal training" class="w-full rounded-xl shadow-lg" />
+        <p class="text-sm text-gray-500 mt-2 text-center">Pitch detector provides instant visual feedback for vocal training</p>
+      </div>
+
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Practice with a Pitch Detector?</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
         A <strong>pitch detector</strong> is more than just a fun visualization of your voice. Used correctly, it can act like a
@@ -28,6 +33,9 @@ const content = `
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Understanding What the Detector Shows You</h2>
+      <div class="my-6">
+        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Pitch detector interface showing note, frequency, and cents" class="w-full rounded-xl shadow-md" />
+      </div>
       <p class="text-gray-600 mb-4 leading-relaxed">
         When you open the SingMeter Pitch Detector, you will see three main pieces of information:
       </p>
@@ -52,6 +60,9 @@ const content = `
       </ol>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 2: Single-Note Accuracy Training</h2>
+      <div class="my-6">
+        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Practicing single note accuracy with pitch detector" class="w-full rounded-xl shadow-md" />
+      </div>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Now use the detector in a more focused way to improve how accurately you can hold individual notes.
       </p>

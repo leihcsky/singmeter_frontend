@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+  <div class="mb-8">
+    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a93d?w=1200&h=600&fit=crop" alt="Singer belting high notes safely" class="w-full rounded-xl shadow-lg" />
+    <p class="text-sm text-gray-500 mt-2 text-center">Safe belting technique allows you to sing high notes with power without strain</p>
+  </div>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">What Is Belting (Really)?</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     In pop and musical theatre, <strong>belting</strong> usually means singing higher notes with a strong, speech-like
@@ -37,6 +42,9 @@ const content = `
   </ul>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 2: Support from the Body, Not the Throat</h2>
+  <div class="my-6">
+    <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Breath support for safe belting" class="w-full rounded-xl shadow-md" />
+  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Safe belting starts with <strong>breath support</strong> and a stable body. When you belt, think:
   </p>

@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+      <div class="mb-8">
+        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Singer practicing pitch accuracy to avoid singing flat" class="w-full rounded-xl shadow-lg" />
+        <p class="text-sm text-gray-500 mt-2 text-center">Understanding why you sing flat is the first step to fixing your pitch</p>
+      </div>
+
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">What Does It Mean to Sing Flat?</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
         When singers say they are <strong>singing flat</strong>, it means their pitch is consistently below the correct note.
@@ -47,6 +52,9 @@ const content = `
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Use a Pitch Detector to See How Flat You Are</h2>
+      <div class="my-6">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Pitch detector showing flat pitch measurement" class="w-full rounded-xl shadow-md" />
+      </div>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Before you start fixing anything, it helps to measure it. Open the
         <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">SingMeter Pitch Detector</a>

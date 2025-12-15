@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+	      <div class="mb-8">
+	        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a93d?w=1200&h=600&fit=crop" alt="Singer performing high notes on stage" class="w-full rounded-xl shadow-lg" />
+	        <p class="text-sm text-gray-500 mt-2 text-center">Mastering high notes requires proper technique and consistent practice</p>
+	      </div>
+
 	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">The Challenge of High Notes</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Singing high notes is one of the most challenging aspects of vocal performance. Many singers struggle with 
@@ -24,6 +29,9 @@ const content = `
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Essential Techniques for High Notes</h2>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">1. Proper Breath Support</h3>
+	      <div class="my-6">
+	        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Diaphragmatic breathing technique for singing" class="w-full rounded-xl shadow-md" />
+	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Breath support is the foundation of singing high notes. Use diaphragmatic breathing to provide steady, 
 	        controlled airflow. Imagine your breath supporting the note from below, rather than pushing from your throat.
@@ -36,6 +44,9 @@ const content = `
 	      </ul>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">2. Vocal Placement and Resonance</h3>
+	      <div class="my-6">
+	        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Vocal resonance and placement techniques" class="w-full rounded-xl shadow-md" />
+	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        High notes require forward placement and proper resonance. Think of directing the sound toward your "mask" 
 	        (the area around your nose and cheekbones) rather than pushing from your throat.
@@ -60,6 +71,10 @@ const content = `
 		      </p>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Exercises to Improve High Range</h2>
+
+	      <div class="my-6">
+	        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Vocal exercises for high range development" class="w-full rounded-xl shadow-md" />
+	      </div>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Lip Trills</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
@@ -105,14 +120,216 @@ const content = `
 		        for a simple 15-minute plan before you tackle more demanding songs.
 		      </p>
 
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Science Behind High Notes</h2>
+	      <div class="my-6">
+	        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Vocal anatomy and high note mechanics" class="w-full rounded-xl shadow-md" />
+	      </div>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Understanding the physical mechanics of singing high notes can help you approach them more effectively. When you sing higher notes:
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Vocal cords shorten and thin:</strong> Your vocal cords adjust their length and thickness to produce higher frequencies</li>
+	        <li><strong>Larynx position changes:</strong> The larynx may rise slightly, but excessive lifting creates tension</li>
+	        <li><strong>Resonance shifts:</strong> Sound resonates more in your head cavities (sinuses, nasal passages) than your chest</li>
+	        <li><strong>Breath pressure increases:</strong> Higher notes require more controlled, steady breath support</li>
+	        <li><strong>Muscle coordination:</strong> Multiple small muscles in your larynx work together to fine-tune pitch</li>
+	      </ul>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        The key is learning to make these adjustments <strong>without tension</strong>. When you force high notes, you're fighting against your body's natural mechanisms, which leads to strain and potential vocal damage.
+	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Advanced Techniques for High Notes</h2>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">5. Developing Vocal Agility</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Agility exercises help you access high notes more easily by training your vocal muscles to move quickly and accurately. Practice:
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Rapid scales:</strong> Sing scales quickly, focusing on smooth transitions</li>
+	        <li><strong>Arpeggios:</strong> Practice jumping between notes in chord patterns</li>
+	        <li><strong>Melismatic passages:</strong> Work on fast note sequences (runs and riffs)</li>
+	        <li><strong>Staccato exercises:</strong> Practice short, detached notes to build precision</li>
+	      </ul>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">6. Resonance and Placement</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Proper resonance makes high notes easier and more powerful. Experiment with:
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Forward placement:</strong> Direct sound toward your "mask" (nose and cheekbones)</li>
+	        <li><strong>Nasal resonance:</strong> Allow some sound to resonate in your nasal passages (not nasal tone, but resonance)</li>
+	        <li><strong>Head voice connection:</strong> Blend chest and head voice for a unified sound</li>
+	        <li><strong>Vowel modification:</strong> Slightly modify vowels on high notes (e.g., "ah" becomes more like "uh")</li>
+	      </ul>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">7. Building Strength Gradually</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        High notes require vocal strength, but you must build it gradually:
+	      </p>
+	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Start with notes just above your comfort zone</li>
+	        <li>Practice them daily for short periods (5-10 minutes)</li>
+	        <li>Gradually extend upward by semitones over weeks, not days</li>
+	        <li>Always stop if you feel strain or discomfort</li>
+	        <li>Track your progress with regular range tests</li>
+	      </ol>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Specific Exercises for High Notes</h2>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Exercise 1: The "Nay" Exercise</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        This exercise helps you find forward placement and reduce tension:
+	      </p>
+	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Sing "nay" on a comfortable note</li>
+	        <li>Slide up a scale, maintaining the "nay" sound</li>
+	        <li>Focus on keeping the sound forward and bright</li>
+	        <li>Notice how this placement makes high notes easier</li>
+	        <li>Practice ascending and descending scales</li>
+	      </ol>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Exercise 2: The "Gug" Exercise</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        This exercise builds strength and coordination:
+	      </p>
+	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Sing "gug" (like "guggle" without the "gle") on a scale</li>
+	        <li>The "g" sound helps engage proper breath support</li>
+	        <li>Practice ascending scales, focusing on smooth transitions</li>
+	        <li>This exercise is particularly effective for building mixed voice</li>
+	      </ol>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Exercise 3: Octave Slides</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Smooth octave transitions train your voice to access high notes:
+	      </p>
+	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Start on a comfortable low note</li>
+	        <li>Slide smoothly up an octave on "oo" or "ah"</li>
+	        <li>Focus on maintaining consistent breath support throughout</li>
+	        <li>Notice where your voice wants to "flip" and work on smoothing that transition</li>
+	        <li>Practice both ascending and descending octaves</li>
+	      </ol>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Troubleshooting Common High Note Problems</h2>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Problem: Voice Cracks or Breaks</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        <strong>Causes:</strong> Register transition issues, insufficient breath support, or tension
+	      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        <strong>Solutions:</strong>
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Practice smooth register transitions with sirens and slides</li>
+	        <li>Work on mixed voice to bridge chest and head voice</li>
+	        <li>Ensure consistent breath support throughout your range</li>
+	        <li>Relax your jaw and throat—tension causes breaks</li>
+	      </ul>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Problem: High Notes Sound Weak or Breathy</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        <strong>Causes:</strong> Insufficient breath support, too much air escaping, or improper resonance
+	      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        <strong>Solutions:</strong>
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Strengthen breath support with diaphragmatic breathing exercises</li>
+	        <li>Practice "ng" exercises to feel proper vocal cord closure</li>
+	        <li>Work on forward placement to increase resonance</li>
+	        <li>Gradually build volume on high notes—don't start too soft</li>
+	      </ul>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Problem: Can't Reach High Notes at All</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        <strong>Causes:</strong> Range limitations, technique issues, or lack of training
+	      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        <strong>Solutions:</strong>
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>First, determine your actual range with a vocal range test</li>
+	        <li>Work on accessing head voice if you haven't already</li>
+	        <li>Practice regularly—range expansion takes time</li>
+	        <li>Consider working with a vocal coach for personalized guidance</li>
+	        <li>Be patient—some voices take longer to develop high range</li>
+	      </ul>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">High Notes in Different Musical Styles</h2>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Classical Singing</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Classical high notes typically use head voice with full resonance, requiring:
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Full breath support throughout the phrase</li>
+	        <li>Consistent vibrato</li>
+	        <li>Forward placement and resonance</li>
+	        <li>Smooth register transitions</li>
+	      </ul>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Contemporary/Pop Singing</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Pop high notes often use mixed voice or belt technique:
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Mixed voice for power without strain</li>
+	        <li>Belt technique for intense, powerful high notes</li>
+	        <li>More forward placement than classical</li>
+	        <li>Less vibrato, more straight tone</li>
+	      </ul>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Musical Theater</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Musical theater requires versatility:
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Ability to belt high notes for contemporary shows</li>
+	        <li>Classical technique for traditional musicals</li>
+	        <li>Strong mixed voice for versatility</li>
+	        <li>Ability to switch between styles within one song</li>
+	      </ul>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Maintaining Vocal Health While Working on High Notes</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Developing high notes should never come at the cost of vocal health:
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Warm up properly:</strong> Always warm up before attempting high notes</li>
+	        <li><strong>Cool down:</strong> Gentle exercises after practice help your voice recover</li>
+	        <li><strong>Stay hydrated:</strong> Vocal cords need moisture to function optimally</li>
+	        <li><strong>Rest when needed:</strong> If your voice feels tired or strained, take a break</li>
+	        <li><strong>Avoid forcing:</strong> Never push through pain or significant discomfort</li>
+	        <li><strong>Monitor progress:</strong> Regular range tests help you track improvement safely</li>
+	      </ul>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Creating a High Note Practice Routine</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Here's a sample 20-minute daily routine for developing high notes:
+	      </p>
+	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Warm-up (5 minutes):</strong> Gentle humming, lip trills, and light scales</li>
+	        <li><strong>Breath support (3 minutes):</strong> Diaphragmatic breathing exercises</li>
+	        <li><strong>Placement exercises (4 minutes):</strong> "Nay" and forward placement exercises</li>
+	        <li><strong>Range extension (5 minutes):</strong> Gradual scale work, extending upward slowly</li>
+	        <li><strong>Song application (3 minutes):</strong> Apply techniques to a song with high notes</li>
+	      </ol>
+
 	      <div class="bg-purple-50 border-l-4 border-purple-400 p-6 mt-8 rounded-r-lg">
-	        <p class="text-purple-700 leading-relaxed">
+	        <p class="text-purple-700 leading-relaxed mb-4">
 	          <strong>Pro Tip:</strong> Test your vocal range regularly with SingMeter to track your progress as you 
-	          develop your high note technique. Seeing measurable improvement is a great motivator!
+	          develop your high note technique. Seeing measurable improvement is a great motivator! Combine range testing 
+	          with pitch detector practice to ensure your high notes are both high and accurate.
 	        </p>
-	        <a href="/" class="inline-block mt-4 px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition">
-	          Test Your Range
-	        </a>
+	        <div class="flex flex-wrap gap-3">
+	          <a href="/vocal-range-test" class="inline-block px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition">
+	            Test Your Range
+	          </a>
+	          <a href="/pitch-detector" class="inline-block px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
+	            Practice with Pitch Detector
+	          </a>
+	        </div>
 	      </div>
 	    `;
 

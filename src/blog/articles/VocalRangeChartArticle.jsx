@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+  <div class="mb-8">
+    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Vocal range chart showing different voice types" class="w-full rounded-xl shadow-lg" />
+    <p class="text-sm text-gray-500 mt-2 text-center">A vocal range chart helps you understand where different voice types sit on the musical scale</p>
+  </div>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">What Is a Vocal Range Chart?</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     A <strong>vocal range chart</strong> shows the typical lowest and highest notes for different voice types.
@@ -26,6 +31,9 @@ const content = `
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Vocal Range Chart (Approximate)</h2>
+  <div class="my-6">
+    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&h=600&fit=crop" alt="Detailed vocal range chart with voice type ranges" class="w-full rounded-xl shadow-md" />
+  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     These ranges are <strong>typical examples</strong> for trained singers. Real voices can be
     slightly lower or higher, and there is natural overlap between categories.

@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+      <div class="mb-8">
+        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Ear training exercises for singers" class="w-full rounded-xl shadow-lg" />
+        <p class="text-sm text-gray-500 mt-2 text-center">Ear training helps singers match pitch accurately and develop musical awareness</p>
+      </div>
+
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Ear Training Matters for Singers</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Many singers blame their voice when they sing out of tune, but often the real issue is the <strong>ear</strong>. If you
@@ -45,6 +50,9 @@ const content = `
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 2: Train Relative Pitch with Intervals</h2>
+      <div class="my-6">
+        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Musical intervals training on piano" class="w-full rounded-xl shadow-md" />
+      </div>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Once you can match single notes, the next step is to recognize the distance between two notes. These distances are called
         <strong>intervals</strong> (for example, a third, a fifth, an octave).

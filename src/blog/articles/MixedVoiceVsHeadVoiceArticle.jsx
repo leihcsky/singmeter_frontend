@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+  <div class="mb-8">
+    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&h=600&fit=crop" alt="Mixed voice vs head voice vocal registers" class="w-full rounded-xl shadow-lg" />
+    <p class="text-sm text-gray-500 mt-2 text-center">Understanding mixed voice and head voice helps you sing high notes smoothly</p>
+  </div>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Mixed Voice and Head Voice Matter</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     When singers talk about high notes, they often mention <strong>head voice</strong> and <strong>mixed voice</strong>.
@@ -34,6 +39,9 @@ const content = `
 	  </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">How Head Voice Feels and Sounds</h2>
+  <div class="my-6">
+    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Head voice resonance and placement" class="w-full rounded-xl shadow-md" />
+  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Try this experiment:
   </p>
@@ -62,6 +70,9 @@ const content = `
   </ul>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Exercises to Find Your Mix</h2>
+  <div class="my-6">
+    <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Mixed voice exercises and drills" class="w-full rounded-xl shadow-md" />
+  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Try these simple drills to discover your mixed voice:
   </p>

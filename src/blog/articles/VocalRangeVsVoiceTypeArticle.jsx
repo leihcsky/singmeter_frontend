@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+  <div class="mb-8">
+    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Vocal range vs voice type comparison" class="w-full rounded-xl shadow-lg" />
+    <p class="text-sm text-gray-500 mt-2 text-center">Understanding the difference between vocal range and voice type helps you train more effectively</p>
+  </div>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Range and Voice Type Are Not the Same Thing</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     It&apos;s very common to see questions like: &quot;My range is G2–C5, what is my voice type?&quot;

@@ -9,6 +9,7 @@ import { tools, getToolsByCategory } from '../config/tools';
 
 const Header = () => {
   const [showToolsDropdown, setShowToolsDropdown] = useState(false);
+  const [showLearnDropdown, setShowLearnDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const location = useLocation();
 
@@ -35,10 +36,13 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {/* Tools Navigation - Always dropdown */}
-            <div className="relative">
+            <div 
+              className="relative"
+              onMouseEnter={() => setShowToolsDropdown(true)}
+              onMouseLeave={() => setShowToolsDropdown(false)}
+            >
               <button
                 onClick={() => setShowToolsDropdown(!showToolsDropdown)}
-                onMouseEnter={() => setShowToolsDropdown(true)}
                 className="flex items-center space-x-1 text-gray-700 hover:text-indigo-600 font-medium transition"
               >
                 <span>Tools</span>
@@ -54,11 +58,12 @@ const Header = () => {
 
               {/* Dropdown Menu */}
               {showToolsDropdown && (
-                <div
-                  className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 py-2"
-                  onMouseEnter={() => setShowToolsDropdown(true)}
-                  onMouseLeave={() => setShowToolsDropdown(false)}
-                >
+                <>
+                  {/* Invisible bridge to prevent gap between button and dropdown */}
+                  <div className="absolute left-0 top-full w-56 h-2" />
+                  <div
+                    className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2"
+                  >
                   {tools
                     .filter((tool) => !tool.hidden)
                     .sort((a, b) => a.priority - b.priority)
@@ -66,7 +71,7 @@ const Header = () => {
                       <Link
                         key={tool.id}
                         to={tool.path}
-                        className={`block px-4 py-2 text-sm rounded-lg transition ${
+                        className={`flex items-center space-x-3 px-4 py-2 text-sm rounded-lg transition text-left ${
                           location.pathname === tool.path
                             ? 'bg-indigo-50 text-indigo-700'
                             : 'hover:bg-gray-50 text-gray-800'
@@ -79,10 +84,107 @@ const Header = () => {
                           setShowToolsDropdown(false);
                         }}
                       >
-                        {tool.name}
+                        <span className="text-lg flex-shrink-0">{tool.icon}</span>
+                        <span className="flex-1 text-left">{tool.name}</span>
+                        {tool.comingSoon && (
+                          <span className="text-xs px-2 py-0.5 bg-gray-200 text-gray-600 rounded-full flex-shrink-0">
+                            Soon
+                          </span>
+                        )}
                       </Link>
                     ))}
-                </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Learn Navigation - Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setShowLearnDropdown(true)}
+              onMouseLeave={() => setShowLearnDropdown(false)}
+            >
+              <button
+                onClick={() => setShowLearnDropdown(!showLearnDropdown)}
+                className="flex items-center space-x-1 text-gray-700 hover:text-indigo-600 font-medium transition"
+              >
+                <span>Learn</span>
+                <svg
+                  className={`w-4 h-4 transition-transform ${showLearnDropdown ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {/* Learn Dropdown Menu */}
+              {showLearnDropdown && (
+                <>
+                  {/* Invisible bridge to prevent gap between button and dropdown */}
+                  <div className="absolute left-0 top-full w-56 h-2" />
+                  <div
+                    className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2"
+                  >
+                  <Link
+                    to="/tutorials"
+                    className={`flex items-center space-x-3 px-4 py-2 text-sm rounded-lg transition ${
+                      location.pathname === '/tutorials'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'hover:bg-gray-50 text-gray-800'
+                    }`}
+                    onClick={() => setShowLearnDropdown(false)}
+                  >
+                    <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span>Tutorials</span>
+                  </Link>
+                  <Link
+                    to="/resources"
+                    className={`flex items-center space-x-3 px-4 py-2 text-sm rounded-lg transition ${
+                      location.pathname === '/resources'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'hover:bg-gray-50 text-gray-800'
+                    }`}
+                    onClick={() => setShowLearnDropdown(false)}
+                  >
+                    <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span>Resources</span>
+                  </Link>
+                  <Link
+                    to="/glossary"
+                    className={`flex items-center space-x-3 px-4 py-2 text-sm rounded-lg transition ${
+                      location.pathname === '/glossary'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'hover:bg-gray-50 text-gray-800'
+                    }`}
+                    onClick={() => setShowLearnDropdown(false)}
+                  >
+                    <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span>Glossary</span>
+                  </Link>
+                  <Link
+                    to="/faq"
+                    className={`flex items-center space-x-3 px-4 py-2 text-sm rounded-lg transition ${
+                      location.pathname === '/faq'
+                        ? 'bg-indigo-50 text-indigo-700'
+                        : 'hover:bg-gray-50 text-gray-800'
+                    }`}
+                    onClick={() => setShowLearnDropdown(false)}
+                  >
+                    <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>FAQ</span>
+                  </Link>
+                  </div>
+                </>
               )}
             </div>
 
@@ -136,6 +238,59 @@ const Header = () => {
                   <span className="font-medium flex-1">{tool.name}</span>
                 </Link>
               ))}
+
+              {/* Learn Section */}
+              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 mt-4 mb-2">
+                Learn
+              </div>
+              <Link
+                to="/tutorials"
+                onClick={() => setShowMobileMenu(false)}
+                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
+                  location.pathname === '/tutorials'
+                    ? 'bg-indigo-50 text-indigo-600'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <span className="text-xl">📚</span>
+                <span className="font-medium flex-1">Tutorials</span>
+              </Link>
+              <Link
+                to="/resources"
+                onClick={() => setShowMobileMenu(false)}
+                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
+                  location.pathname === '/resources'
+                    ? 'bg-indigo-50 text-indigo-600'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <span className="text-xl">📦</span>
+                <span className="font-medium flex-1">Resources</span>
+              </Link>
+              <Link
+                to="/glossary"
+                onClick={() => setShowMobileMenu(false)}
+                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
+                  location.pathname === '/glossary'
+                    ? 'bg-indigo-50 text-indigo-600'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <span className="text-xl">📖</span>
+                <span className="font-medium flex-1">Glossary</span>
+              </Link>
+              <Link
+                to="/faq"
+                onClick={() => setShowMobileMenu(false)}
+                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
+                  location.pathname === '/faq'
+                    ? 'bg-indigo-50 text-indigo-600'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <span className="text-xl">❓</span>
+                <span className="font-medium flex-1">FAQ</span>
+              </Link>
 
               {/* Other Links */}
               <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 mt-4 mb-2">

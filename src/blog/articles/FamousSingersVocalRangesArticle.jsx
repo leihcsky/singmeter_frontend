@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+  <div class="mb-8">
+    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Famous singers performing on stage" class="w-full rounded-xl shadow-lg" />
+    <p class="text-sm text-gray-500 mt-2 text-center">Comparing your vocal range to famous singers can be inspiring and educational</p>
+  </div>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why We Love Comparing Our Voices to Famous Singers</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     It&apos;s natural to wonder how your voice compares to your favorite artists. Do you have a range like Freddie Mercury,
@@ -28,6 +33,9 @@ const content = `
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Approximate Ranges of Some Famous Singers</h2>
+  <div class="my-6">
+    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Vocal range comparison chart of famous singers" class="w-full rounded-xl shadow-md" />
+  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     These numbers are based on public analyses and are <strong>approximations</strong>, not exact medical data.
     Different sources may give slightly different results, and live performances are not always perfectly measured.

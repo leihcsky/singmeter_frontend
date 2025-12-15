@@ -14,6 +14,11 @@ export const meta = {
 };
 
 const content = `
+  <div class="mb-8">
+    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a93d?w=1200&h=600&fit=crop" alt="Vocal warm-up routine for high notes" class="w-full rounded-xl shadow-lg" />
+    <p class="text-sm text-gray-500 mt-2 text-center">A proper warm-up routine prepares your voice for high notes safely</p>
+  </div>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why You Need a Specific Warm-Up for High Notes</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Trying to sing high notes on a cold voice is like sprinting without stretching. You might get away with it once
@@ -36,6 +41,9 @@ const content = `
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The 15-Minute High Notes Warm-Up</h2>
+  <div class="my-6">
+    <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="15-minute vocal warm-up routine structure" class="w-full rounded-xl shadow-md" />
+  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     You can adapt the exact notes to your voice type. Use a piano app or the
     <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Pitch Detector</a>
@@ -50,6 +58,9 @@ const content = `
   </ul>
 
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">2. 4 Minutes &mdash; Light Sirens and Slides</h3>
+  <div class="my-6">
+    <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Vocal sirens and slides exercise" class="w-full rounded-xl shadow-md" />
+  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     On &quot;ng&quot; or &quot;oo&quot;, slide smoothly from low to high and back down.
   </p>
