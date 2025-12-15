@@ -78,9 +78,30 @@ const MetronomePage = () => {
       element.setAttribute('href', href);
     };
 
+    const canonicalUrl = 'https://www.singmeter.com/metronome';
+    
+    // Basic meta tags
     setMetaTag('description', 'Free online metronome with visual feedback and fun animations. Adjustable BPM, time signatures, and sound types. Perfect for music practice and keeping perfect time.');
     setMetaTag('keywords', 'metronome, online metronome, beat keeper, tempo, BPM, time signature, music practice, rhythm practice, metronome online');
-    setLinkTag('canonical', 'https://www.singmeter.com/metronome');
+    
+    // Open Graph tags
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:title', 'Free Online Metronome - Fun & Interactive Beat Keeper | SingMeter', true);
+    setMetaTag('og:description', 'Free online metronome with visual feedback and fun animations. Adjustable BPM, time signatures, and sound types. Perfect for music practice.', true);
+    setMetaTag('og:url', canonicalUrl, true);
+    setMetaTag('og:image', 'https://www.singmeter.com/og-image.svg', true);
+    setMetaTag('og:image:width', '1200', true);
+    setMetaTag('og:image:height', '630', true);
+    setMetaTag('og:site_name', 'SingMeter', true);
+    
+    // Twitter Card tags
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'Free Online Metronome - Fun & Interactive Beat Keeper | SingMeter');
+    setMetaTag('twitter:description', 'Free online metronome with visual feedback and fun animations. Adjustable BPM, time signatures, and sound types. Perfect for music practice.');
+    setMetaTag('twitter:image', 'https://www.singmeter.com/og-image.svg');
+    
+    // Canonical link
+    setLinkTag('canonical', canonicalUrl);
 
     return () => {
       document.title = 'SingMeter';

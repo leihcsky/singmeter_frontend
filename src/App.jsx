@@ -16,6 +16,7 @@ import GlossaryPage from './pages/GlossaryPage'
 import FAQPage from './pages/FAQPage'
 import ToneGeneratorPage from './pages/ToneGeneratorPage'
 import MetronomePage from './pages/MetronomePage'
+import SongKeyFinderPage from './pages/SongKeyFinderPage'
 import './App.css'
 
 function ScrollToTop() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/tone-generator" element={<ToneGeneratorPage />} />
           <Route path="/metronome" element={<MetronomePage />} />
+          <Route path="/song-key-finder" element={<SongKeyFinderPage />} />
         </Routes>
       </div>
     </Router>

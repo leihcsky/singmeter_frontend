@@ -70,9 +70,30 @@ const ToneGeneratorPage = () => {
       element.setAttribute('href', href);
     };
 
+    const canonicalUrl = 'https://www.singmeter.com/tone-generator';
+    
+    // Basic meta tags
     setMetaTag('description', 'Generate precise audio tones for pitch reference and ear training. Perfect for vocal practice, instrument tuning, and developing your musical ear. Free online tone generator.');
     setMetaTag('keywords', 'tone generator, audio tone generator, pitch reference, ear training, frequency generator, audio signal generator, tuning tone, vocal practice tool');
-    setLinkTag('canonical', 'https://www.singmeter.com/tone-generator');
+    
+    // Open Graph tags
+    setMetaTag('og:type', 'website', true);
+    setMetaTag('og:title', 'Free Online Tone Generator - Pitch Reference & Ear Training | SingMeter', true);
+    setMetaTag('og:description', 'Generate precise audio tones for pitch reference and ear training. Perfect for vocal practice, instrument tuning, and developing your musical ear.', true);
+    setMetaTag('og:url', canonicalUrl, true);
+    setMetaTag('og:image', 'https://www.singmeter.com/og-image.svg', true);
+    setMetaTag('og:image:width', '1200', true);
+    setMetaTag('og:image:height', '630', true);
+    setMetaTag('og:site_name', 'SingMeter', true);
+    
+    // Twitter Card tags
+    setMetaTag('twitter:card', 'summary_large_image');
+    setMetaTag('twitter:title', 'Free Online Tone Generator - Pitch Reference & Ear Training | SingMeter');
+    setMetaTag('twitter:description', 'Generate precise audio tones for pitch reference and ear training. Perfect for vocal practice, instrument tuning, and developing your musical ear.');
+    setMetaTag('twitter:image', 'https://www.singmeter.com/og-image.svg');
+    
+    // Canonical link
+    setLinkTag('canonical', canonicalUrl);
 
     return () => {
       document.title = 'SingMeter';

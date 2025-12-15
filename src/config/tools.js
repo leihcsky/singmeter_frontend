@@ -72,6 +72,20 @@ export const tools = [
     gradient: 'from-orange-600 to-red-600',
     comingSoon: false,
   },
+  {
+    id: 'song-key-finder',
+    path: '/song-key-finder',
+    icon: '🎹',
+    name: 'Song Key Finder',
+    shortName: 'Key',
+    description: 'Find the key of any song instantly. Search our database of popular songs, get key information, and discover transposition suggestions for your voice.',
+    category: 'Analysis Tools',
+    priority: 5,
+    badge: 'New',
+    badgeColor: 'bg-purple-100 text-purple-700',
+    gradient: 'from-purple-600 to-indigo-600',
+    comingSoon: false,
+  },
   
   // Future tools - uncomment and configure when ready to launch
   
