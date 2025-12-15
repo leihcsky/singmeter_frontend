@@ -16,6 +16,8 @@ const UnifiedTestScreen = ({
   lowestNote,
   lowestManualPitch,
   lowestCaptured,
+  lowestDetectionTimeLeft,
+  lowestDetectionError,
   onLowestStart,
   onLowestReset,
   onLowestInputModeChange,
@@ -29,6 +31,8 @@ const UnifiedTestScreen = ({
   highestNote,
   highestManualPitch,
   highestCaptured,
+  highestDetectionTimeLeft,
+  highestDetectionError,
   onHighestStart,
   onHighestReset,
   onHighestInputModeChange,
@@ -66,6 +70,8 @@ const UnifiedTestScreen = ({
           currentNote={lowestNote}
           manualPitch={lowestManualPitch}
           captured={lowestCaptured}
+          detectionTimeLeft={lowestDetectionTimeLeft}
+          detectionError={lowestDetectionError}
           onStart={onLowestStart}
           onReset={onLowestReset}
           onInputModeChange={onLowestInputModeChange}
@@ -86,6 +92,8 @@ const UnifiedTestScreen = ({
           currentNote={highestNote}
           manualPitch={highestManualPitch}
           captured={highestCaptured}
+          detectionTimeLeft={highestDetectionTimeLeft}
+          detectionError={highestDetectionError}
           onStart={onHighestStart}
           onReset={onHighestReset}
           onInputModeChange={onHighestInputModeChange}
@@ -132,6 +140,8 @@ const TestArea = ({
   currentNote,
   manualPitch,
   captured,
+  detectionTimeLeft,
+  detectionError,
   onStart,
   onReset,
   onInputModeChange,
@@ -217,14 +227,38 @@ const TestArea = ({
             ) : (
               // Recording
               <div className="text-center">
-                <PitchVisualizer
-                  currentPitch={currentPitch}
-                  currentNote={currentNote}
-                  isRecording={isRecording}
-                />
-                <div className="mt-3 text-sm text-gray-600">
-                  🎵 Hold steady pitch for 3+ seconds
-                </div>
+                {detectionError ? (
+                  // Error state
+                  <div className="py-4">
+                    <div className="text-red-600 text-4xl mb-2">⚠️</div>
+                    <div className="text-lg font-semibold text-red-700 mb-2">Detection Failed</div>
+                    <div className="text-sm text-gray-600 mb-4">{detectionError}</div>
+                    <button
+                      onClick={onReset}
+                      className="px-6 py-2 bg-red-100 text-red-700 rounded-lg font-medium hover:bg-red-200 transition"
+                    >
+                      🔄 Try Again
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <PitchVisualizer
+                      currentPitch={currentPitch}
+                      currentNote={currentNote}
+                      isRecording={isRecording}
+                    />
+                    <div className="mt-3 space-y-2">
+                      <div className="text-sm text-gray-600">
+                        🎵 Hold steady pitch for 3+ seconds
+                      </div>
+                      {detectionTimeLeft !== null && (
+                        <div className="text-xs text-gray-500">
+                          ⏱️ Time remaining: {detectionTimeLeft}s
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
               </div>
             )}
           </div>

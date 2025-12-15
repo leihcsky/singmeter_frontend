@@ -64,6 +64,8 @@ const VocalRangeTestPage = () => {
   const [lowestCurrentNote, setLowestCurrentNote] = useState(null);
   const [lowestManualPitch, setLowestManualPitch] = useState(null);
   const [lowestCaptured, setLowestCaptured] = useState(null); // { note, frequency }
+  const [lowestDetectionTimeLeft, setLowestDetectionTimeLeft] = useState(null); // Time left in seconds
+  const [lowestDetectionError, setLowestDetectionError] = useState(null); // Error message
 
   // Lowest gating
   const lowestHasMinHoldRef = useRef(false);
@@ -79,6 +81,8 @@ const VocalRangeTestPage = () => {
   const [highestCurrentNote, setHighestCurrentNote] = useState(null);
   const [highestManualPitch, setHighestManualPitch] = useState(null);
   const [highestCaptured, setHighestCaptured] = useState(null); // { note, frequency }
+  const [highestDetectionTimeLeft, setHighestDetectionTimeLeft] = useState(null); // Time left in seconds
+  const [highestDetectionError, setHighestDetectionError] = useState(null); // Error message
 
   // Highest gating
   const highestHasMinHoldRef = useRef(false);
@@ -87,6 +91,7 @@ const VocalRangeTestPage = () => {
   const highestFinalPitchRef = useRef(null);
 
   const MIN_HOLD_MS = 3000; // minimal hold duration in ms (3 seconds)
+  const MAX_DETECTION_TIME_MS = 15000; // maximum detection time in ms (15 seconds)
 
   // === LOWEST NOTE DETECTION ===
   const startLowestDetection = useCallback(() => {
@@ -97,14 +102,39 @@ const VocalRangeTestPage = () => {
 
     let lastUpdateTime = 0;
     const updateInterval = 100;
-    let accumulatedValidMs = 0; // Accumulated valid signal time
-    let lastValidTime = null;
+    let firstValidTime = null; // First time we detect valid pitch
+    let lastValidTime = null; // Last time we detected valid pitch
+    const detectionStartTime = Date.now();
+    let timeoutId = null;
+    let timeLeftIntervalId = null;
 
-    // Reset hold gating
+    // Reset hold gating and error
     lowestValidStartTimeRef.current = null;
     lowestHasMinHoldRef.current = false;
     lowestPitchHistoryRef.current = [];
     lowestFinalPitchRef.current = null;
+    setLowestDetectionError(null);
+    setLowestDetectionTimeLeft(Math.ceil(MAX_DETECTION_TIME_MS / 1000));
+
+    // Update time left every second
+    timeLeftIntervalId = setInterval(() => {
+      const elapsed = Date.now() - detectionStartTime;
+      const timeLeft = Math.max(0, Math.ceil((MAX_DETECTION_TIME_MS - elapsed) / 1000));
+      setLowestDetectionTimeLeft(timeLeft);
+    }, 1000);
+
+    // Set maximum detection timeout
+    timeoutId = setTimeout(() => {
+      if (!lowestHasMinHoldRef.current) {
+        // Timeout - no valid detection
+        detectorRef.current.stopDetection();
+        setLowestIsRecording(false);
+        setLowestDetectionTimeLeft(null);
+        setLowestDetectionError('No clear pitch detected. Please try again in a quieter environment and sing clearly.');
+        if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
+        console.log('⏱️ Lowest note detection timeout');
+      }
+    }, MAX_DETECTION_TIME_MS);
 
     detectorRef.current.startDetection((pitch, clarity) => {
       const now = Date.now();
@@ -112,12 +142,23 @@ const VocalRangeTestPage = () => {
       if (pitch && pitch > 0) {
         const noteInfo = frequencyToNote(pitch);
 
-        // Accumulate valid time
-        if (lastValidTime !== null) {
-          const deltaMs = now - lastValidTime;
-          // Only accumulate if delta is reasonable (< 500ms, to avoid long gaps)
-          if (deltaMs < 500) {
-            accumulatedValidMs += deltaMs;
+        // Track first valid detection time
+        if (firstValidTime === null) {
+          firstValidTime = now;
+          console.log('🎵 First valid pitch detected at:', now);
+        }
+
+        // Calculate accumulated valid time from first detection
+        let accumulatedValidMs = 0;
+        if (firstValidTime !== null) {
+          // Check if there's a gap (more than 500ms since last valid detection)
+          if (lastValidTime !== null && (now - lastValidTime) > 500) {
+            // Gap detected - reset firstValidTime to now
+            firstValidTime = now;
+            console.log('⚠️ Gap detected, resetting timer');
+          } else {
+            // Continuous detection - accumulate from firstValidTime
+            accumulatedValidMs = now - firstValidTime;
           }
         }
         lastValidTime = now;
@@ -149,6 +190,13 @@ const VocalRangeTestPage = () => {
           });
           detectorRef.current.stopDetection();
           setLowestIsRecording(false);
+          setLowestDetectionTimeLeft(null);
+          setLowestDetectionError(null);
+          
+          // Clear timeout and interval
+          if (timeoutId) clearTimeout(timeoutId);
+          if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
+          
           console.log('✅ Lowest note captured:', finalNote.fullNote, `after ${accumulatedValidMs}ms`);
         }
       } else {
@@ -167,14 +215,39 @@ const VocalRangeTestPage = () => {
 
     let lastUpdateTime = 0;
     const updateInterval = 100;
-    let accumulatedValidMs = 0; // Accumulated valid signal time
-    let lastValidTime = null;
+    let firstValidTime = null; // First time we detect valid pitch
+    let lastValidTime = null; // Last time we detected valid pitch
+    const detectionStartTime = Date.now();
+    let timeoutId = null;
+    let timeLeftIntervalId = null;
 
-    // Reset hold gating
+    // Reset hold gating and error
     highestValidStartTimeRef.current = null;
     highestHasMinHoldRef.current = false;
     highestPitchHistoryRef.current = [];
     highestFinalPitchRef.current = null;
+    setHighestDetectionError(null);
+    setHighestDetectionTimeLeft(Math.ceil(MAX_DETECTION_TIME_MS / 1000));
+
+    // Update time left every second
+    timeLeftIntervalId = setInterval(() => {
+      const elapsed = Date.now() - detectionStartTime;
+      const timeLeft = Math.max(0, Math.ceil((MAX_DETECTION_TIME_MS - elapsed) / 1000));
+      setHighestDetectionTimeLeft(timeLeft);
+    }, 1000);
+
+    // Set maximum detection timeout
+    timeoutId = setTimeout(() => {
+      if (!highestHasMinHoldRef.current) {
+        // Timeout - no valid detection
+        detectorRef.current.stopDetection();
+        setHighestIsRecording(false);
+        setHighestDetectionTimeLeft(null);
+        setHighestDetectionError('No clear pitch detected. Please try again in a quieter environment and sing clearly.');
+        if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
+        console.log('⏱️ Highest note detection timeout');
+      }
+    }, MAX_DETECTION_TIME_MS);
 
     detectorRef.current.startDetection((pitch, clarity) => {
       const now = Date.now();
@@ -182,12 +255,23 @@ const VocalRangeTestPage = () => {
       if (pitch && pitch > 0) {
         const noteInfo = frequencyToNote(pitch);
 
-        // Accumulate valid time
-        if (lastValidTime !== null) {
-          const deltaMs = now - lastValidTime;
-          // Only accumulate if delta is reasonable (< 500ms, to avoid long gaps)
-          if (deltaMs < 500) {
-            accumulatedValidMs += deltaMs;
+        // Track first valid detection time
+        if (firstValidTime === null) {
+          firstValidTime = now;
+          console.log('🎵 First valid pitch detected at:', now);
+        }
+
+        // Calculate accumulated valid time from first detection
+        let accumulatedValidMs = 0;
+        if (firstValidTime !== null) {
+          // Check if there's a gap (more than 500ms since last valid detection)
+          if (lastValidTime !== null && (now - lastValidTime) > 500) {
+            // Gap detected - reset firstValidTime to now
+            firstValidTime = now;
+            console.log('⚠️ Gap detected, resetting timer');
+          } else {
+            // Continuous detection - accumulate from firstValidTime
+            accumulatedValidMs = now - firstValidTime;
           }
         }
         lastValidTime = now;
@@ -219,6 +303,13 @@ const VocalRangeTestPage = () => {
           });
           detectorRef.current.stopDetection();
           setHighestIsRecording(false);
+          setHighestDetectionTimeLeft(null);
+          setHighestDetectionError(null);
+          
+          // Clear timeout and interval
+          if (timeoutId) clearTimeout(timeoutId);
+          if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
+          
           console.log('✅ Highest note captured:', finalNote.fullNote, `after ${accumulatedValidMs}ms`);
         }
       } else {
@@ -280,6 +371,8 @@ const VocalRangeTestPage = () => {
     setLowestCurrentNote(null);
     setLowestIsRecording(false);
     setLowestCountdown(0);
+    setLowestDetectionTimeLeft(null);
+    setLowestDetectionError(null);
     lowestHasMinHoldRef.current = false;
     lowestValidStartTimeRef.current = null;
     lowestFinalPitchRef.current = null;
@@ -328,6 +421,8 @@ const VocalRangeTestPage = () => {
     setHighestCurrentNote(null);
     setHighestIsRecording(false);
     setHighestCountdown(0);
+    setHighestDetectionTimeLeft(null);
+    setHighestDetectionError(null);
     highestHasMinHoldRef.current = false;
     highestValidStartTimeRef.current = null;
     highestFinalPitchRef.current = null;
@@ -535,6 +630,8 @@ const VocalRangeTestPage = () => {
               lowestNote={lowestCurrentNote}
               lowestManualPitch={lowestManualPitch}
               lowestCaptured={lowestCaptured}
+              lowestDetectionTimeLeft={lowestDetectionTimeLeft}
+              lowestDetectionError={lowestDetectionError}
               onLowestStart={handleLowestStart}
               onLowestReset={handleLowestReset}
               onLowestInputModeChange={handleLowestInputModeChange}
@@ -548,6 +645,8 @@ const VocalRangeTestPage = () => {
               highestNote={highestCurrentNote}
               highestManualPitch={highestManualPitch}
               highestCaptured={highestCaptured}
+              highestDetectionTimeLeft={highestDetectionTimeLeft}
+              highestDetectionError={highestDetectionError}
               onHighestStart={handleHighestStart}
               onHighestReset={handleHighestReset}
               onHighestInputModeChange={handleHighestInputModeChange}
@@ -569,9 +668,51 @@ const VocalRangeTestPage = () => {
             />
           )}
 
-          {/* Additional Content - Only show during testing phase */}
-          {testPhase === 'testing' && (
+          {/* SEO-Optimized Static Content - Always visible for crawlers */}
+          {/* This content ensures search engines can see example results and voice type information */}
+          <noscript>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+              <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Vocal Range Test Results</h2>
+                <p className="text-gray-600 mb-6">
+                  After completing the vocal range test, you'll receive detailed results including your voice type classification 
+                  (Soprano, Alto, Tenor, Bass, Baritone, or Mezzo-Soprano), vocal range in notes and octaves, personalized song 
+                  recommendations, and comparison with famous singers who share your voice type.
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">Voice Types</h3>
+                    <ul className="space-y-2 text-gray-600">
+                      <li><strong>Bass:</strong> E2-E4 - Deep, powerful male voice (Barry White, Johnny Cash)</li>
+                      <li><strong>Baritone:</strong> A2-A4 - Most common male voice (Frank Sinatra, Elvis Presley)</li>
+                      <li><strong>Tenor:</strong> C3-C5 - Highest male voice (Freddie Mercury, Pavarotti)</li>
+                      <li><strong>Alto:</strong> F3-F5 - Lowest female voice (Adele, Amy Winehouse)</li>
+                      <li><strong>Mezzo-Soprano:</strong> A3-A5 - Most common female voice (Beyoncé, Lady Gaga)</li>
+                      <li><strong>Soprano:</strong> C4-C6 - Highest female voice (Mariah Carey, Ariana Grande)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">What Results Include</h3>
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• Exact vocal range (lowest to highest note)</li>
+                      <li>• Range width in octaves and semitones</li>
+                      <li>• Voice type classification</li>
+                      <li>• Frequency measurements in Hz</li>
+                      <li>• Personalized song recommendations</li>
+                      <li>• Comparison with famous singers</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </noscript>
+
+          {/* SEO-Optimized Static Content - Always visible for crawlers and users */}
+          {/* This ensures search engines can index example results, voice types, and result descriptions */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            {/* Show content during testing phase, or show a message during result phase */}
+            {testPhase === 'testing' ? (
+              <>
               {/* How It Works Section */}
               <section className="mb-16">
                 <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
@@ -709,7 +850,152 @@ const VocalRangeTestPage = () => {
                 </div>
               </section>
 
-	              {/* Learn More: Vocal Range & Voice Types */}
+	              {/* Example Results Section - SEO Optimized */}
+              <section className="mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
+                  Example <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Test Results</span>
+                </h2>
+                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
+                  Here's what your results will look like after completing the test. The analysis includes your voice type classification, vocal range details, and personalized song recommendations.
+                </p>
+                
+                {/* Example Result Cards */}
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  {/* Example 1: Tenor */}
+                  <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-white text-center">
+                      <div className="text-5xl mb-3">🎺</div>
+                      <h3 className="text-2xl font-bold mb-2">Tenor</h3>
+                      <p className="text-sm opacity-90">Bright and soaring voice with clarity and power</p>
+                    </div>
+                    <div className="p-6">
+                      <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="bg-indigo-50 rounded-xl p-4">
+                          <div className="text-xs font-semibold text-gray-600 mb-1">Vocal Range</div>
+                          <div className="text-2xl font-bold text-indigo-700">C3 - C5</div>
+                        </div>
+                        <div className="bg-indigo-50 rounded-xl p-4">
+                          <div className="text-xs font-semibold text-gray-600 mb-1">Range Width</div>
+                          <div className="text-2xl font-bold text-indigo-700">2.0 octaves</div>
+                        </div>
+                      </div>
+                      <div className="bg-gray-50 rounded-xl p-4 mb-4">
+                        <div className="text-sm font-semibold text-gray-700 mb-2">Voice Characteristics</div>
+                        <p className="text-sm text-gray-600">Bright, powerful, and emotionally expressive. Best for rock, opera, R&B, and power ballads.</p>
+                      </div>
+                      <div className="bg-gray-50 rounded-xl p-4">
+                        <div className="text-sm font-semibold text-gray-700 mb-2">Famous Voices</div>
+                        <p className="text-sm text-gray-600">Freddie Mercury, Luciano Pavarotti, Bruno Mars</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Example 2: Mezzo-Soprano */}
+                  <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div className="bg-gradient-to-r from-pink-500 to-rose-600 p-6 text-white text-center">
+                      <div className="text-5xl mb-3">🎵</div>
+                      <h3 className="text-2xl font-bold mb-2">Mezzo-Soprano</h3>
+                      <p className="text-sm opacity-90">Versatile voice blending warmth and brightness</p>
+                    </div>
+                    <div className="p-6">
+                      <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="bg-pink-50 rounded-xl p-4">
+                          <div className="text-xs font-semibold text-gray-600 mb-1">Vocal Range</div>
+                          <div className="text-2xl font-bold text-pink-700">A3 - A5</div>
+                        </div>
+                        <div className="bg-pink-50 rounded-xl p-4">
+                          <div className="text-xs font-semibold text-gray-600 mb-1">Range Width</div>
+                          <div className="text-2xl font-bold text-pink-700">2.0 octaves</div>
+                        </div>
+                      </div>
+                      <div className="bg-gray-50 rounded-xl p-4 mb-4">
+                        <div className="text-sm font-semibold text-gray-700 mb-2">Voice Characteristics</div>
+                        <p className="text-sm text-gray-600">Versatile, expressive, and dynamic. Best for pop, R&B, musical theater, and opera.</p>
+                      </div>
+                      <div className="bg-gray-50 rounded-xl p-4">
+                        <div className="text-sm font-semibold text-gray-700 mb-2">Famous Voices</div>
+                        <p className="text-sm text-gray-600">Beyoncé, Lady Gaga, Adele, Celine Dion</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Voice Types Overview */}
+                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
+                  <h3 className="text-2xl font-bold text-gray-900 text-center mb-6">Understanding Voice Types</h3>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-xl p-5">
+                      <div className="text-3xl mb-3">🎻</div>
+                      <h4 className="font-bold text-gray-900 mb-2">Bass</h4>
+                      <p className="text-sm text-gray-600 mb-2">Lowest male voice (E2-E4)</p>
+                      <p className="text-xs text-gray-500">Deep, powerful, resonant. Examples: Barry White, Johnny Cash</p>
+                    </div>
+                    <div className="bg-white rounded-xl p-5">
+                      <div className="text-3xl mb-3">🎸</div>
+                      <h4 className="font-bold text-gray-900 mb-2">Baritone</h4>
+                      <p className="text-sm text-gray-600 mb-2">Most common male voice (A2-A4)</p>
+                      <p className="text-xs text-gray-500">Warm, versatile, naturally appealing. Examples: Frank Sinatra, Elvis Presley</p>
+                    </div>
+                    <div className="bg-white rounded-xl p-5">
+                      <div className="text-3xl mb-3">🎺</div>
+                      <h4 className="font-bold text-gray-900 mb-2">Tenor</h4>
+                      <p className="text-sm text-gray-600 mb-2">Highest male voice (C3-C5)</p>
+                      <p className="text-xs text-gray-500">Bright, powerful, emotionally expressive. Examples: Freddie Mercury, Pavarotti</p>
+                    </div>
+                    <div className="bg-white rounded-xl p-5">
+                      <div className="text-3xl mb-3">🎼</div>
+                      <h4 className="font-bold text-gray-900 mb-2">Alto</h4>
+                      <p className="text-sm text-gray-600 mb-2">Lowest female voice (F3-F5)</p>
+                      <p className="text-xs text-gray-500">Rich, warm, soulful depth. Examples: Adele, Amy Winehouse</p>
+                    </div>
+                    <div className="bg-white rounded-xl p-5">
+                      <div className="text-3xl mb-3">🎵</div>
+                      <h4 className="font-bold text-gray-900 mb-2">Mezzo-Soprano</h4>
+                      <p className="text-sm text-gray-600 mb-2">Most common female voice (A3-A5)</p>
+                      <p className="text-xs text-gray-500">Versatile, expressive, dynamic. Examples: Beyoncé, Lady Gaga</p>
+                    </div>
+                    <div className="bg-white rounded-xl p-5">
+                      <div className="text-3xl mb-3">🦜</div>
+                      <h4 className="font-bold text-gray-900 mb-2">Soprano</h4>
+                      <p className="text-sm text-gray-600 mb-2">Highest female voice (C4-C6)</p>
+                      <p className="text-xs text-gray-500">Bright, agile, crystalline clarity. Examples: Mariah Carey, Ariana Grande</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* What You'll Get Section */}
+                <div className="mt-8 bg-white rounded-2xl shadow-md p-8 border border-gray-100">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">What Your Results Include</h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-3 flex items-center">
+                        <span className="text-2xl mr-2">📊</span>
+                        Detailed Analysis
+                      </h4>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        <li>• Your exact vocal range (lowest to highest note)</li>
+                        <li>• Range width in octaves and semitones</li>
+                        <li>• Voice type classification (Soprano, Alto, Tenor, Bass, etc.)</li>
+                        <li>• Frequency measurements in Hz</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900 mb-3 flex items-center">
+                        <span className="text-2xl mr-2">🎵</span>
+                        Personalized Recommendations
+                      </h4>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        <li>• Songs that match your vocal range</li>
+                        <li>• Comparison with famous singers</li>
+                        <li>• Voice type characteristics and tips</li>
+                        <li>• Practice recommendations</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Learn More: Vocal Range & Voice Types */}
 	              <section className="mb-16">
 	                <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
 	                  Learn More About <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Vocal Range &amp; Voice Types</span>
@@ -817,10 +1103,18 @@ const VocalRangeTestPage = () => {
                   </Link>
                 </div>
 	              </section>
-	            </div>
-	          )}
+              </>
+            ) : (
+              /* During result phase, show a brief message with link back to test */
+              <div className="text-center py-8">
+                <p className="text-gray-600 mb-4">
+                  Want to see example results? <Link to="/vocal-range-test" className="text-indigo-600 hover:underline font-semibold">View example results and voice type information</Link>
+                </p>
+              </div>
+            )}
+          </div>
 
-	          {/* About SingMeter Vocal Range Test & Limitations */}
+          {/* About SingMeter Vocal Range Test & Limitations - Always visible */}
 	          <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
 	            <div className="bg-white rounded-2xl shadow-md border border-gray-100 p-6 sm:p-8">
 	              <h2 className="text-2xl font-bold text-gray-900 mb-4">About This Vocal Range Test</h2>
