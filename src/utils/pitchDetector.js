@@ -117,29 +117,60 @@ export class AudioPitchDetector {
       const isSecureContext = window.isSecureContext;
       console.log('🔐 Is secure context:', isSecureContext);
 
+      // Detect mobile browser
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      console.log('📱 Is mobile browser:', isMobile);
+
       if (!isSecureContext && window.location.protocol !== 'http:') {
         console.warn('⚠️ Not in secure context, getUserMedia may fail');
+        // On mobile, this is critical - throw a clear error
+        if (isMobile) {
+          throw new Error('Microphone access requires HTTPS. Please access this site via a secure connection (https://).');
+        }
       }
 
-      // Try with simple constraints first (better mobile compatibility)
-      console.log('📱 Requesting microphone access with simple constraints...');
+      // For mobile browsers, use minimal constraints for better compatibility
+      // Some mobile browsers have issues with detailed audio constraints
+      console.log('📱 Requesting microphone access...');
       let stream;
 
-      try {
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        console.log('✅ Got microphone stream with simple constraints');
-      } catch (simpleError) {
-        console.warn('⚠️ Simple constraints failed, trying with detailed constraints:', simpleError);
-
-        // Try with detailed constraints
-        stream = await navigator.mediaDevices.getUserMedia({
-          audio: {
-            echoCancellation: true,
-            noiseSuppression: true,
-            autoGainControl: false
+      if (isMobile) {
+        // Mobile browsers: use minimal constraints
+        console.log('📱 Using minimal constraints for mobile compatibility');
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          console.log('✅ Got microphone stream on mobile');
+        } catch (mobileError) {
+          console.error('❌ Mobile getUserMedia failed:', mobileError);
+          // Provide more helpful error message for mobile
+          if (mobileError.name === 'NotAllowedError' || mobileError.name === 'PermissionDeniedError') {
+            throw new Error('Microphone permission denied. Please allow microphone access in your browser settings and try again.');
           }
-        });
-        console.log('✅ Got microphone stream with detailed constraints');
+          throw mobileError;
+        }
+      } else {
+        // Desktop: try simple first, then detailed
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          console.log('✅ Got microphone stream with simple constraints');
+        } catch (simpleError) {
+          console.warn('⚠️ Simple constraints failed, trying with detailed constraints:', simpleError);
+
+          // Try with detailed constraints
+          try {
+            stream = await navigator.mediaDevices.getUserMedia({
+              audio: {
+                echoCancellation: true,
+                noiseSuppression: true,
+                autoGainControl: false
+              }
+            });
+            console.log('✅ Got microphone stream with detailed constraints');
+          } catch (detailedError) {
+            console.error('❌ Detailed constraints also failed:', detailedError);
+            throw simpleError; // Throw the original error
+          }
+        }
       }
 
       // Initialize audio context

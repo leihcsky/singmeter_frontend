@@ -163,12 +163,13 @@ const VocalRangeTestPage = () => {
         }
         lastValidTime = now;
 
+        // Store pitch history (keep last 50 samples for stability analysis)
         lowestPitchHistoryRef.current.push({ pitch, clarity, timestamp: now });
-        if (lowestPitchHistoryRef.current.length > 10) {
+        if (lowestPitchHistoryRef.current.length > 50) {
           lowestPitchHistoryRef.current.shift();
         }
 
-        // Track lowest pitch
+        // Track lowest pitch (but we'll use stability analysis for final value)
         if (lowestFinalPitchRef.current === null || pitch < lowestFinalPitchRef.current) {
           lowestFinalPitchRef.current = pitch;
         }
@@ -182,22 +183,58 @@ const VocalRangeTestPage = () => {
 
         // Auto-capture when accumulated time threshold met
         if (!lowestHasMinHoldRef.current && accumulatedValidMs >= MIN_HOLD_MS) {
-          lowestHasMinHoldRef.current = true;
-          const finalNote = frequencyToNote(lowestFinalPitchRef.current);
-          setLowestCaptured({
-            note: finalNote.fullNote,
-            frequency: lowestFinalPitchRef.current
-          });
-          detectorRef.current.stopDetection();
-          setLowestIsRecording(false);
-          setLowestDetectionTimeLeft(null);
-          setLowestDetectionError(null);
+          // Analyze pitch history for stability and accuracy
+          const recentHistory = lowestPitchHistoryRef.current.filter(
+            p => (now - p.timestamp) <= MIN_HOLD_MS
+          );
           
-          // Clear timeout and interval
-          if (timeoutId) clearTimeout(timeoutId);
-          if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
-          
-          console.log('✅ Lowest note captured:', finalNote.fullNote, `after ${accumulatedValidMs}ms`);
+          if (recentHistory.length > 0) {
+            // Find the actual lowest stable pitch
+            // Sort by pitch (lowest first) and take the median of the lowest 30% to avoid outliers
+            const sortedPitches = recentHistory
+              .map(p => p.pitch)
+              .sort((a, b) => a - b);
+            
+            // Take the lowest 30% of pitches and calculate median
+            const lowest30Percent = sortedPitches.slice(0, Math.max(1, Math.floor(sortedPitches.length * 0.3)));
+            const medianLowest = lowest30Percent[Math.floor(lowest30Percent.length / 2)];
+            
+            // Verify stability: check if most pitches are within 2 semitones of the median
+            const semitoneTolerance = 2;
+            const medianFreq = medianLowest;
+            const stablePitches = recentHistory.filter(p => {
+              const semitoneDiff = Math.abs(12 * Math.log2(p.pitch / medianFreq));
+              return semitoneDiff <= semitoneTolerance;
+            });
+            
+            // Use the most stable lowest pitch
+            const finalPitch = stablePitches.length >= recentHistory.length * 0.7 
+              ? Math.min(...stablePitches.map(p => p.pitch))
+              : medianLowest;
+            
+            lowestHasMinHoldRef.current = true;
+            const finalNote = frequencyToNote(finalPitch);
+            setLowestCaptured({
+              note: finalNote.fullNote,
+              frequency: finalPitch
+            });
+            detectorRef.current.stopDetection();
+            setLowestIsRecording(false);
+            setLowestDetectionTimeLeft(null);
+            setLowestDetectionError(null);
+            
+            // Clear timeout and interval
+            if (timeoutId) clearTimeout(timeoutId);
+            if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
+            
+            console.log('✅ Lowest note captured:', finalNote.fullNote, `(${finalPitch.toFixed(1)} Hz) after ${accumulatedValidMs}ms`);
+            console.log('📊 Stability analysis:', {
+              totalSamples: recentHistory.length,
+              stableSamples: stablePitches.length,
+              medianLowest: medianLowest.toFixed(1),
+              finalPitch: finalPitch.toFixed(1)
+            });
+          }
         }
       } else {
         // Lost signal - reset lastValidTime but keep accumulated time
@@ -276,12 +313,13 @@ const VocalRangeTestPage = () => {
         }
         lastValidTime = now;
 
+        // Store pitch history (keep last 50 samples for stability analysis)
         highestPitchHistoryRef.current.push({ pitch, clarity, timestamp: now });
-        if (highestPitchHistoryRef.current.length > 10) {
+        if (highestPitchHistoryRef.current.length > 50) {
           highestPitchHistoryRef.current.shift();
         }
 
-        // Track highest pitch
+        // Track highest pitch (but we'll use stability analysis for final value)
         if (highestFinalPitchRef.current === null || pitch > highestFinalPitchRef.current) {
           highestFinalPitchRef.current = pitch;
         }
@@ -295,22 +333,58 @@ const VocalRangeTestPage = () => {
 
         // Auto-capture when accumulated time threshold met
         if (!highestHasMinHoldRef.current && accumulatedValidMs >= MIN_HOLD_MS) {
-          highestHasMinHoldRef.current = true;
-          const finalNote = frequencyToNote(highestFinalPitchRef.current);
-          setHighestCaptured({
-            note: finalNote.fullNote,
-            frequency: highestFinalPitchRef.current
-          });
-          detectorRef.current.stopDetection();
-          setHighestIsRecording(false);
-          setHighestDetectionTimeLeft(null);
-          setHighestDetectionError(null);
+          // Analyze pitch history for stability and accuracy
+          const recentHistory = highestPitchHistoryRef.current.filter(
+            p => (now - p.timestamp) <= MIN_HOLD_MS
+          );
           
-          // Clear timeout and interval
-          if (timeoutId) clearTimeout(timeoutId);
-          if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
-          
-          console.log('✅ Highest note captured:', finalNote.fullNote, `after ${accumulatedValidMs}ms`);
+          if (recentHistory.length > 0) {
+            // Find the actual highest stable pitch
+            // Sort by pitch (highest first) and take the median of the highest 30% to avoid outliers
+            const sortedPitches = recentHistory
+              .map(p => p.pitch)
+              .sort((a, b) => b - a);
+            
+            // Take the highest 30% of pitches and calculate median
+            const highest30Percent = sortedPitches.slice(0, Math.max(1, Math.floor(sortedPitches.length * 0.3)));
+            const medianHighest = highest30Percent[Math.floor(highest30Percent.length / 2)];
+            
+            // Verify stability: check if most pitches are within 2 semitones of the median
+            const semitoneTolerance = 2;
+            const medianFreq = medianHighest;
+            const stablePitches = recentHistory.filter(p => {
+              const semitoneDiff = Math.abs(12 * Math.log2(p.pitch / medianFreq));
+              return semitoneDiff <= semitoneTolerance;
+            });
+            
+            // Use the most stable highest pitch
+            const finalPitch = stablePitches.length >= recentHistory.length * 0.7 
+              ? Math.max(...stablePitches.map(p => p.pitch))
+              : medianHighest;
+            
+            highestHasMinHoldRef.current = true;
+            const finalNote = frequencyToNote(finalPitch);
+            setHighestCaptured({
+              note: finalNote.fullNote,
+              frequency: finalPitch
+            });
+            detectorRef.current.stopDetection();
+            setHighestIsRecording(false);
+            setHighestDetectionTimeLeft(null);
+            setHighestDetectionError(null);
+            
+            // Clear timeout and interval
+            if (timeoutId) clearTimeout(timeoutId);
+            if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
+            
+            console.log('✅ Highest note captured:', finalNote.fullNote, `(${finalPitch.toFixed(1)} Hz) after ${accumulatedValidMs}ms`);
+            console.log('📊 Stability analysis:', {
+              totalSamples: recentHistory.length,
+              stableSamples: stablePitches.length,
+              medianHighest: medianHighest.toFixed(1),
+              finalPitch: finalPitch.toFixed(1)
+            });
+          }
         }
       } else {
         // Lost signal - reset lastValidTime but keep accumulated time
@@ -473,6 +547,11 @@ const VocalRangeTestPage = () => {
       console.log('✅ Test result:', result);
       setTestResult(result);
       setTestPhase('result');
+      
+      // Scroll to top when result is displayed
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     } else {
       console.error('❌ Invalid pitch values:', { finalLowest, finalHighest });
       // Invalid result - user needs to restart the test
@@ -530,6 +609,16 @@ const VocalRangeTestPage = () => {
       console.error('❌ Failed to pre-initialize piano audio:', error);
     });
   }, []);
+
+  // Scroll to top when result phase is displayed
+  useEffect(() => {
+    if (testPhase === 'result' && testResult) {
+      // Use setTimeout to ensure DOM is updated before scrolling
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    }
+  }, [testPhase, testResult]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -1156,7 +1245,11 @@ const VocalRangeTestPage = () => {
         {showMicPermission && (
           <MicrophonePermissionModal
             onClose={() => setShowMicPermission(false)}
-            onRetry={() => setShowMicPermission(false)}
+            onRetry={async () => {
+              setShowMicPermission(false);
+              // Retry microphone initialization after a short delay
+              // This will be triggered when user clicks "Start Test" again
+            }}
             errorType={micPermissionError}
           />
         )}
@@ -1186,28 +1279,108 @@ const VocalRangeTestPage = () => {
 // Microphone Permission Modal (simplified)
 const MicrophonePermissionModal = ({ onClose, onRetry, errorType = 'permission_denied' }) => {
   const canRetry = errorType === 'permission_denied' || errorType === 'unknown_error';
+  
+  // Detect mobile browser
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isSecureContext = window.isSecureContext || window.location.protocol === 'https:';
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl max-w-md w-full p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-3">Microphone Access Required</h3>
-        <p className="text-gray-600 mb-4">
-          {errorType === 'no_device' ? (
-            <>No microphone detected. Please connect a microphone and try again.</>
-          ) : errorType === 'device_in_use' ? (
-            <>Microphone is being used by another application. Please close other apps and try again.</>
-          ) : (
-            <>SingMeter needs access to your microphone to test your vocal range. Your voice is never recorded or stored.</>
-          )}
-        </p>
+      <div className="bg-white rounded-2xl max-w-md w-full p-6 max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-xl font-bold text-gray-900">Microphone Access Required</h3>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 text-2xl leading-none"
+          >
+            ×
+          </button>
+        </div>
 
-        <div className="flex gap-3">
+        <div className="space-y-4">
+          {errorType === 'no_device' ? (
+            <p className="text-gray-600">
+              <strong>No microphone detected.</strong> Please connect a microphone and try again.
+            </p>
+          ) : errorType === 'device_in_use' ? (
+            <p className="text-gray-600">
+              <strong>Microphone is in use.</strong> Please close other applications that might be using your microphone and try again.
+            </p>
+          ) : errorType === 'security_error' ? (
+            <div className="space-y-3">
+              <p className="text-gray-600">
+                <strong>Secure connection required.</strong> Microphone access requires HTTPS. Please access this site using a secure connection (https://).
+              </p>
+              {isMobile && (
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded">
+                  <p className="text-sm text-yellow-800">
+                    <strong>Mobile Browser Tip:</strong> Make sure you're accessing the site via HTTPS, not HTTP.
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="space-y-3">
+              <p className="text-gray-600">
+                SingMeter needs access to your microphone to test your vocal range. Your voice is <strong>never recorded or stored</strong> - all analysis happens locally in your browser.
+              </p>
+              
+              {isMobile && (
+                <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                  <p className="text-sm font-semibold text-blue-900 mb-2">📱 Mobile Browser Instructions:</p>
+                  <ol className="text-sm text-blue-800 space-y-2 list-decimal list-inside">
+                    {isIOS ? (
+                      <>
+                        <li>Tap <strong>"Allow"</strong> when prompted for microphone access</li>
+                        <li>If you previously denied access, go to <strong>Settings → Safari → Microphone</strong> (or your browser settings) and enable microphone access for this site</li>
+                        <li>Make sure you're using <strong>HTTPS</strong> (secure connection)</li>
+                      </>
+                    ) : isAndroid ? (
+                      <>
+                        <li>Tap <strong>"Allow"</strong> when prompted for microphone access</li>
+                        <li>If you previously denied access, go to your browser's <strong>Settings → Site Settings → Microphone</strong> and enable access for this site</li>
+                        <li>Make sure you're using <strong>HTTPS</strong> (secure connection)</li>
+                      </>
+                    ) : (
+                      <>
+                        <li>Tap <strong>"Allow"</strong> when prompted for microphone access</li>
+                        <li>If you previously denied access, check your browser settings to enable microphone permissions</li>
+                        <li>Make sure you're using <strong>HTTPS</strong> (secure connection)</li>
+                      </>
+                    )}
+                  </ol>
+                </div>
+              )}
+
+              {!isSecureContext && (
+                <div className="bg-red-50 border-l-4 border-red-400 p-3 rounded">
+                  <p className="text-sm text-red-800">
+                    <strong>⚠️ Security Warning:</strong> This page is not using HTTPS. Microphone access requires a secure connection. Please access this site via HTTPS.
+                  </p>
+                </div>
+              )}
+
+              <div className="bg-green-50 border-l-4 border-green-400 p-3 rounded">
+                <p className="text-sm text-green-800">
+                  <strong>🔒 Privacy Guaranteed:</strong> Your voice is processed locally in your browser and never sent to any server.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="flex gap-3 mt-6">
           {canRetry ? (
             <>
               <button
                 onClick={() => {
                   onClose();
-                  onRetry();
+                  // Small delay to ensure modal closes before retry
+                  setTimeout(() => {
+                    onRetry();
+                  }, 100);
                 }}
                 className="flex-1 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition"
               >
@@ -1230,7 +1403,6 @@ const MicrophonePermissionModal = ({ onClose, onRetry, errorType = 'permission_d
           )}
         </div>
       </div>
-
     </div>
   );
 };
