@@ -14,6 +14,7 @@ const VocalRangeTestPage = () => {
   // Test phase: 'testing' or 'result'
   const [testPhase, setTestPhase] = useState('testing');
   const [testResult, setTestResult] = useState(null);
+  const [resultWarnings, setResultWarnings] = useState([]); // Store validation warnings to display on result page
 
   // Set document title and meta tags
   useEffect(() => {
@@ -72,6 +73,7 @@ const VocalRangeTestPage = () => {
   const lowestValidStartTimeRef = useRef(null);
   const lowestPitchHistoryRef = useRef([]);
   const lowestFinalPitchRef = useRef(null);
+  const lowestCapturedRef = useRef(null); // Store captured value for validation in callbacks
 
   // === HIGHEST NOTE STATES ===
   const [highestInputMode, setHighestInputMode] = useState('sing');
@@ -89,6 +91,7 @@ const VocalRangeTestPage = () => {
   const highestValidStartTimeRef = useRef(null);
   const highestPitchHistoryRef = useRef([]);
   const highestFinalPitchRef = useRef(null);
+  const highestCapturedRef = useRef(null); // Store captured value for validation in callbacks
 
   const MIN_HOLD_MS = 3000; // minimal hold duration in ms (3 seconds)
   const MAX_DETECTION_TIME_MS = 15000; // maximum detection time in ms (15 seconds)
@@ -199,8 +202,9 @@ const VocalRangeTestPage = () => {
             const lowest30Percent = sortedPitches.slice(0, Math.max(1, Math.floor(sortedPitches.length * 0.3)));
             const medianLowest = lowest30Percent[Math.floor(lowest30Percent.length / 2)];
             
-            // Verify stability: check if most pitches are within 2 semitones of the median
-            const semitoneTolerance = 2;
+            // Verify stability: check if most pitches are within 1.5 semitones of the median
+            // Reduced tolerance for better accuracy (was 2 semitones)
+            const semitoneTolerance = 1.5;
             const medianFreq = medianLowest;
             const stablePitches = recentHistory.filter(p => {
               const semitoneDiff = Math.abs(12 * Math.log2(p.pitch / medianFreq));
@@ -212,12 +216,29 @@ const VocalRangeTestPage = () => {
               ? Math.min(...stablePitches.map(p => p.pitch))
               : medianLowest;
             
-            lowestHasMinHoldRef.current = true;
             const finalNote = frequencyToNote(finalPitch);
-            setLowestCaptured({
+            
+            // Validate: Ensure the captured lowest pitch is actually lower than any existing highest pitch
+            // Use ref to get the latest captured value (avoids closure issues)
+            const existingHighest = highestCapturedRef.current?.frequency || highestManualPitch;
+            if (existingHighest && finalPitch >= existingHighest) {
+              const existingHighestNote = frequencyToNote(existingHighest);
+              console.warn('⚠️ Captured lowest pitch is not lower than highest pitch:', {
+                lowest: `${finalNote.fullNote} (${finalPitch.toFixed(1)} Hz)`,
+                highest: `${existingHighestNote.fullNote} (${existingHighest.toFixed(1)} Hz)`
+              });
+              setLowestDetectionError(`The detected note (${finalNote.fullNote}, ${finalPitch.toFixed(1)} Hz) is not lower than your highest note (${existingHighestNote.fullNote}, ${existingHighest.toFixed(1)} Hz). Please try singing a lower note.`);
+              // Don't capture, let user retry
+              return;
+            }
+            
+            lowestHasMinHoldRef.current = true;
+            const capturedData = {
               note: finalNote.fullNote,
               frequency: finalPitch
-            });
+            };
+            lowestCapturedRef.current = capturedData; // Update ref immediately
+            setLowestCaptured(capturedData);
             detectorRef.current.stopDetection();
             setLowestIsRecording(false);
             setLowestDetectionTimeLeft(null);
@@ -349,8 +370,9 @@ const VocalRangeTestPage = () => {
             const highest30Percent = sortedPitches.slice(0, Math.max(1, Math.floor(sortedPitches.length * 0.3)));
             const medianHighest = highest30Percent[Math.floor(highest30Percent.length / 2)];
             
-            // Verify stability: check if most pitches are within 2 semitones of the median
-            const semitoneTolerance = 2;
+            // Verify stability: check if most pitches are within 1.5 semitones of the median
+            // Reduced tolerance for better accuracy (was 2 semitones)
+            const semitoneTolerance = 1.5;
             const medianFreq = medianHighest;
             const stablePitches = recentHistory.filter(p => {
               const semitoneDiff = Math.abs(12 * Math.log2(p.pitch / medianFreq));
@@ -362,12 +384,29 @@ const VocalRangeTestPage = () => {
               ? Math.max(...stablePitches.map(p => p.pitch))
               : medianHighest;
             
-            highestHasMinHoldRef.current = true;
             const finalNote = frequencyToNote(finalPitch);
-            setHighestCaptured({
+            
+            // Validate: Ensure the captured highest pitch is actually higher than any existing lowest pitch
+            // Use ref to get the latest captured value (avoids closure issues)
+            const existingLowest = lowestCapturedRef.current?.frequency || lowestManualPitch;
+            if (existingLowest && finalPitch <= existingLowest) {
+              const existingLowestNote = frequencyToNote(existingLowest);
+              console.warn('⚠️ Captured highest pitch is not higher than lowest pitch:', {
+                highest: `${finalNote.fullNote} (${finalPitch.toFixed(1)} Hz)`,
+                lowest: `${existingLowestNote.fullNote} (${existingLowest.toFixed(1)} Hz)`
+              });
+              setHighestDetectionError(`The detected note (${finalNote.fullNote}, ${finalPitch.toFixed(1)} Hz) is not higher than your lowest note (${existingLowestNote.fullNote}, ${existingLowest.toFixed(1)} Hz). Please try singing a higher note.`);
+              // Don't capture, let user retry
+              return;
+            }
+            
+            highestHasMinHoldRef.current = true;
+            const capturedData = {
               note: finalNote.fullNote,
               frequency: finalPitch
-            });
+            };
+            highestCapturedRef.current = capturedData; // Update ref immediately
+            setHighestCaptured(capturedData);
             detectorRef.current.stopDetection();
             setHighestIsRecording(false);
             setHighestDetectionTimeLeft(null);
@@ -440,6 +479,7 @@ const VocalRangeTestPage = () => {
       detectorRef.current.stopDetection();
     }
     setLowestCaptured(null);
+    lowestCapturedRef.current = null; // Clear ref
     setLowestManualPitch(null);
     setLowestCurrentPitch(null);
     setLowestCurrentNote(null);
@@ -490,6 +530,7 @@ const VocalRangeTestPage = () => {
       detectorRef.current.stopDetection();
     }
     setHighestCaptured(null);
+    highestCapturedRef.current = null; // Clear ref
     setHighestManualPitch(null);
     setHighestCurrentPitch(null);
     setHighestCurrentNote(null);
@@ -530,33 +571,154 @@ const VocalRangeTestPage = () => {
 
     console.log('🎯 Analyzing vocal range:', { finalLowest, finalHighest });
 
-    if (finalLowest && finalHighest && finalHighest > finalLowest) {
+    // Validation checks for accuracy and reliability
+    const warnings = [];
+    
+    if (!finalLowest || !finalHighest) {
+      console.error('❌ Missing pitch values');
+      warnings.push({
+        type: 'error',
+        message: 'Please complete both tests before analyzing.'
+      });
+      setResultWarnings(warnings);
+      return;
+    }
+
+    if (finalHighest <= finalLowest) {
       const lowestNote = frequencyToNote(finalLowest);
       const highestNote = frequencyToNote(finalHighest);
-      const voiceType = getVoiceType(lowestNote.fullNote, highestNote.fullNote);
-
-      const result = {
-        lowestNote: lowestNote.fullNote,
-        highestNote: highestNote.fullNote,
-        lowestFrequency: finalLowest,
-        highestFrequency: finalHighest,
-        voiceType: voiceType,
-        octaves: Math.log2(finalHighest / finalLowest).toFixed(1)
-      };
-
-      console.log('✅ Test result:', result);
-      setTestResult(result);
-      setTestPhase('result');
+      console.error('❌ Invalid range: highest must be greater than lowest', {
+        lowest: `${lowestNote.fullNote} (${finalLowest.toFixed(1)} Hz)`,
+        highest: `${highestNote.fullNote} (${finalHighest.toFixed(1)} Hz)`
+      });
       
-      // Scroll to top when result is displayed
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
-    } else {
-      console.error('❌ Invalid pitch values:', { finalLowest, finalHighest });
-      // Invalid result - user needs to restart the test
-      alert('Unable to calculate results. Please try again.');
+      // Show detailed error message with specific notes and frequencies
+      warnings.push({
+        type: 'error',
+        message: `Invalid range detected: Your highest note (${highestNote.fullNote}, ${finalHighest.toFixed(1)} Hz) is not higher than your lowest note (${lowestNote.fullNote}, ${finalLowest.toFixed(1)} Hz). Please retest both notes. Make sure to sing your lowest comfortable note for the lowest test, and your highest comfortable note for the highest test.`
+      });
+      setResultWarnings(warnings);
+      setTestPhase('testing'); // Stay in testing phase so user can retest
+      return;
     }
+
+    // Calculate range width for validation
+    const rangeWidth = finalHighest - finalLowest;
+    const rangeWidthSemitones = 12 * Math.log2(finalHighest / finalLowest);
+    const rangeWidthOctaves = rangeWidthSemitones / 12;
+
+    // Validate range is reasonable (at least 3 semitones, typically 1-4 octaves)
+    if (rangeWidthSemitones < 3) {
+      console.warn('⚠️ Range too narrow:', rangeWidthSemitones, 'semitones');
+      warnings.push({
+        type: 'warning',
+        message: 'Your vocal range seems too narrow. Please ensure you tested both your lowest and highest comfortable notes. You can retest if needed.'
+      });
+    }
+
+    if (rangeWidthOctaves > 5) {
+      console.warn('⚠️ Range unusually wide:', rangeWidthOctaves, 'octaves');
+      warnings.push({
+        type: 'info',
+        message: `Your range of ${rangeWidthOctaves.toFixed(1)} octaves is exceptionally wide! This is impressive and may indicate exceptional vocal ability.`
+      });
+    }
+
+    // Validate frequencies are within human vocal range
+    const MIN_HUMAN_FREQUENCY = 65;   // C2
+    const MAX_HUMAN_FREQUENCY = 1318; // E6
+    
+    if (finalLowest < MIN_HUMAN_FREQUENCY || finalHighest > MAX_HUMAN_FREQUENCY) {
+      console.warn('⚠️ Frequencies outside typical human range');
+      if (finalLowest < MIN_HUMAN_FREQUENCY) {
+        warnings.push({
+          type: 'info',
+          message: 'Your lowest note is below the typical human vocal range. This is very rare and impressive!'
+        });
+      }
+      if (finalHighest > MAX_HUMAN_FREQUENCY) {
+        warnings.push({
+          type: 'info',
+          message: 'Your highest note is above the typical human vocal range. This is exceptional!'
+        });
+      }
+    }
+
+    const lowestNote = frequencyToNote(finalLowest);
+    const highestNote = frequencyToNote(finalHighest);
+    
+    // Validate note conversion succeeded
+    if (!lowestNote.fullNote || !highestNote.fullNote) {
+      console.error('❌ Failed to convert frequencies to notes');
+      warnings.push({
+        type: 'error',
+        message: 'Error processing results. Please try again.'
+      });
+      setResultWarnings(warnings);
+      return;
+    }
+    
+    // Store warnings for display on result page
+    setResultWarnings(warnings);
+
+    const voiceType = getVoiceType(lowestNote.fullNote, highestNote.fullNote);
+
+    // Validate voice type classification
+    if (voiceType === 'Unknown') {
+      console.warn('⚠️ Could not classify voice type');
+    }
+
+    // Ensure semitones is calculated correctly and is an integer
+    const semitones = Math.round(rangeWidthSemitones);
+    // Ensure octaves is formatted to 1 decimal place for display
+    const octaves = parseFloat(rangeWidthOctaves.toFixed(1));
+    
+    // Validate calculated values
+    if (semitones < 0 || !isFinite(semitones)) {
+      console.error('❌ Invalid semitones calculation:', semitones);
+      warnings.push({
+        type: 'error',
+        message: 'Error calculating range width. Please try again.'
+      });
+      setResultWarnings(warnings);
+      return;
+    }
+    
+    if (!isFinite(octaves) || octaves < 0) {
+      console.error('❌ Invalid octaves calculation:', octaves);
+      warnings.push({
+        type: 'error',
+        message: 'Error calculating range width. Please try again.'
+      });
+      setResultWarnings(warnings);
+      return;
+    }
+
+    const result = {
+      lowestNote: lowestNote.fullNote,
+      highestNote: highestNote.fullNote,
+      lowestFrequency: parseFloat(finalLowest.toFixed(2)), // Store as number with 2 decimal precision
+      highestFrequency: parseFloat(finalHighest.toFixed(2)), // Store as number with 2 decimal precision
+      voiceType: voiceType,
+      octaves: octaves, // Store as number, not string
+      semitones: semitones // Store as integer
+    };
+
+    console.log('✅ Test result:', result);
+    console.log('📊 Validation:', {
+      rangeWidthOctaves: rangeWidthOctaves.toFixed(2),
+      rangeWidthSemitones: Math.round(rangeWidthSemitones),
+      lowestInRange: finalLowest >= MIN_HUMAN_FREQUENCY,
+      highestInRange: finalHighest <= MAX_HUMAN_FREQUENCY
+    });
+
+    setTestResult(result);
+    setTestPhase('result');
+    
+    // Scroll to top when result is displayed
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   };
 
   // Restart test
@@ -564,6 +726,12 @@ const VocalRangeTestPage = () => {
     // Reset all states
     setTestPhase('testing');
     setTestResult(null);
+    setResultWarnings([]); // Clear warnings
+    
+    // Scroll to top when restarting
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
 
     // Reset lowest
     setLowestInputMode('sing');
@@ -754,6 +922,7 @@ const VocalRangeTestPage = () => {
             <ResultScreen
               result={testResult}
               onReset={handleRestart}
+              warnings={resultWarnings}
             />
           )}
 

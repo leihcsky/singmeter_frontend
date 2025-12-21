@@ -13,49 +13,140 @@ const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 
  * @param {number} frequency - 频率 (Hz)
  * @returns {object} { note: 音符名, octave: 八度, cents: 音分偏移 }
  */
+/**
+ * 将频率转换为音符名称（基于A4=440Hz标准）
+ * @param {number} frequency - 频率 (Hz)
+ * @returns {object} { note: 音符名, octave: 八度, cents: 音分偏移, fullNote: 完整音符名 }
+ * 
+ * 使用标准的12平均律（Equal Temperament）计算
+ * 参考：MIDI note number = 69 + 12 * log2(frequency / 440)
+ */
 export function frequencyToNote(frequency) {
-  if (!frequency || frequency < 20) {
+  if (!frequency || frequency < 20 || !isFinite(frequency)) {
     return { note: '', octave: 0, cents: 0, fullNote: '' };
   }
 
+  // 使用精确的数学公式：MIDI note = 69 + 12 * log2(freq / 440)
   const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
-  const noteIndex = Math.round(noteNum) + 69; // MIDI note number
-  const cents = Math.floor((noteNum - Math.round(noteNum)) * 100);
+  const noteIndex = Math.round(noteNum) + 69; // MIDI note number (C4 = 60, A4 = 69)
   
+  // 计算音分偏移（cents），范围 -50 到 +50
+  const cents = Math.round((noteNum - Math.round(noteNum)) * 100);
+  
+  // 计算八度和音符名
   const octave = Math.floor(noteIndex / 12) - 1;
-  const note = NOTE_NAMES[noteIndex % 12];
+  const noteIndexInOctave = ((noteIndex % 12) + 12) % 12; // 确保非负数
+  const note = NOTE_NAMES[noteIndexInOctave];
   const fullNote = `${note}${octave}`;
 
   return { note, octave, cents, fullNote };
 }
 
 /**
- * 获取声部类型
+ * 获取声部类型（基于专业声乐分类标准）
  * @param {string} lowestNote - 最低音
  * @param {string} highestNote - 最高音
  * @returns {string} 声部类型
+ * 
+ * 参考标准：
+ * - Bass: E2-E4 (典型范围)
+ * - Baritone: A2-A4 (典型范围)
+ * - Tenor: C3-C5 (典型范围)
+ * - Alto: F3-F5 (典型范围)
+ * - Mezzo-Soprano: A3-A5 (典型范围)
+ * - Soprano: C4-C6 (典型范围)
  */
 export function getVoiceType(lowestNote, highestNote) {
-  // 简化的声部判断逻辑
   const noteToMidi = (noteStr) => {
     const match = noteStr.match(/([A-G]#?)(\d+)/);
     if (!match) return 0;
     const [, note, octave] = match;
     const noteIndex = NOTE_NAMES.indexOf(note);
+    if (noteIndex === -1) return 0;
     return (parseInt(octave) + 1) * 12 + noteIndex;
   };
 
   const lowestMidi = noteToMidi(lowestNote);
   const highestMidi = noteToMidi(highestNote);
-  const avgMidi = (lowestMidi + highestMidi) / 2;
+  
+  // 验证输入有效性
+  if (lowestMidi === 0 || highestMidi === 0 || lowestMidi >= highestMidi) {
+    console.warn('Invalid note range for voice type classification');
+    return 'Unknown';
+  }
 
-  // 根据平均音高判断声部
-  if (avgMidi < 55) return 'Bass'; // 男低音
-  if (avgMidi < 62) return 'Baritone'; // 男中音
-  if (avgMidi < 67) return 'Tenor'; // 男高音
-  if (avgMidi < 72) return 'Alto'; // 女低音
-  if (avgMidi < 77) return 'Mezzo-Soprano'; // 女中音
-  return 'Soprano'; // 女高音
+  const rangeWidth = highestMidi - lowestMidi;
+  const avgMidi = (lowestMidi + highestMidi) / 2;
+  const tessitura = avgMidi; // 舒适音域中心
+
+  // 专业声部分类标准（基于最低音、最高音和音域中心）
+  // 首先根据最低音判断性别和基本类型
+  
+  // 男性声部判断
+  if (lowestMidi <= 48) { // E2 or lower
+    // 非常低的音，可能是 Bass
+    if (highestMidi <= 64) { // E4 or lower
+      return 'Bass';
+    }
+    // 如果最高音超过E4，可能是 Bass-Baritone
+    return 'Bass';
+  } else if (lowestMidi <= 57) { // A2 or lower
+    // Baritone 范围
+    if (highestMidi <= 69) { // A4 or lower
+      return 'Baritone';
+    }
+    // 如果最高音很高，可能是 Tenor
+    if (highestMidi >= 72) { // C5 or higher
+      return 'Tenor';
+    }
+    return 'Baritone';
+  } else if (lowestMidi <= 60) { // C3 or lower
+    // Tenor 范围
+    if (highestMidi >= 72) { // C5 or higher
+      return 'Tenor';
+    }
+    // 如果最高音不够高，可能是 Baritone
+    if (highestMidi <= 64) {
+      return 'Baritone';
+    }
+    return 'Tenor';
+  }
+  
+  // 女性声部判断
+  else if (lowestMidi <= 65) { // F3 or lower
+    // Alto 范围
+    if (highestMidi <= 77) { // F5 or lower
+      return 'Alto';
+    }
+    // 如果最高音很高，可能是 Mezzo-Soprano
+    if (highestMidi >= 81) { // A5 or higher
+      return 'Mezzo-Soprano';
+    }
+    return 'Alto';
+  } else if (lowestMidi <= 69) { // A3 or lower
+    // Mezzo-Soprano 范围
+    if (highestMidi >= 81) { // A5 or higher
+      return 'Mezzo-Soprano';
+    }
+    // 如果最高音不够高，可能是 Alto
+    if (highestMidi <= 77) {
+      return 'Alto';
+    }
+    return 'Mezzo-Soprano';
+  } else if (lowestMidi <= 72) { // C4 or lower
+    // Soprano 范围
+    if (highestMidi >= 84) { // C6 or higher
+      return 'Soprano';
+    }
+    // 如果最高音不够高，可能是 Mezzo-Soprano
+    if (highestMidi <= 81) {
+      return 'Mezzo-Soprano';
+    }
+    return 'Soprano';
+  } else {
+    // 非常高的起始音，通常是 Soprano
+    return 'Soprano';
+  }
 }
 
 /**

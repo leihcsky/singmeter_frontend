@@ -210,7 +210,63 @@ const TestArea = ({
           <div className="bg-white rounded-xl p-6">
             {!isRecording && countdown === 0 ? (
               // Ready to start
-              <div className="text-center">
+              <div className="text-center space-y-4">
+                {/* Instructions */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 mb-3">
+                  <div className="flex items-center justify-center space-x-2 mb-2">
+                    <span className="text-2xl">🎵</span>
+                    <h4 className="font-semibold text-gray-800">
+                      {noteType === 'lowest' ? 'How to Test Your Lowest Note' : 'How to Test Your Highest Note'}
+                    </h4>
+                  </div>
+                  <div className="text-sm text-gray-700 space-y-2 text-left max-w-md mx-auto">
+                    {noteType === 'lowest' ? (
+                      <>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-blue-600 font-bold">1.</span>
+                          <span>Click <strong>"Start Test"</strong> below</span>
+                        </div>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-blue-600 font-bold">2.</span>
+                          <span>Sing a long, steady <strong>"Ah"</strong> or <strong>"Oh"</strong> sound</span>
+                        </div>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-blue-600 font-bold">3.</span>
+                          <span>Start from your <strong>comfortable low range</strong> and go <strong>lower</strong> if possible</span>
+                        </div>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-blue-600 font-bold">4.</span>
+                          <span>Hold the note steady for <strong>3 seconds</strong> - don't strain!</span>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-purple-600 font-bold">1.</span>
+                          <span>Click <strong>"Start Test"</strong> below</span>
+                        </div>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-purple-600 font-bold">2.</span>
+                          <span>Sing a long, steady <strong>"Ah"</strong> or <strong>"Ee"</strong> sound</span>
+                        </div>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-purple-600 font-bold">3.</span>
+                          <span>Start from your <strong>comfortable high range</strong> and go <strong>higher</strong> if possible</span>
+                        </div>
+                        <div className="flex items-start space-x-2">
+                          <span className="text-purple-600 font-bold">4.</span>
+                          <span>Hold the note steady for <strong>3 seconds</strong> - don't force it!</span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-gray-200">
+                    <p className="text-xs text-gray-600">
+                      💡 <strong>Tip:</strong> Use a comfortable, clear tone. The system will automatically detect your {noteType === 'lowest' ? 'lowest' : 'highest'} stable note.
+                    </p>
+                  </div>
+                </div>
+                
                 <button
                   onClick={onStart}
                   className={`px-8 py-3 bg-gradient-to-r ${gradient} text-white font-bold rounded-xl shadow-md hover:shadow-lg transition`}
@@ -247,7 +303,17 @@ const TestArea = ({
                       currentNote={currentNote}
                       isRecording={isRecording}
                     />
-                    <div className="mt-3 space-y-2">
+                    <div className="mt-4 space-y-2">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                        <div className="text-sm font-semibold text-blue-900 mb-1">
+                          {noteType === 'lowest' ? '🔽 Sing Your Lowest Note' : '🔼 Sing Your Highest Note'}
+                        </div>
+                        <div className="text-xs text-blue-700">
+                          {noteType === 'lowest' 
+                            ? 'Sing a steady "Ah" or "Oh" sound. Start comfortable and go lower if you can.'
+                            : 'Sing a steady "Ah" or "Ee" sound. Start comfortable and go higher if you can.'}
+                        </div>
+                      </div>
                       <div className="text-sm text-gray-600">
                         🎵 Hold steady pitch for 3+ seconds
                       </div>

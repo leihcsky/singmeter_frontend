@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PianoKeyboard from './PianoKeyboard';
 
-const ResultScreen = ({ result, onReset }) => {
+const ResultScreen = ({ result, onReset, warnings = [] }) => {
   const [showShareMenu, setShowShareMenu] = useState(false);
   const shareMenuRef = useRef(null);
 
@@ -110,8 +110,9 @@ const ResultScreen = ({ result, onReset }) => {
   };
 
   const info = voiceTypeInfo[result.voiceType] || voiceTypeInfo['Baritone'];
-  const octaves = parseFloat(result.octaves);
-  const isUnusualRange = octaves > 5;
+  // Ensure octaves is a number for calculations (handle both string and number types)
+  const octaves = typeof result.octaves === 'number' ? result.octaves : parseFloat(result.octaves);
+  const isUnusualRange = isFinite(octaves) && octaves > 5;
 
   // Famous singers with detailed vocal ranges
   const famousSingers = {
@@ -134,27 +135,58 @@ const ResultScreen = ({ result, onReset }) => {
     'Celine Dion': { range: 'B2-C6', octaves: 3.3, type: 'Mezzo-Soprano', genre: 'Pop', overlap: 0 },
   };
 
-  // Helper function to convert note to semitone number (C4 = 60)
+  // Helper function to convert note to semitone number (MIDI standard: C4 = 60, A4 = 69)
+  // Formula: MIDI = (octave + 1) * 12 + noteIndex
+  // This matches the standard MIDI note numbering system
   const noteToSemitone = (note) => {
     const noteMap = { 'C': 0, 'C#': 1, 'D': 2, 'D#': 3, 'E': 4, 'F': 5, 'F#': 6, 'G': 7, 'G#': 8, 'A': 9, 'A#': 10, 'B': 11 };
     const match = note.match(/([A-G]#?)(\d+)/);
-    if (!match) return 0;
+    if (!match) {
+      console.warn('Invalid note format:', note);
+      return 0;
+    }
     const [, noteName, octave] = match;
-    return noteMap[noteName] + (parseInt(octave) + 1) * 12;
+    const noteIndex = noteMap[noteName];
+    if (noteIndex === undefined) {
+      console.warn('Invalid note name:', noteName);
+      return 0;
+    }
+    const midiNumber = (parseInt(octave) + 1) * 12 + noteIndex;
+    return midiNumber;
   };
 
   // Calculate overlap between user range and famous singer range
+  // Returns percentage of user's range that overlaps with singer's range
   const calculateOverlap = (singerRange) => {
-    const [singerLow, singerHigh] = singerRange.split('-').map(noteToSemitone);
-    const userLow = noteToSemitone(result.lowestNote);
-    const userHigh = noteToSemitone(result.highestNote);
-    
-    const overlapStart = Math.max(singerLow, userLow);
-    const overlapEnd = Math.min(singerHigh, userHigh);
-    const overlap = Math.max(0, overlapEnd - overlapStart);
-    const userRange = userHigh - userLow;
-    
-    return userRange > 0 ? Math.round((overlap / userRange) * 100) : 0;
+    try {
+      const [singerLow, singerHigh] = singerRange.split('-').map(noteToSemitone);
+      const userLow = noteToSemitone(result.lowestNote);
+      const userHigh = noteToSemitone(result.highestNote);
+      
+      // Validate inputs
+      if (!singerLow || !singerHigh || !userLow || !userHigh) {
+        console.warn('Invalid range for overlap calculation:', { singerRange, userRange: `${result.lowestNote}-${result.highestNote}` });
+        return 0;
+      }
+      
+      // Ensure valid ranges
+      if (singerHigh <= singerLow || userHigh <= userLow) {
+        console.warn('Invalid range order for overlap calculation');
+        return 0;
+      }
+      
+      // Calculate overlap
+      const overlapStart = Math.max(singerLow, userLow);
+      const overlapEnd = Math.min(singerHigh, userHigh);
+      const overlap = Math.max(0, overlapEnd - overlapStart);
+      const userRange = userHigh - userLow;
+      
+      // Return percentage (0-100)
+      return userRange > 0 ? Math.round((overlap / userRange) * 100) : 0;
+    } catch (error) {
+      console.error('Error calculating overlap:', error);
+      return 0;
+    }
   };
 
   // Find similar singers
@@ -175,7 +207,9 @@ const ResultScreen = ({ result, onReset }) => {
 
   const handleShare = (platform) => {
     // Generate fun, engaging share text based on voice type and range
-    const octaves = parseFloat(result.octaves);
+    // Ensure octaves is a number for comparison
+    const octaves = typeof result.octaves === 'number' ? result.octaves : parseFloat(result.octaves);
+    const octavesDisplay = octaves.toFixed(1);
     const voiceEmoji = info.icon;
 
     // Create personalized, fun messages
@@ -193,13 +227,13 @@ const ResultScreen = ({ result, onReset }) => {
 
     shareText = openings[result.voiceType] || `${voiceEmoji} My vocal range: ${result.lowestNote} - ${result.highestNote}`;
 
-    // Add range commentary
+    // Add range commentary (use validated octaves value)
     if (octaves >= 4) {
-      shareText += ` (${result.octaves} octaves - that's HUGE! 🤯)`;
+      shareText += ` (${octavesDisplay} octaves - that's HUGE! 🤯)`;
     } else if (octaves >= 3) {
-      shareText += ` (${result.octaves} octaves - pretty impressive! 🎉)`;
+      shareText += ` (${octavesDisplay} octaves - pretty impressive! 🎉)`;
     } else {
-      shareText += ` (${result.octaves} octaves)`;
+      shareText += ` (${octavesDisplay} octaves)`;
     }
 
     // Add famous comparison
@@ -213,7 +247,8 @@ const ResultScreen = ({ result, onReset }) => {
     switch(platform) {
       case 'twitter':
         // Twitter has character limit, use shorter version
-        const twitterText = `${voiceEmoji} Just tested my vocal range: ${result.lowestNote}-${result.highestNote} (${result.octaves} octaves)! I'm a ${result.voiceType} like ${info.famous.split(',')[0]}! 🎤 Test yours:`;
+        const octavesDisplay = (typeof result.octaves === 'number' ? result.octaves : parseFloat(result.octaves)).toFixed(1);
+        const twitterText = `${voiceEmoji} Just tested my vocal range: ${result.lowestNote}-${result.highestNote} (${octavesDisplay} octaves)! I'm a ${result.voiceType} like ${info.famous.split(',')[0]}! 🎤 Test yours:`;
         window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}&url=${url}`, '_blank');
         break;
       case 'facebook':
@@ -414,6 +449,50 @@ const ResultScreen = ({ result, onReset }) => {
               </div>
             </div>
 
+            {/* Validation Warnings/Info */}
+            {warnings && warnings.length > 0 && (
+              <div className="mt-6 sm:mt-8 space-y-3">
+                {warnings.map((warning, index) => (
+                  <div
+                    key={index}
+                    className={`rounded-xl p-4 sm:p-5 border-2 ${
+                      warning.type === 'error'
+                        ? 'bg-red-50 border-red-200'
+                        : warning.type === 'warning'
+                        ? 'bg-yellow-50 border-yellow-200'
+                        : 'bg-blue-50 border-blue-200'
+                    }`}
+                  >
+                    <div className="flex items-start space-x-3">
+                      <span className="text-2xl flex-shrink-0">
+                        {warning.type === 'error' ? '⚠️' : warning.type === 'warning' ? '⚡' : 'ℹ️'}
+                      </span>
+                      <div className="flex-1">
+                        <h4 className={`font-semibold mb-1 ${
+                          warning.type === 'error'
+                            ? 'text-red-800'
+                            : warning.type === 'warning'
+                            ? 'text-yellow-800'
+                            : 'text-blue-800'
+                        }`}>
+                          {warning.type === 'error' ? 'Attention Required' : warning.type === 'warning' ? 'Note' : 'Information'}
+                        </h4>
+                        <p className={`text-sm ${
+                          warning.type === 'error'
+                            ? 'text-red-700'
+                            : warning.type === 'warning'
+                            ? 'text-yellow-700'
+                            : 'text-blue-700'
+                        }`}>
+                          {warning.message}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Understanding Your Result */}
             <div className="mt-6 sm:mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 border border-blue-100">
               <div className="flex items-start space-x-3">
@@ -423,14 +502,14 @@ const ResultScreen = ({ result, onReset }) => {
                   <ul className="space-y-2 text-xs sm:text-sm text-gray-700">
                     <li className="flex items-start">
                       <span className="mr-2 text-indigo-500">•</span>
-                      <span>Your range spans <strong>{result.semitones} keys</strong> on a piano keyboard</span>
+                      <span>Your range spans <strong>{typeof result.semitones === 'number' ? result.semitones : Math.round(parseFloat(result.semitones))} keys</strong> on a piano keyboard</span>
                     </li>
                     <li className="flex items-start">
                       <span className="mr-2 text-indigo-500">•</span>
                       <span>
-                        Middle C (C4) is {
-                          result.lowestFrequency > 262 ? 'below' :
-                          result.highestFrequency < 262 ? 'above' :
+                        Middle C (C4, 261.63 Hz) is {
+                          (typeof result.lowestFrequency === 'number' ? result.lowestFrequency : parseFloat(result.lowestFrequency)) > 261.63 ? 'below' :
+                          (typeof result.highestFrequency === 'number' ? result.highestFrequency : parseFloat(result.highestFrequency)) < 261.63 ? 'above' :
                           'within'
                         } your range
                       </span>
