@@ -17,7 +17,7 @@ const VocalRangeTestPage = () => {
 
   // Set document title and meta tags
   useEffect(() => {
-    document.title = 'Free Vocal Range Test - Find Your Voice Type in 3 Minutes | SingMeter';
+    document.title = 'Free Vocal Range Test – Find Your Highest & Lowest Notes Online';
 
     const setMetaTag = (name, content, isProperty = false) => {
       const attribute = isProperty ? 'property' : 'name';
@@ -40,7 +40,7 @@ const VocalRangeTestPage = () => {
       element.setAttribute('href', href);
     };
 
-    setMetaTag('description', 'Test your vocal range online for free. Discover your voice type (Soprano, Alto, Tenor, Bass) and get personalized song recommendations. No signup required, works in your browser.');
+    setMetaTag('description', 'Test your vocal range using your microphone. Find your lowest and highest notes instantly. Discover your voice type. Free, online, no signup.');
     setMetaTag('keywords', 'vocal range test, voice type test, singing range test, vocal range finder, voice classification, soprano alto tenor bass, vocal assessment, singing test');
     setLinkTag('canonical', 'https://www.singmeter.com/vocal-range-test');
 
