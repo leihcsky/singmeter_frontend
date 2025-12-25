@@ -3,6 +3,7 @@
  */
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import ContentSection from '../components/ContentSection';
 import { AudioPitchDetector, frequencyToNote } from '../utils/pitchDetector';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
@@ -759,40 +760,94 @@ const PitchDetectorPage = () => {
 	          </div>
 	        </div>
 
-	        {/* About SingMeter Pitch Detector & Limitations */}
-	        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border border-gray-100">
-	          <h2 className="text-2xl font-bold text-gray-900 mb-4">About This Pitch Detector</h2>
-	          <p className="text-gray-600 text-sm leading-relaxed mb-4">
-	            SingMeter's pitch detector is a practice and learning tool. It gives you real-time visual feedback so you can train your
-	            ear and voice, but it is not a medical device and does not replace a qualified teacher.
-	          </p>
-	          <div className="grid sm:grid-cols-2 gap-6 text-sm text-gray-600">
-	            <div>
-	              <h3 className="font-semibold text-gray-900 mb-2">What this tool is great for</h3>
-	              <ul className="list-disc list-inside space-y-1">
-	                <li>Seeing whether you are sharp, flat, or in tune in real time.</li>
-	                <li>Practicing scales, intervals, and songs with objective feedback.</li>
-	                <li>Building awareness of how your technique affects pitch stability.</li>
-	              </ul>
-	            </div>
-	            <div>
-	              <h3 className="font-semibold text-gray-900 mb-2">Important limitations</h3>
-	              <ul className="list-disc list-inside space-y-1">
-	                <li>Accuracy depends on your microphone, device, and background noise.</li>
-	                <li>It cannot diagnose vocal health issues or hearing problems.</li>
-	                <li>Avoid over-fixing tiny deviations — musical expression matters too.</li>
-	              </ul>
-	            </div>
-	          </div>
-	          <p className="text-gray-600 text-xs mt-4 leading-relaxed">
-	            If you experience pain, strain, or persistent hoarseness, stop practicing and seek advice from a voice specialist or
-	            medical professional. To learn more about SingMeter or get in touch, visit our
-	            <Link to="/about" className="text-indigo-600 hover:text-indigo-700 font-semibold ml-1">About</Link>
-	            <span> page or </span>
-	            <Link to="/contact" className="text-indigo-600 hover:text-indigo-700 font-semibold">Contact</Link>
-	            <span> page.</span>
-	          </p>
-	        </div>
+	        {/* Educational Content - Visible for AdSense and Users */}
+        <div className="space-y-16 mb-16">
+          <ContentSection title="About This Pitch Detector">
+            <p>
+              SingMeter's <strong>Pitch Detector</strong> is a real-time vocal analysis tool designed to help singers train their ear 
+              and improve their pitch accuracy. By visualizing the exact frequency of your voice, you can see instantly whether you are 
+              singing in tune, sharp (too high), or flat (too low).
+            </p>
+            <p>
+              Unlike a simple guitar tuner, this tool is optimized for the human voice. It detects the fundamental frequency of your 
+              singing and maps it to the closest musical note, showing you the deviation in "cents."
+            </p>
+          </ContentSection>
+
+          <ContentSection title="How to Use This Tool">
+            <ol className="list-decimal pl-5 space-y-4">
+              <li>
+                <strong>Start the Detector:</strong> Click the microphone button to allow access. We process audio directly in your browser, so your voice is never recorded or sent to a server.
+              </li>
+              <li>
+                <strong>Sing a Steady Note:</strong> Hold a comfortable note for a few seconds. Watch the needle move.
+              </li>
+              <li>
+                <strong>Check Your Tuning:</strong>
+                <ul className="list-disc pl-5 mt-2 space-y-1">
+                  <li><strong>Green (Center):</strong> You are in tune (within 10 cents).</li>
+                  <li><strong>Yellow/Red (Right):</strong> You are <em>sharp</em> (too high). Relax your throat and lower the pitch slightly.</li>
+                  <li><strong>Yellow/Red (Left):</strong> You are <em>flat</em> (too low). Support the note with more breath and think "up."</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Practice Scales:</strong> Once you can hold a single note, try singing a simple scale (Do-Re-Mi) and see if you can hit each step accurately.
+              </li>
+            </ol>
+          </ContentSection>
+
+          <ContentSection title="Understanding Pitch & Cents">
+            <p>
+              In music, the distance between two semitones (like C and C#) is divided into 100 smaller units called <strong>cents</strong>.
+            </p>
+            <ul className="list-disc pl-5 space-y-2">
+              <li><strong>0 cents:</strong> Perfect pitch accuracy.</li>
+              <li><strong>±10 cents:</strong> Generally considered "in tune" to the human ear.</li>
+              <li><strong>±25 cents:</strong> Noticeably out of tune for trained listeners.</li>
+              <li><strong>±50 cents:</strong> You are halfway to the next note (quarter tone).</li>
+            </ul>
+            <p className="mt-4">
+              Most professional singers naturally fluctuate within ±10-15 cents due to vibrato and expression. The goal isn't to be robotic, but to center your pitch so it feels stable.
+            </p>
+          </ContentSection>
+
+          <ContentSection title="Vocal Practice Routines">
+            <div className="grid md:grid-cols-2 gap-6 not-prose">
+              <div className="bg-white p-6 rounded-xl border border-indigo-100 shadow-sm">
+                <h4 className="font-bold text-indigo-900 mb-2">1. The "Siren" Exercise</h4>
+                <p className="text-sm text-gray-600">
+                  Slide your voice from your lowest comfortable note to your highest and back down, like a siren. Watch the pitch detector track your movement. 
+                  Aim for a smooth line without breaks or jumps.
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-purple-100 shadow-sm">
+                <h4 className="font-bold text-purple-900 mb-2">2. Long Tones</h4>
+                <p className="text-sm text-gray-600">
+                  Pick a comfortable note (like C4 or G3) and hold it for as long as you can on a single breath. Try to keep the needle in the green zone the entire time.
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-pink-100 shadow-sm">
+                <h4 className="font-bold text-pink-900 mb-2">3. Interval Jumps</h4>
+                <p className="text-sm text-gray-600">
+                  Sing a root note, then jump up a 5th (e.g., C to G) and hold it. Check if you landed directly on the note or if you had to "scoop" up to it.
+                </p>
+              </div>
+              <div className="bg-white p-6 rounded-xl border border-blue-100 shadow-sm">
+                <h4 className="font-bold text-blue-900 mb-2">4. Steps vs. Skips</h4>
+                <p className="text-sm text-gray-600">
+                  Practice moving by half-steps (chromatic scale) versus whole steps. This trains your fine motor control.
+                </p>
+              </div>
+            </div>
+          </ContentSection>
+
+          <ContentSection title="Limitations & Disclaimer">
+             <p className="text-sm text-gray-500">
+                While this tool is highly accurate, it relies on your device's microphone. Background noise, poor microphone quality, or echo can affect results. 
+                Also, remember that this is an educational tool, not a medical device. If you feel pain or strain while singing, stop immediately and consult a professional.
+             </p>
+          </ContentSection>
+        </div>
 
 	        {/* CTA */}
 	        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-center text-white mb-8">

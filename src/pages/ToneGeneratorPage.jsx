@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import ContentSection from '../components/ContentSection';
 
 // Musical note frequencies (A4 = 440 Hz)
 const NOTE_FREQUENCIES = {
@@ -569,6 +570,29 @@ const ToneGeneratorPage = () => {
               </div>
             </div>
           </div>
+
+          <ContentSection title="The Physics of Sound" className="mb-8">
+            <p>
+              Understanding the physics behind sound can help you use the Tone Generator more effectively. 
+              Sound is created by vibrations that travel through the air as waves.
+            </p>
+            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Frequency and Pitch</h3>
+            <p>
+              <strong>Frequency</strong> refers to how fast the sound wave vibrates, measured in Hertz (Hz). One Hz equals one vibration per second. 
+              <strong>Pitch</strong> is how our ears perceive frequency. Higher frequency = higher pitch. 
+              Doubling a frequency (e.g., 220 Hz to 440 Hz) raises the pitch by exactly one octave. This mathematical relationship is why octaves sound so consonant.
+            </p>
+            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Waveforms and Timbre</h3>
+            <p>
+              The <strong>waveform</strong> determines the "color" or <strong>timbre</strong> of the sound.
+            </p>
+            <ul className="list-disc list-inside text-gray-600 ml-4 space-y-2">
+              <li><strong>Sine Wave:</strong> The fundamental building block of sound. It has no overtones, resulting in a pure, flute-like sound.</li>
+              <li><strong>Square Wave:</strong> Contains the fundamental frequency plus odd harmonics. It sounds hollow and reedy, like a clarinet or old video game sound.</li>
+              <li><strong>Sawtooth Wave:</strong> Contains both even and odd harmonics. It sounds buzzy and bright, similar to string instruments or brass.</li>
+              <li><strong>Triangle Wave:</strong> Like a square wave but with softer harmonics. It sounds like a muted flute.</li>
+            </ul>
+          </ContentSection>
 
           {/* FAQ */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">

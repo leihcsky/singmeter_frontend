@@ -4,6 +4,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import ContentSection from '../components/ContentSection';
 
 const ResourcesPage = () => {
   useEffect(() => {

@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import ContentSection from '../components/ContentSection';
 
 // BPM presets
 const BPM_PRESETS = [
@@ -712,6 +713,31 @@ const MetronomePage = () => {
               </div>
             </div>
           </div>
+
+          <ContentSection title="Advanced Rhythm Training" className="mb-8">
+            <p>
+              Once you have mastered basic time keeping, a metronome becomes an invaluable tool for advanced rhythm training. 
+              Developing a sophisticated sense of rhythm separates good musicians from great ones.
+            </p>
+            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Polyrhythms</h3>
+            <p>
+              Polyrhythms occur when two different rhythmic pulses happen simultaneously. A common example is "2 against 3" (two beats in the same time as three beats). 
+              You can practice this with our metronome by setting it to a slow tempo and tapping "1, 2, 3" with one hand while tapping "1, 2" with the other, 
+              ensuring the "1" always aligns with the metronome click.
+            </p>
+            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Syncopation Practice</h3>
+            <p>
+              Syncopation involves stressing the weak beats (off-beats) instead of the strong beats. 
+              Set the metronome to click on the "and" of the beat (1 <strong>&</strong> 2 <strong>&</strong> 3 <strong>&</strong> 4 <strong>&</strong>) 
+              instead of the downbeat. This forces you to internalize the downbeat yourself and improves your rhythmic independence.
+            </p>
+            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Tempo Modulation</h3>
+            <p>
+              Practice changing between different note values while keeping the beat steady. Start with quarter notes (1 note per click), 
+              switch to eighth notes (2 notes per click), then triplets (3 notes per click), and sixteenth notes (4 notes per click). 
+              This "gear shifting" exercise builds immense rhythmic control.
+            </p>
+          </ContentSection>
 
           {/* FAQ */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">

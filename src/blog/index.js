@@ -15,6 +15,8 @@ import FamousSingersVocalRangesArticle, { meta as famousSingersVocalRangesMeta }
 import BeltHighNotesSafelyArticle, { meta as beltHighNotesSafelyMeta } from './articles/BeltHighNotesSafelyArticle';
 import MixedVoiceVsHeadVoiceArticle, { meta as mixedVoiceVsHeadVoiceMeta } from './articles/MixedVoiceVsHeadVoiceArticle';
 import HighNotesWarmupRoutineArticle, { meta as highNotesWarmupRoutineMeta } from './articles/HighNotesWarmupRoutineArticle';
+import BreathingAndPostureArticle, { meta as breathingAndPostureMeta } from './articles/BreathingAndPostureArticle';
+import VocalHealthArticle, { meta as vocalHealthMeta } from './articles/VocalHealthArticle';
 
 export const blogIndex = [
 	  { ...improveSingingPitchMeta, component: ImproveSingingPitchArticle },
@@ -34,5 +36,7 @@ export const blogIndex = [
 		  { ...beltHighNotesSafelyMeta, component: BeltHighNotesSafelyArticle },
 		  { ...mixedVoiceVsHeadVoiceMeta, component: MixedVoiceVsHeadVoiceArticle },
 		  { ...highNotesWarmupRoutineMeta, component: HighNotesWarmupRoutineArticle },
+      { ...breathingAndPostureMeta, component: BreathingAndPostureArticle },
+      { ...vocalHealthMeta, component: VocalHealthArticle },
 	];
 

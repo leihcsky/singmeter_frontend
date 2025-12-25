@@ -54,7 +54,7 @@ const TutorialsPage = () => {
       level: 'Beginner',
       prerequisites: [],
       nextSteps: ['posture-for-singing', 'vocal-warm-up-basics'],
-      link: '/blog/how-to-test-vocal-range'
+      link: '/blog/breathing-and-posture-for-singers'
     },
     {
       id: 'posture-for-singing',
@@ -65,7 +65,7 @@ const TutorialsPage = () => {
       level: 'Beginner',
       prerequisites: ['breathing-basics'],
       nextSteps: ['vocal-warm-up-basics', 'finding-your-range'],
-      link: '/blog/how-to-test-vocal-range'
+      link: '/blog/breathing-and-posture-for-singers'
     },
     {
       id: 'vocal-warm-up-basics',
@@ -154,7 +154,7 @@ const TutorialsPage = () => {
       detailedDescription: 'Belting is a powerful singing technique that allows you to sing high notes with intensity and volume, commonly used in musical theater and contemporary styles. This tutorial teaches you how to belt safely without straining your voice. You\'ll learn the difference between healthy belting and unhealthy shouting, proper breath support for belting, resonance techniques that amplify your sound, and how to avoid common injuries. The guide includes exercises to develop your belt range, techniques for transitioning into and out of belt, and how to maintain vocal health while belting. Essential for singers who want to perform contemporary musical theater, pop, or rock styles that require powerful high notes.',
       duration: '28 min',
       level: 'Intermediate',
-      prerequisites: ['head-voice-technique', 'vocal-health'],
+      prerequisites: ['head-voice-technique'],
       nextSteps: ['mixed-voice-mastery', 'vocal-runs'],
       link: '/blog/belt-high-notes-safely'
     },

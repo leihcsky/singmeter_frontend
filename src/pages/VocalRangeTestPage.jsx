@@ -3,6 +3,7 @@
  */
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import ContentSection from '../components/ContentSection';
 import { AudioPitchDetector, frequencyToNote, getVoiceType } from '../utils/pitchDetector';
 import UnifiedTestScreen from '../components/UnifiedTestScreen';
 import ResultScreen from '../components/ResultScreen';
@@ -1064,6 +1065,95 @@ const VocalRangeTestPage = () => {
                   </div>
                 </div>
               </section>
+
+              {/* Comprehensive Educational Content - Visible for AdSense and Users */}
+              <div className="space-y-16 pb-16">
+                <ContentSection title="Understanding Vocal Range & Voice Types">
+                  <p>
+                    Your <strong>vocal range</strong> is the span of notes you can sing comfortably and clearly, from the lowest to the highest. 
+                    Unlike a simple "high score," a healthy vocal range focuses on <strong>usable notes</strong>—those you can sustain without straining or cracking.
+                  </p>
+                  <p>
+                    Knowing your range is the first step to classifying your <strong>voice type</strong>. In classical music and choral singing, 
+                    voice types help singers choose roles and parts that fit their instrument. In contemporary music, knowing your type helps you 
+                    pick songs that highlight your strengths rather than your weaknesses.
+                  </p>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">The 6 Main Voice Types</h3>
+                  <div className="grid md:grid-cols-2 gap-6 not-prose">
+                    <div className="bg-white p-6 rounded-xl border border-indigo-100 shadow-sm">
+                      <h4 className="font-bold text-indigo-900 mb-2">Soprano (High Female)</h4>
+                      <p className="text-sm text-gray-600 mb-2">Typical Range: C4 – C6</p>
+                      <p className="text-sm text-gray-500">The highest female voice type. Sopranos often carry the melody and can hit bright, soaring high notes.</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-xl border border-purple-100 shadow-sm">
+                      <h4 className="font-bold text-purple-900 mb-2">Mezzo-Soprano (Mid Female)</h4>
+                      <p className="text-sm text-gray-600 mb-2">Typical Range: A3 – A5</p>
+                      <p className="text-sm text-gray-500">The most common female voice. Darker and richer than a soprano, but higher than an alto.</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-xl border border-pink-100 shadow-sm">
+                      <h4 className="font-bold text-pink-900 mb-2">Alto / Contralto (Low Female)</h4>
+                      <p className="text-sm text-gray-600 mb-2">Typical Range: F3 – F5</p>
+                      <p className="text-sm text-gray-500">The lowest female voice type. Known for a deep, warm, and resonant timbre.</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-xl border border-indigo-100 shadow-sm">
+                      <h4 className="font-bold text-indigo-900 mb-2">Tenor (High Male)</h4>
+                      <p className="text-sm text-gray-600 mb-2">Typical Range: C3 – C5</p>
+                      <p className="text-sm text-gray-500">The highest common male voice. Tenors are often the lead singers in rock and pop bands.</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-xl border border-blue-100 shadow-sm">
+                      <h4 className="font-bold text-blue-900 mb-2">Baritone (Mid Male)</h4>
+                      <p className="text-sm text-gray-600 mb-2">Typical Range: A2 – A4</p>
+                      <p className="text-sm text-gray-500">The most common male voice. Situated between bass and tenor, with a versatile, warm sound.</p>
+                    </div>
+                    <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                      <h4 className="font-bold text-gray-900 mb-2">Bass (Low Male)</h4>
+                      <p className="text-sm text-gray-600 mb-2">Typical Range: E2 – E4</p>
+                      <p className="text-sm text-gray-500">The lowest male voice type. Famous for deep, rumbling low notes that provide harmonic foundation.</p>
+                    </div>
+                  </div>
+                </ContentSection>
+
+                <ContentSection title="Factors That Affect Your Vocal Range">
+                  <p>
+                    Your vocal range isn't static. It can change day-to-day and over the course of your life. Several factors influence how high or low you can sing:
+                  </p>
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong>Age:</strong> Voices tend to drop in pitch during puberty and may lower further or lose high range with advanced age.</li>
+                    <li><strong>Training:</strong> Proper vocal technique can expand your usable range by teaching you how to access your "head voice" or "mixed voice" safely.</li>
+                    <li><strong>Health:</strong> Fatigue, hydration, allergies, and vocal fold health directly impact your range. A tired voice often loses its highest and lowest notes.</li>
+                    <li><strong>Physical Build:</strong> Generally, longer and thicker vocal folds produce lower pitches, while shorter and thinner folds produce higher pitches.</li>
+                  </ul>
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
+                    <p className="text-sm text-yellow-800">
+                      <strong>Note:</strong> Never force your voice to reach notes that feel painful or extremely tight. This test is about finding your <em>comfortable</em> range, not your absolute limits.
+                    </p>
+                  </div>
+                </ContentSection>
+
+                <ContentSection title="How to Use This Vocal Range Test">
+                  <p>
+                    The SingMeter Vocal Range Test is designed to be a quick, accurate, and safe way to assess your voice.
+                  </p>
+                  <ol className="list-decimal pl-5 space-y-4 mt-4">
+                    <li>
+                      <strong>Warm Up First:</strong> Before starting, hum gently or do some lip trills. A cold voice won't give you accurate results and you risk strain.
+                    </li>
+                    <li>
+                      <strong>Find Your Lowest Note:</strong> Start singing a comfortable mid-range note and descend the scale (do-ti-la-so...) until the notes become breathy or "fry." Your lowest <em>usable</em> note is the last one that still has a solid tone.
+                    </li>
+                    <li>
+                      <strong>Find Your Highest Note:</strong> Start from the middle and ascend. Stop when you feel your throat closing up or if you have to scream. Your highest note should still be controlled.
+                    </li>
+                    <li>
+                      <strong>Analyze:</strong> Once you've inputted both, our algorithm calculates your range in octaves and semitones and matches you to the closest standard voice type.
+                    </li>
+                  </ol>
+                  <p className="mt-6">
+                    Ready to find out? Scroll up and start the test!
+                  </p>
+                </ContentSection>
+              </div>
 
               {/* FAQ Section */}
               <section className="mb-16">

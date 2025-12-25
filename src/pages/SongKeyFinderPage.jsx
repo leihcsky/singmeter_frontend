@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import ContentSection from '../components/ContentSection';
 import { songKeysDatabase, transposeKey, getSemitoneDifference } from '../data/songKeys';
 import { loadAudioFile, detectKeyFromAudio, detectBPMFromAudio } from '../utils/audioKeyDetector';
 
@@ -872,6 +873,78 @@ const SongKeyFinderPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Manual Key Finding Section */}
+        <section className="bg-white rounded-2xl shadow-md p-6 sm:p-8 mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">How to Find a Song's Key Manually</h2>
+          <p className="text-gray-600 leading-relaxed mb-6">
+            While digital tools like our Song Key Finder are fast and accurate, learning to identify a key by ear is a valuable skill for any musician. 
+            Here is a simple method to try:
+          </p>
+          
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">1. Listen for the "Home" Note (Tonic)</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Every song has a note that feels like "home" or the point of resolution. This is usually the note the song ends on. 
+                Hum along with the song and try to find the one note that feels most stable. That note is likely the key's name (e.g., C, G, A).
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">2. Determine Major vs. Minor</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Once you have the note, listen to the song's emotional character. 
+                Does it sound happy, bright, or triumphant? It's likely <strong>Major</strong>. 
+                Does it sound sad, dark, or serious? It's likely <strong>Minor</strong>.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">3. Check the Key Signature (If you have sheet music)</h3>
+              <p className="text-gray-600 leading-relaxed">
+                If you can read music, look at the beginning of the staff. 
+                The number of sharps (#) or flats (b) tells you the key. 
+                For example, no sharps or flats is C Major or A Minor. One sharp is G Major or E Minor.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <ContentSection title="The Circle of Fifths: A Singer's Guide" className="mb-8">
+          <p>
+            The <strong>Circle of Fifths</strong> is a fundamental concept in music theory that shows the relationship between the 12 tones of the chromatic scale. 
+            For singers, it's a secret weapon for understanding keys and transposition.
+          </p>
+          <div className="flex flex-col md:flex-row gap-6 items-center mt-6">
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Why It Matters</h3>
+              <p className="text-gray-600 mb-4">
+                Keys that are close to each other on the circle (like C Major and G Major) share most of the same notes, making smooth transitions easy. 
+                Keys opposite each other (like C Major and F# Major) share very few notes.
+              </p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Relative Minors</h3>
+              <p className="text-gray-600">
+                Every major key has a "relative minor" key that uses the exact same notes. 
+                For example, C Major (no sharps/flats) shares its key signature with A Minor. 
+                Knowing this helps you understand why a song might feel "sad" even if it uses the same notes as a "happy" song.
+              </p>
+            </div>
+            <div className="flex-1 bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+              <h4 className="font-bold text-indigo-900 mb-3">Key Relationships</h4>
+              <ul className="space-y-2 text-sm text-indigo-800">
+                <li><strong>C Major</strong> (0 sharps/flats) ↔ <strong>A Minor</strong></li>
+                <li><strong>G Major</strong> (1 sharp) ↔ <strong>E Minor</strong></li>
+                <li><strong>D Major</strong> (2 sharps) ↔ <strong>B Minor</strong></li>
+                <li><strong>F Major</strong> (1 flat) ↔ <strong>D Minor</strong></li>
+                <li><strong>Bb Major</strong> (2 flats) ↔ <strong>G Minor</strong></li>
+              </ul>
+              <p className="mt-4 text-xs text-indigo-600 italic">
+                *Moving clockwise adds a sharp (#), moving counter-clockwise adds a flat (b).
+              </p>
+            </div>
+          </div>
+        </ContentSection>
 
         {/* FAQ Section */}
         <section className="bg-white rounded-2xl shadow-md p-6 sm:p-8 mb-8">
