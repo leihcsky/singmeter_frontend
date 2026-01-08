@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getActiveTools, getComingSoonTools } from '../config/tools';
 import Header from '../components/Header';
+import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
 
 const HomePage = () => {
   // Get tools from centralized config
@@ -241,6 +242,7 @@ const HomePage = () => {
             <Link
               key={tool.id}
               to={tool.path}
+              onClick={() => trackEvent(GA_ACTIONS.CLICK, GA_CATEGORIES.NAVIGATION, `Tool Card - ${tool.name}`)}
               className="group bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-indigo-200"
             >
               <div className="flex items-start justify-between mb-4">

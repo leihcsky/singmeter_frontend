@@ -8,18 +8,17 @@ import { AudioPitchDetector, frequencyToNote } from '../utils/pitchDetector';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import RealtimePianoKeyboard from '../components/RealtimePianoKeyboard';
+import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
 
 const PitchDetectorPage = () => {
   const [isListening, setIsListening] = useState(false);
   const [currentPitch, setCurrentPitch] = useState(null);
   const [currentNote, setCurrentNote] = useState(null);
-  const [pitchHistory, setPitchHistory] = useState([]);
   const [error, setError] = useState(null);
   const [showMicPermission, setShowMicPermission] = useState(false);
   const [micPermissionError, setMicPermissionError] = useState('permission_denied');
 
   const detectorRef = useRef(null);
-  const historyRef = useRef([]);
 
   // Set document title and meta tags
   useEffect(() => {
@@ -57,6 +56,7 @@ const PitchDetectorPage = () => {
 
   // Start listening
   const handleStartListening = async () => {
+    trackEvent(GA_ACTIONS.START_LISTENING, GA_CATEGORIES.PITCH_DETECTOR, 'Start Listening');
     console.log('🎵 Starting pitch detector...');
     setError(null);
 
@@ -96,7 +96,7 @@ const PitchDetectorPage = () => {
       detectorRef.current = null;
     }
 
-    // Keep currentPitch, currentNote, and pitchHistory to show last result
+    // Keep currentPitch, currentNote to show last result
     // Don't reset them here
   };
 
@@ -128,10 +128,6 @@ const PitchDetectorPage = () => {
           if (now - lastUpdateTime >= updateInterval) {
             setCurrentPitch(pitch);
             setCurrentNote(noteInfo);
-
-            // Add to history (keep last 50 points)
-            historyRef.current = [...historyRef.current, pitch].slice(-50);
-            setPitchHistory(historyRef.current);
 
             lastUpdateTime = now;
           }

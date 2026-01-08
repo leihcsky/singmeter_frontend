@@ -10,6 +10,7 @@ import ResultScreen from '../components/ResultScreen';
 import { getGlobalPianoAudio } from '../utils/pianoAudio';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
 
 const VocalRangeTestPage = () => {
   // Test phase: 'testing' or 'result'
@@ -454,6 +455,7 @@ const VocalRangeTestPage = () => {
 
   // === LOWEST NOTE HANDLERS ===
   const handleLowestStart = async () => {
+    trackEvent(GA_ACTIONS.START_TEST, GA_CATEGORIES.VOCAL_TEST, 'Start Lowest Detection');
     if (lowestInputMode === 'sing') {
       const result = await initializeMicrophone();
       if (!result.success) return;
@@ -505,6 +507,7 @@ const VocalRangeTestPage = () => {
 
   // === HIGHEST NOTE HANDLERS ===
   const handleHighestStart = async () => {
+    trackEvent(GA_ACTIONS.START_TEST, GA_CATEGORIES.VOCAL_TEST, 'Start Highest Detection');
     if (highestInputMode === 'sing') {
       const result = await initializeMicrophone();
       if (!result.success) return;
@@ -556,6 +559,8 @@ const VocalRangeTestPage = () => {
 
   // === ANALYSIS HANDLER ===
   const handleAnalyze = () => {
+    trackEvent(GA_ACTIONS.CLICK, GA_CATEGORIES.VOCAL_TEST, 'Analyze Results');
+
     // Get final pitches from captured data
     const finalLowest = lowestCaptured?.frequency || lowestManualPitch;
     const finalHighest = highestCaptured?.frequency || highestManualPitch;
@@ -604,7 +609,6 @@ const VocalRangeTestPage = () => {
     }
 
     // Calculate range width for validation
-    const rangeWidth = finalHighest - finalLowest;
     const rangeWidthSemitones = 12 * Math.log2(finalHighest / finalLowest);
     const rangeWidthOctaves = rangeWidthSemitones / 12;
 
