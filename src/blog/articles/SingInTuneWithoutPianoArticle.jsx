@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'sing-in-tune-without-piano',
   slug: 'sing-in-tune-without-piano',
   title: 'How to Practice Singing in Tune Without a Piano or Backing Track',
@@ -141,3 +141,5 @@ const SingInTuneWithoutPianoArticle = () => {
 };
 
 export default SingInTuneWithoutPianoArticle;
+
+SingInTuneWithoutPianoArticle.meta = meta;

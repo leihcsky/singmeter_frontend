@@ -144,8 +144,27 @@ const HomePage = () => {
         <Header />
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <div className="text-center mb-12">
+      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 overflow-hidden">
+        <div aria-hidden="true" className="absolute inset-0 z-0 opacity-60 pointer-events-none select-none">
+          <svg viewBox="0 0 1200 600" preserveAspectRatio="none" className="w-full h-full">
+            <defs>
+              <linearGradient id="heroGrad" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.15" />
+                <stop offset="50%" stopColor="#7c3aed" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#ec4899" stopOpacity="0.15" />
+              </linearGradient>
+            </defs>
+            <path d="M0,300 C150,200 300,400 450,300 C600,200 750,400 900,300 C1050,200 1200,300 1200,300 L1200,600 L0,600 Z" fill="url(#heroGrad)" />
+            <path d="M0,250 C150,150 300,350 450,250 C600,150 750,350 900,250 C1050,150 1200,250 1200,250" fill="none" stroke="url(#heroGrad)" strokeWidth="3" opacity="0.6" />
+             <g fill="#6366f1" opacity="0.1">
+              <circle cx="5%" cy="20%" r="20" />
+              <circle cx="15%" cy="15%" r="10" />
+              <circle cx="85%" cy="25%" r="25" />
+              <circle cx="92%" cy="15%" r="15" />
+            </g>
+          </svg>
+        </div>
+        <div className="relative z-10 text-center mb-12">
           <div className="inline-block mb-4">
             <span className="inline-flex items-center px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 text-sm font-medium">
               ✨ Free • Professional • Privacy-First
@@ -164,15 +183,27 @@ const HomePage = () => {
             Whether you're a beginner, hobbyist, or professional - discover your vocal range, improve pitch accuracy, and unlock your singing potential. Professional-grade tools, completely free.
           </p>
 
-          <a
-            href="#tools"
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-          >
-            Explore Tools
-            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              to="/vocal-range-test"
+              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+            >
+              Start Free Vocal Range Test
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+            
+            <a
+              href="#tools"
+              className="inline-flex items-center px-8 py-4 bg-white text-indigo-700 text-lg font-bold rounded-xl shadow-md hover:shadow-lg border-2 border-indigo-100 hover:border-indigo-200 transition-all duration-200"
+            >
+              Explore All Tools
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
         </div>
 
         {/* Stats */}
@@ -632,4 +663,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

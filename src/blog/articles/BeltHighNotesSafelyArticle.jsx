@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'belt-high-notes-safely',
   slug: 'belt-high-notes-safely',
   title: 'How to Belt High Notes Safely (Without Throat Pain)',
@@ -140,4 +140,6 @@ const BeltHighNotesSafelyArticle = () => {
 };
 
 export default BeltHighNotesSafelyArticle;
+
+BeltHighNotesSafelyArticle.meta = meta;
 

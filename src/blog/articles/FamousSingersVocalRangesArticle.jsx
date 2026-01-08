@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'famous-singers-vocal-ranges',
   slug: 'famous-singers-vocal-ranges',
   title: "Famous Singers' Vocal Ranges (And What You Can Learn from Them)",
@@ -129,4 +129,6 @@ const FamousSingersVocalRangesArticle = () => {
 };
 
 export default FamousSingersVocalRangesArticle;
+
+FamousSingersVocalRangesArticle.meta = meta;
 

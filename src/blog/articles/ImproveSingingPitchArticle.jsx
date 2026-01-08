@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
 	id: 'improve-singing-pitch',
 	slug: 'improve-singing-pitch',
 	title: 'How to Improve Your Singing Pitch: Complete Training Guide',
@@ -320,4 +320,6 @@ const ImproveSingingPitchArticle = () => {
 };
 
 export default ImproveSingingPitchArticle;
+
+ImproveSingingPitchArticle.meta = meta;
 

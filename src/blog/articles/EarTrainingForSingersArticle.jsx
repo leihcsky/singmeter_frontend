@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'ear-training-for-singers',
   slug: 'ear-training-for-singers',
   title: 'Ear Training for Singers: How to Hear and Match Pitch',
@@ -165,3 +165,5 @@ const EarTrainingForSingersArticle = () => {
 };
 
 export default EarTrainingForSingersArticle;
+
+EarTrainingForSingersArticle.meta = meta;

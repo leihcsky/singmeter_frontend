@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
 	id: 'songs-for-your-voice-type',
 	slug: 'songs-for-your-voice-type',
 	title: 'Best Songs for Your Voice Type',
@@ -329,4 +329,5 @@ const SongsForYourVoiceTypeArticle = () => {
 };
 
 export default SongsForYourVoiceTypeArticle;
+SongsForYourVoiceTypeArticle.meta = meta;
 

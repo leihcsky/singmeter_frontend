@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'vocal-range-vs-voice-type',
   slug: 'vocal-range-vs-voice-type',
   title: 'Vocal Range vs Voice Type: What Really Matters for Your Singing',
@@ -123,4 +123,5 @@ const VocalRangeVsVoiceTypeArticle = () => {
 };
 
 export default VocalRangeVsVoiceTypeArticle;
+VocalRangeVsVoiceTypeArticle.meta = meta;
 

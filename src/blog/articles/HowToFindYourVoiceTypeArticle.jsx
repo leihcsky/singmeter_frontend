@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'how-to-find-your-voice-type',
   slug: 'how-to-find-your-voice-type',
   title: 'How to Find Your Voice Type (Without a Teacher)',
@@ -145,4 +145,6 @@ const HowToFindYourVoiceTypeArticle = () => {
 };
 
 export default HowToFindYourVoiceTypeArticle;
+
+HowToFindYourVoiceTypeArticle.meta = meta;
 

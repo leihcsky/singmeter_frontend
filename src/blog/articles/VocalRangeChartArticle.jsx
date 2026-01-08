@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'vocal-range-chart',
   slug: 'vocal-range-chart',
   title: 'Vocal Range Chart: Male and Female Voice Types Explained',
@@ -132,4 +132,5 @@ const VocalRangeChartArticle = () => {
 };
 
 export default VocalRangeChartArticle;
+VocalRangeChartArticle.meta = meta;
 

@@ -1,42 +1,41 @@
-import ImproveSingingPitchArticle, { meta as improveSingingPitchMeta } from './articles/ImproveSingingPitchArticle';
-import HowToTestVocalRangeArticle, { meta as howToTestVocalRangeMeta } from './articles/HowToTestVocalRangeArticle';
-import SingingHighNotesTechniquesArticle, { meta as singingHighNotesTechniquesMeta } from './articles/SingingHighNotesTechniquesArticle';
-import SongsForYourVoiceTypeArticle, { meta as songsForYourVoiceTypeMeta } from './articles/SongsForYourVoiceTypeArticle';
-import WhyYouSingFlatArticle, { meta as whyYouSingFlatMeta } from './articles/WhyYouSingFlatArticle';
-import EarTrainingForSingersArticle, { meta as earTrainingForSingersMeta } from './articles/EarTrainingForSingersArticle';
-import SingInTuneWithoutPianoArticle, { meta as singInTuneWithoutPianoMeta } from './articles/SingInTuneWithoutPianoArticle';
-import UsePitchDetectorForTrainingArticle, { meta as usePitchDetectorForTrainingMeta } from './articles/UsePitchDetectorForTrainingArticle';
-import HowToFindYourVoiceTypeArticle, { meta as howToFindYourVoiceTypeMeta } from './articles/HowToFindYourVoiceTypeArticle';
-import VocalRangeChartArticle, { meta as vocalRangeChartMeta } from './articles/VocalRangeChartArticle';
-import VocalRangeVsVoiceTypeArticle, { meta as vocalRangeVsVoiceTypeMeta } from './articles/VocalRangeVsVoiceTypeArticle';
-import CanVocalRangeChangeArticle, { meta as canVocalRangeChangeMeta } from './articles/CanVocalRangeChangeArticle';
-import TessituraAndComfortableRangeArticle, { meta as tessituraAndComfortableRangeMeta } from './articles/TessituraAndComfortableRangeArticle';
-import FamousSingersVocalRangesArticle, { meta as famousSingersVocalRangesMeta } from './articles/FamousSingersVocalRangesArticle';
-import BeltHighNotesSafelyArticle, { meta as beltHighNotesSafelyMeta } from './articles/BeltHighNotesSafelyArticle';
-import MixedVoiceVsHeadVoiceArticle, { meta as mixedVoiceVsHeadVoiceMeta } from './articles/MixedVoiceVsHeadVoiceArticle';
-import HighNotesWarmupRoutineArticle, { meta as highNotesWarmupRoutineMeta } from './articles/HighNotesWarmupRoutineArticle';
-import BreathingAndPostureArticle, { meta as breathingAndPostureMeta } from './articles/BreathingAndPostureArticle';
-import VocalHealthArticle, { meta as vocalHealthMeta } from './articles/VocalHealthArticle';
+import ImproveSingingPitchArticle from './articles/ImproveSingingPitchArticle';
+import HowToTestVocalRangeArticle from './articles/HowToTestVocalRangeArticle';
+import SingingHighNotesTechniquesArticle from './articles/SingingHighNotesTechniquesArticle';
+import SongsForYourVoiceTypeArticle from './articles/SongsForYourVoiceTypeArticle';
+import WhyYouSingFlatArticle from './articles/WhyYouSingFlatArticle';
+import EarTrainingForSingersArticle from './articles/EarTrainingForSingersArticle';
+import SingInTuneWithoutPianoArticle from './articles/SingInTuneWithoutPianoArticle';
+import UsePitchDetectorForTrainingArticle from './articles/UsePitchDetectorForTrainingArticle';
+import HowToFindYourVoiceTypeArticle from './articles/HowToFindYourVoiceTypeArticle';
+import VocalRangeChartArticle from './articles/VocalRangeChartArticle';
+import VocalRangeVsVoiceTypeArticle from './articles/VocalRangeVsVoiceTypeArticle';
+import CanVocalRangeChangeArticle from './articles/CanVocalRangeChangeArticle';
+import TessituraAndComfortableRangeArticle from './articles/TessituraAndComfortableRangeArticle';
+import FamousSingersVocalRangesArticle from './articles/FamousSingersVocalRangesArticle';
+import BeltHighNotesSafelyArticle from './articles/BeltHighNotesSafelyArticle';
+import MixedVoiceVsHeadVoiceArticle from './articles/MixedVoiceVsHeadVoiceArticle';
+import HighNotesWarmupRoutineArticle from './articles/HighNotesWarmupRoutineArticle';
+import BreathingAndPostureArticle from './articles/BreathingAndPostureArticle';
+import VocalHealthArticle from './articles/VocalHealthArticle';
 
 export const blogIndex = [
-	  { ...improveSingingPitchMeta, component: ImproveSingingPitchArticle },
-	  { ...howToTestVocalRangeMeta, component: HowToTestVocalRangeArticle },
-	  { ...singingHighNotesTechniquesMeta, component: SingingHighNotesTechniquesArticle },
-	  { ...songsForYourVoiceTypeMeta, component: SongsForYourVoiceTypeArticle },
-	  { ...whyYouSingFlatMeta, component: WhyYouSingFlatArticle },
-	  { ...earTrainingForSingersMeta, component: EarTrainingForSingersArticle },
-	  { ...singInTuneWithoutPianoMeta, component: SingInTuneWithoutPianoArticle },
-	  { ...usePitchDetectorForTrainingMeta, component: UsePitchDetectorForTrainingArticle },
-	  { ...howToFindYourVoiceTypeMeta, component: HowToFindYourVoiceTypeArticle },
-	  { ...vocalRangeChartMeta, component: VocalRangeChartArticle },
-	  { ...vocalRangeVsVoiceTypeMeta, component: VocalRangeVsVoiceTypeArticle },
-	  { ...canVocalRangeChangeMeta, component: CanVocalRangeChangeArticle },
-		  { ...tessituraAndComfortableRangeMeta, component: TessituraAndComfortableRangeArticle },
-		  { ...famousSingersVocalRangesMeta, component: FamousSingersVocalRangesArticle },
-		  { ...beltHighNotesSafelyMeta, component: BeltHighNotesSafelyArticle },
-		  { ...mixedVoiceVsHeadVoiceMeta, component: MixedVoiceVsHeadVoiceArticle },
-		  { ...highNotesWarmupRoutineMeta, component: HighNotesWarmupRoutineArticle },
-      { ...breathingAndPostureMeta, component: BreathingAndPostureArticle },
-      { ...vocalHealthMeta, component: VocalHealthArticle },
-	];
-
+  { ...ImproveSingingPitchArticle.meta, component: ImproveSingingPitchArticle },
+  { ...HowToTestVocalRangeArticle.meta, component: HowToTestVocalRangeArticle },
+  { ...SingingHighNotesTechniquesArticle.meta, component: SingingHighNotesTechniquesArticle },
+  { ...SongsForYourVoiceTypeArticle.meta, component: SongsForYourVoiceTypeArticle },
+  { ...WhyYouSingFlatArticle.meta, component: WhyYouSingFlatArticle },
+  { ...EarTrainingForSingersArticle.meta, component: EarTrainingForSingersArticle },
+  { ...SingInTuneWithoutPianoArticle.meta, component: SingInTuneWithoutPianoArticle },
+  { ...UsePitchDetectorForTrainingArticle.meta, component: UsePitchDetectorForTrainingArticle },
+  { ...HowToFindYourVoiceTypeArticle.meta, component: HowToFindYourVoiceTypeArticle },
+  { ...VocalRangeChartArticle.meta, component: VocalRangeChartArticle },
+  { ...VocalRangeVsVoiceTypeArticle.meta, component: VocalRangeVsVoiceTypeArticle },
+  { ...CanVocalRangeChangeArticle.meta, component: CanVocalRangeChangeArticle },
+  { ...TessituraAndComfortableRangeArticle.meta, component: TessituraAndComfortableRangeArticle },
+  { ...FamousSingersVocalRangesArticle.meta, component: FamousSingersVocalRangesArticle },
+  { ...BeltHighNotesSafelyArticle.meta, component: BeltHighNotesSafelyArticle },
+  { ...MixedVoiceVsHeadVoiceArticle.meta, component: MixedVoiceVsHeadVoiceArticle },
+  { ...HighNotesWarmupRoutineArticle.meta, component: HighNotesWarmupRoutineArticle },
+  { ...BreathingAndPostureArticle.meta, component: BreathingAndPostureArticle },
+  { ...VocalHealthArticle.meta, component: VocalHealthArticle },
+];

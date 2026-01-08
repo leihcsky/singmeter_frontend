@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'vocal-health-and-maintenance',
   slug: 'vocal-health-and-maintenance',
   title: 'Vocal Health 101: How to Keep Your Voice Healthy for Life',
@@ -121,3 +121,7 @@ export default function VocalHealthArticle() {
     </div>
   );
 }
+
+VocalHealthArticle.meta = meta;
+
+VocalHealthArticle.meta = meta;

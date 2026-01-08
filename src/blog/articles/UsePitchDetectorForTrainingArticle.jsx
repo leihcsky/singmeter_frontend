@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'use-pitch-detector-for-training',
   slug: 'use-pitch-detector-for-training',
   title: 'How to Use a Pitch Detector for Vocal Training (Complete Guide)',
@@ -157,3 +157,5 @@ const UsePitchDetectorForTrainingArticle = () => {
 };
 
 export default UsePitchDetectorForTrainingArticle;
+
+UsePitchDetectorForTrainingArticle.meta = meta;

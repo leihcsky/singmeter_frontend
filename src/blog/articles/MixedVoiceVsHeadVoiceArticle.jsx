@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'mixed-voice-vs-head-voice',
   slug: 'mixed-voice-vs-head-voice',
   title: 'Mixed Voice vs Head Voice: Sing High Notes with Less Strain',
@@ -136,4 +136,6 @@ const MixedVoiceVsHeadVoiceArticle = () => {
 };
 
 export default MixedVoiceVsHeadVoiceArticle;
+
+MixedVoiceVsHeadVoiceArticle.meta = meta;
 

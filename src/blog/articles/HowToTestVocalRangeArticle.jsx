@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
 	id: 'how-to-test-vocal-range',
 	slug: 'how-to-test-vocal-range',
 	title: 'How to Test Your Vocal Range: A Complete Guide',
@@ -262,4 +262,6 @@ const HowToTestVocalRangeArticle = () => {
 };
 
 export default HowToTestVocalRangeArticle;
+
+HowToTestVocalRangeArticle.meta = meta;
 

@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'can-vocal-range-change',
   slug: 'can-vocal-range-change',
   title: 'Can Your Vocal Range Change? Myths, Facts, and Safe Training',
@@ -168,4 +168,6 @@ const CanVocalRangeChangeArticle = () => {
 };
 
 export default CanVocalRangeChangeArticle;
+
+CanVocalRangeChangeArticle.meta = meta;
 

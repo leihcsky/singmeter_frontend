@@ -1,5 +1,5 @@
-export const meta = {
-	id: 'singing-high-notes-techniques',
+const meta = {
+  id: 'singing-high-notes-techniques',
 	slug: 'singing-high-notes-techniques',
 	title: 'How to Sing High Notes: Techniques and Tips',
 	category: 'Techniques',
@@ -338,4 +338,6 @@ const SingingHighNotesTechniquesArticle = () => {
 };
 
 export default SingingHighNotesTechniquesArticle;
+
+SingingHighNotesTechniquesArticle.meta = meta;
 

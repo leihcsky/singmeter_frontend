@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'high-notes-warmup-routine',
   slug: 'high-notes-warmup-routine',
   title: 'High Notes Warm-Up Routine: 15 Minutes to Sing Higher Safely',
@@ -134,4 +134,6 @@ const HighNotesWarmupRoutineArticle = () => {
 };
 
 export default HighNotesWarmupRoutineArticle;
+
+HighNotesWarmupRoutineArticle.meta = meta;
 

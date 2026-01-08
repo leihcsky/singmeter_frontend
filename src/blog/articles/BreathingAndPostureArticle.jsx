@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'breathing-and-posture-for-singers',
   slug: 'breathing-and-posture-for-singers',
   title: 'Breathing and Posture for Singers: The Foundation of Great Vocals',
@@ -168,3 +168,5 @@ export default function BreathingAndPostureArticle() {
     </div>
   );
 }
+
+BreathingAndPostureArticle.meta = meta;

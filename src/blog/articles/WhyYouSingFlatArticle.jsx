@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'why-you-sing-flat',
   slug: 'why-you-sing-flat',
   title: 'Why You Sing Flat (And How to Fix It for Good)',
@@ -177,3 +177,4 @@ const WhyYouSingFlatArticle = () => {
 };
 
 export default WhyYouSingFlatArticle;
+WhyYouSingFlatArticle.meta = meta;

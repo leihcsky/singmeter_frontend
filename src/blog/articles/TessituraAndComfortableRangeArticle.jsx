@@ -1,4 +1,4 @@
-export const meta = {
+const meta = {
   id: 'tessitura-and-comfortable-range',
   slug: 'tessitura-and-comfortable-range',
   title: 'Tessitura and Comfortable Singing Range: Sing Where Your Voice Shines',
@@ -128,4 +128,6 @@ const TessituraAndComfortableRangeArticle = () => {
 };
 
 export default TessituraAndComfortableRangeArticle;
+
+TessituraAndComfortableRangeArticle.meta = meta;
 
