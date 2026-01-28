@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { getActiveTools, getComingSoonTools } from '../config/tools';
 import Header from '../components/Header';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
+import AdsterraNativeBanner from '../components/AdsterraNativeBanner';
 
 const HomePage = () => {
   // Get tools from centralized config
@@ -296,6 +297,11 @@ const HomePage = () => {
             </div>
           </div>
         )}
+      </section>
+
+      {/* Adsterra Native Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AdsterraNativeBanner />
       </section>
 
       {/* How It Works Section */}
