@@ -6,23 +6,47 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import ContentSection from '../components/ContentSection';
+import FAQSection from '../components/FAQSection';
+
+const metronomeFaqItems = [
+  {
+    question: "Why should singers use a metronome?",
+    answer: "A metronome is crucial for singers to develop a steady internal tempo, especially for a cappella singing or when practicing difficult vocal runs. It helps you stay in the pocket and ensures you don't rush through long phrases or drag on high notes."
+  },
+  {
+    question: "How do I find the BPM of a song I want to sing?",
+    answer: "Use the 'Tap Tempo' button! Play the song and tap the button along with the beat (usually the snare drum or the main pulse). The tool will calculate the average BPM, which you can then use for your practice."
+  },
+  {
+    question: "What is the 'Breathing Cue' feature?",
+    answer: "The 'Breathing Cue' highlights the last beat of each measure (or specific beats) to remind you to take a breath. This is excellent for practicing breath control and ensuring you have enough air for the next phrase without breaking the rhythm."
+  },
+  {
+    question: "Which time signature should I use?",
+    answer: "Most pop, rock, and country songs are in 4/4 time. If you're singing a ballad that feels like a waltz (ONE-two-three), choose 3/4. For fast, marching-style songs, try 2/4. If the song has a swaying, flowing feel (like many R&B ballads), 6/8 might be the best fit."
+  },
+  {
+    question: "How should I practice vocal runs?",
+    answer: "Start SLOW. Set the metronome to a slow tempo (e.g., 60-80 BPM) and sing the run clearly and accurately. Only increase the speed when you can sing it perfectly. This 'slow practice' builds muscle memory and agility."
+  }
+];
 
 // BPM presets
 const BPM_PRESETS = [
-  { label: 'Largo', bpm: 40, description: 'Very slow' },
-  { label: 'Adagio', bpm: 60, description: 'Slow' },
-  { label: 'Andante', bpm: 80, description: 'Walking pace' },
-  { label: 'Moderato', bpm: 100, description: 'Moderate' },
-  { label: 'Allegro', bpm: 120, description: 'Fast' },
-  { label: 'Presto', bpm: 160, description: 'Very fast' },
+  { label: 'Ballad', bpm: 60, description: 'Slow, emotional songs' },
+  { label: 'Pop/Mid', bpm: 100, description: 'Standard pop tempo' },
+  { label: 'Up-Tempo', bpm: 120, description: 'Energetic songs' },
+  { label: 'Dance', bpm: 130, description: 'Fast dance tracks' },
+  { label: 'Vocal Runs', bpm: 80, description: 'Scale practice' },
+  { label: 'Rapid Fire', bpm: 140, description: 'Agility training' },
 ];
 
 // Time signatures
 const TIME_SIGNATURES = [
-  { value: '2/4', label: '2/4', beats: 2, accent: [1] },
-  { value: '3/4', label: '3/4', beats: 3, accent: [1] },
-  { value: '4/4', label: '4/4', beats: 4, accent: [1] },
-  { value: '6/8', label: '6/8', beats: 6, accent: [1, 4] },
+  { value: '4/4', label: '4/4', beats: 4, accent: [1], description: 'Standard Pop/Rock' },
+  { value: '3/4', label: '3/4', beats: 3, accent: [1], description: 'Waltz/Ballad' },
+  { value: '2/4', label: '2/4', beats: 2, accent: [1], description: 'March/Fast' },
+  { value: '6/8', label: '6/8', beats: 6, accent: [1, 4], description: 'Compound/Flowing' },
 ];
 
 // Sound types
@@ -41,12 +65,15 @@ const MetronomePage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentBeat, setCurrentBeat] = useState(0);
   const [beatAnimation, setBeatAnimation] = useState(false);
+  const [showBreathingCue, setShowBreathingCue] = useState(false);
 
   const audioContextRef = useRef(null);
   const intervalRef = useRef(null);
   const beatCountRef = useRef(0);
   const currentTimeSigRef = useRef(TIME_SIGNATURES.find(ts => ts.value === timeSignature));
   const isPlayingRef = useRef(false);
+  const tapTimesRef = useRef([]);
+  const lastTapTimeRef = useRef(0);
   
   // Use refs to store current values for real-time updates
   const bpmRef = useRef(bpm);
@@ -308,6 +335,40 @@ const MetronomePage = () => {
 
   const currentTimeSig = TIME_SIGNATURES.find(ts => ts.value === timeSignature);
 
+  // Handle Tap Tempo
+  const handleTap = () => {
+    const now = Date.now();
+    const lastTap = lastTapTimeRef.current;
+
+    // If it's been more than 2 seconds since the last tap, reset
+    if (now - lastTap > 2000) {
+      tapTimesRef.current = [];
+    } else {
+      const diff = now - lastTap;
+      tapTimesRef.current.push(diff);
+      
+      // Keep only last 4 taps for average
+      if (tapTimesRef.current.length > 4) {
+        tapTimesRef.current.shift();
+      }
+
+      // Calculate average BPM
+      if (tapTimesRef.current.length >= 2) {
+        const averageDiff = tapTimesRef.current.reduce((a, b) => a + b, 0) / tapTimesRef.current.length;
+        const newBpm = Math.round(60000 / averageDiff);
+        // Clamp BPM between 40 and 200
+        const clampedBpm = Math.max(40, Math.min(200, newBpm));
+        setBpm(clampedBpm);
+      }
+    }
+    
+    lastTapTimeRef.current = now;
+    
+    // Visual feedback for tap
+    setBeatAnimation(true);
+    setTimeout(() => setBeatAnimation(false), 100);
+  };
+
   return (
     <>
       {/* JSON-LD Structured Data */}
@@ -374,16 +435,20 @@ const MetronomePage = () => {
                 <div
                   className={`absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full transition-all duration-150 ${
                     beatAnimation
-                      ? currentTimeSig.accent.includes(currentBeat + 1)
-                        ? 'bg-gradient-to-r from-orange-500 to-red-500 scale-110'
-                        : 'bg-gradient-to-r from-orange-400 to-red-400 scale-105'
+                      ? showBreathingCue && currentBeat === currentTimeSig.beats - 1
+                        ? 'bg-gradient-to-r from-blue-400 to-cyan-400 scale-110' // Breathing cue color
+                        : currentTimeSig.accent.includes(currentBeat + 1)
+                          ? 'bg-gradient-to-r from-orange-500 to-red-500 scale-110'
+                          : 'bg-gradient-to-r from-orange-400 to-red-400 scale-105'
                       : 'bg-gradient-to-r from-orange-200 to-red-200 scale-100'
                   }`}
                   style={{
                     boxShadow: beatAnimation
-                      ? currentTimeSig.accent.includes(currentBeat + 1)
-                        ? '0 0 40px rgba(249, 115, 22, 0.6)'
-                        : '0 0 30px rgba(249, 115, 22, 0.4)'
+                      ? showBreathingCue && currentBeat === currentTimeSig.beats - 1
+                        ? '0 0 40px rgba(56, 189, 248, 0.6)' // Blue glow
+                        : currentTimeSig.accent.includes(currentBeat + 1)
+                          ? '0 0 40px rgba(249, 115, 22, 0.6)'
+                          : '0 0 30px rgba(249, 115, 22, 0.4)'
                       : '0 0 20px rgba(249, 115, 22, 0.2)',
                   }}
                 />
@@ -393,6 +458,13 @@ const MetronomePage = () => {
                     {bpm}
                   </div>
                   <div className="text-xl text-gray-600">BPM</div>
+                  {showBreathingCue && (
+                    <div className={`text-sm font-bold mt-2 transition-colors duration-150 ${
+                      currentBeat === currentTimeSig.beats - 1 ? 'text-blue-600' : 'text-transparent'
+                    }`}>
+                      BREATHE
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -446,11 +518,19 @@ const MetronomePage = () => {
               </button>
             </div>
 
-            {/* BPM Control */}
+            {/* BPM Control & Tap Tempo */}
             <div className="mb-8">
-              <label className="block text-sm font-semibold text-gray-700 mb-3">
-                Tempo: {bpm} BPM
-              </label>
+              <div className="flex justify-between items-end mb-3">
+                <label className="block text-sm font-semibold text-gray-700">
+                  Tempo: {bpm} BPM
+                </label>
+                <button 
+                  onClick={handleTap}
+                  className="px-4 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition active:bg-gray-300 active:scale-95"
+                >
+                  👆 Tap Tempo
+                </button>
+              </div>
               <input
                 type="range"
                 min="40"
@@ -462,15 +542,34 @@ const MetronomePage = () => {
               />
               <div className="flex justify-between text-xs text-gray-500 mt-1">
                 <span>40 (Largo)</span>
-                <span>120 (Moderato)</span>
+                <span>120 (Up-Tempo)</span>
                 <span>200 (Presto)</span>
+              </div>
+            </div>
+
+            {/* Vocal Practice Settings */}
+            <div className="mb-8 bg-orange-50 p-4 rounded-2xl border border-orange-100">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-bold text-gray-900">🎤 Vocal Practice Mode</h3>
+                  <p className="text-sm text-gray-600">Visual breathing cue on the last beat</p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input 
+                    type="checkbox" 
+                    checked={showBreathingCue}
+                    onChange={(e) => setShowBreathingCue(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-600"></div>
+                </label>
               </div>
             </div>
 
             {/* BPM Presets */}
             <div className="mb-8">
               <label className="block text-sm font-semibold text-gray-700 mb-3">
-                🎵 Tempo Presets
+                🎵 Vocal Warm-up Presets
               </label>
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                 {BPM_PRESETS.map((preset) => (
@@ -496,18 +595,19 @@ const MetronomePage = () => {
               <label className="block text-sm font-semibold text-gray-700 mb-3">
                 Time Signature
               </label>
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {TIME_SIGNATURES.map((ts) => (
                   <button
                     key={ts.value}
                     onClick={() => handleTimeSignatureChange(ts.value)}
-                    className={`px-4 py-3 text-lg font-bold rounded-lg transition ${
+                    className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center justify-center ${
                       timeSignature === ts.value
-                        ? 'bg-orange-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'border-orange-500 bg-orange-50 text-orange-700'
+                        : 'border-gray-100 bg-gray-50 text-gray-600 hover:border-orange-200'
                     }`}
                   >
-                    {ts.label}
+                    <span className="font-bold text-lg">{ts.label}</span>
+                    <span className="text-xs text-gray-500 mt-1">{ts.description}</span>
                   </button>
                 ))}
               </div>
@@ -739,68 +839,8 @@ const MetronomePage = () => {
             </p>
           </ContentSection>
 
-          {/* FAQ */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">❓ Frequently Asked Questions</h2>
-
-            <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">What is BPM?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  BPM stands for "beats per minute" - it's a measure of tempo. A higher BPM means a faster tempo. For example, 60 BPM is one beat per second (very slow), while 120 BPM is two beats per second (moderate). Most popular music falls between 100-140 BPM. Classical music can range from 40 BPM (very slow, Largo) to 200+ BPM (very fast, Presto).
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">What's the difference between time signatures?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Time signatures tell you how many beats are in each measure and which note gets the beat. 4/4 means 4 beats per measure (quarter notes). 3/4 means 3 beats per measure (waltz time). 2/4 means 2 beats per measure (march time). 6/8 is compound time with 6 eighth-note beats grouped into two groups of three. The metronome accents the first beat of each measure to help you feel the musical phrase.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">Why should I use a metronome?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  A metronome helps you develop a consistent sense of rhythm and timing. It prevents you from rushing (playing too fast) or dragging (playing too slow), which are common problems for musicians. Regular metronome practice builds muscle memory, improves accuracy, and helps you play in time with other musicians. Even professional musicians use metronomes to maintain precision.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">What tempo should I start with?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Start slower than you think you need to. If you can play a piece at 100 BPM, start practicing at 70-80 BPM. This slower tempo allows you to focus on accuracy, technique, and musical expression without worrying about speed. Once you can play perfectly at the slower tempo, gradually increase by 5-10 BPM until you reach your target speed.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">Can I use this for singing practice?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Absolutely! Singers use metronomes for vocal exercises, scales, rhythm training, and practicing songs. Set a comfortable tempo and practice your vocal warm-ups, scales, or song phrases in time. The visual feedback is especially helpful for singers, as it provides a clear reference point even when you can't hear the audio clearly.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">The metronome stops when I switch browser tabs. Why?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Some browsers pause JavaScript timers and audio when you switch to another tab to save resources. This is a browser feature, not a limitation of the metronome. To keep the metronome running, keep the browser tab active. On mobile devices, you may need to keep the screen on to prevent the browser from pausing.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">How accurate is the timing?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Our metronome uses precise JavaScript timing and the Web Audio API, providing accuracy within milliseconds. This level of precision is more than sufficient for musical practice. The timing is consistent and reliable, making it suitable for serious practice sessions and even performance preparation.
-                </p>
-              </div>
-
-              <div className="pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">Can I use this offline?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Once the page is loaded, the metronome works entirely in your browser using JavaScript and the Web Audio API. You don't need an internet connection to use it after the initial page load. However, you'll need internet to first access the page. For true offline use, consider bookmarking the page or using your browser's offline mode.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* FAQ Section */}
+          <FAQSection items={metronomeFaqItems} />
 
           {/* Related Tools */}
           <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-8 text-center text-white mb-8">
@@ -835,7 +875,7 @@ const MetronomePage = () => {
         <footer className="bg-white border-t border-gray-200 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="text-center text-gray-600">
-              <p className="mb-2">© 2025 SingMeter. All rights reserved.</p>
+              <p className="mb-2">© 2026 SingMeter. All rights reserved.</p>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                 <Link to="/privacy" className="hover:text-orange-600 transition">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-orange-600 transition">Terms of Service</Link>

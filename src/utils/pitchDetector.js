@@ -75,76 +75,27 @@ export function getVoiceType(lowestNote, highestNote) {
     return 'Unknown';
   }
 
-  const rangeWidth = highestMidi - lowestMidi;
   const avgMidi = (lowestMidi + highestMidi) / 2;
-  const tessitura = avgMidi; // 舒适音域中心
 
-  // 专业声部分类标准（基于最低音、最高音和音域中心）
-  // 首先根据最低音判断性别和基本类型
-  
-  // 男性声部判断
-  if (lowestMidi <= 48) { // E2 or lower
-    // 非常低的音，可能是 Bass
-    if (highestMidi <= 64) { // E4 or lower
-      return 'Bass';
-    }
-    // 如果最高音超过E4，可能是 Bass-Baritone
+  // 专业声部分类标准（基于音域中心/Tessitura）
+  // Bass: E2-E4 (40-64), Center ~52 (E3)
+  // Baritone: A2-A4 (45-69), Center ~57 (A3)
+  // Tenor: C3-C5 (48-72), Center ~60 (C4)
+  // Alto: F3-F5 (53-77), Center ~65 (F4)
+  // Mezzo-Soprano: A3-A5 (57-81), Center ~69 (A4)
+  // Soprano: C4-C6 (60-84), Center ~72 (C5)
+
+  if (avgMidi < 54) {
     return 'Bass';
-  } else if (lowestMidi <= 57) { // A2 or lower
-    // Baritone 范围
-    if (highestMidi <= 69) { // A4 or lower
-      return 'Baritone';
-    }
-    // 如果最高音很高，可能是 Tenor
-    if (highestMidi >= 72) { // C5 or higher
-      return 'Tenor';
-    }
+  } else if (avgMidi < 59) {
     return 'Baritone';
-  } else if (lowestMidi <= 60) { // C3 or lower
-    // Tenor 范围
-    if (highestMidi >= 72) { // C5 or higher
-      return 'Tenor';
-    }
-    // 如果最高音不够高，可能是 Baritone
-    if (highestMidi <= 64) {
-      return 'Baritone';
-    }
+  } else if (avgMidi < 63) {
     return 'Tenor';
-  }
-  
-  // 女性声部判断
-  else if (lowestMidi <= 65) { // F3 or lower
-    // Alto 范围
-    if (highestMidi <= 77) { // F5 or lower
-      return 'Alto';
-    }
-    // 如果最高音很高，可能是 Mezzo-Soprano
-    if (highestMidi >= 81) { // A5 or higher
-      return 'Mezzo-Soprano';
-    }
+  } else if (avgMidi < 67) {
     return 'Alto';
-  } else if (lowestMidi <= 69) { // A3 or lower
-    // Mezzo-Soprano 范围
-    if (highestMidi >= 81) { // A5 or higher
-      return 'Mezzo-Soprano';
-    }
-    // 如果最高音不够高，可能是 Alto
-    if (highestMidi <= 77) {
-      return 'Alto';
-    }
+  } else if (avgMidi < 71) {
     return 'Mezzo-Soprano';
-  } else if (lowestMidi <= 72) { // C4 or lower
-    // Soprano 范围
-    if (highestMidi >= 84) { // C6 or higher
-      return 'Soprano';
-    }
-    // 如果最高音不够高，可能是 Mezzo-Soprano
-    if (highestMidi <= 81) {
-      return 'Mezzo-Soprano';
-    }
-    return 'Soprano';
   } else {
-    // 非常高的起始音，通常是 Soprano
     return 'Soprano';
   }
 }
@@ -309,7 +260,21 @@ export class AudioPitchDetector {
     // 创建音高检测器
     this.detector = PitchDetector.forFloat32Array(this.analyser.fftSize);
     this.buffer = new Float32Array(this.analyser.fftSize);
+    
+    // 初始化平滑缓冲区
+    this.pitchBuffer = [];
+    this.BUFFER_SIZE = 5; // 使用5个样本的中值滤波
+    
     console.log('✅ Pitch detector created');
+  }
+
+  /**
+   * 获取中值音高（去除异常值）
+   */
+  getMedianPitch(pitches) {
+    if (pitches.length === 0) return null;
+    const sorted = [...pitches].sort((a, b) => a - b);
+    return sorted[Math.floor(sorted.length / 2)];
   }
 
   /**
@@ -405,9 +370,22 @@ export class AudioPitchDetector {
           pitch <= MAX_HUMAN_FREQUENCY &&
           clarity > clarityThreshold &&
           volume > 0.3) {
-        callback(pitch, clarity);
+        
+        // 添加到平滑缓冲区
+        this.pitchBuffer.push(pitch);
+        if (this.pitchBuffer.length > this.BUFFER_SIZE) {
+          this.pitchBuffer.shift();
+        }
+
+        // 计算平滑后的音高
+        const smoothedPitch = this.getMedianPitch(this.pitchBuffer);
+        
+        callback(smoothedPitch, clarity, volume);
       } else {
-        callback(null, clarity);
+        // 如果信号丢失或不清晰，清空缓冲区以避免“拖尾”
+        // 但不要立即清空，允许短暂的信号丢失（可选，这里选择清空以保持反应灵敏）
+        this.pitchBuffer = [];
+        callback(null, clarity, volume);
       }
 
       // 继续检测

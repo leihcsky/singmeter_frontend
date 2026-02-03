@@ -514,7 +514,7 @@ const ResourcesPage = () => {
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-600">
-            <p className="mb-2">© 2025 SingMeter. All rights reserved.</p>
+            <p className="mb-2">© 2026 SingMeter. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
               <Link to="/privacy" className="hover:text-indigo-600 transition">Privacy Policy</Link>
               <Link to="/terms" className="hover:text-indigo-600 transition">Terms of Service</Link>

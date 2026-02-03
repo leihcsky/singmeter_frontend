@@ -2,8 +2,6 @@
  * Unified Test Screen - Single-page test interface with side-by-side lowest/highest note testing
  */
 
-import { useState } from 'react';
-import PitchVisualizer from './PitchVisualizer';
 import PianoSelector from './PianoSelector';
 import { frequencyToNote } from '../utils/pitchDetector';
 
@@ -14,6 +12,7 @@ const UnifiedTestScreen = ({
   lowestIsRecording,
   lowestPitch,
   lowestNote,
+  lowestVolume,
   lowestManualPitch,
   lowestCaptured,
   lowestDetectionTimeLeft,
@@ -29,6 +28,7 @@ const UnifiedTestScreen = ({
   highestIsRecording,
   highestPitch,
   highestNote,
+  highestVolume,
   highestManualPitch,
   highestCaptured,
   highestDetectionTimeLeft,
@@ -43,31 +43,32 @@ const UnifiedTestScreen = ({
   canAnalyze
 }) => {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-4 py-8">
       {/* Page Header */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">
-          📊 Vocal Range Test
+          Vocal Range Test
         </h1>
-        <p className="text-base sm:text-lg text-gray-600">
-          Sing or select your lowest and highest notes, then click analyze to see your results
+        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+          Find your lowest and highest comfortable notes to discover your unique voice type.
         </p>
       </div>
 
-      {/* Vertical stacked test areas */}
-      <div className="space-y-6 mb-8">
+      {/* Side-by-side test areas */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-10">
         {/* Lowest Note Section */}
         <TestArea
-          title="🎵 Lowest Note"
-          subtitle=""
+          title="Lowest Note"
+          description="Sing your lowest comfortable note"
           noteType="lowest"
-          gradient="from-blue-500 to-cyan-500"
-          bgGradient="from-blue-50 to-cyan-50"
+          colorTheme="blue"
+          icon="low"
           inputMode={lowestInputMode}
           countdown={lowestCountdown}
           isRecording={lowestIsRecording}
           currentPitch={lowestPitch}
           currentNote={lowestNote}
+          volume={lowestVolume}
           manualPitch={lowestManualPitch}
           captured={lowestCaptured}
           detectionTimeLeft={lowestDetectionTimeLeft}
@@ -80,16 +81,17 @@ const UnifiedTestScreen = ({
 
         {/* Highest Note Section */}
         <TestArea
-          title="🎶 Highest Note"
-          subtitle=""
+          title="Highest Note"
+          description="Sing your highest comfortable note"
           noteType="highest"
-          gradient="from-purple-500 to-pink-500"
-          bgGradient="from-purple-50 to-pink-50"
+          colorTheme="purple"
+          icon="high"
           inputMode={highestInputMode}
           countdown={highestCountdown}
           isRecording={highestIsRecording}
           currentPitch={highestPitch}
           currentNote={highestNote}
+          volume={highestVolume}
           manualPitch={highestManualPitch}
           captured={highestCaptured}
           detectionTimeLeft={highestDetectionTimeLeft}
@@ -102,24 +104,24 @@ const UnifiedTestScreen = ({
       </div>
 
       {/* Analysis Button */}
-      <div className="text-center mb-8">
+      <div className="text-center mb-12">
         <button
           onClick={onAnalyze}
           disabled={!canAnalyze}
-          className={`px-12 py-4 text-lg font-bold rounded-2xl shadow-lg transition-all ${
+          className={`px-10 py-4 text-lg font-bold rounded-xl shadow-lg transition-all transform ${
             canAnalyze
-              ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-xl hover:scale-105'
+              ? 'bg-gray-900 text-white hover:bg-black hover:scale-105 hover:shadow-xl'
               : 'bg-gray-200 text-gray-400 cursor-not-allowed'
           }`}
         >
-          {canAnalyze ? '🎯 Analyze My Range' : '⏳ Complete both tests first'}
+          {canAnalyze ? 'Analyze Results' : 'Complete Both Tests to Analyze'}
         </button>
       </div>
 
-      {/* Tips */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 text-center">
-        <p className="text-gray-700">
-          💡 <strong>Tip:</strong> Sing at your most comfortable pitch, don't strain. Each note needs to be held for at least 3 seconds to be captured.
+      {/* Tips - Clean Design */}
+      <div className="max-w-3xl mx-auto bg-blue-50/50 rounded-xl p-6 text-center border border-blue-100">
+        <p className="text-blue-800 font-medium">
+          Tip: Sing at a comfortable volume. Don't strain your voice.
         </p>
       </div>
     </div>
@@ -129,15 +131,16 @@ const UnifiedTestScreen = ({
 // Individual test area component
 const TestArea = ({
   title,
-  subtitle,
+  description,
   noteType, // 'lowest' or 'highest'
-  gradient,
-  bgGradient,
+  colorTheme, // 'blue' or 'purple'
+  icon, // 'low' or 'high'
   inputMode,
   countdown,
   isRecording,
   currentPitch,
   currentNote,
+  volume,
   manualPitch,
   captured,
   detectionTimeLeft,
@@ -147,217 +150,264 @@ const TestArea = ({
   onInputModeChange,
   onManualPitchSelect
 }) => {
-  return (
-    <div className={`bg-gradient-to-br ${bgGradient} rounded-2xl p-6 shadow-lg border-2 border-transparent hover:border-gray-200 transition`}>
-      {/* Header and Controls - Horizontal layout for full width */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
-        {/* Title */}
-        <div className="text-center sm:text-left">
-          <h2 className={`text-2xl font-bold bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-            {title}
-          </h2>
-        </div>
+  const isBlue = colorTheme === 'blue';
+  const activeColorClass = isBlue ? 'text-blue-600' : 'text-purple-600';
+  const activeBgClass = isBlue ? 'bg-blue-600' : 'bg-purple-600';
+  const activeBorderClass = isBlue ? 'border-blue-200' : 'border-purple-200';
+  const lightBgClass = isBlue ? 'bg-blue-50' : 'bg-purple-50';
+  const iconBgClass = isBlue ? 'bg-blue-100' : 'bg-purple-100';
 
-        {/* Input Mode Toggle */}
-        <div className="flex justify-center gap-3">
+  // Amplify volume for better visual feedback
+  // Input volume is typically 0-100, but often stays low (0-20)
+  // Use a non-linear scaling to make small sounds more visible
+  const rawVolume = volume || 0;
+  // Logarithmic-like scaling: rapid rise for low volumes, tapering off for high volumes
+  // volume 1 -> ~20
+  // volume 5 -> ~45
+  // volume 10 -> ~63
+  // volume 25 -> 100
+  const displayVolume = Math.min(Math.sqrt(rawVolume) * 20, 100);
+
+  return (
+    <div className={`bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-full hover:shadow-md transition-shadow duration-300 relative`}>
+      {/* Decorative Background Blob */}
+      <div className={`absolute top-0 right-0 w-32 h-32 ${lightBgClass} rounded-bl-full -mr-10 -mt-10 opacity-50 pointer-events-none`}></div>
+
+      {/* Header */}
+      <div className="px-6 py-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white relative z-10">
+        <div className="flex items-start gap-4">
+          <div className={`w-12 h-12 rounded-xl ${iconBgClass} flex items-center justify-center flex-shrink-0`}>
+            {icon === 'low' ? (
+              <svg className={`w-6 h-6 ${activeColorClass}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            ) : (
+              <svg className={`w-6 h-6 ${activeColorClass}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+            )}
+          </div>
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">{title}</h2>
+            <p className="text-sm text-gray-500 mt-0.5">{description}</p>
+          </div>
+        </div>
+        
+        {/* Input Mode Toggle - Compact */}
+        <div className="flex bg-gray-100 p-1 rounded-lg self-start sm:self-center">
           <button
             onClick={() => onInputModeChange('sing')}
-            className={`px-4 py-2 rounded-lg font-medium transition ${
+            className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center gap-1.5 ${
               inputMode === 'sing'
-                ? 'bg-white text-gray-900 shadow-md'
-                : 'bg-white/50 text-gray-600 hover:bg-white/70'
+                ? 'bg-white text-gray-900 shadow-sm'
+                : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            🎤 Sing
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+            </svg>
+            Mic
           </button>
           <button
             onClick={() => onInputModeChange('manual')}
-            className={`px-4 py-2 rounded-lg font-medium transition ${
+            className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all flex items-center gap-1.5 ${
               inputMode === 'manual'
-                ? 'bg-white text-gray-900 shadow-md'
-                : 'bg-white/50 text-gray-600 hover:bg-white/70'
+                ? 'bg-white text-gray-900 shadow-sm'
+                : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            🎹 Manual
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
+            </svg>
+            Manual
           </button>
         </div>
       </div>
 
-      {/* Status Display */}
-      {captured && inputMode === 'sing' ? (
-        // Captured state - only for Sing mode (centered)
-        <div className="max-w-md mx-auto">
-          <div className="bg-white rounded-xl p-6 text-center">
-            <div className="text-green-600 text-4xl mb-2">✓</div>
-            <div className="text-lg font-bold text-gray-900 mb-1">Captured</div>
-            <div className="text-2xl font-bold text-gray-900 mb-1">
+      {/* Content Area */}
+      <div className="p-6 flex-1 flex flex-col justify-center min-h-[340px]">
+        {captured && inputMode === 'sing' ? (
+          // Captured State
+          <div className="text-center py-4">
+            <div className={`w-16 h-16 mx-auto ${lightBgClass} rounded-full flex items-center justify-center mb-4`}>
+              <svg className={`w-8 h-8 ${activeColorClass}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div className="text-3xl font-bold text-gray-900 mb-1">
               {captured.note}
             </div>
-            <div className="text-sm text-gray-600 mb-4">
-              {captured.frequency.toFixed(2)} Hz
+            <div className="text-sm text-gray-500 mb-6">
+              {captured.frequency.toFixed(1)} Hz
             </div>
             <button
               onClick={onReset}
-              className="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition"
+              className="text-sm font-medium text-gray-500 hover:text-gray-900 underline decoration-gray-300 underline-offset-4"
             >
-              🔄 Retest
+              Retest
             </button>
           </div>
-        </div>
-      ) : inputMode === 'sing' ? (
-        // Sing mode - centered
-        <div className="max-w-md mx-auto">
-          <div className="bg-white rounded-xl p-6">
+        ) : inputMode === 'sing' ? (
+          // Sing Mode
+          <div className="w-full">
             {!isRecording && countdown === 0 ? (
-              // Ready to start
-              <div className="text-center space-y-4">
-                {/* Instructions */}
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4 mb-3">
-                  <div className="flex items-center justify-center space-x-2 mb-2">
-                    <span className="text-2xl">🎵</span>
-                    <h4 className="font-semibold text-gray-800">
-                      {noteType === 'lowest' ? 'How to Test Your Lowest Note' : 'How to Test Your Highest Note'}
-                    </h4>
+              // Ready State
+              <div className="text-center py-2">
+                <div className="mb-8 space-y-3">
+                  <div className="flex items-start space-x-3 text-sm text-gray-600 text-left bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <span className={`flex-shrink-0 w-5 h-5 rounded-full ${activeBgClass} text-white flex items-center justify-center text-xs font-bold mt-0.5`}>1</span>
+                    <span>Click <strong>Start</strong> below</span>
                   </div>
-                  <div className="text-sm text-gray-700 space-y-2 text-left max-w-md mx-auto">
-                    {noteType === 'lowest' ? (
-                      <>
-                        <div className="flex items-start space-x-2">
-                          <span className="text-blue-600 font-bold">1.</span>
-                          <span>Click <strong>"Start Test"</strong> below</span>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <span className="text-blue-600 font-bold">2.</span>
-                          <span>Sing a long, steady <strong>"Ah"</strong> or <strong>"Oh"</strong> sound</span>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <span className="text-blue-600 font-bold">3.</span>
-                          <span>Start from your <strong>comfortable low range</strong> and go <strong>lower</strong> if possible</span>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <span className="text-blue-600 font-bold">4.</span>
-                          <span>Hold the note steady for <strong>3 seconds</strong> - don't strain!</span>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="flex items-start space-x-2">
-                          <span className="text-purple-600 font-bold">1.</span>
-                          <span>Click <strong>"Start Test"</strong> below</span>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <span className="text-purple-600 font-bold">2.</span>
-                          <span>Sing a long, steady <strong>"Ah"</strong> or <strong>"Ee"</strong> sound</span>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <span className="text-purple-600 font-bold">3.</span>
-                          <span>Start from your <strong>comfortable high range</strong> and go <strong>higher</strong> if possible</span>
-                        </div>
-                        <div className="flex items-start space-x-2">
-                          <span className="text-purple-600 font-bold">4.</span>
-                          <span>Hold the note steady for <strong>3 seconds</strong> - don't force it!</span>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                  <div className="mt-3 pt-3 border-t border-gray-200">
-                    <p className="text-xs text-gray-600">
-                      💡 <strong>Tip:</strong> Use a comfortable, clear tone. The system will automatically detect your {noteType === 'lowest' ? 'lowest' : 'highest'} stable note.
-                    </p>
+                  <div className="flex items-start space-x-3 text-sm text-gray-600 text-left bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <span className={`flex-shrink-0 w-5 h-5 rounded-full ${activeBgClass} text-white flex items-center justify-center text-xs font-bold mt-0.5`}>2</span>
+                    <span>Sing a steady <strong>{noteType === 'lowest' ? '"Ah" (Low)' : '"Ah" (High)'}</strong> for 3 seconds</span>
                   </div>
                 </div>
                 
                 <button
                   onClick={onStart}
-                  className={`px-8 py-3 bg-gradient-to-r ${gradient} text-white font-bold rounded-xl shadow-md hover:shadow-lg transition`}
+                  className={`w-full sm:w-auto px-8 py-3 ${activeBgClass} text-white font-bold rounded-xl shadow-md hover:opacity-90 transition-opacity flex items-center justify-center mx-auto space-x-2`}
                 >
-                  🎤 Start Test
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                  </svg>
+                  <span>Start Detection</span>
                 </button>
               </div>
             ) : countdown > 0 ? (
-              // Countdown
-              <div className="text-center">
-                <div className="text-6xl font-bold text-gray-900 mb-2">{countdown}</div>
-                <div className="text-sm text-gray-600">Get ready...</div>
+              // Countdown State
+              <div className="text-center py-10">
+                <div className="text-7xl font-black text-gray-900 mb-2 tabular-nums">{countdown}</div>
+                <div className="text-gray-500 font-medium">Get Ready</div>
               </div>
             ) : (
-              // Recording
+              // Recording State
               <div className="text-center">
                 {detectionError ? (
-                  // Error state
+                  // Error State
                   <div className="py-4">
-                    <div className="text-red-600 text-4xl mb-2">⚠️</div>
-                    <div className="text-lg font-semibold text-red-700 mb-2">Detection Failed</div>
-                    <div className="text-sm text-gray-600 mb-4">{detectionError}</div>
+                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                    <div className="text-gray-900 font-bold mb-2">Detection Failed</div>
+                    <p className="text-sm text-gray-600 mb-4 px-4">{detectionError}</p>
                     <button
                       onClick={onReset}
-                      className="px-6 py-2 bg-red-100 text-red-700 rounded-lg font-medium hover:bg-red-200 transition"
+                      className="text-sm font-semibold text-gray-900 hover:underline"
                     >
-                      🔄 Try Again
+                      Try Again
                     </button>
                   </div>
                 ) : (
-                  <>
-                    <PitchVisualizer
-                      currentPitch={currentPitch}
-                      currentNote={currentNote}
-                      isRecording={isRecording}
-                    />
-                    <div className="mt-4 space-y-2">
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                        <div className="text-sm font-semibold text-blue-900 mb-1">
-                          {noteType === 'lowest' ? '🔽 Sing Your Lowest Note' : '🔼 Sing Your Highest Note'}
-                        </div>
-                        <div className="text-xs text-blue-700">
-                          {noteType === 'lowest' 
-                            ? 'Sing a steady "Ah" or "Oh" sound. Start comfortable and go lower if you can.'
-                            : 'Sing a steady "Ah" or "Ee" sound. Start comfortable and go higher if you can.'}
-                        </div>
+                  // Active Recording - Enhanced Visualizer
+                  <div className="flex flex-col items-center justify-center py-4">
+                    {/* Dynamic Circular Visualizer */}
+                    <div className="relative mb-6 mt-1 h-24 flex items-center justify-center">
+                      {/* Outer Glow Ring (Atmosphere) */}
+                      <div 
+                        className={`absolute rounded-full ${activeBgClass}`}
+                        style={{
+                          width: `${80 + displayVolume * 1.2}px`, // Max ~200px
+                          height: `${80 + displayVolume * 1.2}px`,
+                          opacity: 0.1,
+                          transition: 'all 0.1s ease-out'
+                        }}
+                      />
+                      {/* Middle Pulse Ring */}
+                      <div 
+                        className={`absolute rounded-full ${activeBgClass}`}
+                        style={{
+                          width: `${60 + displayVolume * 0.8}px`, // Max ~140px
+                          height: `${60 + displayVolume * 0.8}px`,
+                          opacity: 0.2,
+                          transition: 'all 0.1s ease-out'
+                        }}
+                      />
+                      {/* Inner Core Ring */}
+                      <div 
+                        className={`absolute rounded-full ${activeBgClass}`}
+                        style={{
+                          width: `${50 + displayVolume * 0.4}px`, // Max ~90px
+                          height: `${50 + displayVolume * 0.4}px`,
+                          opacity: 0.3,
+                          transition: 'all 0.05s ease-out'
+                        }}
+                      />
+                      
+                      {/* Microphone Icon Container */}
+                      <div className={`relative w-12 h-12 rounded-full bg-white flex items-center justify-center border-2 ${activeBorderClass} shadow-sm z-10 transition-colors duration-300`}>
+                        <svg 
+                          className={`w-6 h-6 ${activeColorClass} transition-transform duration-75`}
+                          style={{ transform: `scale(${1 + displayVolume / 300})` }}
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
                       </div>
-                      <div className="text-sm text-gray-600">
-                        🎵 Hold steady pitch for 3+ seconds
-                      </div>
-                      {detectionTimeLeft !== null && (
-                        <div className="text-xs text-gray-500">
-                          ⏱️ Time remaining: {detectionTimeLeft}s
-                        </div>
-                      )}
                     </div>
-                  </>
+
+                    {/* Note Display */}
+                    <div className="flex flex-col items-center mb-3 min-h-[3.5rem]">
+                      <div className={`text-2xl font-extrabold ${activeColorClass} mb-1 transition-all duration-100`}
+                           style={{ transform: currentNote ? 'scale(1.1)' : 'scale(1)' }}>
+                        {currentNote ? currentNote.fullNote : <span className="text-base text-gray-400 font-medium">Sing "Ahhh"...</span>}
+                      </div>
+                      <div className="text-xs font-mono text-gray-400">
+                        {currentPitch ? `${Math.round(currentPitch)} Hz` : <span className="opacity-0">-</span>}
+                      </div>
+                    </div>
+
+                    {/* Mini Volume Bar (Secondary Feedback) */}
+                    <div className="w-24 h-1 bg-gray-100 rounded-full overflow-hidden mb-3">
+                      <div 
+                        className={`h-full transition-all duration-75 ease-out ${activeBgClass}`}
+                        style={{ 
+                          width: `${displayVolume}%`,
+                          opacity: 0.8
+                        }}
+                      />
+                    </div>
+
+                    <div className="text-xs text-gray-400 font-mono bg-gray-50 px-3 py-1 rounded-full border border-gray-100">
+                      {detectionTimeLeft !== null ? `Time remaining: ${detectionTimeLeft}s` : 'Processing...'}
+                    </div>
+                  </div>
                 )}
               </div>
             )}
           </div>
-        </div>
-      ) : (
-        // Manual mode - full width for piano
-        <div className="bg-white rounded-xl p-4">
-          {/* Show selected note if captured or manual pitch selected */}
-          {(captured || manualPitch) && (
-            <div className="text-center mb-4">
-              <div className="text-lg font-semibold text-gray-900">
-                Selected: {captured ? captured.note : (manualPitch ? frequencyToNote(manualPitch).fullNote : '')}
-              </div>
-              {!captured && manualPitch && (
-                <div className="text-sm text-gray-600">
-                  {manualPitch.toFixed(2)} Hz
+        ) : (
+          // Manual Mode
+          <div className="w-full">
+             {/* Show selected note if captured or manual pitch selected */}
+             {(captured || manualPitch) && (
+              <div className={`mb-4 p-3 ${lightBgClass} rounded-lg border ${activeBorderClass} text-center`}>
+                <div className="text-xs text-gray-500 uppercase tracking-wide font-semibold mb-1">Selected</div>
+                <div className="text-xl font-bold text-gray-900">
+                  {captured ? captured.note : (manualPitch ? frequencyToNote(manualPitch).fullNote : '')}
                 </div>
-              )}
-            </div>
-          )}
+                {!captured && manualPitch && (
+                  <div className="text-xs text-gray-500">
+                    {manualPitch.toFixed(1)} Hz
+                  </div>
+                )}
+              </div>
+            )}
 
-          <PianoSelector
-            mode={noteType}
-            selectedPitch={manualPitch}
-            onSelect={onManualPitchSelect}
-          />
-          <div className="text-center mt-3 text-sm text-gray-600">
-            {noteType === 'lowest'
-              ? 'Click the lowest comfortable note you can sing'
-              : 'Click the highest comfortable note you can sing'}
+            <div className="overflow-hidden">
+              <PianoSelector
+                mode={noteType}
+                selectedPitch={manualPitch}
+                onSelect={onManualPitchSelect}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

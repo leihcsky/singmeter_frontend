@@ -1,13 +1,46 @@
 /**
  * Song Key Finder Page - Find song keys and get transposition suggestions
  */
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import ContentSection from '../components/ContentSection';
-import { songKeysDatabase, transposeKey, getSemitoneDifference } from '../data/songKeys';
+import FAQSection from '../components/FAQSection';
+import { songKeysDatabase, transposeKey } from '../data/songKeys';
+
+// FAQ Items
+const songKeyFinderFaqItems = [
+  {
+    question: "How accurate is the song key database?",
+    answer: "Our database contains keys for hundreds of popular songs, sourced from reliable music theory resources and verified against multiple references. However, some songs may have been performed in different keys in live performances or covers. The keys listed represent the most common or original recorded versions."
+  },
+  {
+    question: "What if I can't find a song in the database?",
+    answer: "Our database is continuously growing, but we may not have every song. If you can't find a song, you can: search for similar songs by the same artist, use online music theory resources, use a pitch detector tool to analyze the song yourself, or check if the song is available in a different spelling or variation."
+  },
+  {
+    question: "How do I know which transposition suggestion to use?",
+    answer: "Suggestions marked as \"Best Match\" are calculated to place the song's vocal range in the center of your comfortable range. Start with the \"Best Match\" suggestions, but feel free to try others. The best key is the one that feels most comfortable and allows you to sing with expression and confidence."
+  },
+  {
+    question: "Can I transpose a song too much?",
+    answer: "While you can transpose songs significantly, extreme transpositions (more than 5-6 semitones) can sometimes make songs sound unnatural or lose their character. It's generally best to stay within 3-4 semitones of the original key when possible. However, your comfort and vocal health should always come first."
+  },
+  {
+    question: "Do I need to know music theory to use this tool?",
+    answer: "Not at all! The tool is designed to be user-friendly for singers of all levels. Simply search for a song, enter your vocal range (or test it first), and the tool will provide clear, actionable suggestions. You don't need to understand music theory to benefit from knowing a song's key and getting transposition suggestions."
+  }
+];
+
 import { loadAudioFile, detectKeyFromAudio, detectBPMFromAudio } from '../utils/audioKeyDetector';
+
+// Helper function to convert note to MIDI number
+const getNoteMidi = (note, octave) => {
+  const noteMap = { 'C': 0, 'C#': 1, 'D': 2, 'D#': 3, 'E': 4, 'F': 5, 'F#': 6, 'G': 7, 'G#': 8, 'A': 9, 'A#': 10, 'B': 11 };
+  const noteIndex = noteMap[note.toUpperCase()] || 0;
+  return (octave + 1) * 12 + noteIndex;
+};
 
 const SongKeyFinderPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,7 +50,6 @@ const SongKeyFinderPage = () => {
   const [transpositionSuggestions, setTranspositionSuggestions] = useState([]);
   
   // Audio analysis states
-  const [audioFile, setAudioFile] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResult, setAnalysisResult] = useState(null);
   const [analysisError, setAnalysisError] = useState(null);
@@ -73,10 +105,126 @@ const SongKeyFinderPage = () => {
     // Canonical link
     setLinkTag('canonical', canonicalUrl);
 
+    // Try to load user vocal range from localStorage
+    try {
+      const savedRange = localStorage.getItem('singmeter_user_vocal_range');
+      if (savedRange) {
+        const parsed = JSON.parse(savedRange);
+        if (parsed.low && parsed.high) {
+          setUserVocalRange(`${parsed.low}-${parsed.high}`);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load vocal range', e);
+    }
+
     return () => {
       document.title = 'SingMeter';
     };
   }, []);
+
+  // Calculate transposition suggestions based on user's vocal range
+  const calculateTranspositionSuggestions = useCallback((song, range = userVocalRange) => {
+    if (!range || !range.trim()) {
+      setTranspositionSuggestions([]);
+      return;
+    }
+
+    // Parse user's vocal range (e.g., "C3-C5" or "A2-E4")
+    const rangeMatch = range.match(/([A-G]#?)(\d+)\s*-\s*([A-G]#?)(\d+)/i);
+    if (!rangeMatch) {
+      setTranspositionSuggestions([]);
+      return;
+    }
+
+    const [, lowNote, lowOctave, highNote, highOctave] = rangeMatch;
+    const userLowMidi = getNoteMidi(lowNote, parseInt(lowOctave));
+    const userHighMidi = getNoteMidi(highNote, parseInt(highOctave));
+    const userRangeCenter = (userLowMidi + userHighMidi) / 2;
+
+    // Parse song's vocal range
+    const songRangeMatch = song.vocalRange.match(/([A-G]#?)(\d+)\s*-\s*([A-G]#?)(\d+)/i);
+    if (!songRangeMatch) {
+      setTranspositionSuggestions([]);
+      return;
+    }
+
+    const [, songLowNote, songLowOctave, songHighNote, songHighOctave] = songRangeMatch;
+    const songLowMidi = getNoteMidi(songLowNote, parseInt(songLowOctave));
+    const songHighMidi = getNoteMidi(songHighNote, parseInt(songHighOctave));
+    const songRangeCenter = (songLowMidi + songHighMidi) / 2;
+
+    // Calculate semitone difference
+    const semitoneDiff = Math.round(songRangeCenter - userRangeCenter);
+    
+    // Helper to generate explanation
+    const getExplanation = (semitones) => {
+      const direction = semitones > 0 ? "up" : "down";
+      const absSemitones = Math.abs(semitones);
+      
+      // If semitones (transposition amount) is negative, we are lowering the song.
+      const shiftDesc = semitones === 0 
+        ? "keeps the song's range as is" 
+        : `shifts the song's range ${direction} by ${absSemitones} semitone${absSemitones > 1 ? 's' : ''}`;
+        
+      return `This key ${shiftDesc}, aligning the song's "sweet spot" with your vocal center.`;
+    };
+
+    // Generate suggestions
+    const suggestions = [];
+    const originalKey = song.originalKey;
+    
+    // Suggest transposing down if song is too high
+    if (semitoneDiff > 3) {
+      for (let i = 1; i <= Math.min(5, Math.ceil(semitoneDiff / 2)); i++) {
+        const newKey = transposeKey(originalKey, -i);
+        suggestions.push({
+          key: newKey,
+          semitones: -i,
+          reason: `Lower by ${i} semitone${i > 1 ? 's' : ''} to better fit your range`,
+          explanation: getExplanation(-i),
+          priority: i <= 2 ? 'high' : 'medium'
+        });
+      }
+    }
+    
+    // Suggest transposing up if song is too low
+    if (semitoneDiff < -3) {
+      for (let i = 1; i <= Math.min(5, Math.ceil(Math.abs(semitoneDiff) / 2)); i++) {
+        const newKey = transposeKey(originalKey, i);
+        suggestions.push({
+          key: newKey,
+          semitones: i,
+          reason: `Raise by ${i} semitone${i > 1 ? 's' : ''} to better fit your range`,
+          explanation: getExplanation(i),
+          priority: i <= 2 ? 'high' : 'medium'
+        });
+      }
+    }
+
+    // If range is close, suggest keeping original or minor adjustments
+    if (Math.abs(semitoneDiff) <= 3) {
+      if (semitoneDiff !== 0) {
+        const newKey = transposeKey(originalKey, -semitoneDiff);
+        suggestions.push({
+          key: newKey,
+          semitones: -semitoneDiff,
+          reason: `Adjust by ${Math.abs(semitoneDiff)} semitone${Math.abs(semitoneDiff) > 1 ? 's' : ''} for optimal fit`,
+          explanation: getExplanation(-semitoneDiff),
+          priority: 'high'
+        });
+      }
+      suggestions.push({
+        key: originalKey,
+        semitones: 0,
+        reason: 'Original key should work well for your range',
+        explanation: getExplanation(0),
+        priority: 'high'
+      });
+    }
+
+    setTranspositionSuggestions(suggestions.slice(0, 5)); // Limit to 5 suggestions
+  }, [userVocalRange]);
 
   // Recalculate suggestions when userVocalRange changes
   useEffect(() => {
@@ -85,7 +233,7 @@ const SongKeyFinderPage = () => {
     } else if (!userVocalRange || !userVocalRange.trim()) {
       setTranspositionSuggestions([]);
     }
-  }, [userVocalRange, selectedSong]);
+  }, [userVocalRange, selectedSong, calculateTranspositionSuggestions]);
 
   // Search function
   const handleSearch = (query) => {
@@ -127,98 +275,7 @@ const SongKeyFinderPage = () => {
     }
   };
 
-  // Calculate transposition suggestions based on user's vocal range
-  const calculateTranspositionSuggestions = (song, range = userVocalRange) => {
-    if (!range || !range.trim()) {
-      setTranspositionSuggestions([]);
-      return;
-    }
 
-    // Parse user's vocal range (e.g., "C3-C5" or "A2-E4")
-    const rangeMatch = range.match(/([A-G]#?)(\d+)\s*-\s*([A-G]#?)(\d+)/i);
-    if (!rangeMatch) {
-      setTranspositionSuggestions([]);
-      return;
-    }
-
-    const [, lowNote, lowOctave, highNote, highOctave] = rangeMatch;
-    const userLowMidi = getNoteMidi(lowNote, parseInt(lowOctave));
-    const userHighMidi = getNoteMidi(highNote, parseInt(highOctave));
-    const userRangeCenter = (userLowMidi + userHighMidi) / 2;
-
-    // Parse song's vocal range
-    const songRangeMatch = song.vocalRange.match(/([A-G]#?)(\d+)\s*-\s*([A-G]#?)(\d+)/i);
-    if (!songRangeMatch) {
-      setTranspositionSuggestions([]);
-      return;
-    }
-
-    const [, songLowNote, songLowOctave, songHighNote, songHighOctave] = songRangeMatch;
-    const songLowMidi = getNoteMidi(songLowNote, parseInt(songLowOctave));
-    const songHighMidi = getNoteMidi(songHighNote, parseInt(songHighOctave));
-    const songRangeCenter = (songLowMidi + songHighMidi) / 2;
-
-    // Calculate semitone difference
-    const semitoneDiff = Math.round(songRangeCenter - userRangeCenter);
-    
-    // Generate suggestions
-    const suggestions = [];
-    const originalKey = song.originalKey;
-    
-    // Suggest transposing down if song is too high
-    if (semitoneDiff > 3) {
-      for (let i = 1; i <= Math.min(5, Math.ceil(semitoneDiff / 2)); i++) {
-        const newKey = transposeKey(originalKey, -i);
-        suggestions.push({
-          key: newKey,
-          semitones: -i,
-          reason: `Lower by ${i} semitone${i > 1 ? 's' : ''} to better fit your range`,
-          priority: i <= 2 ? 'high' : 'medium'
-        });
-      }
-    }
-    
-    // Suggest transposing up if song is too low
-    if (semitoneDiff < -3) {
-      for (let i = 1; i <= Math.min(5, Math.ceil(Math.abs(semitoneDiff) / 2)); i++) {
-        const newKey = transposeKey(originalKey, i);
-        suggestions.push({
-          key: newKey,
-          semitones: i,
-          reason: `Raise by ${i} semitone${i > 1 ? 's' : ''} to better fit your range`,
-          priority: i <= 2 ? 'high' : 'medium'
-        });
-      }
-    }
-
-    // If range is close, suggest keeping original or minor adjustments
-    if (Math.abs(semitoneDiff) <= 3) {
-      if (semitoneDiff !== 0) {
-        const newKey = transposeKey(originalKey, -semitoneDiff);
-        suggestions.push({
-          key: newKey,
-          semitones: -semitoneDiff,
-          reason: `Adjust by ${Math.abs(semitoneDiff)} semitone${Math.abs(semitoneDiff) > 1 ? 's' : ''} for optimal fit`,
-          priority: 'high'
-        });
-      }
-      suggestions.push({
-        key: originalKey,
-        semitones: 0,
-        reason: 'Original key should work well for your range',
-        priority: 'high'
-      });
-    }
-
-    setTranspositionSuggestions(suggestions.slice(0, 5)); // Limit to 5 suggestions
-  };
-
-  // Helper function to convert note to MIDI number
-  const getNoteMidi = (note, octave) => {
-    const noteMap = { 'C': 0, 'C#': 1, 'D': 2, 'D#': 3, 'E': 4, 'F': 5, 'F#': 6, 'G': 7, 'G#': 8, 'A': 9, 'A#': 10, 'B': 11 };
-    const noteIndex = noteMap[note.toUpperCase()] || 0;
-    return (octave + 1) * 12 + noteIndex;
-  };
 
   // Handle audio file upload and analysis
   const handleAudioUpload = async (file) => {
@@ -237,7 +294,6 @@ const SongKeyFinderPage = () => {
       return;
     }
 
-    setAudioFile(file);
     setAnalysisError(null);
     setAnalysisResult(null);
     setIsAnalyzing(true);
@@ -247,9 +303,7 @@ const SongKeyFinderPage = () => {
       const audioBuffer = await loadAudioFile(file);
       
       // Analyze with progress updates
-      let analysisProgress = 0;
-      const progressCallback = (progress) => {
-        analysisProgress = progress;
+      const progressCallback = () => {
         // Update UI if needed (could add progress bar here)
       };
       
@@ -555,7 +609,6 @@ const SongKeyFinderPage = () => {
               <button
                 onClick={() => {
                   setAnalysisResult(null);
-                  setAudioFile(null);
                   setAnalysisError(null);
                   if (audioInputRef.current) {
                     audioInputRef.current.value = '';
@@ -665,58 +718,87 @@ const SongKeyFinderPage = () => {
                 Enter your vocal range to get customized key suggestions that will fit your voice better.
               </p>
               
-              <div className="mb-4">
+              <div className="mb-6">
                 <label htmlFor="vocal-range" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Your Vocal Range (e.g., "C3-C5" or "A2-E4")
+                  Your Vocal Range
                 </label>
-                <input
-                  id="vocal-range"
-                  type="text"
-                  value={userVocalRange}
-                  onChange={(e) => {
-                    const newRange = e.target.value;
-                    setUserVocalRange(newRange);
-                    if (selectedSong && newRange.trim()) {
-                      calculateTranspositionSuggestions(selectedSong, newRange);
-                    } else {
-                      setTranspositionSuggestions([]);
-                    }
-                  }}
-                  placeholder="Enter your range (e.g., C3-C5)"
-                  className="w-full sm:w-auto px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
-                />
-                <p className="text-xs text-gray-500 mt-2">
-                  Don't know your range? <Link to="/vocal-range-test" className="text-indigo-600 hover:underline">Test it here</Link>
-                </p>
+                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                  <div className="relative w-full sm:w-auto">
+                    <input
+                      id="vocal-range"
+                      type="text"
+                      value={userVocalRange}
+                      onChange={(e) => {
+                        const newRange = e.target.value;
+                        setUserVocalRange(newRange);
+                        if (selectedSong && newRange.trim()) {
+                          calculateTranspositionSuggestions(selectedSong, newRange);
+                        } else {
+                          setTranspositionSuggestions([]);
+                        }
+                      }}
+                      placeholder="e.g., C3-C5"
+                      className="w-full sm:w-48 px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
+                    />
+                    {/* Auto-filled indicator */}
+                    {userVocalRange && localStorage.getItem('singmeter_user_vocal_range') && (
+                      <span className="absolute -top-6 right-0 text-xs text-green-600 font-semibold bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
+                        ✓ Loaded from your test
+                      </span>
+                    )}
+                  </div>
+                  
+                  {!userVocalRange && (
+                    <Link 
+                      to="/vocal-range-test" 
+                      className="flex items-center text-sm text-indigo-600 bg-indigo-50 px-3 py-2 rounded-lg hover:bg-indigo-100 transition border border-indigo-200"
+                    >
+                      <span className="mr-2">🎤</span>
+                      <span>Don't know your range? <strong>Take the test</strong></span>
+                    </Link>
+                  )}
+                </div>
               </div>
 
               {transpositionSuggestions.length > 0 && (
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-900">Recommended Keys:</h4>
+                <div className="space-y-4">
+                  <h4 className="font-semibold text-gray-900 flex items-center">
+                    <span className="bg-indigo-600 w-1 h-5 rounded mr-2"></span>
+                    Recommended Keys
+                  </h4>
                   {transpositionSuggestions.map((suggestion, index) => (
                     <div
                       key={index}
-                      className={`p-4 rounded-lg border-2 ${
+                      className={`p-5 rounded-xl border-2 transition-all ${
                         suggestion.priority === 'high'
-                          ? 'bg-green-50 border-green-200'
-                          : 'bg-yellow-50 border-yellow-200'
+                          ? 'bg-green-50 border-green-200 hover:border-green-300 shadow-sm'
+                          : 'bg-yellow-50 border-yellow-200 hover:border-yellow-300'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-2">
-                        <div className="text-xl font-bold text-gray-900">
-                          {suggestion.key} {suggestion.semitones !== 0 && (
-                            <span className="text-sm font-normal text-gray-600">
-                              ({suggestion.semitones > 0 ? '+' : ''}{suggestion.semitones} semitones)
+                        <div className="text-xl font-bold text-gray-900 flex items-center">
+                          {suggestion.key} 
+                          {suggestion.semitones !== 0 && (
+                            <span className={`ml-2 text-sm font-medium px-2 py-0.5 rounded ${
+                              suggestion.semitones > 0 ? 'bg-indigo-100 text-indigo-700' : 'bg-pink-100 text-pink-700'
+                            }`}>
+                              {suggestion.semitones > 0 ? '+' : ''}{suggestion.semitones} semitones
                             </span>
                           )}
                         </div>
                         {suggestion.priority === 'high' && (
-                          <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded">
+                          <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wide rounded-md">
                             Best Match
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-gray-600">{suggestion.reason}</p>
+                      <p className="font-medium text-gray-800 mb-1">{suggestion.reason}</p>
+                      {suggestion.explanation && (
+                         <div className="text-sm text-gray-600 bg-white/60 p-2 rounded mt-2 border border-black/5">
+                           <span className="font-semibold text-gray-500 text-xs uppercase mr-1">Why:</span>
+                           {suggestion.explanation}
+                         </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -947,60 +1029,7 @@ const SongKeyFinderPage = () => {
         </ContentSection>
 
         {/* FAQ Section */}
-        <section className="bg-white rounded-2xl shadow-md p-6 sm:p-8 mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-          
-          <div className="space-y-6">
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">How accurate is the song key database?</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Our database contains keys for hundreds of popular songs, sourced from reliable music theory resources 
-                and verified against multiple references. However, some songs may have been performed in different keys 
-                in live performances or covers. The keys listed represent the most common or original recorded versions.
-              </p>
-            </div>
-
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">What if I can't find a song in the database?</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Our database is continuously growing, but we may not have every song. If you can't find a song, you can:
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4 mt-2">
-                <li>Search for similar songs by the same artist to get an idea of their typical key choices</li>
-                <li>Use online music theory resources or sheet music to find the key</li>
-                <li>Use a pitch detector tool to analyze the song yourself</li>
-                <li>Check if the song is available in a different spelling or variation</li>
-              </ul>
-            </div>
-
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">How do I know which transposition suggestion to use?</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Suggestions marked as "Best Match" are calculated to place the song's vocal range in the center of your 
-                comfortable range. Start with the "Best Match" suggestions, but feel free to try others. The best key is 
-                the one that feels most comfortable and allows you to sing with expression and confidence.
-              </p>
-            </div>
-
-            <div className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Can I transpose a song too much?</h3>
-              <p className="text-gray-600 leading-relaxed">
-                While you can transpose songs significantly, extreme transpositions (more than 5-6 semitones) can sometimes 
-                make songs sound unnatural or lose their character. It's generally best to stay within 3-4 semitones of the 
-                original key when possible. However, your comfort and vocal health should always come first.
-              </p>
-            </div>
-
-            <div className="pb-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Do I need to know music theory to use this tool?</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Not at all! The tool is designed to be user-friendly for singers of all levels. Simply search for a song, 
-                enter your vocal range (or test it first), and the tool will provide clear, actionable suggestions. You don't 
-                need to understand music theory to benefit from knowing a song's key and getting transposition suggestions.
-              </p>
-            </div>
-          </div>
-        </section>
+        <FAQSection items={songKeyFinderFaqItems} />
 
         {/* Related Resources */}
         <section className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 sm:p-8 text-white mb-8">
@@ -1044,7 +1073,7 @@ const SongKeyFinderPage = () => {
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-gray-600">
-            <p className="mb-2">© 2025 SingMeter. All rights reserved.</p>
+            <p className="mb-2">© 2026 SingMeter. All rights reserved.</p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
               <Link to="/privacy" className="hover:text-indigo-600 transition">Privacy Policy</Link>
               <Link to="/terms" className="hover:text-indigo-600 transition">Terms of Service</Link>

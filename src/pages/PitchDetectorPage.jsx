@@ -9,6 +9,30 @@ import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import RealtimePianoKeyboard from '../components/RealtimePianoKeyboard';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
+import FAQSection from '../components/FAQSection';
+
+const pitchDetectorFaqItems = [
+  {
+    question: "How does the pitch detector work?",
+    answer: "Our pitch detector uses the Web Audio API to analyze sound waves from your microphone. It calculates the fundamental frequency of your voice in real-time and maps it to the nearest musical note."
+  },
+  {
+    question: "Why is the pitch reading fluctuating?",
+    answer: "The human voice naturally has small variations (vibrato) and imperfections. If the fluctuations are large, try singing a steady, straight tone and ensure you are in a quiet environment to reduce background noise."
+  },
+  {
+    question: "What is a 'cent' in tuning?",
+    answer: "A cent is a unit of measure for pitch. There are 100 cents in a semitone (the distance between two adjacent keys on a piano). Being within ±10 cents is generally considered 'in tune' for most singing contexts."
+  },
+  {
+    question: "Do I need a special microphone?",
+    answer: "No, most built-in laptop or phone microphones work perfectly fine. However, using a headset or external microphone can improve accuracy by reducing background noise and echo."
+  },
+  {
+    question: "Is my voice data recorded?",
+    answer: "No. All pitch analysis happens locally in your browser. Your audio data is never sent to our servers or stored anywhere."
+  }
+];
 
 const PitchDetectorPage = () => {
   const [isListening, setIsListening] = useState(false);
@@ -108,29 +132,27 @@ const PitchDetectorPage = () => {
     }
 
     let lastUpdateTime = 0;
-    const updateInterval = 100; // Update UI every 100ms
+    const updateInterval = 50; // Update UI every 50ms for smoother animations
 
     // Use AudioPitchDetector's startDetection method with callback
-    detectorRef.current.startDetection((pitch, clarity) => {
+    detectorRef.current.startDetection((pitch) => {
       const now = Date.now();
 
       if (pitch) {
-        console.log('🔊 Pitch detected:', {
-          pitch: pitch.toFixed(2),
-          clarity: clarity.toFixed(2)
-        });
+        // console.log('🔊 Pitch detected:', {
+        //   pitch: pitch.toFixed(2),
+        //   clarity: clarity.toFixed(2)
+        // });
 
-        // Lower clarity threshold for pitch detector (more sensitive)
-        if (clarity > 0.80) {
-          const noteInfo = frequencyToNote(pitch);
+        // 音高已经过 AudioPitchDetector 的过滤和平滑处理
+        const noteInfo = frequencyToNote(pitch);
 
-          // Throttled UI updates
-          if (now - lastUpdateTime >= updateInterval) {
-            setCurrentPitch(pitch);
-            setCurrentNote(noteInfo);
+        // Throttled UI updates
+        if (now - lastUpdateTime >= updateInterval) {
+          setCurrentPitch(pitch);
+          setCurrentNote(noteInfo);
 
-            lastUpdateTime = now;
-          }
+          lastUpdateTime = now;
         }
       }
     });
@@ -236,19 +258,19 @@ const PitchDetectorPage = () => {
         <Header />
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+      <main className="max-w-4xl mx-auto px-4 py-4 sm:py-6">
         {/* Title */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
+        <div className="text-center mb-4">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
             🎵 Pitch Detector
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
             See your pitch in real-time as you sing or play. Perfect for vocal training and pitch accuracy practice.
           </p>
         </div>
 
         {/* Detector Interface */}
-        <div className="bg-white rounded-3xl shadow-xl p-8 sm:p-12 mb-8">
+        <div className="bg-white rounded-3xl shadow-xl p-4 sm:p-6 mb-4">
           {!isListening && !currentNote ? (
             // Initial state: Show only Start button
             <div className="text-center">
@@ -270,59 +292,127 @@ const PitchDetectorPage = () => {
             <div className="space-y-8">
               {/* Current Note Display */}
               <div className="text-center">
-                <div className="mb-4">
-                  <div className="text-7xl font-bold text-indigo-600 mb-2">
+                <div className="mb-2">
+                  <div className="text-6xl font-bold text-indigo-600 mb-1">
                     {currentNote ? currentNote.fullNote : '---'}
                   </div>
-                  <div className="text-2xl text-gray-500">
+                  <div className="text-xl text-gray-500">
                     {currentPitch ? `${currentPitch.toFixed(2)} Hz` : '--- Hz'}
                   </div>
                 </div>
 
                 {/* Pitch Indicator */}
                 {currentNote && (
-                  <div className="max-w-md mx-auto">
-                    <div className="relative h-16 bg-gray-100 rounded-full overflow-hidden">
-                      {/* Center line */}
-                      <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-400 z-10"></div>
-
-                      {/* Pitch indicator */}
-                      <div
-                        className={`absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full transition-all duration-100 ${
-                          isInTune ? 'bg-green-500' : 'bg-red-500'
-                        }`}
-                        style={{
-                          left: `calc(50% + ${Math.max(-45, Math.min(45, deviation))}%)`,
-                        }}
-                      ></div>
+                  <div className="max-w-3xl mx-auto">
+                    {/* Status Text Display */}
+                    <div className="text-center mb-4 h-8 flex items-center justify-center">
+                      <span className={`text-xl font-black tracking-widest uppercase transition-all duration-200 ${
+                        isInTune ? 'text-green-500 scale-110 drop-shadow-sm' : 
+                        deviation > 0 ? 'text-orange-500' : 'text-blue-500'
+                      }`}>
+                        {isInTune ? '✨ PERFECT ✨' : 
+                         deviation > 0 ? 'TOO SHARP ♯' : 'TOO FLAT ♭'}
+                      </span>
                     </div>
 
-                    <div className="flex justify-between text-sm text-gray-500 mt-2">
-                      <span>♭ Flat</span>
-                      <span className={isInTune ? 'text-green-600 font-bold' : ''}>
-                        {isInTune ? '✓ In Tune' : `${deviation > 0 ? '+' : ''}${deviation} cents`}
-                      </span>
-                      <span>♯ Sharp</span>
+                    {/* Tuner Gauge */}
+                    <div className="relative h-28 bg-gray-900 rounded-2xl shadow-[inset_0_2px_10px_rgba(0,0,0,0.6)] border-4 border-gray-800 overflow-hidden">
+                      
+                      {/* Background Gradients (Safe Zone Visual) */}
+                      <div className="absolute inset-0 flex opacity-30">
+                        <div className="w-1/2 bg-gradient-to-r from-blue-900/0 via-blue-900/0 to-green-500/20"></div>
+                        <div className="w-1/2 bg-gradient-to-l from-orange-900/0 via-orange-900/0 to-green-500/20"></div>
+                      </div>
+
+                      {/* Center Sweet Spot Highlight */}
+                      <div className={`absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-16 transition-colors duration-200 z-0 ${
+                        isInTune ? 'bg-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.3)]' : 'bg-transparent'
+                      }`}></div>
+
+                      {/* Grid Lines / Ticks */}
+                      <div className="absolute inset-0 w-full h-full pointer-events-none">
+                        {/* Center Line (0) */}
+                        <div className={`absolute left-1/2 top-4 bottom-8 w-1 rounded-full -translate-x-1/2 z-10 transition-colors ${
+                          isInTune ? 'bg-green-500' : 'bg-white/70'
+                        }`}></div>
+                        
+                        {/* Minor Ticks (every 10 cents) */}
+                        {[-40, -30, -20, -10, 10, 20, 30, 40].map(tick => (
+                          <div 
+                            key={`minor-${tick}`}
+                            className={`absolute w-0.5 rounded-full ${Math.abs(tick) % 20 === 0 ? 'bg-white/90 top-6 bottom-10' : 'bg-white/50 top-10 bottom-12'}`}
+                            style={{ left: `calc(50% + ${tick}%)` }}
+                          ></div>
+                        ))}
+                        
+                        {/* Major Ticks (every 20 cents) - Redundant with above logic but kept for clarity if needed, actually merged into loop above for cleaner code */}
+                        {/* Let's redo the loop to handle both */}
+                        
+                        {/* Tick Labels */}
+                        <div className="absolute bottom-2 w-full h-4 pointer-events-none">
+                          <div className="absolute left-[10%] -translate-x-1/2 text-[10px] font-mono text-gray-200 font-bold">-40</div>
+                          <div className="absolute left-[30%] -translate-x-1/2 text-[10px] font-mono text-gray-200 font-bold">-20</div>
+                          <div className="absolute left-1/2 -translate-x-1/2 text-[10px] font-mono text-transparent font-bold">0</div>
+                          <div className="absolute left-[70%] -translate-x-1/2 text-[10px] font-mono text-gray-200 font-bold">+20</div>
+                          <div className="absolute left-[90%] -translate-x-1/2 text-[10px] font-mono text-gray-200 font-bold">+40</div>
+                        </div>
+                      </div>
+
+                      {/* Moving Needle Indicator */}
+                      <div 
+                        className="absolute top-0 bottom-0 w-0 transition-all duration-100 ease-out z-20 will-change-transform"
+                        style={{
+                          left: `calc(50% + ${Math.max(-48, Math.min(48, deviation))}%)`,
+                        }}
+                      >
+                        {/* Visual Container (Centered on the line) */}
+                        <div className="relative h-full">
+                          
+                          {/* 1. The Line (Thin, Glowing) */}
+                          <div className={`absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 rounded-full ${
+                            isInTune ? 'bg-green-400 shadow-[0_0_12px_rgba(74,222,128,1)]' : 
+                            'bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)]'
+                          }`}></div>
+                          
+                          {/* 2. The Head (Classic Sharp Arrow) */}
+                          <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-0 h-0 border-x-[6px] border-x-transparent border-t-[9px] z-10 ${
+                             isInTune ? 'border-t-green-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]' : 'border-t-yellow-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]'
+                          }`}></div>
+
+                          {/* 3. The Glow (Ambient Light) */}
+                          <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full blur-md opacity-50 pointer-events-none ${
+                             isInTune ? 'bg-green-400' : 'bg-yellow-400'
+                          }`}></div>
+
+                          {/* 4. Cents Value Tag (Floating Pill) */}
+                          <div className={`absolute bottom-6 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full text-[10px] font-black font-mono tracking-tighter shadow-lg border backdrop-blur-sm ${
+                             isInTune ? 'bg-green-950/80 text-green-300 border-green-500/30' : 'bg-yellow-950/80 text-yellow-300 border-yellow-500/30'
+                          }`}>
+                            {deviation > 0 ? '+' : ''}{deviation}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Legend / Labels */}
+                    <div className="flex justify-between text-xs font-bold text-gray-400 mt-2 px-2 uppercase tracking-wider">
+                      <span className="text-blue-400">Low (Flat)</span>
+                      <span className="text-orange-400">High (Sharp)</span>
                     </div>
                   </div>
                 )}
               </div>
 
               {/* Piano Keyboard Visualization */}
-              <div className="mt-8">
-                <div className="mb-4">
-                  <h3 className="text-lg font-bold text-gray-800 mb-2 flex items-center justify-center">
-                    <span className="mr-2">🎹</span>
-                    Piano Keyboard
-                  </h3>
-                  <p className="text-sm text-gray-600 text-center">
+              <div className="!-mt-8 mb-4 relative z-10 max-w-3xl mx-auto">
+                <RealtimePianoKeyboard
+                  currentFrequency={currentPitch}
+                />
+                <div className="mt-1 text-center">
+                  <p className="text-sm text-gray-600">
                     See your pitch visualized on a piano keyboard in real-time
                   </p>
                 </div>
-                <RealtimePianoKeyboard
-                  currentNote={currentNote}
-                  currentFrequency={currentPitch}
-                />
               </div>
 
               {/* Action Button */}
@@ -347,27 +437,95 @@ const PitchDetectorPage = () => {
           )}
         </div>
 
+        {/* Tool Integration: Tone Generator & Metronome */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <Link to="/tone-generator" className="block group">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all h-full flex flex-col">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 bg-indigo-50 rounded-xl group-hover:bg-indigo-100 transition">
+                  <span className="text-2xl">🎹</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 group-hover:text-indigo-600 transition">Need a Reference Note?</h3>
+                  <p className="text-xs text-indigo-600 font-semibold uppercase tracking-wide">Ear Training</p>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 mb-4 flex-grow">
+                Can't find the pitch? Play a reference note first, listen carefully, then try to match it.
+              </p>
+              <div className="flex items-center text-indigo-600 font-bold text-sm">
+                Open Tone Generator
+                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </Link>
+
+          <Link to="/metronome" className="block group">
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-purple-100 hover:border-purple-300 hover:shadow-md transition-all h-full flex flex-col">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 bg-purple-50 rounded-xl group-hover:bg-purple-100 transition">
+                  <span className="text-2xl">⏱️</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 group-hover:text-purple-600 transition">Working on Rhythm?</h3>
+                  <p className="text-xs text-purple-600 font-semibold uppercase tracking-wide">Tempo Control</p>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 mb-4 flex-grow">
+                Pitch is only half the battle. Practice your scales and songs with a steady beat.
+              </p>
+              <div className="flex items-center text-purple-600 font-bold text-sm">
+                Open Metronome
+                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </Link>
+        </div>
+
         {/* How to Use */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">📖 How to Use</h2>
-          <ol className="space-y-3 text-gray-600">
-            <li className="flex items-start">
-              <span className="font-bold text-indigo-600 mr-3">1.</span>
-              <span>Click "Start Listening" and allow microphone access</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-bold text-indigo-600 mr-3">2.</span>
-              <span>Sing or play a note - you'll see the pitch and note name in real-time</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-bold text-indigo-600 mr-3">3.</span>
-              <span>The indicator shows if you're flat (♭), sharp (♯), or in tune (✓)</span>
-            </li>
-            <li className="flex items-start">
-              <span className="font-bold text-indigo-600 mr-3">4.</span>
-              <span>Use this tool to practice pitch accuracy and improve your singing</span>
-            </li>
-          </ol>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">📖 How to Use This Tool</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-bold">1</div>
+              <div>
+                <h3 className="font-bold text-gray-900 mb-1">Start the Detector</h3>
+                <p className="text-sm text-gray-600">Click the microphone button to allow access. We process audio directly in your browser, so your voice is never recorded or sent to a server.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-bold">2</div>
+              <div>
+                <h3 className="font-bold text-gray-900 mb-1">Sing a Steady Note</h3>
+                <p className="text-sm text-gray-600">Hold a comfortable note for a few seconds. Watch the needle move to see your pitch stability.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-bold">3</div>
+              <div>
+                <h3 className="font-bold text-gray-900 mb-1">Check Your Tuning</h3>
+                <ul className="text-sm text-gray-600 space-y-1 mt-1">
+                  <li><span className="text-green-600 font-semibold">Green (Center):</span> In tune (±10 cents).</li>
+                  <li><span className="text-yellow-600 font-semibold">Right:</span> Sharp (too high). Relax throat.</li>
+                  <li><span className="text-yellow-600 font-semibold">Left:</span> Flat (too low). Support breath.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-bold">4</div>
+              <div>
+                <h3 className="font-bold text-gray-900 mb-1">Practice Scales</h3>
+                <p className="text-sm text-gray-600">Once you can hold a single note, try singing a simple scale (Do-Re-Mi) and see if you can hit each step accurately.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Understanding Your Results */}
@@ -439,108 +597,56 @@ const PitchDetectorPage = () => {
           </div>
         </div>
 
-        {/* Practice Tips */}
-        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">💡 Tips for Improving Pitch Accuracy</h2>
-
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="bg-white rounded-xl p-4 shadow-sm">
-              <div className="text-3xl mb-2">🎯</div>
-              <h3 className="font-bold text-gray-900 mb-2">Start with Reference Notes</h3>
-              <p className="text-sm text-gray-600">
-                Use a piano or tuning app to play a note, then try to match it. Start with comfortable notes in your range.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl p-4 shadow-sm">
-              <div className="text-3xl mb-2">🎼</div>
-              <h3 className="font-bold text-gray-900 mb-2">Practice Scales</h3>
-              <p className="text-sm text-gray-600">
-                Sing simple scales (do-re-mi-fa-sol-la-ti-do) slowly, checking each note's accuracy with the detector.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl p-4 shadow-sm">
-              <div className="text-3xl mb-2">👂</div>
-              <h3 className="font-bold text-gray-900 mb-2">Train Your Ear</h3>
-              <p className="text-sm text-gray-600">
-                Listen carefully to the difference between being flat and sharp. Over time, you'll develop better pitch awareness.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl p-4 shadow-sm">
-              <div className="text-3xl mb-2">⏱️</div>
-              <h3 className="font-bold text-gray-900 mb-2">Practice Regularly</h3>
-              <p className="text-sm text-gray-600">
-                Even 5-10 minutes daily is more effective than longer, infrequent sessions. Consistency builds muscle memory.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl p-4 shadow-sm">
-              <div className="text-3xl mb-2">🎤</div>
-              <h3 className="font-bold text-gray-900 mb-2">Proper Technique</h3>
-              <p className="text-sm text-gray-600">
-                Good posture, breath support, and relaxed throat muscles help you hit and sustain accurate pitches.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-xl p-4 shadow-sm">
-              <div className="text-3xl mb-2">🎵</div>
-              <h3 className="font-bold text-gray-900 mb-2">Sing Songs You Know</h3>
-              <p className="text-sm text-gray-600">
-                Practice with familiar songs. It's easier to match pitch when you already know how the melody should sound.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ */}
+        {/* Interactive Practice Scenarios */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">❓ Frequently Asked Questions</h2>
-
-          <div className="space-y-4">
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="font-bold text-gray-900 mb-2">Why does the note keep changing?</h3>
-              <p className="text-gray-600 text-sm">
-                This is normal! Your voice naturally fluctuates slightly. Try to sustain a steady note for 2-3 seconds.
-                If it's jumping between very different notes, you might be singing with vibrato or the microphone is picking up background noise.
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">🎯 3-Step Daily Pitch Workout</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Step 1 */}
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border border-blue-200">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">1</span>
+                <h3 className="font-bold text-blue-900">Calibration</h3>
+              </div>
+              <p className="text-sm text-blue-800 mb-4">
+                Use the <strong>Tone Generator</strong> to play a C4 (Middle C). Listen, then try to sing it into the detector.
               </p>
+              <div className="text-xs font-semibold text-blue-700 bg-white/50 rounded-lg p-2">
+                Goal: Get the needle to stay green for 3 seconds.
+              </div>
             </div>
 
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="font-bold text-gray-900 mb-2">What's a good accuracy level for beginners?</h3>
-              <p className="text-gray-600 text-sm">
-                Being within ±20 cents is good for beginners. ±10 cents is excellent and suitable for performance.
-                Professional singers typically stay within ±5 cents. Don't worry if you're not perfect at first - pitch accuracy improves with practice!
+            {/* Step 2 */}
+            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-5 border border-indigo-200">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold">2</span>
+                <h3 className="font-bold text-indigo-900">Stability</h3>
+              </div>
+              <p className="text-sm text-indigo-800 mb-4">
+                Pick a comfortable note. Hold it steadily without vibrato (straight tone).
               </p>
+              <div className="text-xs font-semibold text-indigo-700 bg-white/50 rounded-lg p-2">
+                Goal: Keep deviation within ±10 cents (Green Zone).
+              </div>
             </div>
 
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="font-bold text-gray-900 mb-2">Why can't I hit certain notes accurately?</h3>
-              <p className="text-gray-600 text-sm">
-                Notes at the extremes of your range (very high or very low) are naturally harder to control.
-                Focus on your comfortable middle range first, then gradually expand. Also, make sure you're using proper breath support and technique.
+            {/* Step 3 */}
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 border border-purple-200">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-bold">3</span>
+                <h3 className="font-bold text-purple-900">Agility</h3>
+              </div>
+              <p className="text-sm text-purple-800 mb-4">
+                Sing a simple 5-note scale (Do-Re-Mi-Fa-Sol) slowly.
               </p>
-            </div>
-
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="font-bold text-gray-900 mb-2">Does the detector work with instruments?</h3>
-              <p className="text-gray-600 text-sm">
-                Yes! The pitch detector works with any sustained tone - voice, guitar, violin, flute, etc.
-                It works best with single notes (not chords). For instruments with very fast attack (like piano),
-                hold the note for at least 1-2 seconds for accurate detection.
-              </p>
-            </div>
-
-            <div className="pb-4">
-              <h3 className="font-bold text-gray-900 mb-2">How accurate is this detector?</h3>
-              <p className="text-gray-600 text-sm">
-                Our pitch detector uses advanced algorithms and is accurate to within ±1 cent under good conditions.
-                For best results, use in a quiet environment with a good quality microphone, and sing clearly and steadily.
-              </p>
+              <div className="text-xs font-semibold text-purple-700 bg-white/50 rounded-lg p-2">
+                Goal: Hit each note center without "sliding" up to it.
+              </div>
             </div>
           </div>
         </div>
+
+        {/* FAQ Section */}
+        <FAQSection items={pitchDetectorFaqItems} />
 
         {/* Practice Guide Section */}
         <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border-2 border-indigo-200">
@@ -770,27 +876,7 @@ const PitchDetectorPage = () => {
             </p>
           </ContentSection>
 
-          <ContentSection title="How to Use This Tool">
-            <ol className="list-decimal pl-5 space-y-4">
-              <li>
-                <strong>Start the Detector:</strong> Click the microphone button to allow access. We process audio directly in your browser, so your voice is never recorded or sent to a server.
-              </li>
-              <li>
-                <strong>Sing a Steady Note:</strong> Hold a comfortable note for a few seconds. Watch the needle move.
-              </li>
-              <li>
-                <strong>Check Your Tuning:</strong>
-                <ul className="list-disc pl-5 mt-2 space-y-1">
-                  <li><strong>Green (Center):</strong> You are in tune (within 10 cents).</li>
-                  <li><strong>Yellow/Red (Right):</strong> You are <em>sharp</em> (too high). Relax your throat and lower the pitch slightly.</li>
-                  <li><strong>Yellow/Red (Left):</strong> You are <em>flat</em> (too low). Support the note with more breath and think "up."</li>
-                </ul>
-              </li>
-              <li>
-                <strong>Practice Scales:</strong> Once you can hold a single note, try singing a simple scale (Do-Re-Mi) and see if you can hit each step accurately.
-              </li>
-            </ol>
-          </ContentSection>
+
 
           <ContentSection title="Understanding Pitch & Cents">
             <p>
@@ -845,19 +931,32 @@ const PitchDetectorPage = () => {
           </ContentSection>
         </div>
 
-	        {/* CTA */}
-	        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-center text-white mb-8">
-	          <h2 className="text-2xl font-bold mb-3">Want to know your vocal range?</h2>
-	          <p className="text-indigo-100 mb-6">
-	            Take our free vocal range test to discover your voice type and get personalized song recommendations.
-	          </p>
-	          <Link
-	            to="/vocal-range-test"
-	            className="inline-block px-6 py-3 bg-white text-indigo-600 font-bold rounded-xl hover:bg-indigo-50 transition"
-	          >
-	            Test Your Vocal Range →
-	          </Link>
-	        </div>
+        {/* Complete Your Vocal Toolkit */}
+        <div className="bg-gradient-to-r from-gray-900 to-indigo-900 rounded-2xl p-8 text-center text-white mb-8 shadow-xl">
+          <h2 className="text-2xl font-bold mb-8">Complete Your Vocal Toolkit</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link to="/vocal-range-test" className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition border border-white/10">
+              <div className="text-3xl mb-3">🎤</div>
+              <h3 className="font-bold text-lg mb-2 text-indigo-100 group-hover:text-white">Vocal Range Test</h3>
+              <p className="text-sm text-indigo-200 mb-4 h-10">Discover your voice type and find your comfortable range.</p>
+              <span className="text-xs font-bold uppercase tracking-wider text-indigo-300 group-hover:text-white transition">Start Test →</span>
+            </Link>
+
+            <Link to="/tone-generator" className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition border border-white/10">
+              <div className="text-3xl mb-3">🎹</div>
+              <h3 className="font-bold text-lg mb-2 text-indigo-100 group-hover:text-white">Tone Generator</h3>
+              <p className="text-sm text-indigo-200 mb-4 h-10">Develop perfect pitch by listening to reference notes.</p>
+              <span className="text-xs font-bold uppercase tracking-wider text-indigo-300 group-hover:text-white transition">Play Tones →</span>
+            </Link>
+
+            <Link to="/metronome" className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition border border-white/10">
+              <div className="text-3xl mb-3">⏱️</div>
+              <h3 className="font-bold text-lg mb-2 text-indigo-100 group-hover:text-white">Metronome</h3>
+              <p className="text-sm text-indigo-200 mb-4 h-10">Master your timing and practice rhythm consistency.</p>
+              <span className="text-xs font-bold uppercase tracking-wider text-indigo-300 group-hover:text-white transition">Start Beat →</span>
+            </Link>
+          </div>
+        </div>
       </main>
 
         {/* Microphone Permission Modal */}
@@ -873,7 +972,7 @@ const PitchDetectorPage = () => {
         <footer className="bg-white border-t border-gray-200 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="text-center text-gray-600">
-              <p className="mb-2">© 2025 SingMeter. All rights reserved.</p>
+              <p className="mb-2">© 2026 SingMeter. All rights reserved.</p>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                 <Link to="/privacy" className="hover:text-indigo-600 transition">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-indigo-600 transition">Terms of Service</Link>

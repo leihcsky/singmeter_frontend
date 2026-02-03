@@ -1,16 +1,57 @@
 /**
  * Vocal Range Test Page - Wrapper for ModernVocalTest component
  */
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ContentSection from '../components/ContentSection';
 import { AudioPitchDetector, frequencyToNote, getVoiceType } from '../utils/pitchDetector';
+import { useVocalPitchDetection } from '../hooks/useVocalPitchDetection';
 import UnifiedTestScreen from '../components/UnifiedTestScreen';
 import ResultScreen from '../components/ResultScreen';
 import { getGlobalPianoAudio } from '../utils/pianoAudio';
 import Header from '../components/Header';
+import FAQSection from '../components/FAQSection';
 import BottomNav from '../components/BottomNav';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
+
+const vocalRangeFaqItems = [
+  {
+    question: "What is vocal range?",
+    answer: "Vocal range is the span between the lowest and highest notes you can comfortably sing. It's typically measured in octaves or semitones and helps determine your voice type."
+  },
+  {
+    question: "Should I test my full range or comfortable range?",
+    answer: "Test your comfortable range - the notes you can sing clearly without straining. Your full range (including falsetto or vocal fry) is less useful for finding suitable songs."
+  },
+  {
+    question: "Why is my voice type important?",
+    answer: "Knowing your voice type helps you choose songs that highlight your strengths rather than straining your voice. Singing within your natural classification allows for better tone, control, and longevity."
+  },
+  {
+    question: "Can I increase my vocal range?",
+    answer: "Yes! While your skeletal structure determines your voice type, your functional range can be expanded. Regular practice of scales and proper breath support can help you access notes that are currently weak."
+  },
+  {
+    question: "What is a good vocal range for a beginner?",
+    answer: "Most untrained singers have a range of about 1.5 to 2 octaves. With practice, this can often be expanded to 2.5 or even 3 octaves. Don't worry if your range seems small at first; it grows with exercise."
+  },
+  {
+    question: "Why do I need to hold each note for 3 seconds?",
+    answer: "Holding a note for 3 seconds ensures accurate pitch detection and confirms you can sustain that note comfortably, not just hit it briefly."
+  },
+  {
+    question: "What's the difference between Sing and Manual mode?",
+    answer: "\"Sing\" mode uses your microphone to detect your voice in real-time. \"Manual\" mode lets you click piano keys if you prefer not to use your microphone or already know your range."
+  },
+  {
+    question: "Is this test accurate compared to a vocal coach?",
+    answer: "SingMeter uses advanced pitch detection accurate to within ±1 cent. However, a vocal coach can also assess timbre and passagio. This tool is an excellent starting point for finding your comfortable range."
+  },
+  {
+    question: "What should I do if the microphone isn't working?",
+    answer: "First, ensure you've clicked 'Allow' when the browser asked for microphone permission. If you denied it, click the lock icon in your browser's address bar to reset permissions. Also, try using headphones to prevent feedback."
+  }
+];
 
 const VocalRangeTestPage = () => {
   // Test phase: 'testing' or 'result'
@@ -59,380 +100,38 @@ const VocalRangeTestPage = () => {
   // Detector ref (shared for both tests)
   const detectorRef = useRef(null);
 
-  // === LOWEST NOTE STATES ===
-  const [lowestInputMode, setLowestInputMode] = useState('sing');
-  const [lowestCountdown, setLowestCountdown] = useState(0);
-  const [lowestIsRecording, setLowestIsRecording] = useState(false);
-  const [lowestCurrentPitch, setLowestCurrentPitch] = useState(null);
-  const [lowestCurrentNote, setLowestCurrentNote] = useState(null);
-  const [lowestManualPitch, setLowestManualPitch] = useState(null);
-  const [lowestCaptured, setLowestCaptured] = useState(null); // { note, frequency }
-  const [lowestDetectionTimeLeft, setLowestDetectionTimeLeft] = useState(null); // Time left in seconds
-  const [lowestDetectionError, setLowestDetectionError] = useState(null); // Error message
+  // Refs for cross-validation
+  const lowestValuesRef = useRef({ captured: null, manual: null });
+  const highestValuesRef = useRef({ captured: null, manual: null });
 
-  // Lowest gating
-  const lowestHasMinHoldRef = useRef(false);
-  const lowestValidStartTimeRef = useRef(null);
-  const lowestPitchHistoryRef = useRef([]);
-  const lowestFinalPitchRef = useRef(null);
-  const lowestCapturedRef = useRef(null); // Store captured value for validation in callbacks
+  // === LOWEST NOTE HOOK ===
+  const lowestHook = useVocalPitchDetection({
+    type: 'lowest',
+    detectorRef,
+    otherValuesRef: highestValuesRef
+  });
 
-  // === HIGHEST NOTE STATES ===
-  const [highestInputMode, setHighestInputMode] = useState('sing');
-  const [highestCountdown, setHighestCountdown] = useState(0);
-  const [highestIsRecording, setHighestIsRecording] = useState(false);
-  const [highestCurrentPitch, setHighestCurrentPitch] = useState(null);
-  const [highestCurrentNote, setHighestCurrentNote] = useState(null);
-  const [highestManualPitch, setHighestManualPitch] = useState(null);
-  const [highestCaptured, setHighestCaptured] = useState(null); // { note, frequency }
-  const [highestDetectionTimeLeft, setHighestDetectionTimeLeft] = useState(null); // Time left in seconds
-  const [highestDetectionError, setHighestDetectionError] = useState(null); // Error message
+  // === HIGHEST NOTE HOOK ===
+  const highestHook = useVocalPitchDetection({
+    type: 'highest',
+    detectorRef,
+    otherValuesRef: lowestValuesRef
+  });
 
-  // Highest gating
-  const highestHasMinHoldRef = useRef(false);
-  const highestValidStartTimeRef = useRef(null);
-  const highestPitchHistoryRef = useRef([]);
-  const highestFinalPitchRef = useRef(null);
-  const highestCapturedRef = useRef(null); // Store captured value for validation in callbacks
+  // Sync refs for validation
+  useEffect(() => {
+    lowestValuesRef.current = {
+      captured: lowestHook.captured,
+      manual: lowestHook.manualPitch
+    };
+  }, [lowestHook.captured, lowestHook.manualPitch]);
 
-  const MIN_HOLD_MS = 3000; // minimal hold duration in ms (3 seconds)
-  const MAX_DETECTION_TIME_MS = 15000; // maximum detection time in ms (15 seconds)
-
-  // === LOWEST NOTE DETECTION ===
-  const startLowestDetection = useCallback(() => {
-    if (!detectorRef.current) {
-      console.error('No detector available for lowest note');
-      return;
-    }
-
-    let lastUpdateTime = 0;
-    const updateInterval = 100;
-    let firstValidTime = null; // First time we detect valid pitch
-    let lastValidTime = null; // Last time we detected valid pitch
-    const detectionStartTime = Date.now();
-    let timeoutId = null;
-    let timeLeftIntervalId = null;
-
-    // Reset hold gating and error
-    lowestValidStartTimeRef.current = null;
-    lowestHasMinHoldRef.current = false;
-    lowestPitchHistoryRef.current = [];
-    lowestFinalPitchRef.current = null;
-    setLowestDetectionError(null);
-    setLowestDetectionTimeLeft(Math.ceil(MAX_DETECTION_TIME_MS / 1000));
-
-    // Update time left every second
-    timeLeftIntervalId = setInterval(() => {
-      const elapsed = Date.now() - detectionStartTime;
-      const timeLeft = Math.max(0, Math.ceil((MAX_DETECTION_TIME_MS - elapsed) / 1000));
-      setLowestDetectionTimeLeft(timeLeft);
-    }, 1000);
-
-    // Set maximum detection timeout
-    timeoutId = setTimeout(() => {
-      if (!lowestHasMinHoldRef.current) {
-        // Timeout - no valid detection
-        detectorRef.current.stopDetection();
-        setLowestIsRecording(false);
-        setLowestDetectionTimeLeft(null);
-        setLowestDetectionError('No clear pitch detected. Please try again in a quieter environment and sing clearly.');
-        if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
-        console.log('⏱️ Lowest note detection timeout');
-      }
-    }, MAX_DETECTION_TIME_MS);
-
-    detectorRef.current.startDetection((pitch, clarity) => {
-      const now = Date.now();
-
-      if (pitch && pitch > 0) {
-        const noteInfo = frequencyToNote(pitch);
-
-        // Track first valid detection time
-        if (firstValidTime === null) {
-          firstValidTime = now;
-          console.log('🎵 First valid pitch detected at:', now);
-        }
-
-        // Calculate accumulated valid time from first detection
-        let accumulatedValidMs = 0;
-        if (firstValidTime !== null) {
-          // Check if there's a gap (more than 500ms since last valid detection)
-          if (lastValidTime !== null && (now - lastValidTime) > 500) {
-            // Gap detected - reset firstValidTime to now
-            firstValidTime = now;
-            console.log('⚠️ Gap detected, resetting timer');
-          } else {
-            // Continuous detection - accumulate from firstValidTime
-            accumulatedValidMs = now - firstValidTime;
-          }
-        }
-        lastValidTime = now;
-
-        // Store pitch history (keep last 50 samples for stability analysis)
-        lowestPitchHistoryRef.current.push({ pitch, clarity, timestamp: now });
-        if (lowestPitchHistoryRef.current.length > 50) {
-          lowestPitchHistoryRef.current.shift();
-        }
-
-        // Track lowest pitch (but we'll use stability analysis for final value)
-        if (lowestFinalPitchRef.current === null || pitch < lowestFinalPitchRef.current) {
-          lowestFinalPitchRef.current = pitch;
-        }
-
-        // Update UI
-        if (now - lastUpdateTime >= updateInterval) {
-          setLowestCurrentPitch(pitch);
-          setLowestCurrentNote(noteInfo);
-          lastUpdateTime = now;
-        }
-
-        // Auto-capture when accumulated time threshold met
-        if (!lowestHasMinHoldRef.current && accumulatedValidMs >= MIN_HOLD_MS) {
-          // Analyze pitch history for stability and accuracy
-          const recentHistory = lowestPitchHistoryRef.current.filter(
-            p => (now - p.timestamp) <= MIN_HOLD_MS
-          );
-          
-          if (recentHistory.length > 0) {
-            // Find the actual lowest stable pitch
-            // Sort by pitch (lowest first) and take the median of the lowest 30% to avoid outliers
-            const sortedPitches = recentHistory
-              .map(p => p.pitch)
-              .sort((a, b) => a - b);
-            
-            // Take the lowest 30% of pitches and calculate median
-            const lowest30Percent = sortedPitches.slice(0, Math.max(1, Math.floor(sortedPitches.length * 0.3)));
-            const medianLowest = lowest30Percent[Math.floor(lowest30Percent.length / 2)];
-            
-            // Verify stability: check if most pitches are within 1.5 semitones of the median
-            // Reduced tolerance for better accuracy (was 2 semitones)
-            const semitoneTolerance = 1.5;
-            const medianFreq = medianLowest;
-            const stablePitches = recentHistory.filter(p => {
-              const semitoneDiff = Math.abs(12 * Math.log2(p.pitch / medianFreq));
-              return semitoneDiff <= semitoneTolerance;
-            });
-            
-            // Use the most stable lowest pitch
-            const finalPitch = stablePitches.length >= recentHistory.length * 0.7 
-              ? Math.min(...stablePitches.map(p => p.pitch))
-              : medianLowest;
-            
-            const finalNote = frequencyToNote(finalPitch);
-            
-            // Validate: Ensure the captured lowest pitch is actually lower than any existing highest pitch
-            // Use ref to get the latest captured value (avoids closure issues)
-            const existingHighest = highestCapturedRef.current?.frequency || highestManualPitch;
-            if (existingHighest && finalPitch >= existingHighest) {
-              const existingHighestNote = frequencyToNote(existingHighest);
-              console.warn('⚠️ Captured lowest pitch is not lower than highest pitch:', {
-                lowest: `${finalNote.fullNote} (${finalPitch.toFixed(1)} Hz)`,
-                highest: `${existingHighestNote.fullNote} (${existingHighest.toFixed(1)} Hz)`
-              });
-              setLowestDetectionError(`The detected note (${finalNote.fullNote}, ${finalPitch.toFixed(1)} Hz) is not lower than your highest note (${existingHighestNote.fullNote}, ${existingHighest.toFixed(1)} Hz). Please try singing a lower note.`);
-              // Don't capture, let user retry
-              return;
-            }
-            
-            lowestHasMinHoldRef.current = true;
-            const capturedData = {
-              note: finalNote.fullNote,
-              frequency: finalPitch
-            };
-            lowestCapturedRef.current = capturedData; // Update ref immediately
-            setLowestCaptured(capturedData);
-            detectorRef.current.stopDetection();
-            setLowestIsRecording(false);
-            setLowestDetectionTimeLeft(null);
-            setLowestDetectionError(null);
-            
-            // Clear timeout and interval
-            if (timeoutId) clearTimeout(timeoutId);
-            if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
-            
-            console.log('✅ Lowest note captured:', finalNote.fullNote, `(${finalPitch.toFixed(1)} Hz) after ${accumulatedValidMs}ms`);
-            console.log('📊 Stability analysis:', {
-              totalSamples: recentHistory.length,
-              stableSamples: stablePitches.length,
-              medianLowest: medianLowest.toFixed(1),
-              finalPitch: finalPitch.toFixed(1)
-            });
-          }
-        }
-      } else {
-        // Lost signal - reset lastValidTime but keep accumulated time
-        lastValidTime = null;
-      }
-    });
-  }, []);
-
-  // === HIGHEST NOTE DETECTION ===
-  const startHighestDetection = useCallback(() => {
-    if (!detectorRef.current) {
-      console.error('No detector available for highest note');
-      return;
-    }
-
-    let lastUpdateTime = 0;
-    const updateInterval = 100;
-    let firstValidTime = null; // First time we detect valid pitch
-    let lastValidTime = null; // Last time we detected valid pitch
-    const detectionStartTime = Date.now();
-    let timeoutId = null;
-    let timeLeftIntervalId = null;
-
-    // Reset hold gating and error
-    highestValidStartTimeRef.current = null;
-    highestHasMinHoldRef.current = false;
-    highestPitchHistoryRef.current = [];
-    highestFinalPitchRef.current = null;
-    setHighestDetectionError(null);
-    setHighestDetectionTimeLeft(Math.ceil(MAX_DETECTION_TIME_MS / 1000));
-
-    // Update time left every second
-    timeLeftIntervalId = setInterval(() => {
-      const elapsed = Date.now() - detectionStartTime;
-      const timeLeft = Math.max(0, Math.ceil((MAX_DETECTION_TIME_MS - elapsed) / 1000));
-      setHighestDetectionTimeLeft(timeLeft);
-    }, 1000);
-
-    // Set maximum detection timeout
-    timeoutId = setTimeout(() => {
-      if (!highestHasMinHoldRef.current) {
-        // Timeout - no valid detection
-        detectorRef.current.stopDetection();
-        setHighestIsRecording(false);
-        setHighestDetectionTimeLeft(null);
-        setHighestDetectionError('No clear pitch detected. Please try again in a quieter environment and sing clearly.');
-        if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
-        console.log('⏱️ Highest note detection timeout');
-      }
-    }, MAX_DETECTION_TIME_MS);
-
-    detectorRef.current.startDetection((pitch, clarity) => {
-      const now = Date.now();
-
-      if (pitch && pitch > 0) {
-        const noteInfo = frequencyToNote(pitch);
-
-        // Track first valid detection time
-        if (firstValidTime === null) {
-          firstValidTime = now;
-          console.log('🎵 First valid pitch detected at:', now);
-        }
-
-        // Calculate accumulated valid time from first detection
-        let accumulatedValidMs = 0;
-        if (firstValidTime !== null) {
-          // Check if there's a gap (more than 500ms since last valid detection)
-          if (lastValidTime !== null && (now - lastValidTime) > 500) {
-            // Gap detected - reset firstValidTime to now
-            firstValidTime = now;
-            console.log('⚠️ Gap detected, resetting timer');
-          } else {
-            // Continuous detection - accumulate from firstValidTime
-            accumulatedValidMs = now - firstValidTime;
-          }
-        }
-        lastValidTime = now;
-
-        // Store pitch history (keep last 50 samples for stability analysis)
-        highestPitchHistoryRef.current.push({ pitch, clarity, timestamp: now });
-        if (highestPitchHistoryRef.current.length > 50) {
-          highestPitchHistoryRef.current.shift();
-        }
-
-        // Track highest pitch (but we'll use stability analysis for final value)
-        if (highestFinalPitchRef.current === null || pitch > highestFinalPitchRef.current) {
-          highestFinalPitchRef.current = pitch;
-        }
-
-        // Update UI
-        if (now - lastUpdateTime >= updateInterval) {
-          setHighestCurrentPitch(pitch);
-          setHighestCurrentNote(noteInfo);
-          lastUpdateTime = now;
-        }
-
-        // Auto-capture when accumulated time threshold met
-        if (!highestHasMinHoldRef.current && accumulatedValidMs >= MIN_HOLD_MS) {
-          // Analyze pitch history for stability and accuracy
-          const recentHistory = highestPitchHistoryRef.current.filter(
-            p => (now - p.timestamp) <= MIN_HOLD_MS
-          );
-          
-          if (recentHistory.length > 0) {
-            // Find the actual highest stable pitch
-            // Sort by pitch (highest first) and take the median of the highest 30% to avoid outliers
-            const sortedPitches = recentHistory
-              .map(p => p.pitch)
-              .sort((a, b) => b - a);
-            
-            // Take the highest 30% of pitches and calculate median
-            const highest30Percent = sortedPitches.slice(0, Math.max(1, Math.floor(sortedPitches.length * 0.3)));
-            const medianHighest = highest30Percent[Math.floor(highest30Percent.length / 2)];
-            
-            // Verify stability: check if most pitches are within 1.5 semitones of the median
-            // Reduced tolerance for better accuracy (was 2 semitones)
-            const semitoneTolerance = 1.5;
-            const medianFreq = medianHighest;
-            const stablePitches = recentHistory.filter(p => {
-              const semitoneDiff = Math.abs(12 * Math.log2(p.pitch / medianFreq));
-              return semitoneDiff <= semitoneTolerance;
-            });
-            
-            // Use the most stable highest pitch
-            const finalPitch = stablePitches.length >= recentHistory.length * 0.7 
-              ? Math.max(...stablePitches.map(p => p.pitch))
-              : medianHighest;
-            
-            const finalNote = frequencyToNote(finalPitch);
-            
-            // Validate: Ensure the captured highest pitch is actually higher than any existing lowest pitch
-            // Use ref to get the latest captured value (avoids closure issues)
-            const existingLowest = lowestCapturedRef.current?.frequency || lowestManualPitch;
-            if (existingLowest && finalPitch <= existingLowest) {
-              const existingLowestNote = frequencyToNote(existingLowest);
-              console.warn('⚠️ Captured highest pitch is not higher than lowest pitch:', {
-                highest: `${finalNote.fullNote} (${finalPitch.toFixed(1)} Hz)`,
-                lowest: `${existingLowestNote.fullNote} (${existingLowest.toFixed(1)} Hz)`
-              });
-              setHighestDetectionError(`The detected note (${finalNote.fullNote}, ${finalPitch.toFixed(1)} Hz) is not higher than your lowest note (${existingLowestNote.fullNote}, ${existingLowest.toFixed(1)} Hz). Please try singing a higher note.`);
-              // Don't capture, let user retry
-              return;
-            }
-            
-            highestHasMinHoldRef.current = true;
-            const capturedData = {
-              note: finalNote.fullNote,
-              frequency: finalPitch
-            };
-            highestCapturedRef.current = capturedData; // Update ref immediately
-            setHighestCaptured(capturedData);
-            detectorRef.current.stopDetection();
-            setHighestIsRecording(false);
-            setHighestDetectionTimeLeft(null);
-            setHighestDetectionError(null);
-            
-            // Clear timeout and interval
-            if (timeoutId) clearTimeout(timeoutId);
-            if (timeLeftIntervalId) clearInterval(timeLeftIntervalId);
-            
-            console.log('✅ Highest note captured:', finalNote.fullNote, `(${finalPitch.toFixed(1)} Hz) after ${accumulatedValidMs}ms`);
-            console.log('📊 Stability analysis:', {
-              totalSamples: recentHistory.length,
-              stableSamples: stablePitches.length,
-              medianHighest: medianHighest.toFixed(1),
-              finalPitch: finalPitch.toFixed(1)
-            });
-          }
-        }
-      } else {
-        // Lost signal - reset lastValidTime but keep accumulated time
-        lastValidTime = null;
-      }
-    });
-  }, []);
+  useEffect(() => {
+    highestValuesRef.current = {
+      captured: highestHook.captured,
+      manual: highestHook.manualPitch
+    };
+  }, [highestHook.captured, highestHook.manualPitch]);
 
   // Initialize microphone (shared for both tests)
   const initializeMicrophone = async () => {
@@ -456,105 +155,49 @@ const VocalRangeTestPage = () => {
   // === LOWEST NOTE HANDLERS ===
   const handleLowestStart = async () => {
     trackEvent(GA_ACTIONS.START_TEST, GA_CATEGORIES.VOCAL_TEST, 'Start Lowest Detection');
-    if (lowestInputMode === 'sing') {
+    if (lowestHook.inputMode === 'sing') {
       const result = await initializeMicrophone();
       if (!result.success) return;
 
       // Start countdown
-      setLowestCountdown(3);
+      lowestHook.setCountdown(3);
       let count = 3;
       const interval = setInterval(() => {
         count--;
         if (count > 0) {
-          setLowestCountdown(count);
+          lowestHook.setCountdown(count);
         } else {
           clearInterval(interval);
-          setLowestCountdown(0);
-          setLowestIsRecording(true);
-          startLowestDetection();
+          lowestHook.setCountdown(0);
+          lowestHook.setIsRecording(true);
+          lowestHook.startDetection();
         }
       }, 1000);
     }
-  };
-
-  const handleLowestReset = () => {
-    if (detectorRef.current) {
-      detectorRef.current.stopDetection();
-    }
-    setLowestCaptured(null);
-    lowestCapturedRef.current = null; // Clear ref
-    setLowestManualPitch(null);
-    setLowestCurrentPitch(null);
-    setLowestCurrentNote(null);
-    setLowestIsRecording(false);
-    setLowestCountdown(0);
-    setLowestDetectionTimeLeft(null);
-    setLowestDetectionError(null);
-    lowestHasMinHoldRef.current = false;
-    lowestValidStartTimeRef.current = null;
-    lowestFinalPitchRef.current = null;
-  };
-
-  const handleLowestInputModeChange = (mode) => {
-    handleLowestReset();
-    setLowestInputMode(mode);
-  };
-
-  const handleLowestManualPitchSelect = (pitch) => {
-    setLowestManualPitch(pitch);
-    // Don't set captured here - let user see the piano and selection
   };
 
   // === HIGHEST NOTE HANDLERS ===
   const handleHighestStart = async () => {
     trackEvent(GA_ACTIONS.START_TEST, GA_CATEGORIES.VOCAL_TEST, 'Start Highest Detection');
-    if (highestInputMode === 'sing') {
+    if (highestHook.inputMode === 'sing') {
       const result = await initializeMicrophone();
       if (!result.success) return;
 
       // Start countdown
-      setHighestCountdown(3);
+      highestHook.setCountdown(3);
       let count = 3;
       const interval = setInterval(() => {
         count--;
         if (count > 0) {
-          setHighestCountdown(count);
+          highestHook.setCountdown(count);
         } else {
           clearInterval(interval);
-          setHighestCountdown(0);
-          setHighestIsRecording(true);
-          startHighestDetection();
+          highestHook.setCountdown(0);
+          highestHook.setIsRecording(true);
+          highestHook.startDetection();
         }
       }, 1000);
     }
-  };
-
-  const handleHighestReset = () => {
-    if (detectorRef.current) {
-      detectorRef.current.stopDetection();
-    }
-    setHighestCaptured(null);
-    highestCapturedRef.current = null; // Clear ref
-    setHighestManualPitch(null);
-    setHighestCurrentPitch(null);
-    setHighestCurrentNote(null);
-    setHighestIsRecording(false);
-    setHighestCountdown(0);
-    setHighestDetectionTimeLeft(null);
-    setHighestDetectionError(null);
-    highestHasMinHoldRef.current = false;
-    highestValidStartTimeRef.current = null;
-    highestFinalPitchRef.current = null;
-  };
-
-  const handleHighestInputModeChange = (mode) => {
-    handleHighestReset();
-    setHighestInputMode(mode);
-  };
-
-  const handleHighestManualPitchSelect = (pitch) => {
-    setHighestManualPitch(pitch);
-    // Don't set captured here - let user see the piano and selection
   };
 
   // === ANALYSIS HANDLER ===
@@ -562,8 +205,8 @@ const VocalRangeTestPage = () => {
     trackEvent(GA_ACTIONS.CLICK, GA_CATEGORIES.VOCAL_TEST, 'Analyze Results');
 
     // Get final pitches from captured data
-    const finalLowest = lowestCaptured?.frequency || lowestManualPitch;
-    const finalHighest = highestCaptured?.frequency || highestManualPitch;
+    const finalLowest = lowestHook.captured?.frequency || lowestHook.manualPitch;
+    const finalHighest = highestHook.captured?.frequency || highestHook.manualPitch;
 
     if (!finalLowest || !finalHighest) {
       console.error('Cannot analyze: missing pitch data');
@@ -608,6 +251,36 @@ const VocalRangeTestPage = () => {
       return;
     }
 
+    const lowestNote = frequencyToNote(finalLowest);
+    const highestNote = frequencyToNote(finalHighest);
+    
+    // Validate note conversion succeeded
+    if (!lowestNote.fullNote || !highestNote.fullNote) {
+      console.error('❌ Failed to convert frequencies to notes');
+      warnings.push({
+        type: 'error',
+        message: 'Error processing results. Please try again.'
+      });
+      setResultWarnings(warnings);
+      return;
+    }
+
+    // Validate that the notes are actually different (not just frequencies)
+    if (lowestNote.fullNote === highestNote.fullNote) {
+      console.error('❌ Invalid range: lowest and highest notes are the same', {
+        note: lowestNote.fullNote,
+        freq1: finalLowest,
+        freq2: finalHighest
+      });
+      warnings.push({
+        type: 'error',
+        message: `Invalid range: Your lowest and highest notes are the same (${lowestNote.fullNote}). Please retest to find your actual vocal range.`
+      });
+      setResultWarnings(warnings);
+      setTestPhase('testing');
+      return;
+    }
+
     // Calculate range width for validation
     const rangeWidthSemitones = 12 * Math.log2(finalHighest / finalLowest);
     const rangeWidthOctaves = rangeWidthSemitones / 12;
@@ -647,20 +320,6 @@ const VocalRangeTestPage = () => {
           message: 'Your highest note is above the typical human vocal range. This is exceptional!'
         });
       }
-    }
-
-    const lowestNote = frequencyToNote(finalLowest);
-    const highestNote = frequencyToNote(finalHighest);
-    
-    // Validate note conversion succeeded
-    if (!lowestNote.fullNote || !highestNote.fullNote) {
-      console.error('❌ Failed to convert frequencies to notes');
-      warnings.push({
-        type: 'error',
-        message: 'Error processing results. Please try again.'
-      });
-      setResultWarnings(warnings);
-      return;
     }
     
     // Store warnings for display on result page
@@ -739,30 +398,12 @@ const VocalRangeTestPage = () => {
     }, 100);
 
     // Reset lowest
-    setLowestInputMode('sing');
-    setLowestCountdown(0);
-    setLowestIsRecording(false);
-    setLowestCurrentPitch(null);
-    setLowestCurrentNote(null);
-    setLowestManualPitch(null);
-    setLowestCaptured(null);
-    lowestHasMinHoldRef.current = false;
-    lowestValidStartTimeRef.current = null;
-    lowestPitchHistoryRef.current = [];
-    lowestFinalPitchRef.current = null;
+    lowestHook.setInputMode('sing');
+    lowestHook.reset();
 
     // Reset highest
-    setHighestInputMode('sing');
-    setHighestCountdown(0);
-    setHighestIsRecording(false);
-    setHighestCurrentPitch(null);
-    setHighestCurrentNote(null);
-    setHighestManualPitch(null);
-    setHighestCaptured(null);
-    highestHasMinHoldRef.current = false;
-    highestValidStartTimeRef.current = null;
-    highestPitchHistoryRef.current = [];
-    highestFinalPitchRef.current = null;
+    highestHook.setInputMode('sing');
+    highestHook.reset();
 
     // Cleanup detector
     if (detectorRef.current) {
@@ -803,6 +444,8 @@ const VocalRangeTestPage = () => {
       }
     };
   }, []);
+
+
 
   return (
     <>
@@ -885,40 +528,42 @@ const VocalRangeTestPage = () => {
           {testPhase === 'testing' && (
             <UnifiedTestScreen
               // Lowest note props
-              lowestInputMode={lowestInputMode}
-              lowestCountdown={lowestCountdown}
-              lowestIsRecording={lowestIsRecording}
-              lowestPitch={lowestCurrentPitch}
-              lowestNote={lowestCurrentNote}
-              lowestManualPitch={lowestManualPitch}
-              lowestCaptured={lowestCaptured}
-              lowestDetectionTimeLeft={lowestDetectionTimeLeft}
-              lowestDetectionError={lowestDetectionError}
+              lowestInputMode={lowestHook.inputMode}
+              lowestCountdown={lowestHook.countdown}
+              lowestIsRecording={lowestHook.isRecording}
+              lowestPitch={lowestHook.currentPitch}
+              lowestNote={lowestHook.currentNote}
+              lowestVolume={lowestHook.volume}
+              lowestManualPitch={lowestHook.manualPitch}
+              lowestCaptured={lowestHook.captured}
+              lowestDetectionTimeLeft={lowestHook.detectionTimeLeft}
+              lowestDetectionError={lowestHook.detectionError}
               onLowestStart={handleLowestStart}
-              onLowestReset={handleLowestReset}
-              onLowestInputModeChange={handleLowestInputModeChange}
-              onLowestManualPitchSelect={handleLowestManualPitchSelect}
+              onLowestReset={lowestHook.reset}
+              onLowestInputModeChange={lowestHook.handleInputModeChange}
+              onLowestManualPitchSelect={lowestHook.handleManualPitchSelect}
 
               // Highest note props
-              highestInputMode={highestInputMode}
-              highestCountdown={highestCountdown}
-              highestIsRecording={highestIsRecording}
-              highestPitch={highestCurrentPitch}
-              highestNote={highestCurrentNote}
-              highestManualPitch={highestManualPitch}
-              highestCaptured={highestCaptured}
-              highestDetectionTimeLeft={highestDetectionTimeLeft}
-              highestDetectionError={highestDetectionError}
+              highestInputMode={highestHook.inputMode}
+              highestCountdown={highestHook.countdown}
+              highestIsRecording={highestHook.isRecording}
+              highestPitch={highestHook.currentPitch}
+              highestNote={highestHook.currentNote}
+              highestVolume={highestHook.volume}
+              highestManualPitch={highestHook.manualPitch}
+              highestCaptured={highestHook.captured}
+              highestDetectionTimeLeft={highestHook.detectionTimeLeft}
+              highestDetectionError={highestHook.detectionError}
               onHighestStart={handleHighestStart}
-              onHighestReset={handleHighestReset}
-              onHighestInputModeChange={handleHighestInputModeChange}
-              onHighestManualPitchSelect={handleHighestManualPitchSelect}
+              onHighestReset={highestHook.reset}
+              onHighestInputModeChange={highestHook.handleInputModeChange}
+              onHighestManualPitchSelect={highestHook.handleManualPitchSelect}
 
               // Analysis
               onAnalyze={handleAnalyze}
               canAnalyze={Boolean(
-                (lowestCaptured || lowestManualPitch) &&
-                (highestCaptured || highestManualPitch)
+                (lowestHook.captured || lowestHook.manualPitch) &&
+                (highestHook.captured || highestHook.manualPitch)
               )}
             />
           )}
@@ -1160,47 +805,7 @@ const VocalRangeTestPage = () => {
               </div>
 
               {/* FAQ Section */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
-                  Frequently Asked <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Questions</span>
-                </h2>
-                <div className="bg-white rounded-2xl shadow-md p-8 space-y-6">
-                  <div className="pb-6 border-b border-gray-200">
-                    <h3 className="font-bold text-gray-900 mb-2">What is vocal range?</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Vocal range is the span between the lowest and highest notes you can comfortably sing. It's typically measured in octaves or semitones and helps determine your voice type.
-                    </p>
-                  </div>
-
-                  <div className="pb-6 border-b border-gray-200">
-                    <h3 className="font-bold text-gray-900 mb-2">Should I test my full range or comfortable range?</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Test your comfortable range - the notes you can sing clearly without straining. Your full range (including falsetto or vocal fry) is less useful for finding suitable songs.
-                    </p>
-                  </div>
-
-                  <div className="pb-6 border-b border-gray-200">
-                    <h3 className="font-bold text-gray-900 mb-2">Why do I need to hold each note for 3 seconds?</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Holding a note for 3 seconds ensures accurate pitch detection and confirms you can sustain that note comfortably, not just hit it briefly.
-                    </p>
-                  </div>
-
-                  <div className="pb-6 border-b border-gray-200">
-                    <h3 className="font-bold text-gray-900 mb-2">What's the difference between Sing and Manual mode?</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      "Sing" mode uses your microphone to detect your voice in real-time. "Manual" mode lets you click piano keys if you prefer not to use your microphone or already know your range.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">How accurate is this test?</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Our pitch detection is accurate to within ±1 cent under good conditions. For best results, use in a quiet environment with a quality microphone, and sing clearly and steadily.
-                    </p>
-                  </div>
-                </div>
-              </section>
+              <FAQSection items={vocalRangeFaqItems} />
 
 	              {/* Example Results Section - SEO Optimized */}
               <section className="mb-16">
@@ -1521,7 +1126,7 @@ const VocalRangeTestPage = () => {
         <footer className="bg-white border-t border-gray-200 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="text-center text-gray-600">
-              <p className="mb-2">© 2025 SingMeter. All rights reserved.</p>
+              <p className="mb-2">© 2026 SingMeter. All rights reserved.</p>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                 <Link to="/privacy" className="hover:text-indigo-600 transition">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-indigo-600 transition">Terms of Service</Link>

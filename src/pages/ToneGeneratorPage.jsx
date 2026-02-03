@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import ContentSection from '../components/ContentSection';
+import FAQSection from '../components/FAQSection';
 
 // Musical note frequencies (A4 = 440 Hz)
 const NOTE_FREQUENCIES = {
@@ -34,6 +35,49 @@ const NOTE_FREQUENCIES = {
 };
 
 const WAVE_TYPES = ['sine', 'square', 'sawtooth', 'triangle'];
+
+const toneGeneratorFaqItems = [
+  {
+    question: "What is a tone generator used for?",
+    answer: "A tone generator is used for creating precise audio tones at specific frequencies. Common uses include pitch reference for singing practice, instrument tuning, ear training exercises, audio equipment testing, and developing pitch recognition skills. Musicians and singers use it to practice matching pitch, while audio engineers use it for testing and calibration."
+  },
+  {
+    question: "What frequency should I use for vocal practice?",
+    answer: "For vocal practice, start with notes in your comfortable range. Middle C (C4 at 261.63 Hz) and A4 (440 Hz) are popular starting points. Female singers often practice in the range of C4 to C6 (261-523 Hz), while male singers typically work in C3 to C5 (131-262 Hz). Use our Vocal Range Test to find your range, then practice notes within and slightly beyond it."
+  },
+  {
+    question: "What's the difference between sine, square, sawtooth, and triangle waves?",
+    answer: "Sine waves produce pure, smooth tones with no harmonics - ideal for pitch reference. Square waves have a harsh, buzzy sound with odd harmonics. Sawtooth waves are rich in harmonics and sound bright and full. Triangle waves are softer than square waves but still contain harmonics. For pitch matching and vocal practice, sine waves are usually best because they're the purest tone."
+  },
+  {
+    question: "Can I use this to tune my instrument?",
+    answer: "Yes! The tone generator is excellent for instrument tuning. Use A4 (440 Hz) as your reference for standard tuning. Play the tone and match your instrument's A string or key to it. You can also use other notes like E, D, G, B for tuning different strings on a guitar. The generator provides a stable, accurate reference that won't drift."
+  },
+  {
+    question: "Is it safe to use headphones with the tone generator?",
+    answer: "Yes, but be careful with volume levels. Start with low volume (20-30%) and increase gradually if needed. Prolonged exposure to loud tones can damage your hearing. Never use maximum volume, especially with headphones. If you experience any discomfort, ringing in your ears, or hearing changes, stop immediately and consult a healthcare professional."
+  },
+  {
+    question: "Why is A4 set to 440 Hz?",
+    answer: "A4 = 440 Hz is the international standard concert pitch established in 1939. This means that the A note above middle C vibrates at exactly 440 cycles per second. Most orchestras, bands, and musical ensembles tune to this standard, ensuring that instruments can play together in harmony. Some historical periods used slightly different standards (like 432 Hz or 435 Hz), but 440 Hz is the modern standard."
+  },
+  {
+    question: "How accurate is the frequency?",
+    answer: "The tone generator uses the Web Audio API, which provides very high accuracy. The frequency accuracy is typically within 0.01 Hz for most frequencies, which is more than sufficient for musical applications. This level of precision makes it suitable for professional use, instrument tuning, and serious ear training."
+  },
+  {
+    question: "Can I use this for ear training?",
+    answer: "Absolutely! The tone generator is an excellent tool for ear training. Practice identifying notes by ear, recognizing intervals, matching pitch, and developing relative pitch. Start with simple exercises like matching single notes, then progress to intervals and scales. Combine it with our Pitch Detector to get instant feedback on your accuracy."
+  },
+  {
+    question: "The tone stops playing when I switch browser tabs. Why?",
+    answer: "Some browsers pause audio when you switch to another tab to save resources. This is a browser feature, not a limitation of the tool. To keep the tone playing, keep the browser tab active or check your browser's audio settings. Chrome and Firefox typically allow background audio, but mobile browsers may pause it."
+  },
+  {
+    question: "Can I download the generated tone as an audio file?",
+    answer: "Currently, the tone generator plays tones in real-time but doesn't support downloading audio files. However, you can use screen recording software or audio capture tools to record the tone if needed. For most use cases (pitch reference, tuning, practice), real-time playback is sufficient."
+  }
+];
 
 const ToneGeneratorPage = () => {
   const [frequency, setFrequency] = useState(440); // A4 default
@@ -98,7 +142,6 @@ const ToneGeneratorPage = () => {
 
     return () => {
       document.title = 'SingMeter';
-      stopTone();
     };
   }, []);
 
@@ -160,7 +203,7 @@ const ToneGeneratorPage = () => {
     if (oscillatorRef.current) {
       try {
         oscillatorRef.current.stop();
-      } catch (error) {
+      } catch {
         // Oscillator may already be stopped
       }
       oscillatorRef.current = null;
@@ -329,7 +372,7 @@ const ToneGeneratorPage = () => {
                 {frequency.toFixed(2)} Hz
               </div>
               <div className="text-xl text-gray-500">
-                {Object.entries(NOTE_FREQUENCIES).find(([note, freq]) => 
+                {Object.entries(NOTE_FREQUENCIES).find(([, freq]) => 
                   Math.abs(freq - frequency) < 0.5
                 )?.[0] || 'Custom Frequency'}
               </div>
@@ -486,88 +529,112 @@ const ToneGeneratorPage = () => {
             </ol>
           </div>
 
+          {/* Tool Integration: Pitch Detector & Vocal Range Test */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <Link to="/pitch-detector" className="block group">
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-3 bg-indigo-50 rounded-xl group-hover:bg-indigo-100 transition">
+                    <span className="text-2xl">🎤</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 group-hover:text-indigo-600 transition">Check Your Accuracy</h3>
+                    <p className="text-xs text-indigo-600 font-semibold uppercase tracking-wide">Pitch Detector</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600 mb-4 flex-grow">
+                  Singing along with the tone? Use our real-time pitch detector to see exactly how accurate your matching is (in cents).
+                </p>
+                <div className="flex items-center text-indigo-600 font-bold text-sm">
+                  Open Pitch Detector
+                  <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/vocal-range-test" className="block group">
+              <div className="bg-white rounded-2xl p-6 shadow-sm border border-purple-100 hover:border-purple-300 hover:shadow-md transition-all h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-3 bg-purple-50 rounded-xl group-hover:bg-purple-100 transition">
+                    <span className="text-2xl">📊</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 group-hover:text-purple-600 transition">Know Your Limits</h3>
+                    <p className="text-xs text-purple-600 font-semibold uppercase tracking-wide">Vocal Range Test</p>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600 mb-4 flex-grow">
+                  Don't know which notes to practice? Find your comfortable range first to avoid straining your voice.
+                </p>
+                <div className="flex items-center text-purple-600 font-bold text-sm">
+                  Take Range Test
+                  <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          </div>
+
           {/* Tone Training Methods */}
           <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">🎯 Tone Training Methods</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">🎯 Vocal & Ear Training Exercises</h2>
             
             <div className="space-y-6">
-              <div className="bg-white rounded-xl p-5 shadow-sm">
+              
+              {/* 1. Attack (起音) */}
+              <div className="bg-white rounded-xl p-5 shadow-sm border-l-4 border-blue-500">
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <span className="text-2xl mr-2">🎵</span>
-                  Pitch Matching Exercise
+                  <span className="text-2xl mr-2">⚡</span>
+                  1. Tone Attack (Clean Onset)
                 </h3>
                 <p className="text-gray-600 mb-3">
-                  Start with a note in your comfortable range (try A4 or C4). Play the tone and listen carefully for 2-3 seconds. Then, try to sing the same pitch. Use the <Link to="/pitch-detector" className="text-blue-600 hover:text-blue-700 font-semibold">Pitch Detector</Link> to check if you're matching accurately. Practice this with different notes across your range.
+                  A good singer starts notes cleanly without "scooping" up to the pitch.
                 </p>
-                <div className="bg-blue-50 rounded-lg p-3 text-sm text-blue-900">
-                  <strong>Tip:</strong> Close your eyes while listening to the tone, then try to match it. This helps develop your internal pitch sense.
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p><strong>Exercise:</strong> Set a comfortable note (e.g., C4). Click "Play" and listen. Then, stop the tone.</p>
+                  <p>Take a breath, and try to sing that note <strong>immediately</strong> and accurately on the syllable "Ah" or "Mah".</p>
+                  <p>Play the tone again to check if you started on the correct pitch.</p>
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-5 shadow-sm">
+              {/* 2. Matching (对音) */}
+              <div className="bg-white rounded-xl p-5 shadow-sm border-l-4 border-indigo-500">
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <span className="text-2xl mr-2">🎼</span>
-                  Interval Training
+                  <span className="text-2xl mr-2">🎯</span>
+                  2. Pitch Matching (Intonation)
                 </h3>
                 <p className="text-gray-600 mb-3">
-                  Play one note, then play another note a specific interval away (like a perfect fifth or octave). Try to sing the interval without playing the second note. This trains your ear to recognize and reproduce musical intervals accurately.
+                  Developing the ability to match an external reference pitch is crucial for staying in tune.
                 </p>
-                <div className="bg-cyan-50 rounded-lg p-3 text-sm text-cyan-900">
-                  <strong>Example:</strong> Play C4, then try to sing G4 (a perfect fifth above) before playing it. Check your accuracy with the Pitch Detector.
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p><strong>Exercise:</strong> Play a random note. Listen for 3 seconds.</p>
+                  <p>Sing the note while the tone is playing. Listen to the "beating" sound (wavering) - it slows down as you get closer to the pitch.</p>
+                  <p><strong>Verification:</strong> Use our <Link to="/pitch-detector" className="text-indigo-600 font-bold hover:underline">Pitch Detector</Link> in a separate tab to see exactly how many cents you are off.</p>
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-5 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <span className="text-2xl mr-2">🎹</span>
-                  Scale Practice
-                </h3>
-                <p className="text-gray-600 mb-3">
-                  Play each note of a scale (like C major: C, D, E, F, G, A, B, C) one at a time. After each tone, try to sing it accurately. Then try singing the entire scale without the generator, using the first note as your reference.
-                </p>
-                <div className="bg-indigo-50 rounded-lg p-3 text-sm text-indigo-900">
-                  <strong>Progression:</strong> Start with major scales, then move to minor scales, and eventually practice chromatic scales (all 12 notes).
-                </div>
-              </div>
-
-              <div className="bg-white rounded-xl p-5 shadow-sm">
+              {/* 3. Ear Training (听觉训练) */}
+              <div className="bg-white rounded-xl p-5 shadow-sm border-l-4 border-purple-500">
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
                   <span className="text-2xl mr-2">👂</span>
-                  Ear Training for Pitch Recognition
+                  3. Ear Training & Intervals
                 </h3>
                 <p className="text-gray-600 mb-3">
-                  Play random notes and try to identify them by name (C, D, E, etc.) without looking at the display. Start with just a few notes in one octave, then gradually expand to more notes and octaves. This develops perfect pitch recognition over time.
+                  Train your brain to recognize the distance between notes (intervals).
                 </p>
-                <div className="bg-purple-50 rounded-lg p-3 text-sm text-purple-900">
-                  <strong>Challenge:</strong> Have a friend play random notes for you, or use a random note generator. See how many you can identify correctly.
+                <div className="space-y-4 text-sm text-gray-700">
+                  <div className="bg-purple-50 p-3 rounded-lg">
+                    <strong>Interval Jump:</strong> Play C4. Stop it. Try to sing G4 (Perfect 5th). Then play G4 to check.
+                  </div>
+                  <div className="bg-purple-50 p-3 rounded-lg">
+                    <strong>Scale Builder:</strong> Play C4. Sing the Major Scale (Do-Re-Mi-Fa-Sol-La-Ti-Do) up to C5. Then play C5 to see if you landed on the correct pitch.
+                  </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl p-5 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <span className="text-2xl mr-2">🎤</span>
-                  Vocal Range Expansion
-                </h3>
-                <p className="text-gray-600 mb-3">
-                  Use the generator to explore the edges of your vocal range. Start from a comfortable note and gradually move to higher or lower frequencies. Play the tone, listen, then try to match it. This helps safely expand your range while maintaining good technique.
-                </p>
-                <div className="bg-pink-50 rounded-lg p-3 text-sm text-pink-900">
-                  <strong>Safety:</strong> Never strain your voice. If a note feels uncomfortable or causes tension, stop and work on notes in your comfortable range first.
-                </div>
-              </div>
-
-              <div className="bg-white rounded-xl p-5 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <span className="text-2xl mr-2">🎸</span>
-                  Instrument Tuning
-                </h3>
-                <p className="text-gray-600 mb-3">
-                  Use the tone generator to tune your instruments. Play the reference tone (like A4 at 440 Hz for standard tuning) and match your instrument's strings or keys to it. The generator provides a stable, accurate reference that won't drift like some tuning apps.
-                </p>
-                <div className="bg-green-50 rounded-lg p-3 text-sm text-green-900">
-                  <strong>Standard Tuning:</strong> A4 = 440 Hz is the international standard concert pitch. Many orchestras and ensembles tune to this frequency.
-                </div>
-              </div>
             </div>
           </div>
 
@@ -594,82 +661,8 @@ const ToneGeneratorPage = () => {
             </ul>
           </ContentSection>
 
-          {/* FAQ */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">❓ Frequently Asked Questions</h2>
-
-            <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">What is a tone generator used for?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  A tone generator is used for creating precise audio tones at specific frequencies. Common uses include pitch reference for singing practice, instrument tuning, ear training exercises, audio equipment testing, and developing pitch recognition skills. Musicians and singers use it to practice matching pitch, while audio engineers use it for testing and calibration.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">What frequency should I use for vocal practice?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  For vocal practice, start with notes in your comfortable range. Middle C (C4 at 261.63 Hz) and A4 (440 Hz) are popular starting points. Female singers often practice in the range of C4 to C6 (261-523 Hz), while male singers typically work in C3 to C5 (131-262 Hz). Use our <Link to="/vocal-range-test" className="text-blue-600 hover:text-blue-700 font-semibold">Vocal Range Test</Link> to find your range, then practice notes within and slightly beyond it.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">What's the difference between sine, square, sawtooth, and triangle waves?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Sine waves produce pure, smooth tones with no harmonics - ideal for pitch reference. Square waves have a harsh, buzzy sound with odd harmonics. Sawtooth waves are rich in harmonics and sound bright and full. Triangle waves are softer than square waves but still contain harmonics. For pitch matching and vocal practice, sine waves are usually best because they're the purest tone.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">Can I use this to tune my instrument?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Yes! The tone generator is excellent for instrument tuning. Use A4 (440 Hz) as your reference for standard tuning. Play the tone and match your instrument's A string or key to it. You can also use other notes like E, D, G, B for tuning different strings on a guitar. The generator provides a stable, accurate reference that won't drift.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">Is it safe to use headphones with the tone generator?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Yes, but be careful with volume levels. Start with low volume (20-30%) and increase gradually if needed. Prolonged exposure to loud tones can damage your hearing. Never use maximum volume, especially with headphones. If you experience any discomfort, ringing in your ears, or hearing changes, stop immediately and consult a healthcare professional.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">Why is A4 set to 440 Hz?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  A4 = 440 Hz is the international standard concert pitch established in 1939. This means that the A note above middle C vibrates at exactly 440 cycles per second. Most orchestras, bands, and musical ensembles tune to this standard, ensuring that instruments can play together in harmony. Some historical periods used slightly different standards (like 432 Hz or 435 Hz), but 440 Hz is the modern standard.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">How accurate is the frequency?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  The tone generator uses the Web Audio API, which provides very high accuracy. The frequency accuracy is typically within 0.01 Hz for most frequencies, which is more than sufficient for musical applications. This level of precision makes it suitable for professional use, instrument tuning, and serious ear training.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">Can I use this for ear training?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Absolutely! The tone generator is an excellent tool for ear training. Practice identifying notes by ear, recognizing intervals, matching pitch, and developing relative pitch. Start with simple exercises like matching single notes, then progress to intervals and scales. Combine it with our <Link to="/pitch-detector" className="text-blue-600 hover:text-blue-700 font-semibold">Pitch Detector</Link> to get instant feedback on your accuracy.
-                </p>
-              </div>
-
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">The tone stops playing when I switch browser tabs. Why?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Some browsers pause audio when you switch to another tab to save resources. This is a browser feature, not a limitation of the tool. To keep the tone playing, keep the browser tab active or check your browser's audio settings. Chrome and Firefox typically allow background audio, but mobile browsers may pause it.
-                </p>
-              </div>
-
-              <div className="pb-4">
-                <h3 className="font-bold text-gray-900 mb-2">Can I download the generated tone as an audio file?</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Currently, the tone generator plays tones in real-time but doesn't support downloading audio files. However, you can use screen recording software or audio capture tools to record the tone if needed. For most use cases (pitch reference, tuning, practice), real-time playback is sufficient.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* FAQ Section */}
+          <FAQSection items={toneGeneratorFaqItems} />
 
           {/* Related Tools */}
           <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 text-center text-white mb-8">
@@ -698,7 +691,7 @@ const ToneGeneratorPage = () => {
         <footer className="bg-white border-t border-gray-200 mt-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="text-center text-gray-600">
-              <p className="mb-2">© 2025 SingMeter. All rights reserved.</p>
+              <p className="mb-2">© 2026 SingMeter. All rights reserved.</p>
               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                 <Link to="/privacy" className="hover:text-blue-600 transition">Privacy Policy</Link>
                 <Link to="/terms" className="hover:text-blue-600 transition">Terms of Service</Link>
@@ -717,4 +710,3 @@ const ToneGeneratorPage = () => {
 };
 
 export default ToneGeneratorPage;
-

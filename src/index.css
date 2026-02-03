@@ -118,6 +118,26 @@ html {
   animation: pulse-scale 2s ease-in-out infinite;
 }
 
+/* Floating Note Animation */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.1);
+  }
+  100% {
+    transform: translateY(-30px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.animate-float-note {
+  animation: float-up 0.8s ease-out infinite;
+}
+
 /* Focus styles */
 button:focus-visible,
 input:focus-visible,

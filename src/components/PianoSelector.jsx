@@ -16,17 +16,16 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
 
   // Piano keys configuration with position for proper layout
   const getPianoKeys = () => {
-    const whiteKeyWidth = 48; // Width of each white key
-    const whiteKeyMargin = -2; // marginRight: -2px (overlap between keys)
-    const effectiveWhiteKeyWidth = whiteKeyWidth + whiteKeyMargin; // 48 - 2 = 46px
+    const whiteKeyWidth = 28; // Reduced from 36
+    const whiteKeyMargin = -1; 
+    const effectiveWhiteKeyWidth = whiteKeyWidth + whiteKeyMargin; // 28 - 1 = 27px
 
     // Calculate position for black keys (centered between two white keys)
     // Black key should be at the center of the gap between two white keys
     const getBlackKeyPosition = (whiteKeyIndex) => {
       // Black key is between white key at whiteKeyIndex and whiteKeyIndex+1
       // Position at the right edge of the white key at whiteKeyIndex
-      // Account for the -2px margin (overlap) between white keys
-      // The transform: translateX(-50%) will center the black key automatically
+      // Account for the margin (overlap) between white keys
       return (whiteKeyIndex + 1) * effectiveWhiteKeyWidth;
     };
 
@@ -114,19 +113,16 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
   };
 
   return (
-    <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
-      <div className="mb-3">
-        <h3 className="text-xs sm:text-sm font-semibold text-gray-700 mb-1">
-          🎹 Click on a piano key to select your {mode === 'lowest' ? 'lowest' : 'highest'} note
+    <div className="bg-gray-50 rounded-lg p-2">
+      <div className="mb-2 text-center">
+        <h3 className="text-xs font-semibold text-gray-700">
+          🎹 Select {mode === 'lowest' ? 'lowest' : 'highest'} note
         </h3>
-        <p className="text-[10px] sm:text-xs text-gray-500">
-          The note will play when you click it
-        </p>
       </div>
 
       {/* Piano Keyboard - Two-layer rendering */}
-      <div className="relative bg-white rounded-lg p-2 sm:p-3 overflow-x-auto">
-        <div className="relative min-w-max mx-auto flex justify-center" style={{ height: '150px' }}>
+      <div className="relative bg-white rounded-lg p-2 overflow-x-auto shadow-inner">
+        <div className="relative min-w-max mx-auto flex justify-center" style={{ height: '120px' }}>
           {/* White keys layer */}
           <div className="flex relative">
             {whiteKeys.map((key) => {
@@ -140,23 +136,23 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
                   onMouseEnter={() => setHoveredKey(key.note)}
                   onMouseLeave={() => setHoveredKey(null)}
                   className={`
-                    relative h-full rounded-b-lg
+                    relative h-full rounded-b-[4px]
                     transition-all duration-150 cursor-pointer
                     ${selected
-                      ? 'bg-gradient-to-b from-yellow-300 to-yellow-500 shadow-xl scale-105 z-10'
+                      ? 'bg-gradient-to-b from-yellow-300 to-yellow-500 shadow-lg scale-[1.02] z-10'
                       : hovered
-                        ? 'bg-gradient-to-b from-gray-100 to-gray-300 shadow-lg z-10'
-                        : 'bg-gradient-to-b from-white to-gray-100 shadow-md'
+                        ? 'bg-gradient-to-b from-gray-50 to-gray-200 shadow-md z-10'
+                        : 'bg-gradient-to-b from-white to-gray-100 shadow-sm'
                     }
-                    hover:scale-105 active:scale-95
-                    border-r-2 border-gray-400 ${selected ? 'border-2 border-yellow-600' : 'border-l-2 border-t-2 border-b-2'}
+                    active:scale-95
+                    border-r border-gray-300 ${selected ? 'border border-yellow-600' : 'border-l border-t border-b'}
                   `}
-                  style={{ width: '48px', marginRight: '-2px' }}
+                  style={{ width: '28px', marginRight: '-1px' }}
                 >
                   <span className={`
-                    absolute bottom-2 left-1/2 transform -translate-x-1/2
-                    text-[10px] font-bold whitespace-nowrap
-                    ${selected ? 'text-yellow-900' : 'text-gray-700'}
+                    absolute bottom-1.5 left-1/2 transform -translate-x-1/2
+                    text-[9px] font-bold whitespace-nowrap
+                    ${selected ? 'text-yellow-900' : 'text-gray-400'}
                   `}>
                     {key.note}
                   </span>
@@ -167,7 +163,7 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
 
           {/* Black keys layer */}
           <div className="absolute inset-0 pointer-events-none flex justify-center">
-            <div className="relative" style={{ width: `${whiteKeys.length * 46}px` }}>
+            <div className="relative" style={{ width: `${whiteKeys.length * 27}px` }}>
             {blackKeys.map((key) => {
               const selected = isSelected(key.frequency);
               const hovered = hoveredKey === key.note;
@@ -179,19 +175,19 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
                   onMouseEnter={() => setHoveredKey(key.note)}
                   onMouseLeave={() => setHoveredKey(null)}
                   className={`
-                    absolute z-20 rounded-b-lg pointer-events-auto
+                    absolute z-20 rounded-b-[3px] pointer-events-auto
                     transition-all duration-150 cursor-pointer
                     ${selected
-                      ? 'bg-gradient-to-b from-yellow-400 to-yellow-600 shadow-xl'
+                      ? 'bg-gradient-to-b from-yellow-400 to-yellow-600 shadow-lg'
                       : hovered
-                        ? 'bg-gradient-to-b from-gray-600 to-gray-800 shadow-lg'
-                        : 'bg-gradient-to-b from-gray-700 to-black shadow-md'
+                        ? 'bg-gradient-to-b from-gray-600 to-gray-800 shadow-md'
+                        : 'bg-gradient-to-b from-gray-700 to-black shadow-sm'
                     }
-                    border-2 ${selected ? 'border-yellow-500' : 'border-gray-900'}
+                    border ${selected ? 'border-yellow-500' : 'border-gray-900'}
                   `}
                   style={{
-                    width: '32px',
-                    height: '95px',
+                    width: '18px',
+                    height: '75px',
                     left: `${key.position}px`,
                     top: '0',
                     transform: selected
@@ -202,9 +198,9 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
                   }}
                 >
                   <span className={`
-                    absolute bottom-2 left-1/2 transform -translate-x-1/2
-                    text-[9px] font-bold whitespace-nowrap
-                    ${selected ? 'text-yellow-900' : 'text-gray-300'}
+                    absolute bottom-1.5 left-1/2 transform -translate-x-1/2
+                    text-[8px] font-bold whitespace-nowrap
+                    ${selected ? 'text-yellow-900' : 'text-gray-400'}
                   `}>
                     {key.note}
                   </span>
@@ -216,20 +212,7 @@ const PianoSelector = ({ mode, selectedPitch, onSelect }) => {
         </div>
       </div>
 
-      {/* Selected note display - 缩小尺寸 */}
-      {selectedPitch && (
-        <div className="mt-3 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
-          <div className="text-center">
-            <div className="text-[10px] sm:text-xs text-indigo-600 font-medium mb-0.5">Selected Note</div>
-            <div className="text-xl sm:text-2xl font-bold text-indigo-700">
-              {keys.find(k => isSelected(k.frequency))?.note || '—'}
-            </div>
-            <div className="text-[10px] sm:text-xs text-indigo-500 mt-0.5">
-              {selectedPitch.toFixed(2)} Hz
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Selected note display removed for compactness - handled by parent component */}
     </div>
   );
 };

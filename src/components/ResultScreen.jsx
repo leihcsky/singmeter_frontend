@@ -26,6 +26,23 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showShareMenu]);
+
+  // Save result to localStorage for other tools to use
+  useEffect(() => {
+    if (result) {
+      try {
+        const vocalRangeData = {
+          low: result.lowestNote,
+          high: result.highestNote,
+          type: result.voiceType,
+          date: new Date().toISOString()
+        };
+        localStorage.setItem('singmeter_user_vocal_range', JSON.stringify(vocalRangeData));
+      } catch (e) {
+        console.error('Failed to save vocal range to localStorage', e);
+      }
+    }
+  }, [result]);
   
   // Voice type info with detailed explanations
   const voiceTypeInfo = {
@@ -40,7 +57,13 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
       typicalRange: 'E2 to E4',
       characteristics: 'Rich, warm, and commanding presence',
       bestFor: 'Blues, soul, opera bass roles',
-      funFact: 'Only 2% of men are true basses!'
+      funFact: 'Only 2% of men are true basses!',
+      interpretation: "Your voice carries a rare authority and grounding presence. In choral settings, you are the foundation; in solo work, your deep timbre commands immediate attention. You possess a natural richness that other voice types struggle to imitate.",
+      practiceGuide: [
+        { title: "Breath Support", desc: "Low notes need steady, controlled air. Focus on diaphragmatic breathing to sustain long, deep phrases." },
+        { title: "Resonance Placement", desc: "Experiment with chest resonance. Feel the vibration in your sternum to maximize the 'boom' of your voice." },
+        { title: "Range Extension", desc: "Don't neglect your upper range. Practice lightening your voice as you go up to avoid straining." }
+      ]
     },
     'Baritone': {
       color: 'from-blue-500 to-indigo-600',
@@ -53,7 +76,13 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
       typicalRange: 'A2 to A4',
       characteristics: 'Warm, smooth, and naturally appealing',
       bestFor: 'Pop, rock, jazz, musical theater',
-      funFact: 'Most male pop stars are baritones!'
+      funFact: 'Most male pop stars are baritones!',
+      interpretation: "You possess the 'everyman' voice – relatable, warm, and incredibly versatile. You bridge the gap between deep power and high brilliance, giving you the ability to sing almost any genre comfortably.",
+      practiceGuide: [
+        { title: "Mixed Voice", desc: "Work on blending your chest and head voice to smooth out your 'passaggio' (break) for seamless transitions." },
+        { title: "Articulation", desc: "Since your range is perfect for storytelling, focus on clear diction to make your lyrics pop." },
+        { title: "Upper Range", desc: "Gently stretch your upper range to handle higher songs without shouting. Think 'narrow' vowels." }
+      ]
     },
     'Tenor': {
       color: 'from-indigo-500 to-purple-600',
@@ -66,7 +95,13 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
       typicalRange: 'C3 to C5',
       characteristics: 'Bright, powerful, and emotionally expressive',
       bestFor: 'Rock, opera, R&B, power ballads',
-      funFact: 'Tenors often steal the show with high notes!'
+      funFact: 'Tenors often steal the show with high notes!',
+      interpretation: "Your voice is designed to cut through the mix. You naturally carry melodies with brightness and emotional intensity. In many genres, Tenors are the 'stars' because the ear is naturally drawn to your frequency range.",
+      practiceGuide: [
+        { title: "Vowel Modification", desc: "Learn to modify vowels (e.g., 'Ah' to 'Uh') as you sing higher to maintain tone and reduce strain." },
+        { title: "Head Voice", desc: "Strengthen your head voice to hit those high money notes with ease and control." },
+        { title: "Stamina", desc: "High singing is athletic. Practice pacing yourself and warming up thoroughly to avoid vocal fatigue." }
+      ]
     },
     'Alto': {
       color: 'from-orange-500 to-red-600',
@@ -79,7 +114,13 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
       typicalRange: 'F3 to F5',
       characteristics: 'Rich, warm, and soulful depth',
       bestFor: 'Soul, jazz, blues, folk',
-      funFact: 'True altos are rare gems in the vocal world!'
+      funFact: 'True altos are rare gems in the vocal world!',
+      interpretation: "You have a unique, soulful quality that adds weight and emotion to any song. Your voice stands out for its richness and 'darker' timbre, which conveys deep feeling and maturity.",
+      practiceGuide: [
+        { title: "Chest Voice", desc: "Embrace your natural lower power. Don't be afraid to lean into that rich chest resonance." },
+        { title: "Smoothing the Break", desc: "Work on the transition between your chest and head voice (often around A4-C5) to eliminate cracks." },
+        { title: "Dynamics", desc: "Practice singing softly in your lower range. It takes control but adds incredible nuance to your performance." }
+      ]
     },
     'Mezzo-Soprano': {
       color: 'from-pink-500 to-rose-600',
@@ -92,7 +133,13 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
       typicalRange: 'A3 to A5',
       characteristics: 'Versatile, expressive, and dynamic',
       bestFor: 'Pop, R&B, musical theater, opera',
-      funFact: 'The Swiss Army knife of female voices!'
+      funFact: 'The Swiss Army knife of female voices!',
+      interpretation: "You are the adaptable powerhouse. You can handle the depth of an Alto and the heights of a Soprano, making you incredibly versatile. You are the 'Swiss Army Knife' of vocalists, able to fit into almost any style.",
+      practiceGuide: [
+        { title: "Belting Technique", desc: "Learn safe belting technique to use your power in pop/rock songs without damaging your cords." },
+        { title: "Agility", desc: "Practice vocal runs and riffs. Your flexible voice is well-suited for R&B and Pop ornamentation." },
+        { title: "Style Exploration", desc: "Experiment with different genres. Your voice can likely handle everything from Jazz to Rock." }
+      ]
     },
     'Soprano': {
       color: 'from-rose-500 to-pink-600',
@@ -105,7 +152,13 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
       typicalRange: 'C4 to C6',
       characteristics: 'Bright, agile, and crystalline clarity',
       bestFor: 'Pop, opera, classical, coloratura',
-      funFact: 'Can hit notes that make dogs jealous! 🐕'
+      funFact: 'Can hit notes that make dogs jealous! 🐕',
+      interpretation: "Your voice is the light and the shimmer. You float above the melody with ease and grace. Your high notes have a natural ability to excite and dazzle audiences.",
+      practiceGuide: [
+        { title: "Breath Management", desc: "High notes consume air fast. Focus on efficient breath control to sustain those soaring phrases." },
+        { title: "Relaxation", desc: "Keep your jaw, neck, and shoulders relaxed. Tension is the enemy of high notes." },
+        { title: "Head Voice Control", desc: "Refine your head voice and whistle register (if available) for those signature high moments." }
+      ]
     },
   };
 
@@ -245,12 +298,13 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
     const url = 'https://www.singmeter.com';
 
     switch(platform) {
-      case 'twitter':
+      case 'twitter': {
         // Twitter has character limit, use shorter version
         const octavesDisplay = (typeof result.octaves === 'number' ? result.octaves : parseFloat(result.octaves)).toFixed(1);
         const twitterText = `${voiceEmoji} Just tested my vocal range: ${result.lowestNote}-${result.highestNote} (${octavesDisplay} octaves)! I'm a ${result.voiceType} like ${info.famous.split(',')[0]}! 🎤 Test yours:`;
         window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(twitterText)}&url=${url}`, '_blank');
         break;
+      }
       case 'facebook':
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(shareText)}`, '_blank');
         break;
@@ -402,6 +456,40 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
                 <div className="text-xs sm:text-sm text-gray-600">
                   {info.funFact}
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Detailed Interpretation & Practice Guide */}
+        <div className="px-4 sm:px-8 pb-6 sm:pb-8 border-t border-gray-100">
+          <div className="mt-6 sm:mt-8 grid md:grid-cols-2 gap-6 sm:gap-8">
+            {/* Interpretation */}
+            <div>
+              <div className="flex items-center space-x-2 mb-3 sm:mb-4">
+                <span className="text-xl sm:text-2xl">🧐</span>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800">Vocal Analysis</h3>
+              </div>
+              <div className="bg-white rounded-xl p-4 sm:p-5 border border-gray-200 h-full shadow-sm">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                  {info.interpretation}
+                </p>
+              </div>
+            </div>
+
+            {/* Practice Guide */}
+            <div>
+              <div className="flex items-center space-x-2 mb-3 sm:mb-4">
+                <span className="text-xl sm:text-2xl">💪</span>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-800">What to Practice Next</h3>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                {info.practiceGuide && info.practiceGuide.map((item, index) => (
+                  <div key={index} className={`p-3 sm:p-4 ${index !== info.practiceGuide.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                    <h4 className={`text-sm sm:text-base font-bold mb-1 ${info.textColor}`}>{item.title}</h4>
+                    <p className="text-xs sm:text-sm text-gray-600">{item.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -591,7 +679,7 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            {similarSingers.map((singer, index) => (
+            {similarSingers.map((singer) => (
               <div
                 key={singer.name}
                 className="bg-white rounded-xl p-4 sm:p-5 border-2 border-purple-100 hover:border-purple-300 transition-all shadow-sm hover:shadow-md"

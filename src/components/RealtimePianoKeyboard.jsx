@@ -6,7 +6,7 @@
 import { useMemo, useState } from 'react';
 import { playPianoNote } from '../utils/pianoAudio';
 
-const RealtimePianoKeyboard = ({ currentNote, currentFrequency }) => {
+const RealtimePianoKeyboard = ({ currentFrequency }) => {
   const [hoveredKey, setHoveredKey] = useState(null);
 
   // Play note sound using realistic piano audio
@@ -88,22 +88,10 @@ const RealtimePianoKeyboard = ({ currentNote, currentFrequency }) => {
   };
 
   return (
-    <div className="w-full">
-      {/* Legend */}
-      <div className="mb-4 flex items-center justify-center gap-6 text-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded bg-gradient-to-b from-purple-400 to-purple-600 border border-purple-700"></div>
-          <span className="text-gray-700">Current Note</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded bg-white border border-gray-400"></div>
-          <span className="text-gray-700">Other Keys</span>
-        </div>
-      </div>
-      
-      {/* Piano keyboard */}
-      <div className="relative bg-white rounded-lg p-2 sm:p-3 overflow-x-auto border-2 border-gray-300">
-        <div className="relative min-w-[600px] sm:min-w-[700px] h-32 sm:h-40">
+    <div className="w-full overflow-x-auto pt-12 pb-1">
+      {/* Piano keyboard container */}
+      <div className="relative bg-white rounded-lg p-2 sm:p-3 border-2 border-gray-300 w-full mx-auto">
+        <div className="relative w-full min-w-[600px] h-24 sm:h-32">
           {/* White keys */}
           <div className="absolute inset-0 flex gap-[1px]">
             {whiteKeys.map((key) => (
@@ -129,6 +117,15 @@ const RealtimePianoKeyboard = ({ currentNote, currentFrequency }) => {
                 onMouseEnter={() => setHoveredKey(key.midi)}
                 onMouseLeave={() => setHoveredKey(null)}
               >
+                {/* Floating Note Animation */}
+                {key.isCurrent && (
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-1 pointer-events-none z-30">
+                    <div className="text-xl animate-float-note text-purple-600 font-bold filter drop-shadow-sm">
+                      🎵
+                    </div>
+                  </div>
+                )}
+
                 {/* Note label at bottom */}
                 <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end pb-1">
                   <span className={`
@@ -179,6 +176,15 @@ const RealtimePianoKeyboard = ({ currentNote, currentFrequency }) => {
                   onMouseEnter={() => setHoveredKey(key.midi)}
                   onMouseLeave={() => setHoveredKey(null)}
                 >
+                  {/* Floating Note Animation for Black Keys */}
+                  {key.isCurrent && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-1 pointer-events-none z-30">
+                      <div className="text-lg animate-float-note text-purple-400 font-bold filter drop-shadow-sm">
+                        ♪
+                      </div>
+                    </div>
+                  )}
+
                   {/* Note label */}
                   <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end pb-1">
                     <span className={`
@@ -198,20 +204,17 @@ const RealtimePianoKeyboard = ({ currentNote, currentFrequency }) => {
         </div>
       </div>
 
-      {/* Current note info */}
-      {currentNote && currentFrequency && (
-        <div className="mt-4 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-200">
-            <span className="text-2xl">🎹</span>
-            <div className="text-left">
-              <div className="text-sm text-gray-600">Playing</div>
-              <div className="text-lg font-bold text-purple-600">
-                {currentNote.fullNote} <span className="text-sm text-gray-500">({currentFrequency.toFixed(2)} Hz)</span>
-              </div>
-            </div>
-          </div>
+      {/* Legend */}
+      <div className="mt-2 flex items-center justify-center gap-6 text-sm">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded bg-gradient-to-b from-purple-400 to-purple-600 border border-purple-700"></div>
+          <span className="text-gray-700">Current Note</span>
         </div>
-      )}
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded bg-white border border-gray-400"></div>
+          <span className="text-gray-700">Other Keys</span>
+        </div>
+      </div>
     </div>
   );
 };
