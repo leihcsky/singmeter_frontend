@@ -867,6 +867,12 @@ const MetronomePage = () => {
               >
                 🎤 Vocal Range Test
               </Link>
+              <Link
+                to="/song-key-finder"
+                className="inline-block px-6 py-3 bg-white text-orange-600 font-bold rounded-xl hover:bg-orange-50 transition"
+              >
+                🎹 Song Key Finder
+              </Link>
             </div>
           </div>
         </main>

@@ -121,8 +121,9 @@ const content = `
     <p class="text-indigo-900 leading-relaxed">
       Start by running the
       <a href="/vocal-range-test" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">SingMeter Vocal Range Test</a>,
-      then come back to this chart to see where you fit. Use it as a guide when choosing songs
-      and planning your vocal training.
+      then come back to this chart to see where you fit. Use the
+      <a href="/tone-generator" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">Tone Generator</a>
+      to hear any note on the chart and practice matching it with your voice.
     </p>
   </div>
 `;

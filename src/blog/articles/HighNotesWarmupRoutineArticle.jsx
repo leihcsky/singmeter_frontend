@@ -121,10 +121,14 @@ const content = `
     </p>
     <p class="text-indigo-900 leading-relaxed">
       Combine this routine with regular checks using the
-      <a href="/vocal-range-test" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">SingMeter Vocal Range Test</a>
+      <a href="/vocal-range-test" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">SingMeter Vocal Range Test</a>,
+      the
+      <a href="/pitch-detector" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">Pitch Detector</a>,
       and the
-      <a href="/pitch-detector" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">Pitch Detector</a>
-      to build a safer, stronger high range over time.
+      <a href="/tone-generator" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">Tone Generator</a>
+      for precise reference pitches during warm-ups. Use the
+      <a href="/metronome" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">Metronome</a>
+      to keep your warm-up exercises at a steady tempo.
     </p>
   </div>
 `;

@@ -325,7 +325,7 @@ The detector is a versatile tool that can help musicians of all kinds improve th
       question: 'How can I improve my pitch accuracy using the detector?',
       answer: `The pitch detector is an excellent tool for improving pitch accuracy. Here are effective ways to use it:
 
-**Start with Reference Notes**: Play a note on a piano or use a tuning app, then try to match it with your voice while watching the detector. This helps you learn what "in tune" feels like physically. Start with comfortable notes in your mid-range, then gradually work your way to more challenging notes.
+**Start with Reference Notes**: Play a note on a piano, use a tuning app, or try our Tone Generator to get a precise reference pitch, then match it with your voice while watching the detector. This helps you learn what "in tune" feels like physically. Start with comfortable notes in your mid-range, then gradually work your way to more challenging notes.
 
 **Practice Sustained Notes**: Hold a single note for 10-15 seconds while keeping it in the "In Tune" zone (±10 cents). This builds muscle memory for correct pitch. If you go flat or sharp, adjust immediately and try to maintain the correct pitch. This exercise helps you develop pitch stability.
 
@@ -333,7 +333,7 @@ The detector is a versatile tool that can help musicians of all kinds improve th
 
 **Interval Training**: Practice jumping between notes (like C to G, a perfect fifth) and check both notes with the detector. This helps you develop accurate interval recognition, which is essential for singing melodies and harmonies.
 
-**Song Practice**: Sing familiar songs slowly while watching the detector. Identify phrases where you consistently go off-pitch, then practice those sections in isolation. Gradually increase tempo while maintaining accuracy.
+**Song Practice**: Sing familiar songs slowly while watching the detector. Identify phrases where you consistently go off-pitch, then practice those sections in isolation. Use the Metronome to set a slow tempo and gradually increase speed while maintaining accuracy.
 
 **Track Your Progress**: Note which notes or intervals are challenging, and practice them regularly. Over time, you should see improvement in your ability to stay in tune. The detector provides objective feedback that helps you identify specific areas to work on.
 
@@ -1927,13 +1927,20 @@ Visit our Contact page to get in touch - we look forward to hearing from you!`
       category: 'Other',
       icon: '💬',
       question: 'Will SingMeter add more tools in the future?',
-      answer: `Yes! We're constantly working on new tools and improvements. Here's what's coming:
+      answer: `Yes! We're constantly working on new tools and improvements. Here's what we already have and what's coming:
+
+**Tools Available Now**:
+- **Vocal Range Test**: Discover your voice type and range
+- **Pitch Detector**: Real-time pitch feedback for practice
+- **Tone Generator**: Generate precise reference tones for ear training and warm-ups
+- **Metronome**: Online metronome for rhythm and tempo practice
+- **Song Key Finder**: Find the key of any song and get transposition suggestions
+
+All five tools are free and work directly in your browser — visit our homepage or the Tools menu to try them!
 
 **Tools in Development**:
-- **Song Key Finder**: Find the key of any song
 - **Autotune Online**: Auto-tune your recordings
 - **Vocal Warm-ups**: Guided warm-up exercises
-- **Metronome**: Online metronome for practice
 - And more!
 
 **How We Decide**:

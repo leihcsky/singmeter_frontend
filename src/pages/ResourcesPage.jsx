@@ -67,6 +67,26 @@ const ResourcesPage = () => {
       internal: true
     },
     {
+      name: 'SingMeter Tone Generator',
+      category: 'Practice Tools',
+      description: 'Generate precise reference tones for ear training, warm-ups, and pitch matching practice. Supports multiple waveforms and adjustable frequency.',
+      pros: ['Adjustable frequency', 'Multiple waveforms', 'Free', 'No microphone needed'],
+      cons: ['Requires speakers or headphones'],
+      bestFor: 'Ear training & reference pitches',
+      link: '/tone-generator',
+      internal: true
+    },
+    {
+      name: 'SingMeter Metronome',
+      category: 'Practice Tools',
+      description: 'Free online metronome for rhythm and tempo practice. Keep steady time while practicing scales, exercises, and songs.',
+      pros: ['Adjustable BPM', 'Multiple time signatures', 'Free', 'Visual & audio beats'],
+      cons: ['Requires speakers or headphones'],
+      bestFor: 'Rhythm & timing practice',
+      link: '/metronome',
+      internal: true
+    },
+    {
       name: 'Yousician',
       category: 'Practice Tools',
       description: 'Interactive music learning app with vocal courses. Provides real-time feedback and structured lessons for all levels.',
@@ -505,6 +525,18 @@ const ResourcesPage = () => {
               className="inline-flex items-center px-6 py-3 bg-indigo-700 text-white font-bold rounded-lg hover:bg-indigo-800 transition"
             >
               Try Pitch Detector
+            </Link>
+            <Link
+              to="/tone-generator"
+              className="inline-flex items-center px-6 py-3 bg-indigo-700 text-white font-bold rounded-lg hover:bg-indigo-800 transition"
+            >
+              Tone Generator
+            </Link>
+            <Link
+              to="/metronome"
+              className="inline-flex items-center px-6 py-3 bg-indigo-700 text-white font-bold rounded-lg hover:bg-indigo-800 transition"
+            >
+              Metronome
             </Link>
           </div>
         </section>

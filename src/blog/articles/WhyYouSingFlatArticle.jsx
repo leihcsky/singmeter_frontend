@@ -165,6 +165,9 @@ const content = `
           <a href="/pitch-detector" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
             🎤 Try the Pitch Detector
           </a>
+          <a href="/tone-generator" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+            🔊 Practice with Tone Generator
+          </a>
           <a href="/vocal-range-test" class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
             🎵 Test Your Vocal Range
           </a>

@@ -252,7 +252,11 @@ const content = `
 	        <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">test your vocal range</a>
 	        to understand your comfortable singing range, then use the
 	        <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
-	        to practice accuracy within that range.
+	        to practice accuracy within that range. Use the
+	        <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a>
+	        to create precise reference pitches for ear training, and practice with the
+	        <a href="/metronome" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">metronome</a>
+	        to develop steady timing while singing scales and exercises.
 	      </p>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">5. Record Your Progress</h3>
@@ -307,6 +311,12 @@ const content = `
 	        <div class="flex flex-wrap gap-3">
 	          <a href="/pitch-detector" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
 	            🎤 Practice with Pitch Detector
+	          </a>
+	          <a href="/tone-generator" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+	            🔊 Try the Tone Generator
+	          </a>
+	          <a href="/metronome" class="inline-block px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition shadow-md hover:shadow-lg">
+	            🥁 Practice with Metronome
 	          </a>
 	          <a href="/vocal-range-test" class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
 	            🎵 Test Your Vocal Range

@@ -38,7 +38,7 @@ const content = `
         same note back.
       </p>
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
-        <li>Use a piano, keyboard app, or tone generator to play one clear note in your comfortable range.</li>
+        <li>Use a piano, keyboard app, or <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a> to play one clear note in your comfortable range.</li>
         <li>Listen to the note without singing. Then stop the sound and try to hear it in your head.</li>
         <li>Sing the note on a simple vowel like “oo” or “ah”.</li>
         <li>Open the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a> and compare your pitch to the reference.</li>
@@ -90,7 +90,7 @@ const content = `
         This helps you feel how each note relates to the key.
       </p>
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
-        <li>Use a drone app or hold a low note on a keyboard (for example, C).</li>
+        <li>Use a drone app, our <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Tone Generator</a>, or hold a low note on a keyboard (for example, C).</li>
         <li>Keep the drone playing while you sing a simple scale or melody above it.</li>
         <li>Notice how some notes feel very stable (like the root and fifth) and others feel more tense.</li>
         <li>Use the pitch detector to make sure your notes are truly in tune with the drone, not drifting away.</li>
@@ -152,6 +152,9 @@ const content = `
         <div class="flex flex-wrap gap-3">
           <a href="/pitch-detector" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
             🎧 Train Your Ear with Pitch Feedback
+          </a>
+          <a href="/tone-generator" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+            🔊 Generate Reference Tones
           </a>
           <a href="/vocal-range-test" class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
             🎵 Check Your Vocal Range

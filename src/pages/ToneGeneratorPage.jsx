@@ -678,10 +678,22 @@ const ToneGeneratorPage = () => {
                 🎵 Pitch Detector
               </Link>
               <Link
+                to="/metronome"
+                className="inline-block px-6 py-3 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition"
+              >
+                🥁 Metronome
+              </Link>
+              <Link
                 to="/vocal-range-test"
                 className="inline-block px-6 py-3 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition"
               >
                 🎤 Vocal Range Test
+              </Link>
+              <Link
+                to="/song-key-finder"
+                className="inline-block px-6 py-3 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition"
+              >
+                🎹 Song Key Finder
               </Link>
             </div>
           </div>

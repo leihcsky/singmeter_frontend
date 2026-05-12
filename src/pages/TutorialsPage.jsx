@@ -652,6 +652,18 @@ const TutorialsPage = () => {
             >
               Try Pitch Detector
             </Link>
+            <Link
+              to="/tone-generator"
+              className="inline-flex items-center px-6 py-3 bg-indigo-700 text-white font-bold rounded-lg hover:bg-indigo-800 transition"
+            >
+              Tone Generator
+            </Link>
+            <Link
+              to="/metronome"
+              className="inline-flex items-center px-6 py-3 bg-indigo-700 text-white font-bold rounded-lg hover:bg-indigo-800 transition"
+            >
+              Metronome
+            </Link>
           </div>
         </section>
 

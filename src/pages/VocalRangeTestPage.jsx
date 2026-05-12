@@ -1045,19 +1045,33 @@ const VocalRangeTestPage = () => {
 	                </div>
 	              </section>
 
-	              {/* CTA to Pitch Detector */}
+	              {/* CTA to Other Tools */}
               <section>
                 <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-center text-white">
-                  <h2 className="text-2xl font-bold mb-3">Want to practice your pitch accuracy?</h2>
+                  <h2 className="text-2xl font-bold mb-3">Continue Your Vocal Training</h2>
                   <p className="text-purple-100 mb-6">
-                    Try our free pitch detector to see your notes in real-time and improve your singing accuracy.
+                    Now that you know your range, use our free tools to improve your pitch, practice with reference tones, and build rhythmic accuracy.
                   </p>
-                  <Link
-                    to="/pitch-detector"
-                    className="inline-block px-6 py-3 bg-white text-purple-600 font-bold rounded-xl hover:bg-purple-50 transition"
-                  >
-                    Try Pitch Detector →
-                  </Link>
+                  <div className="flex flex-wrap justify-center gap-4">
+                    <Link
+                      to="/pitch-detector"
+                      className="inline-block px-6 py-3 bg-white text-purple-600 font-bold rounded-xl hover:bg-purple-50 transition"
+                    >
+                      🎵 Pitch Detector
+                    </Link>
+                    <Link
+                      to="/tone-generator"
+                      className="inline-block px-6 py-3 bg-white text-purple-600 font-bold rounded-xl hover:bg-purple-50 transition"
+                    >
+                      🔊 Tone Generator
+                    </Link>
+                    <Link
+                      to="/metronome"
+                      className="inline-block px-6 py-3 bg-white text-purple-600 font-bold rounded-xl hover:bg-purple-50 transition"
+                    >
+                      🥁 Metronome
+                    </Link>
+                  </div>
                 </div>
 	              </section>
               </>

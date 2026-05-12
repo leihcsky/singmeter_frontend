@@ -1055,6 +1055,22 @@ const SongKeyFinderPage = () => {
               <p className="text-sm text-indigo-100">Practice singing in the new key with real-time feedback</p>
             </Link>
             <Link
+              to="/tone-generator"
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
+            >
+              <div className="text-2xl mb-2">🔊</div>
+              <h3 className="font-bold mb-1">Tone Generator</h3>
+              <p className="text-sm text-indigo-100">Generate reference tones to practice singing in the transposed key</p>
+            </Link>
+            <Link
+              to="/metronome"
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
+            >
+              <div className="text-2xl mb-2">🥁</div>
+              <h3 className="font-bold mb-1">Metronome</h3>
+              <p className="text-sm text-indigo-100">Keep steady tempo while practicing songs in a new key</p>
+            </Link>
+            <Link
               to="/blog/songs-for-your-voice-type"
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
             >
