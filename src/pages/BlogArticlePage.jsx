@@ -5,6 +5,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { blogIndex } from '../blog';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const BlogArticlePage = () => {
   const { slug } = useParams();
@@ -254,19 +255,7 @@ const BlogArticlePage = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-50 border-t border-gray-200 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center text-sm text-gray-600">
-            <p className="mb-2">© 2026 SingMeter. All rights reserved.</p>
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-              <Link to="/" className="hover:text-indigo-600 transition">Home</Link>
-              <span>•</span>
-              <Link to="/blog" className="hover:text-indigo-600 transition">Blog</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer variant="muted" />
     </div>
   );
 };

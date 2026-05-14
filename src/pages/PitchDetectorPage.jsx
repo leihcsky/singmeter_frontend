@@ -7,6 +7,7 @@ import ContentSection from '../components/ContentSection';
 import { AudioPitchDetector, frequencyToNote } from '../utils/pitchDetector';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import Footer from '../components/Footer';
 import RealtimePianoKeyboard from '../components/RealtimePianoKeyboard';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
 import FAQSection from '../components/FAQSection';
@@ -968,20 +969,7 @@ const PitchDetectorPage = () => {
           />
         )}
 
-        {/* Footer */}
-        <footer className="bg-white border-t border-gray-200 mt-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="text-center text-gray-600">
-              <p className="mb-2">© 2026 SingMeter. All rights reserved.</p>
-              <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-                <Link to="/privacy" className="hover:text-indigo-600 transition">Privacy Policy</Link>
-                <Link to="/terms" className="hover:text-indigo-600 transition">Terms of Service</Link>
-                <Link to="/disclaimer" className="hover:text-indigo-600 transition">Disclaimer</Link>
-                <Link to="/contact" className="hover:text-indigo-600 transition">Contact</Link>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
 
         {/* Bottom Navigation - Mobile only */}
         <BottomNav />

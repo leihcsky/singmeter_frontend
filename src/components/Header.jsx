@@ -5,7 +5,7 @@
  */
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { tools, getToolsByCategory } from '../config/tools';
+import { tools } from '../config/tools';
 
 const Header = () => {
   const [showToolsDropdown, setShowToolsDropdown] = useState(false);
@@ -59,14 +59,9 @@ const Header = () => {
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
       </svg>
     ),
-    About: (props) => (
+    Home: (props) => (
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-      </svg>
-    ),
-    Contact: (props) => (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
       </svg>
     ),
     Tutorials: (props) => (
@@ -110,6 +105,18 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
+            <Link
+              to="/"
+              className={`flex items-center space-x-1 font-medium transition group ${
+                location.pathname === '/'
+                  ? 'text-indigo-600'
+                  : 'text-gray-600 hover:text-indigo-600'
+              }`}
+            >
+              <Icons.Home className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
+              <span>Home</span>
+            </Link>
+
             {/* Tools Navigation - Always dropdown */}
             <div 
               className="relative"
@@ -260,17 +267,16 @@ const Header = () => {
             </div>
 
             {/* Other Navigation Links */}
-            <Link to="/blog" className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 font-medium transition group">
+            <Link
+              to="/blog"
+              className={`flex items-center space-x-1 font-medium transition group ${
+                location.pathname === '/blog' || location.pathname.startsWith('/blog/')
+                  ? 'text-indigo-600'
+                  : 'text-gray-600 hover:text-indigo-600'
+              }`}
+            >
               <Icons.Blog className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
               <span>Blog</span>
-            </Link>
-            <Link to="/about" className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 font-medium transition group">
-              <Icons.About className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
-              <span>About</span>
-            </Link>
-            <Link to="/contact" className="flex items-center space-x-1 text-gray-600 hover:text-indigo-600 font-medium transition group">
-              <Icons.Contact className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
-              <span>Contact</span>
             </Link>
           </nav>
 
@@ -293,6 +299,19 @@ const Header = () => {
         {showMobileMenu && (
           <div className="md:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
             <div className="space-y-2">
+              <Link
+                to="/"
+                onClick={() => setShowMobileMenu(false)}
+                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
+                  location.pathname === '/'
+                    ? 'bg-indigo-50 text-indigo-600'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <Icons.Home className="w-5 h-5 flex-shrink-0 text-gray-500" />
+                <span className="font-medium flex-1">Home</span>
+              </Link>
+
               {/* Tools Section */}
               <div className="flex items-center px-2 mb-2 text-gray-500">
                 <Icons.Tools className="w-4 h-4 mr-2" />
@@ -374,33 +393,17 @@ const Header = () => {
                 <span className="font-medium flex-1">FAQ</span>
               </Link>
 
-              {/* Other Links */}
-              <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 mt-4 mb-2 border-t pt-4">
-                More
-              </div>
               <Link
                 to="/blog"
                 onClick={() => setShowMobileMenu(false)}
-                className="flex items-center space-x-3 px-2 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition"
+                className={`flex items-center space-x-3 px-2 py-2 mt-2 rounded-lg transition border-t border-gray-100 pt-4 ${
+                  location.pathname === '/blog' || location.pathname.startsWith('/blog/')
+                    ? 'bg-indigo-50 text-indigo-600'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
               >
                 <Icons.Blog className="w-5 h-5 flex-shrink-0 text-gray-500" />
-                <span className="font-medium">Blog</span>
-              </Link>
-              <Link
-                to="/about"
-                onClick={() => setShowMobileMenu(false)}
-                className="flex items-center space-x-3 px-2 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition"
-              >
-                <Icons.About className="w-5 h-5 flex-shrink-0 text-gray-500" />
-                <span className="font-medium">About</span>
-              </Link>
-              <Link
-                to="/contact"
-                onClick={() => setShowMobileMenu(false)}
-                className="flex items-center space-x-3 px-2 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition"
-              >
-                <Icons.Contact className="w-5 h-5 flex-shrink-0 text-gray-500" />
-                <span className="font-medium">Contact</span>
+                <span className="font-medium flex-1">Blog</span>
               </Link>
             </div>
           </div>

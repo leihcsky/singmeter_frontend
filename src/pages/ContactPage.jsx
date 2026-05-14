@@ -4,15 +4,29 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+const SUBJECT_LABELS = {
+  general: 'General Inquiry',
+  feedback: 'Feedback',
+  bug: 'Report a Bug',
+  feature: 'Feature Request',
+  support: 'Technical Support',
+  business: 'Business Inquiry',
+};
+
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
 	useEffect(() => {
 		document.title = 'Contact SingMeter - Feedback, Support & Business Inquiries';
@@ -59,16 +73,47 @@ const ContactPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real application, you would send this data to a server
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setSubmitted(false);
+    setSubmitError('');
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
+    if (!accessKey) {
+      setSubmitError(
+        'The contact form is not enabled here. Please email contact@singmeter.com — we read every message.'
+      );
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const subjectLine = `SingMeter — ${SUBJECT_LABELS[formData.subject] || formData.subject}`;
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: subjectLine,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          from_name: formData.name,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === false) {
+        throw new Error(data.message || `Request failed (${res.status})`);
+      }
+      setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again or email contact@singmeter.com.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -116,9 +161,39 @@ const ContactPage = () => {
                     </svg>
                     <h3 className="text-xl font-bold text-green-900 mb-2">Message Sent!</h3>
                     <p className="text-green-700">Thank you for contacting us. We'll get back to you soon.</p>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="mt-4 text-sm font-semibold text-indigo-600 hover:text-indigo-700"
+                    >
+                      Send another message
+                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {submitError && (
+                      <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
+                        {submitError}
+                      </div>
+                    )}
+                    {import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ? (
+                      <p className="text-xs text-gray-500">
+                        Submissions are delivered to our inbox via a secure form service. You can still use the email addresses on the right if you prefer.
+                      </p>
+                    ) : (
+                      <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                        The online form is not active on this deployment yet. Please email{' '}
+                        <a href="mailto:contact@singmeter.com" className="font-semibold underline">
+                          contact@singmeter.com
+                        </a>{' '}
+                        — messages there are forwarded to our team (ImprovMX).
+                        {import.meta.env.DEV && (
+                          <span className="block mt-2 text-amber-900/90 font-mono text-[11px]">
+                            Dev: set VITE_WEB3FORMS_ACCESS_KEY in .env.local and restart the dev server.
+                          </span>
+                        )}
+                      </p>
+                    )}
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                         Name *
@@ -191,9 +266,10 @@ const ContactPage = () => {
 
                     <button
                       type="submit"
-                      className="w-full px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all duration-200 transform hover:scale-105"
+                      disabled={isSubmitting}
+                      className="w-full px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all duration-200 transform hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
-                      Send Message
+                      {isSubmitting ? 'Sending…' : 'Send Message'}
                     </button>
                   </form>
                 )}
@@ -296,23 +372,7 @@ const ContactPage = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-600 text-sm">
-              © 2026 SingMeter. All rights reserved.
-            </p>
-            <div className="flex space-x-6 text-sm">
-              <Link to="/blog" className="text-gray-600 hover:text-indigo-600 transition">Blog</Link>
-              <Link to="/about" className="text-gray-600 hover:text-indigo-600 transition">About</Link>
-              <Link to="/contact" className="text-gray-600 hover:text-indigo-600 transition">Contact</Link>
-              <Link to="/privacy" className="text-gray-600 hover:text-indigo-600 transition">Privacy</Link>
-              <Link to="/terms" className="text-gray-600 hover:text-indigo-600 transition">Terms</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
