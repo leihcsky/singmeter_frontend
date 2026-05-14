@@ -2,10 +2,13 @@ const meta = {
   id: 'why-you-sing-flat',
   slug: 'why-you-sing-flat',
   title: 'Why You Sing Flat (And How to Fix It for Good)',
+  seoTitle: 'Why You Sing Flat (and How to Fix It)',
+  seoDescription:
+    'Flat singing is common and fixable: breath support, vowels, registration, and listening habits. Exercises plus how to use a pitch detector to see cents in real time.',
   category: 'Pitch & Intonation',
   readTime: '9 min read',
   date: '2025-12-02',
-  updatedDate: '2025-12-02',
+  updatedDate: '2026-05-14',
   author: 'SingMeter Team',
   excerpt:
     "Find out the real reasons why you sing flat and learn practical exercises to finally fix your pitch for good. We'll show you how to use simple techniques and tools to get in tune and stay there.",

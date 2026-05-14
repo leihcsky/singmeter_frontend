@@ -159,6 +159,13 @@ const PrivacyPage = () => {
                 by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">Google Ads Settings</a>.
               </p>
 
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Microsoft Clarity</h3>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                We use Microsoft Clarity for session insights and heatmaps to improve how the site works for visitors.
+                Clarity may collect usage data as described in{' '}
+                <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">Microsoft&apos;s Privacy Statement</a>.
+              </p>
+
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Data Security</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 We implement appropriate technical and organizational measures to protect your data. However, 
@@ -196,7 +203,7 @@ const PrivacyPage = () => {
                 If you have any questions about this Privacy Policy, please contact us at:
               </p>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Email: <a href="mailto:privacy@singmeter.com" className="text-indigo-600 hover:text-indigo-700 underline">privacy@singmeter.com</a>
+                Email: <a href="mailto:contact@singmeter.com" className="text-indigo-600 hover:text-indigo-700 underline">contact@singmeter.com</a>
               </p>
             </div>
           </div>

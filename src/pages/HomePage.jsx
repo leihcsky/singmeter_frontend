@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { getActiveTools } from '../config/tools';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import AdsterraNativeBanner from '../components/AdsterraNativeBanner';
 import FAQSection from '../components/FAQSection';
 
 // Visual Components
@@ -429,11 +428,6 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-          </section>
-
-          {/* Adsterra Native Banner (Restored & Visible) */}
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <AdsterraNativeBanner />
           </section>
 
           {/* Core Module 3: All Tools */}

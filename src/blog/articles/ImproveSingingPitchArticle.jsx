@@ -2,11 +2,14 @@ const meta = {
 	id: 'improve-singing-pitch',
 	slug: 'improve-singing-pitch',
 	title: 'How to Improve Your Singing Pitch: Complete Training Guide',
+	seoTitle: 'Improve Singing Pitch: Exercises & Routine',
+	seoDescription:
+	  'Improve pitch accuracy with breath, vowels, scales, intervals, and a short daily routine using a pitch detector. Fix sharp or flat habits and track progress over time.',
 	category: 'Guides',
 	readTime: '8 min read',
-		date: '2025-11-21',
-		updatedDate: '2025-11-21',
-		author: 'SingMeter Team',
+	date: '2025-11-21',
+	updatedDate: '2026-05-14',
+	author: 'SingMeter Team',
 	excerpt:
 	  'Learn proven exercises and techniques to improve your singing pitch accuracy. Master how to sing in tune with our complete training guide and 15-minute practice routine.',
 	seoKeywords:

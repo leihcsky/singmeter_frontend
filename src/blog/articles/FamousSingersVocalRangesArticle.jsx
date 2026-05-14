@@ -2,10 +2,13 @@ const meta = {
   id: 'famous-singers-vocal-ranges',
   slug: 'famous-singers-vocal-ranges',
   title: "Famous Singers' Vocal Ranges (And What You Can Learn from Them)",
+  seoTitle: "Famous Singers' Vocal Ranges Explained",
+  seoDescription:
+    'Approximate ranges of well-known singers—and how to compare them to your own voice safely. Learn range vs tessitura and avoid unhealthy comparisons.',
   category: 'Inspiration',
   readTime: '8 min read',
   date: '2025-12-02',
-  updatedDate: '2025-12-02',
+  updatedDate: '2026-05-14',
   author: 'SingMeter Team',
   excerpt:
     'See approximate vocal ranges of famous singers and learn how to compare them to your own voice in a healthy, motivating way.',

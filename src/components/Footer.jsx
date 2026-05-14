@@ -54,12 +54,14 @@ const Footer = ({ variant = 'default', compact = false }) => {
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-gray-900 font-bold text-lg tracking-tight hover:text-indigo-600 transition-colors"
+              className="inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 rounded-lg -m-2 p-2 hover:opacity-90 transition-opacity"
+              aria-label="SingMeter home"
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 text-white text-sm font-bold shadow-sm">
-                S
-              </span>
-              SingMeter
+              <img
+                src="/logo-horizontal.svg"
+                alt="SingMeter"
+                className="h-10 sm:h-12 w-auto"
+              />
             </Link>
             <p className="mt-3 text-sm text-gray-600 leading-relaxed max-w-sm">
               Free browser tools for vocal range, pitch practice, ear training, and rhythm — privacy-first, no signup required.

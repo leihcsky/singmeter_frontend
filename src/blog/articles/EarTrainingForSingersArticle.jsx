@@ -2,10 +2,13 @@ const meta = {
   id: 'ear-training-for-singers',
   slug: 'ear-training-for-singers',
   title: 'Ear Training for Singers: How to Hear and Match Pitch',
+  seoTitle: 'Ear Training for Singers: Match Pitch',
+  seoDescription:
+    'Train your ear to hear intervals, match pitch, and sing more in tune—step by step, even without heavy theory. Exercises you can do at home with a pitch detector and reference tones.',
   category: 'Pitch & Intonation',
   readTime: '10 min read',
   date: '2025-12-02',
-  updatedDate: '2025-12-02',
+  updatedDate: '2026-05-14',
   author: 'SingMeter Team',
   excerpt:
     'Build a reliable musical ear so you can hear notes accurately and match pitch with confidence. This guide shows singers how to train the ear step by step, even without music theory background.',

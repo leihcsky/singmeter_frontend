@@ -7,6 +7,51 @@ import { blogIndex } from '../blog';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+/** Shorter brand suffix; total browser title length capped in buildMetaTitle */
+const TITLE_BRAND = ' | SingMeter';
+const MAX_TITLE_TOTAL = 60;
+const MAX_META_DESCRIPTION = 158;
+const MAX_KEYWORDS = 255;
+
+function buildMetaTitle(article) {
+  const core = (article.seoTitle || article.title).trim();
+  const maxCore = MAX_TITLE_TOTAL - TITLE_BRAND.length;
+  if (core.length <= maxCore) return `${core}${TITLE_BRAND}`;
+  const sliceLen = maxCore - 1;
+  let cut = core.slice(0, sliceLen);
+  const lastSpace = cut.lastIndexOf(' ');
+  if (lastSpace > Math.floor(sliceLen * 0.45)) cut = cut.slice(0, lastSpace);
+  return `${cut.trimEnd()}…${TITLE_BRAND}`;
+}
+
+function buildMetaDescription(article) {
+  const raw = (article.seoDescription || article.excerpt || '').trim();
+  if (raw.length <= MAX_META_DESCRIPTION) return raw;
+  let cut = raw.slice(0, MAX_META_DESCRIPTION - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  if (lastSpace > 70) cut = cut.slice(0, lastSpace);
+  return `${cut.trimEnd()}…`;
+}
+
+function buildKeywords(article) {
+  const raw = (article.seoKeywords || `singing, vocal training, ${article.category.toLowerCase()}, music education`).trim();
+  if (raw.length <= MAX_KEYWORDS) return raw;
+  let cut = raw.slice(0, MAX_KEYWORDS);
+  const lastComma = cut.lastIndexOf(',');
+  if (lastComma > 120) cut = cut.slice(0, lastComma);
+  return cut.trimEnd();
+}
+
+function buildSocialTitle(article) {
+  const t = (article.seoTitle || article.title).trim();
+  const max = 95;
+  if (t.length <= max) return t;
+  let cut = t.slice(0, max - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  if (lastSpace > 45) cut = cut.slice(0, lastSpace);
+  return `${cut.trimEnd()}…`;
+}
+
 const BlogArticlePage = () => {
   const { slug } = useParams();
   const article = blogIndex.find((a) => a.slug === slug);
@@ -38,9 +83,6 @@ const BlogArticlePage = () => {
 
   // Set document title and meta tags
   useEffect(() => {
-    // Set title
-    document.title = `${article.title} | SingMeter Blog`;
-
     // Set or update meta tags
     const setMetaTag = (name, content, isProperty = false) => {
       const attribute = isProperty ? 'property' : 'name';
@@ -64,19 +106,21 @@ const BlogArticlePage = () => {
 	    };
 
 		const canonicalUrl = `https://www.singmeter.com/blog/${article.slug}`;
+		const metaTitle = buildMetaTitle(article);
+		const metaDescription = buildMetaDescription(article);
+		const metaKeywords = buildKeywords(article);
+
+		document.title = metaTitle;
 
 		// Basic meta tags
-		setMetaTag('description', article.excerpt);
-		setMetaTag(
-			'keywords',
-			article.seoKeywords || `singing, vocal training, ${article.category.toLowerCase()}, music education`
-		);
+		setMetaTag('description', metaDescription);
+		setMetaTag('keywords', metaKeywords);
 		setMetaTag('author', article.author || 'SingMeter Team');
 
 		// Open Graph tags
 		setMetaTag('og:type', 'article', true);
-		setMetaTag('og:title', article.title, true);
-		setMetaTag('og:description', article.excerpt, true);
+		setMetaTag('og:title', buildSocialTitle(article), true);
+		setMetaTag('og:description', metaDescription, true);
 			setMetaTag('og:url', canonicalUrl, true);
 		setMetaTag('article:published_time', article.date, true);
 		setMetaTag('article:modified_time', article.updatedDate || article.date, true);
@@ -84,8 +128,8 @@ const BlogArticlePage = () => {
 
     // Twitter tags
     setMetaTag('twitter:card', 'summary_large_image');
-    setMetaTag('twitter:title', article.title);
-    setMetaTag('twitter:description', article.excerpt);
+    setMetaTag('twitter:title', buildSocialTitle(article));
+    setMetaTag('twitter:description', metaDescription);
 
 			// Canonical link
 			setLinkTag('canonical', canonicalUrl);
@@ -103,7 +147,7 @@ const BlogArticlePage = () => {
 		  "@context": "https://schema.org",
 		  "@type": "Article",
 		  "headline": article.title,
-		  "description": article.excerpt,
+		  "description": metaDescription,
 		  "datePublished": article.date,
 		  "dateModified": article.updatedDate || article.date,
 				  "author": {
@@ -124,7 +168,7 @@ const BlogArticlePage = () => {
 				    "@id": canonicalUrl
 				  },
 		  "articleSection": article.category,
-		  "keywords": article.seoKeywords || "singing, vocal training, music education"
+		  "keywords": metaKeywords
 		});
     document.head.appendChild(script);
 

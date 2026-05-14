@@ -2,10 +2,13 @@ const meta = {
   id: 'sing-in-tune-without-piano',
   slug: 'sing-in-tune-without-piano',
   title: 'How to Practice Singing in Tune Without a Piano or Backing Track',
+  seoTitle: 'Sing in Tune Without Piano or Backing',
+  seoDescription:
+    'Practice intonation at home with your phone, reference tones, and a pitch detector—no piano required. Simple routines for beginners and anyone practicing without instruments.',
   category: 'Pitch & Intonation',
   readTime: '8 min read',
   date: '2025-12-02',
-  updatedDate: '2025-12-02',
+  updatedDate: '2026-05-14',
   author: 'SingMeter Team',
   excerpt:
     'No piano? No problem. Learn practical ways to practice singing in tune using only your phone, your ears, and simple online tools — perfect for home practice and beginners.',

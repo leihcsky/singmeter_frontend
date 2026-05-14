@@ -2,10 +2,13 @@ const meta = {
   id: 'use-pitch-detector-for-training',
   slug: 'use-pitch-detector-for-training',
   title: 'How to Use a Pitch Detector for Vocal Training (Complete Guide)',
+  seoTitle: 'Pitch Detector for Singing: Training Guide',
+  seoDescription:
+    'Turn your pitch detector into a daily vocal coach: single notes, scales, songs, and problem spots with real-time visual feedback. Practical steps for singers at any level.',
   category: 'Pitch & Intonation',
   readTime: '9 min read',
   date: '2025-12-02',
-  updatedDate: '2025-12-02',
+  updatedDate: '2026-05-14',
   author: 'SingMeter Team',
   excerpt:
     'Turn a simple pitch detector into a powerful daily vocal coach. Learn how to practice notes, scales, songs, and problem areas using real-time visual pitch feedback.',
