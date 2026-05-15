@@ -4,19 +4,19 @@ import VocalRangeChartVisual, { VOICE_TYPES } from '../../components/VocalRangeC
 const meta = {
   id: 'vocal-range-chart',
   slug: 'vocal-range-chart',
-  title: 'Vocal Range Chart: Male, Female & SATB Voice Types',
-  seoTitle: 'Vocal Range Chart by Voice Type',
+  title: 'Vocal Range Chart: Male, Female & SATB Voice Types Explained',
+  seoTitle: 'Vocal Range Chart: Male, Female & SATB',
   seoDescription:
-    'See a clear vocal range chart for soprano, alto, tenor, bass and more. Learn how to read the chart, match your own range, and avoid common mistakes.',
+    'Visual vocal range chart for bass, baritone, tenor, alto, mezzo, soprano and SATB. Learn how to read the bars, compare your voice, and test your range free.',
   category: 'Vocal Range',
   readTime: '10 min read',
   date: '2025-12-02',
-  updatedDate: '2026-05-15',
+  updatedDate: '2026-05-16',
   author: 'SingMeter Team',
   excerpt:
-    'Interactive vocal range chart for male and female voice types plus SATB choir parts. Learn what the chart shows, how to read it, and how to compare it with your own range.',
+    'Color-coded vocal range chart from E2 to C6 for male and female voice types plus SATB. See how to read the chart, use the reference table, and match your own range.',
   seoKeywords:
-    'vocal range chart, vocal range chart male female, SATB vocal range, soprano range, alto range, tenor range, baritone range, bass range',
+    'vocal range chart, vocal range chart male female, SATB vocal range, soprano range, alto range, tenor range, baritone range, bass range, mezzo soprano range',
 };
 
 const linkClass = 'text-indigo-600 hover:text-indigo-700 font-semibold underline';
