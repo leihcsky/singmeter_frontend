@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import FaqAnswerContent, { faqAnswerToPlainText } from '../components/FaqAnswerContent';
 
 const FAQPage = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -2183,7 +2184,7 @@ We're not trying to be like other tools - we're trying to be better, by removing
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-2xl p-6 shadow-md mb-8">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl p-6 shadow-md mb-8">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-2">
@@ -2222,41 +2223,44 @@ We're not trying to be like other tools - we're trying to be better, by removing
         </div>
 
         {/* FAQ List */}
-        <div className="space-y-4 mb-12">
+        <div className="max-w-4xl mx-auto space-y-4 mb-12">
           {filteredFAQs.map((faq, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
               <button
+                type="button"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition"
+                className="w-full px-5 sm:px-6 py-4 text-left flex items-start gap-3 sm:gap-4 justify-between hover:bg-gray-50 transition"
+                aria-expanded={openIndex === index}
               >
-                <div className="flex items-start space-x-4 flex-1">
-                  <span className="text-2xl flex-shrink-0">{faq.icon || '❓'}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-1">
-                      <h3 className="text-lg font-bold text-gray-900">{faq.question}</h3>
-                      <span className="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full">
-                        {faq.category}
-                      </span>
-                    </div>
+                <span className="text-2xl flex-shrink-0 mt-0.5" aria-hidden="true">
+                  {faq.icon || '❓'}
+                </span>
+                <div className="flex-1 min-w-0 pr-2">
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 text-left leading-snug">
+                      {faq.question}
+                    </h3>
+                    <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full whitespace-nowrap">
+                      {faq.category}
+                    </span>
                   </div>
                 </div>
                 <svg
-                  className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform ${
+                  className={`w-5 h-5 text-gray-500 flex-shrink-0 mt-1 transition-transform ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {openIndex === index && (
-                <div className="px-6 pb-6 pt-2 border-t border-gray-100">
-                  <div className="pl-8">
-                    <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-                      {faq.answer}
-                    </p>
+                <div className="px-5 sm:px-6 pb-6 pt-4 border-t border-gray-100 bg-slate-50/60">
+                  <div className="sm:ml-10 text-left">
+                    <FaqAnswerContent text={faq.answer} />
                   </div>
                 </div>
               )}
@@ -2264,8 +2268,23 @@ We're not trying to be like other tools - we're trying to be better, by removing
           ))}
         </div>
 
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqData.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faqAnswerToPlainText(item.answer),
+              },
+            })),
+          })}
+        </script>
+
         {filteredFAQs.length === 0 && (
-          <div className="bg-white rounded-2xl p-12 text-center shadow-md">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl p-12 text-center shadow-md">
             <div className="text-6xl mb-4">🔍</div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">No questions found</h3>
             <p className="text-gray-600">
