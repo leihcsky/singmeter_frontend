@@ -240,7 +240,7 @@ const BlogArticlePage = () => {
             {/* Divider */}
             <div className="border-t border-gray-200 mb-8"></div>
             {/* Article Content */}
-            <div className="prose prose-lg max-w-none">
+            <div className="blog-article-content max-w-none">
               {article.component && <article.component />}
             </div>
 	            {/* Author Bio */}
