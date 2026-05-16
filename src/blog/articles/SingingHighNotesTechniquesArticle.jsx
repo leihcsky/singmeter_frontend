@@ -323,13 +323,13 @@ const content = `
 	          with pitch detector practice to ensure your high notes are both high and accurate.
 	        </p>
 	        <div class="flex flex-wrap gap-3">
-	          <a href="/vocal-range-test" class="inline-block px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition">
+	          <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition">
 	            Test Your Range
 	          </a>
-	          <a href="/pitch-detector" class="inline-block px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
+	          <a href="/pitch-detector" class="blog-cta inline-block px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
 	            Practice with Pitch Detector
 	          </a>
-	          <a href="/tone-generator" class="inline-block px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+	          <a href="/tone-generator" class="blog-cta inline-block px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
 	            Warm Up with Tone Generator
 	          </a>
 	        </div>

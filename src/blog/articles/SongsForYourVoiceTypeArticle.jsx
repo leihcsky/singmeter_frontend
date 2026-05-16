@@ -314,10 +314,10 @@ const content = `
 	          to choosing songs that showcase your voice beautifully.
 	        </p>
 	        <div class="flex flex-wrap gap-3">
-	          <a href="/vocal-range-test" class="inline-block px-6 py-2 bg-pink-600 text-white font-semibold rounded-lg hover:bg-pink-700 transition">
+	          <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-2 bg-pink-600 text-white font-semibold rounded-lg hover:bg-pink-700 transition">
 	            Discover Your Voice Type
 	          </a>
-	          <a href="/tutorials" class="inline-block px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
+	          <a href="/tutorials" class="blog-cta inline-block px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
 	            Explore Vocal Tutorials
 	          </a>
 	        </div>
