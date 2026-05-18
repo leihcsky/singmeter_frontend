@@ -2,13 +2,16 @@ const meta = {
   id: 'how-to-find-your-voice-type',
   slug: 'how-to-find-your-voice-type',
   title: 'How to Find Your Voice Type (Without a Teacher)',
+  seoTitle: 'How to Find Your Voice Type at Home',
+  seoDescription:
+    'Find your voice type using range, tessitura, and tone at home. Step-by-step guide with our free vocal range test—no vocal coach required.',
   category: 'Guides',
   readTime: '8 min read',
   date: '2025-12-02',
-  updatedDate: '2025-12-02',
+  updatedDate: '2026-05-16',
   author: 'SingMeter Team',
   excerpt:
-    'Step-by-step method to find your voice type at home using your vocal range, tessitura, and tone — without needing a vocal coach.',
+    'Step-by-step method to find your voice type at home using your vocal range, tessitura, and tone, without needing a vocal coach.',
   seoKeywords:
     'how to find your voice type, what is my voice type, voice type test, soprano alto tenor baritone, beginner voice classification',
 };

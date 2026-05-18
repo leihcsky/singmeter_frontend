@@ -13,8 +13,20 @@
     <meta name="author" content="SingMeter" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Note: Dynamic meta tags (title, description, keywords, canonical, og:*, twitter:*)
-         are managed by React 19 in each page component. Do not add them here to avoid duplicates. -->
+    <!-- Per-URL canonical in initial HTML (SPA); React updates title/description after load -->
+    <script>
+      (function () {
+        var origin = 'https://www.singmeter.com';
+        var path = location.pathname.replace(/\/+$/, '') || '/';
+        var href = origin + (path === '/' ? '' : path);
+        var link = document.createElement('link');
+        link.rel = 'canonical';
+        link.href = href;
+        document.head.appendChild(link);
+      })();
+    </script>
+
+    <!-- Note: title, description, og:* are set by bootstrapSeo + page components after load. -->
 
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">

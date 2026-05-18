@@ -2,10 +2,13 @@ const meta = {
   id: 'can-vocal-range-change',
   slug: 'can-vocal-range-change',
   title: 'Can Your Vocal Range Change? Myths, Facts, and Safe Training',
+  seoTitle: 'Can Your Vocal Range Change?',
+  seoDescription:
+    'Yes, your usable range can grow with training within natural limits. Learn what changes with age, safe expansion tips, and how to track progress with a range test.',
   category: 'Vocal Range',
   readTime: '7 min read',
   date: '2025-12-02',
-  updatedDate: '2025-12-02',
+  updatedDate: '2026-05-16',
   author: 'SingMeter Team',
   excerpt:
     'Wondering if you can expand your vocal range? Learn what really changes with training, what to expect at different ages, and how to grow your range safely.',
