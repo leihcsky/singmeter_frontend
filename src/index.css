@@ -206,7 +206,9 @@ details[open] summary::after {
     @apply text-indigo-600 hover:text-indigo-700 font-semibold underline;
   }
 
-  .blog-article-content a.blog-cta {
+  /* Solid CTA buttons — generic link styles must not override text-white on colored buttons */
+  .blog-article-content a.blog-cta,
+  .blog-article-content a.rounded-lg[class*='bg-'] {
     @apply text-white no-underline hover:text-white hover:no-underline;
   }
 

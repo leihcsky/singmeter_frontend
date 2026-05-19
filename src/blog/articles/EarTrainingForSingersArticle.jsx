@@ -43,7 +43,7 @@ const content = `
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Use a piano, keyboard app, or <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a> to play one clear note in your comfortable range.</li>
         <li>Listen to the note without singing. Then stop the sound and try to hear it in your head.</li>
-        <li>Sing the note on a simple vowel like “oo” or “ah”.</li>
+        <li>Sing the note on a simple vowel like “oo�?or “ah�?</li>
         <li>Open the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a> and compare your pitch to the reference.</li>
         <li>Adjust your pitch up or down until the detector shows that you are right on the note.</li>
       </ol>
@@ -62,7 +62,7 @@ const content = `
       </p>
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Pick a starting note and sing it accurately with help from the pitch detector.</li>
-        <li>Decide on an interval to practice (for example, a perfect fifth: “do” up to “so”).</li>
+        <li>Decide on an interval to practice (for example, a perfect fifth: “do�?up to “so�?.</li>
         <li>From your starting note, imagine the next note in your head before you sing it.</li>
         <li>Sing the second note and watch the detector to see if you landed on the correct pitch.</li>
         <li>Repeat with different intervals: seconds, thirds, fourths, fifths, octaves.</li>
@@ -74,13 +74,13 @@ const content = `
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 3: Hear the Key Center</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        When you sing with a backing track or a band, you are not just matching single notes — you are singing inside a
-        <strong>key</strong>. Your ear needs to feel where “home base” is so you do not drift sharp or flat.
+        When you sing with a backing track or a band, you are not just matching single notes �?you are singing inside a
+        <strong>key</strong>. Your ear needs to feel where “home base�?is so you do not drift sharp or flat.
       </p>
       <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Play a simple major scale up and down (for example, C–D–E–F–G–A–B–C–B–A–G–F–E–D–C).</li>
-        <li>Notice how the first and last note (“do”) feel the most stable and resolved.</li>
-        <li>Hum that “home” note after you stop playing — can you still hear it in your mind?</li>
+        <li>Notice how the first and last note (“do�? feel the most stable and resolved.</li>
+        <li>Hum that “home�?note after you stop playing �?can you still hear it in your mind?</li>
         <li>Now play a short chord progression and try to find the key center by ear.</li>
       </ul>
       <p class="text-gray-600 mb-4 leading-relaxed">
@@ -105,7 +105,7 @@ const content = `
         do it with recordings or apps.
       </p>
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
-        <li>Play a short pattern of 3–5 notes on a keyboard app, or use an ear training app with simple melodies.</li>
+        <li>Play a short pattern of 3�? notes on a keyboard app, or use an ear training app with simple melodies.</li>
         <li>Listen once without singing and try to remember the contour: does it go up, down, or stay the same?</li>
         <li>Sing the pattern back on a single vowel.</li>
         <li>Use the pitch detector to see whether each note of your copy is in tune.</li>
@@ -153,13 +153,13 @@ const content = `
           to focus your training on the part of your range you actually use in songs.
         </p>
         <div class="flex flex-wrap gap-3">
-          <a href="/pitch-detector" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
+          <a href="/pitch-detector" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
             🎧 Train Your Ear with Pitch Feedback
           </a>
-          <a href="/tone-generator" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+          <a href="/tone-generator" class="blog-cta inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
             🔊 Generate Reference Tones
           </a>
-          <a href="/vocal-range-test" class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
+          <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
             🎵 Check Your Vocal Range
           </a>
         </div>

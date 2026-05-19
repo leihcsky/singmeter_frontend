@@ -43,7 +43,7 @@ const content = `
         When you open the SingMeter Pitch Detector, you will see three main pieces of information:
       </p>
       <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-        <li><strong>Note name:</strong> for example A3, C4, F#4 — the musical note you are closest to.</li>
+        <li><strong>Note name:</strong> for example A3, C4, F#4 �?the musical note you are closest to.</li>
         <li><strong>Frequency:</strong> the pitch in Hertz (Hz), such as 440 Hz for A4.</li>
         <li><strong>Cents deviation:</strong> how far you are from the exact center of the note. 0 cents means perfectly in tune.</li>
       </ul>
@@ -59,7 +59,7 @@ const content = `
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Turn on the detector and begin with light humming and lip trills.</li>
         <li>Notice how the display moves when you slide up and down in pitch.</li>
-        <li>Do not worry about being perfectly in tune yet — you are just waking up your voice and ears.</li>
+        <li>Do not worry about being perfectly in tune yet �?you are just waking up your voice and ears.</li>
       </ol>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 2: Single-Note Accuracy Training</h2>
@@ -70,9 +70,9 @@ const content = `
         Now use the detector in a more focused way to improve how accurately you can hold individual notes.
       </p>
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
-        <li>Pick 4–6 notes across your comfortable range (you can find this with the
+        <li>Pick 4�? notes across your comfortable range (you can find this with the
           <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range test</a>).</li>
-        <li>On each note, sing a long tone for 5–10 seconds while watching the cents indicator.</li>
+        <li>On each note, sing a long tone for 5�?0 seconds while watching the cents indicator.</li>
         <li>Adjust your support, vowel shape, and resonance to keep the value as close to 0 as possible.</li>
         <li>Repeat each note a few times and notice which ones are harder to keep steady.</li>
       </ol>
@@ -83,8 +83,8 @@ const content = `
       </p>
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Sing simple scales (major, minor, or pentatonic) slowly.</li>
-        <li>Watch how your pitch changes on each step — are some notes consistently sharp or flat?</li>
-        <li>Isolate problem notes and practice “landing” on them from above and below.</li>
+        <li>Watch how your pitch changes on each step �?are some notes consistently sharp or flat?</li>
+        <li>Isolate problem notes and practice “landing�?on them from above and below.</li>
         <li>Practice common intervals (thirds, fourths, fifths, octaves) and use the display to confirm you are hitting them cleanly.</li>
       </ol>
 
@@ -130,7 +130,7 @@ const content = `
         <li><strong>3 minutes:</strong> gentle warm-up while casually watching how the display responds to your voice.</li>
         <li><strong>4 minutes:</strong> single-note long tones across your comfortable range.</li>
         <li><strong>4 minutes:</strong> slow scales and key intervals, focusing on your weakest notes.</li>
-        <li><strong>4 minutes:</strong> one song section in “training mode” (slow, with detector) followed by one in “performance mode” (normal speed, no screen).</li>
+        <li><strong>4 minutes:</strong> one song section in “training mode�?(slow, with detector) followed by one in “performance mode�?(normal speed, no screen).</li>
       </ol>
 
       <p class="text-gray-600 mb-4 leading-relaxed">
@@ -145,10 +145,10 @@ const content = `
           to choose song keys that fit your voice.
         </p>
         <div class="flex flex-wrap gap-3">
-          <a href="/pitch-detector" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
+          <a href="/pitch-detector" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
             🎵 Open Pitch Detector
           </a>
-          <a href="/vocal-range-test" class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
+          <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
             🎤 Test Your Vocal Range
           </a>
         </div>

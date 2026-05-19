@@ -45,22 +45,22 @@ const content = `
       
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-green-50 p-6 rounded-lg border border-green-200">
-          <h3 class="text-xl font-bold text-green-900 mb-3">‚úÖ DO:</h3>
+          <h3 class="text-xl font-bold text-green-900 mb-3">‚ú?DO:</h3>
           <ul class="space-y-2 text-green-800">
-            <li>‚úì <strong>Warm up</strong> before singing (even for 5-10 mins).</li>
-            <li>‚úì <strong>Cool down</strong> after a long session with gentle humming.</li>
-            <li>‚úì <strong>Rest your voice</strong> (vocal nap) if you've been talking/singing all day.</li>
-            <li>‚úì <strong>Sleep well.</strong> Your voice repairs itself while you sleep.</li>
+            <li>‚ú?<strong>Warm up</strong> before singing (even for 5-10 mins).</li>
+            <li>‚ú?<strong>Cool down</strong> after a long session with gentle humming.</li>
+            <li>‚ú?<strong>Rest your voice</strong> (vocal nap) if you've been talking/singing all day.</li>
+            <li>‚ú?<strong>Sleep well.</strong> Your voice repairs itself while you sleep.</li>
           </ul>
         </div>
 
         <div class="bg-red-50 p-6 rounded-lg border border-red-200">
-          <h3 class="text-xl font-bold text-red-900 mb-3">‚ùå DON'T:</h3>
+          <h3 class="text-xl font-bold text-red-900 mb-3">‚ù?DON'T:</h3>
           <ul class="space-y-2 text-red-800">
-            <li>‚úó <strong>Clear your throat.</strong> It slams your vocal cords together violently. Swallow or sip water instead.</li>
-            <li>‚úó <strong>Whisper.</strong> Surprisingly, whispering forces the vocal cords tight and causes more strain than speaking softly.</li>
-            <li>‚úó <strong>Shout or scream</strong> in loud environments (concerts, bars).</li>
-            <li>‚úó <strong>Sing through pain.</strong> Pain is a stop sign.</li>
+            <li>‚ú?<strong>Clear your throat.</strong> It slams your vocal cords together violently. Swallow or sip water instead.</li>
+            <li>‚ú?<strong>Whisper.</strong> Surprisingly, whispering forces the vocal cords tight and causes more strain than speaking softly.</li>
+            <li>‚ú?<strong>Shout or scream</strong> in loud environments (concerts, bars).</li>
+            <li>‚ú?<strong>Sing through pain.</strong> Pain is a stop sign.</li>
           </ul>
         </div>
       </div>
@@ -104,13 +104,13 @@ const content = `
           <strong>Practice Safely!</strong> Use our tools to ensure you are singing within your comfortable range and staying on pitch without straining.
         </p>
         <div class="flex flex-wrap gap-3">
-          <a href="/vocal-range-test" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
+          <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
             üéµ Find Your Safe Range
           </a>
-          <a href="/tone-generator" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+          <a href="/tone-generator" class="blog-cta inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
             üîä Warm Up with Tone Generator
           </a>
-          <a href="/metronome" class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
+          <a href="/metronome" class="blog-cta inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
             ‚è±Ô∏è Practice Rhythm
           </a>
         </div>

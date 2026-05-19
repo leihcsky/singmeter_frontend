@@ -11,7 +11,7 @@ const meta = {
   updatedDate: '2026-05-14',
   author: 'SingMeter Team',
   excerpt:
-    'No piano? No problem. Learn practical ways to practice singing in tune using only your phone, your ears, and simple online tools — perfect for home practice and beginners.',
+    'No piano? No problem. Learn practical ways to practice singing in tune using only your phone, your ears, and simple online tools �?perfect for home practice and beginners.',
   seoKeywords:
     'how to practice singing in tune, sing in tune without piano, practice singing without backing track, acapella pitch practice, online pitch tools, tune your voice at home',
 };
@@ -51,7 +51,7 @@ const content = `
       <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Free keyboard or tuner apps that play single notes.</li>
         <li>YouTube videos that play scales or drone notes.</li>
-        <li><a href="/metronome" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Metronome</a> or <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a> apps with a “pitch” function.</li>
+        <li><a href="/metronome" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Metronome</a> or <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a> apps with a “pitch�?function.</li>
       </ul>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Use these sounds to set your starting note, then switch to the pitch detector to monitor your voice as you continue.
@@ -69,7 +69,7 @@ const content = `
         <li>Repeat this with different starting notes in your comfortable range.</li>
       </ol>
 
-      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Exercise 2: “Step Up, Step Down” Scales</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Exercise 2: “Step Up, Step Down�?Scales</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Scales are still one of the best ways to practice singing in tune, and you do not need an instrument to use them.
       </p>
@@ -77,7 +77,7 @@ const content = `
         <li>Choose a comfortable starting note using a reference app or the
           <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range test</a>.</li>
         <li>Sing a 5-note scale up and down (for example, do–re–mi–fa–so–fa–mi–re–do).</li>
-        <li>Watch the pitch detector for each step — do some notes always go sharp or flat?</li>
+        <li>Watch the pitch detector for each step �?do some notes always go sharp or flat?</li>
         <li>Slow down problem spots and repeat them until they stabilize.</li>
         <li>Gradually explore higher and lower scales as your control improves.</li>
       </ol>
@@ -129,13 +129,13 @@ const content = `
           to find the most comfortable keys for your voice.
         </p>
         <div class="flex flex-wrap gap-3">
-          <a href="/pitch-detector" class="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
+          <a href="/pitch-detector" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
             🎤 Practice with Pitch Detector
           </a>
-          <a href="/tone-generator" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+          <a href="/tone-generator" class="blog-cta inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
             🔊 Try the Tone Generator
           </a>
-          <a href="/vocal-range-test" class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
+          <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
             🎵 Test Your Vocal Range
           </a>
         </div>

@@ -251,7 +251,7 @@ const content = `
 	          accurate results in just 3 minutes. No signup required! Our advanced pitch detection technology provides 
 	          instant feedback and helps you understand your voice better.
 	        </p>
-	        <a href="/vocal-range-test" class="inline-block mt-4 px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
+	        <a href="/vocal-range-test" class="blog-cta inline-block mt-4 px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
 	          Start Your Test Now
 	        </a>
 	      </div>
