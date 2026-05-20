@@ -32,7 +32,7 @@ const AboutPage = () => {
 
 		setMetaTag(
 			'description',
-			'Learn about SingMeter, the team behind the free online vocal range test, pitch detector, and vocal training blog. Our mission is to make accurate vocal tools and clear guidance accessible to every singer.'
+			'Learn about SingMeter, the team behind the free online vocal range test, pitch detector, and singing guides. We build simple tools and clear guidance for anyone who loves to sing.'
 		);
 		setMetaTag(
 			'keywords',
@@ -79,19 +79,19 @@ const AboutPage = () => {
             <div className="prose prose-lg max-w-none">
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Mission</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter is dedicated to making vocal training and assessment accessible to everyone. Whether you're a professional
-                singer, a choir member, a karaoke enthusiast, or just curious about your voice, we provide free,
-                easy-to-use tools that help you discover and improve your vocal capabilities.
+                SingMeter exists for people who love singing. Whether you sing in a choir, at karaoke, in lessons, or just for
+                yourself at home, we offer free, easy-to-use online tools and practical guides to help you explore your voice,
+                hear yourself more clearly, and sing with a little more confidence.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Tools</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter offers a comprehensive suite of vocal assessment and training tools:
+                SingMeter brings together simple vocal tools you can use in the browser:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
                 <li><strong>Vocal Range Test:</strong> Discover your lowest and highest notes, identify your voice type (Bass, Baritone, Tenor, Alto, Mezzo-Soprano, Soprano), and get personalized song recommendations</li>
                 <li><strong>Pitch Detector:</strong> Real-time pitch detection to help you practice singing in tune, see your notes instantly, and improve your pitch accuracy</li>
-                <li><strong>Educational Resources:</strong> Expert articles, tips, and guides on vocal technique, range development, and song selection</li>
+                <li><strong>Guides &amp; blog:</strong> Articles, tips, and explainers on vocal health, technique, range, and choosing songs that feel good in your voice</li>
               </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How It Works</h2>
@@ -102,7 +102,7 @@ const AboutPage = () => {
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
                 <li><strong>Privacy First:</strong> All audio processing happens locally on your device - we never record or store your voice</li>
                 <li><strong>Instant Results:</strong> Get real-time feedback and analysis as you sing</li>
-                <li><strong>Professional Accuracy:</strong> Our algorithms are calibrated to provide reliable, professional-grade results</li>
+                <li><strong>Reliable feedback:</strong> Our algorithms are tuned to give you clear, dependable readings for practice at home</li>
                 <li><strong>Free Forever:</strong> No sign-up, no credit card, no hidden fees - all tools are completely free</li>
                 <li><strong>Works Everywhere:</strong> Use on any device with a microphone - desktop, laptop, tablet, or smartphone</li>
               </ul>
@@ -116,7 +116,7 @@ const AboutPage = () => {
                 <li><strong>Improve Pitch Accuracy:</strong> Practice singing in tune with real-time visual feedback</li>
                 <li><strong>Choose Better Songs:</strong> Find songs that match your range and showcase your voice</li>
                 <li><strong>Track Progress:</strong> Monitor your vocal development over time</li>
-                <li><strong>Prepare for Auditions:</strong> Know your voice type for choir, musical theater, or professional opportunities</li>
+                <li><strong>Prepare for groups &amp; shows:</strong> Know your voice type for choir, musical theater, or other singing situations</li>
                 <li><strong>Protect Your Voice:</strong> Avoid strain by staying within your comfortable range</li>
               </ul>
 
@@ -134,10 +134,10 @@ const AboutPage = () => {
 
 	            	  <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">SingMeter Team</h2>
 	            	  <p className="text-gray-600 mb-4 leading-relaxed">
-	            	    SingMeter started as a side project by a singer who is also a software developer. Today, the SingMeter Team brings
-	            	    together a vocal enthusiast, a programmer, an audio engineer, and a vocal coach from a music conservatory.
-	            	    We are not a big company - just a small group of people who love singing and technology, and we want to make
-	            	    professional-quality vocal tools and clear, practical guidance available to more singers around the world.
+	            	    SingMeter started as a side project by a singer who is also a software developer. Today, the SingMeter team brings
+	            	    together a vocal enthusiast, a programmer, an audio engineer, and a vocal teacher from a music conservatory.
+	            	    We are not a big company—just a small group who love singing and technology—and we want useful online tools and
+	            	    straightforward guidance to be easy to find for anyone who enjoys singing.
 	            	  </p>
 
 	            	  <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who We Serve</h2>
@@ -150,7 +150,7 @@ const AboutPage = () => {
                 <li><strong>Choir Members:</strong> Find your perfect vocal part and practice staying in tune</li>
                 <li><strong>Music Teachers:</strong> Quick assessment tools for students</li>
                 <li><strong>Karaoke Enthusiasts:</strong> Find songs that fit your range and practice before performing</li>
-                <li><strong>Professional Singers:</strong> Warm up and maintain vocal health</li>
+                <li><strong>Anyone who sings often:</strong> Warm up, check pitch, and keep an eye on vocal comfort</li>
                 <li><strong>Curious Minds:</strong> Anyone who wants to learn about their voice</li>
               </ul>
 
@@ -164,7 +164,7 @@ const AboutPage = () => {
                 <li><strong>Accuracy:</strong> Continuously improving our pitch detection and analysis algorithms</li>
                 <li><strong>Education:</strong> Providing helpful resources about vocal health, technique, and development</li>
                 <li><strong>Innovation:</strong> Adding new tools and features based on user feedback</li>
-                <li><strong>Quality:</strong> Maintaining professional-grade accuracy and reliability</li>
+                <li><strong>Quality:</strong> Keeping our tools accurate, stable, and pleasant to use</li>
               </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Get in Touch</h2>
@@ -173,11 +173,6 @@ const AboutPage = () => {
                 hesitate to <Link to="/contact" className="text-indigo-600 hover:text-indigo-700 underline">contact us</Link>.
               </p>
 
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Join Our Community</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                Thousands of singers worldwide use SingMeter to discover and develop their voices. Join our community
-                and start your vocal journey today - completely free, no sign-up required!
-              </p>
             </div>
           </div>
         </article>

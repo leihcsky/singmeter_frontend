@@ -232,14 +232,14 @@ export const AboutModal = ({ onClose }) => {
             <span className="text-4xl">🎵</span>
           </div>
           <h3 className="text-2xl font-bold text-gray-900">SingMeter</h3>
-          <p className="text-gray-600">Professional Vocal Range Testing</p>
+          <p className="text-gray-600">Free online tools for singers</p>
         </div>
 
         <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">What is SingMeter?</h4>
         <p className="text-gray-600 mb-4">
-          SingMeter is a free, professional-grade vocal range testing tool that helps singers of all levels 
-          discover their vocal capabilities. Using advanced Web Audio API technology, we provide accurate 
-          pitch detection and analysis right in your browser.
+          SingMeter is a free set of online singing tools—including a vocal range test—that helps anyone who
+          loves to sing explore their voice. Using the Web Audio API in your browser, we offer real-time pitch
+          detection and simple feedback you can use for practice at home.
         </p>
 
         <h4 className="text-lg font-bold text-gray-900 mt-6 mb-3">How It Works</h4>
@@ -254,7 +254,7 @@ export const AboutModal = ({ onClose }) => {
           <li><strong>100% Free:</strong> No hidden costs or subscriptions</li>
           <li><strong>No Signup Required:</strong> Start testing immediately</li>
           <li><strong>Privacy First:</strong> Your voice is never recorded or stored</li>
-          <li><strong>Professional Accuracy:</strong> Advanced pitch detection technology</li>
+          <li><strong>Clear feedback:</strong> Pitch detection tuned for everyday practice</li>
           <li><strong>Instant Results:</strong> Get your results in seconds</li>
           <li><strong>Educational:</strong> Learn about your voice type and capabilities</li>
         </ul>
@@ -279,8 +279,8 @@ export const AboutModal = ({ onClose }) => {
 
         <div className="bg-indigo-50 border-l-4 border-indigo-400 p-4 mt-6 rounded-r-lg">
           <p className="text-sm text-indigo-700">
-            <strong>Our Mission:</strong> To make professional vocal range testing accessible to everyone, 
-            helping singers worldwide discover and develop their unique voice.
+            <strong>Our mission:</strong> To put simple vocal tools and helpful guidance within reach of anyone
+            who enjoys singing—no paywall and no account required.
           </p>
         </div>
       </div>

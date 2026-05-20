@@ -248,7 +248,7 @@ const BlogArticlePage = () => {
 	              <h2 className="text-base font-semibold text-indigo-800 mb-2">About SingMeter Team</h2>
 	              <p className="text-sm text-indigo-900 leading-relaxed">
 	                SingMeter started as a side project by a singer who is also a software developer. Today, the SingMeter Team brings
-	                together a vocal enthusiast, a programmer, an audio engineer, and a vocal coach from a music conservatory.
+	                together a vocal enthusiast, a programmer, an audio engineer, and a vocal teacher from a music conservatory.
 	                We are not a big company - just a small group of people who love singing and technology, and we build simple,
 	                accurate online tools and practical guides to help everyday singers understand, train, and take care of their voices.
 	              </p>
