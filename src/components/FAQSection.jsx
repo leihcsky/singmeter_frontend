@@ -33,11 +33,11 @@ const FAQItem = ({ question, answer }) => {
   );
 };
 
-const FAQSection = ({ title = "Frequently Asked Questions", items }) => {
+const FAQSection = ({ title = "Frequently Asked Questions", items, id = 'faq' }) => {
   if (!items || items.length === 0) return null;
 
   return (
-    <section className="bg-white rounded-3xl shadow-lg p-8 sm:p-12 mb-12">
+    <section id={id} className="bg-white rounded-3xl shadow-lg p-8 sm:p-12 mb-12 scroll-mt-24">
       <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">{title}</h2>
       <div className="max-w-3xl mx-auto">
         {items.map((item, index) => (

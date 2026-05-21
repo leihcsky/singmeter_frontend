@@ -716,7 +716,7 @@ const VocalRangeTestPage = () => {
                 </div>
               </section>
 
-              {/* Comprehensive Educational Content - Visible for AdSense and Users */}
+              {/* Educational content */}
               <div className="space-y-16 pb-16">
                 <ContentSection title="Understanding Vocal Range & Voice Types">
                   <p>

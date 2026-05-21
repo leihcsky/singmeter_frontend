@@ -863,7 +863,7 @@ const PitchDetectorPage = () => {
 	          </div>
 	        </div>
 
-	        {/* Educational Content - Visible for AdSense and Users */}
+	        {/* Educational content */}
         <div className="space-y-16 mb-16">
           <ContentSection title="About This Pitch Detector">
             <p>

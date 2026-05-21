@@ -7,6 +7,7 @@ import { getActiveTools } from '../config/tools';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FAQSection from '../components/FAQSection';
+import { homeFaqItems } from '../data/siteFaq';
 
 // Visual Components
 const SoundWaveVisual = () => (
@@ -169,29 +170,6 @@ const HomePage = () => {
       excerpt: 'Discover the perfect songs that match your vocal range and voice classification.',
       category: 'Song Lists',
       readTime: '7 min read'
-    }
-  ];
-
-  const homeFaqItems = [
-    {
-      question: "Is SingMeter really free?",
-      answer: "Yes, all tools on SingMeter are 100% free to use. We believe that everyone should have access to quality music education tools regardless of their budget. Our platform is supported by non-intrusive advertisements."
-    },
-    {
-      question: "What kind of singing test can I take on Sing Meter?",
-      answer: "You can take our popular Vocal Range Test (a comprehensive singing test for voice types) to find your range, and use our Pitch Detector to analyze your singing accuracy in real-time. Sing Meter offers these professional-grade tests for free."
-    },
-    {
-      question: "Do I need a microphone?",
-      answer: "For tools like the Pitch Detector and Vocal Range Test, yes, you will need a microphone. Most built-in laptop or phone microphones work perfectly fine for these exercises. For tools like the Metronome or Tone Generator, you only need speakers or headphones."
-    },
-    {
-      question: "Can I use SingMeter on my phone?",
-      answer: "Absolutely! SingMeter is designed to be fully responsive and works great on smartphones, tablets, and desktop computers. You can practice singing anywhere, anytime, directly from your web browser without installing any apps."
-    },
-    {
-      question: "How accurate are the pitch detection tools?",
-      answer: "Our pitch detection algorithm is highly accurate for clear, single-voice input. It uses advanced audio processing to detect the fundamental frequency of your voice in real-time. For best results, use the tools in a quiet environment and wear headphones to prevent audio feedback."
     }
   ];
 
