@@ -30,10 +30,31 @@ function ScrollToTop() {
   return null
 }
 
+/** Signals prerender script that route content + useEffect meta are ready. */
+function PrerenderReady() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    document.documentElement.removeAttribute('data-prerender-ready')
+    const id = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.documentElement.setAttribute('data-prerender-ready', 'true')
+      })
+    })
+    return () => {
+      cancelAnimationFrame(id)
+      document.documentElement.removeAttribute('data-prerender-ready')
+    }
+  }, [pathname])
+
+  return null
+}
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <PrerenderReady />
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />

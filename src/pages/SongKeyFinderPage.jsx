@@ -1,24 +1,25 @@
 /**
  * Song Key Finder Page - Find song keys and get transposition suggestions
  */
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import Footer from '../components/Footer';
 import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
-import { songKeysDatabase, transposeKey } from '../data/songKeys';
+import PracticePathSection from '../components/PracticePathSection';
+import { songKeysDatabase, transposeKey, SAMPLE_SONG_COUNT, SAMPLE_GENRES } from '../data/songKeys';
 
 // FAQ Items
 const songKeyFinderFaqItems = [
   {
-    question: "How accurate is the song key database?",
-    answer: "Our database contains keys for hundreds of popular songs, sourced from reliable music theory resources and verified against multiple references. However, some songs may have been performed in different keys in live performances or covers. The keys listed represent the most common or original recorded versions."
+    question: "How accurate is the sample song list?",
+    answer: `Our browse list includes ${SAMPLE_SONG_COUNT} popular cover songs with keys sourced from common recorded versions. Live performances and covers sometimes use different keys. For any song not in the list, upload an audio clip—the analyzer works on your file directly in the browser.`
   },
   {
-    question: "What if I can't find a song in the database?",
-    answer: "Our database is continuously growing, but we may not have every song. If you can't find a song, you can: search for similar songs by the same artist, use online music theory resources, use a pitch detector tool to analyze the song yourself, or check if the song is available in a different spelling or variation."
+    question: "What if my song isn't in the sample list?",
+    answer: "Use Upload Audio above (MP3, WAV, or M4A)—that works for any song, including your own recordings. You can also filter the browse list by artist to find a similar song by the same performer, or check the key on your backing track app and use our transposition suggestions after you select any song with a matching range profile."
   },
   {
     question: "How do I know which transposition suggestion to use?",
@@ -30,7 +31,7 @@ const songKeyFinderFaqItems = [
   },
   {
     question: "Do I need to know music theory to use this tool?",
-    answer: "Not at all! The tool is designed to be user-friendly for singers of all levels. Simply search for a song, enter your vocal range (or test it first), and the tool will provide clear, actionable suggestions. You don't need to understand music theory to benefit from knowing a song's key and getting transposition suggestions."
+    answer: "Not at all! Pick a song from the browse list or upload audio, enter your vocal range (or take the Vocal Range Test first), and the tool will provide clear transposition suggestions. You don't need music theory to use the results."
   }
 ];
 
@@ -44,8 +45,8 @@ const getNoteMidi = (note, octave) => {
 };
 
 const SongKeyFinderPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [filterQuery, setFilterQuery] = useState('');
+  const [genreFilter, setGenreFilter] = useState('All');
   const [selectedSong, setSelectedSong] = useState(null);
   const [userVocalRange, setUserVocalRange] = useState('');
   const [transpositionSuggestions, setTranspositionSuggestions] = useState([]);
@@ -236,44 +237,62 @@ const SongKeyFinderPage = () => {
     }
   }, [userVocalRange, selectedSong, calculateTranspositionSuggestions]);
 
-  // Search function
-  const handleSearch = (query) => {
-    if (!query.trim()) {
-      setSearchResults([]);
-      return;
+  // Re-load vocal range after Vocal Range Test (same tab return or refocus)
+  useEffect(() => {
+    const syncRangeFromStorage = () => {
+      try {
+        const savedRange = localStorage.getItem('singmeter_user_vocal_range');
+        if (!savedRange) return;
+        const parsed = JSON.parse(savedRange);
+        if (!parsed.low || !parsed.high) return;
+        const range = `${parsed.low}-${parsed.high}`;
+        setUserVocalRange((prev) => (prev === range ? prev : range));
+        if (selectedSong) {
+          calculateTranspositionSuggestions(selectedSong, range);
+        }
+      } catch (e) {
+        console.error('Failed to sync vocal range from storage', e);
+      }
+    };
+
+    syncRangeFromStorage();
+    window.addEventListener('focus', syncRangeFromStorage);
+    return () => window.removeEventListener('focus', syncRangeFromStorage);
+  }, [selectedSong, calculateTranspositionSuggestions]);
+
+  const browsableSongs = useMemo(() => {
+    let songs = songKeysDatabase;
+    if (genreFilter !== 'All') {
+      songs = songs.filter((song) => song.genre === genreFilter);
     }
+    const q = filterQuery.trim().toLowerCase();
+    if (q) {
+      songs = songs.filter(
+        (song) =>
+          song.title.toLowerCase().includes(q) || song.artist.toLowerCase().includes(q)
+      );
+    }
+    return [...songs].sort((a, b) => a.title.localeCompare(b.title));
+  }, [genreFilter, filterQuery]);
 
-    const lowerQuery = query.toLowerCase();
-    const results = songKeysDatabase.filter(song => 
-      song.title.toLowerCase().includes(lowerQuery) ||
-      song.artist.toLowerCase().includes(lowerQuery)
-    ).slice(0, 10); // Limit to 10 results
-
-    setSearchResults(results);
-  };
-
-  // Handle search input change
-  const handleSearchChange = (e) => {
+  const handleFilterQueryChange = (e) => {
     const value = e.target.value;
-    setSearchQuery(value);
-    
-    // If user is typing and there's a selected song, clear selection
-    if (selectedSong && value !== `${selectedSong.title} - ${selectedSong.artist}`) {
+    setFilterQuery(value);
+    if (selectedSong) {
       setSelectedSong(null);
       setTranspositionSuggestions([]);
     }
-    
-    handleSearch(value);
   };
 
-  // Handle song selection
   const handleSelectSong = (song) => {
     setSelectedSong(song);
-    setSearchQuery(`${song.title} - ${song.artist}`);
-    setSearchResults([]); // Clear search results dropdown
     if (userVocalRange) {
       calculateTranspositionSuggestions(song);
     }
+  };
+
+  const scrollToUpload = () => {
+    document.getElementById('song-key-upload-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
 
@@ -370,7 +389,7 @@ const SongKeyFinderPage = () => {
           "description": "Find the key of any song instantly. Upload audio files for automatic analysis or search our database of popular songs. Get key information and transposition suggestions to match your vocal range.",
           "featureList": [
             "Upload audio files for automatic key detection",
-            "Search database of 60+ popular songs",
+            `Browse sample library of ${SAMPLE_SONG_COUNT} popular songs`,
             "Detect musical key and BPM",
             "Get transposition suggestions based on your vocal range",
             "Krumhansl-Schmuckler algorithm for accurate key detection",
@@ -402,14 +421,14 @@ const SongKeyFinderPage = () => {
             {
               "@type": "HowToStep",
               "position": 1,
-              "name": "Upload Audio File or Search by Name",
-              "text": "Upload an audio file (MP3, WAV, M4A) for automatic analysis, or search our database by song title or artist name."
+              "name": "Upload Audio or Browse Sample Songs",
+              "text": "Upload an audio file (MP3, WAV, M4A) for automatic analysis, or pick a song from the browse list and filter by title, artist, or genre."
             },
             {
               "@type": "HowToStep",
               "position": 2,
               "name": "View Key Information",
-              "text": "For uploaded files, wait for analysis to complete. For database searches, click on a song to see its original key, vocal range, and genre."
+              "text": "For uploaded files, wait for analysis to complete. For sample songs, click a title to see its original key, vocal range, and genre."
             },
             {
               "@type": "HowToStep",
@@ -461,13 +480,13 @@ const SongKeyFinderPage = () => {
             Song Key Finder
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-            Find the key of any song instantly. Upload an audio file for automatic analysis, or search our database 
-            of popular songs to get key information and transposition suggestions.
+            Upload any audio file for automatic key detection—the main way to analyze your song. Below that, browse{' '}
+            <strong>{SAMPLE_SONG_COUNT} sample titles</strong> (popular covers) for quick keys and transposition ideas.
           </p>
         </div>
 
         {/* Upload Audio Section */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
+        <div id="song-key-upload-section" className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
           <div className="flex items-center space-x-3 mb-4">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center">
               <span className="text-2xl">🎵</span>
@@ -623,53 +642,140 @@ const SongKeyFinderPage = () => {
           )}
         </div>
 
-        {/* Search Section */}
+        {/* Sample library browse */}
         <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
-          <div className="mb-4">
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Or Search by Song Name</h2>
-            <p className="text-sm text-gray-600 mb-4">
-              Search our database of popular songs to find their keys instantly.
+          <div className="mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+              Browse sample songs ({SAMPLE_SONG_COUNT})
+            </h2>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              Curated keys for popular cover songs—not a full music catalog. Pick a title below for instant key and
+              range info, or{' '}
+              <button
+                type="button"
+                onClick={scrollToUpload}
+                className="text-indigo-600 font-semibold hover:underline"
+              >
+                upload your own audio
+              </button>{' '}
+              for any other track.
             </p>
           </div>
-          <div className="mb-6">
-            <label htmlFor="song-search" className="block text-sm font-semibold text-gray-700 mb-2">
-              Search for a Song
+
+          <div className="mb-4">
+            <label htmlFor="song-filter" className="block text-sm font-semibold text-gray-700 mb-2">
+              Filter this list
             </label>
             <div className="relative">
               <input
-                id="song-search"
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                placeholder="Enter song title or artist name (e.g., 'Someone Like You' or 'Adele')"
+                id="song-filter"
+                type="search"
+                value={filterQuery}
+                onChange={handleFilterQueryChange}
+                placeholder="Type title or artist to narrow the list…"
                 className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
               />
-              <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
             </div>
           </div>
 
-          {/* Search Results */}
-          {searchResults.length > 0 && (
-            <div className="mt-4 border border-gray-200 rounded-lg max-h-64 overflow-y-auto">
-              {searchResults.map((song, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleSelectSong(song)}
-                  className="w-full text-left px-4 py-3 hover:bg-indigo-50 transition border-b border-gray-100 last:border-b-0"
-                >
-                  <div className="font-semibold text-gray-900">{song.title}</div>
-                  <div className="text-sm text-gray-600">{song.artist} • {song.genre}</div>
-                  <div className="text-xs text-indigo-600 mt-1">Key: {song.key}</div>
-                </button>
-              ))}
+          <div className="mb-5">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Genre</p>
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by genre">
+              <button
+                type="button"
+                onClick={() => setGenreFilter('All')}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition ${
+                  genreFilter === 'All'
+                    ? 'bg-indigo-600 text-white shadow-sm'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                All ({SAMPLE_SONG_COUNT})
+              </button>
+              {SAMPLE_GENRES.map((genre) => {
+                const count = songKeysDatabase.filter((s) => s.genre === genre).length;
+                return (
+                  <button
+                    key={genre}
+                    type="button"
+                    onClick={() => setGenreFilter(genre)}
+                    className={`px-3 py-1.5 rounded-full text-sm font-medium transition ${
+                      genreFilter === genre
+                        ? 'bg-indigo-600 text-white shadow-sm'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {genre} ({count})
+                  </button>
+                );
+              })}
             </div>
-          )}
+          </div>
 
-          {searchQuery && searchResults.length === 0 && !selectedSong && (
-            <div className="mt-4 text-center text-gray-500 text-sm">
-              No songs found. Try a different search term.
+          <p className="text-xs text-gray-500 mb-3">
+            Showing {browsableSongs.length} of{' '}
+            {genreFilter === 'All' ? SAMPLE_SONG_COUNT : songKeysDatabase.filter((s) => s.genre === genreFilter).length}{' '}
+            in {genreFilter === 'All' ? 'all genres' : genreFilter}
+            {filterQuery.trim() ? ` · matching “${filterQuery.trim()}”` : ''}
+          </p>
+
+          {browsableSongs.length > 0 ? (
+            <div className="border border-gray-200 rounded-lg max-h-[28rem] overflow-y-auto divide-y divide-gray-100">
+              {browsableSongs.map((song) => {
+                const isSelected =
+                  selectedSong?.title === song.title && selectedSong?.artist === song.artist;
+                return (
+                  <button
+                    key={`${song.artist}-${song.title}`}
+                    type="button"
+                    onClick={() => handleSelectSong(song)}
+                    className={`w-full text-left px-4 py-3 transition ${
+                      isSelected ? 'bg-indigo-50 border-l-4 border-l-indigo-600' : 'hover:bg-indigo-50/60'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="font-semibold text-gray-900 truncate">{song.title}</div>
+                        <div className="text-sm text-gray-600">
+                          {song.artist} · {song.genre}
+                        </div>
+                      </div>
+                      <span className="flex-shrink-0 text-sm font-semibold text-indigo-700 bg-indigo-50 px-2 py-1 rounded">
+                        {song.key}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 p-6 text-center">
+              <p className="text-gray-700 font-medium mb-1">No matches in the sample list</p>
+              <p className="text-sm text-gray-600 mb-4">
+                Your song probably isn’t in our {SAMPLE_SONG_COUNT}-title library. Upload the file above—we’ll detect
+                the key from your audio.
+              </p>
+              <button
+                type="button"
+                onClick={scrollToUpload}
+                className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition"
+              >
+                Go to upload
+              </button>
             </div>
           )}
         </div>
@@ -687,7 +793,6 @@ const SongKeyFinderPage = () => {
               <button
                 onClick={() => {
                   setSelectedSong(null);
-                  setSearchQuery('');
                   setTranspositionSuggestions([]);
                 }}
                 className="text-gray-400 hover:text-gray-600 transition"
@@ -808,6 +913,77 @@ const SongKeyFinderPage = () => {
           </div>
         )}
 
+        <PracticePathSection
+          theme="purple"
+          title="From Vocal Range to the Right Key"
+          intro="Song Key Finder works best when it knows your voice. Your range from the Vocal Range Test is saved automatically—pick a sample song or upload audio, review the Best Match transpose suggestion, then rehearse melody lines on the Pitch Detector in your new key."
+          comboTitle="10-Minute Session: Range → Key → Practice"
+          comboSteps={[
+            <>
+              <Link to="/vocal-range-test" className="text-indigo-600 font-semibold hover:underline">
+                Take the Vocal Range Test
+              </Link>{' '}
+              (about 3 minutes). Your low and high notes are saved for this page—return here and your range field will show “Loaded from your test.”
+            </>,
+            'Browse a sample song above or upload a clip. Note the original key and the song’s vocal span on the chart.',
+            'With your range entered, pick the suggestion marked Best Match—that key centers the melody in your comfortable zone.',
+            <>
+              Open the{' '}
+              <Link to="/pitch-detector" className="text-indigo-600 font-semibold hover:underline">
+                Pitch Detector
+              </Link>{' '}
+              and sing the chorus hook or highest phrase in your transposed key. Stay in the green zone (±10 cents) on sustained notes.
+            </>,
+          ]}
+          routines={[
+            {
+              title: 'New Song Setup',
+              duration: '5 minutes',
+              body: 'Run the Vocal Range Test if you have not in the last few weeks. Pick your target from the browse list (or upload it), confirm Best Match, and write the suggested key on your lyric sheet or in your karaoke app.',
+              goal: 'One song locked to a key you can sing without straining on the highest note.',
+            },
+            {
+              title: 'Transpose & Spot-Check',
+              duration: '7 minutes',
+              body: 'Compare Best Match with the original key. If you still strain, try the next lower suggestion (usually −1 or −2 semitones). Hum the highest line once in the new key before full lyrics.',
+              goal: 'Highest note feels reachable with steady breath, not pushed.',
+            },
+            {
+              title: 'Phrase Practice with Pitch Feedback',
+              duration: '8 minutes',
+              settings: 'Pitch Detector · one phrase at a time',
+              body: 'Sing the hardest 4–8 bars only. Hold the peak note 3 seconds; if you drift flat, support from the diaphragm rather than pushing volume. Optional: use the Tone Generator on that peak note first, then match on the detector.',
+              goal: 'Peak notes land in tune without sliding up to pitch.',
+            },
+          ]}
+          nextTools={[
+            {
+              to: '/vocal-range-test',
+              label: 'Vocal Range Test',
+              hint: 'Measure or refresh your low–high notes—feeds this page automatically.',
+            },
+            {
+              to: '/pitch-detector',
+              label: 'Pitch Detector',
+              hint: 'Rehearse melody and hooks in your transposed key with live feedback.',
+            },
+            {
+              to: '/tone-generator',
+              label: 'Tone Generator',
+              hint: 'Hear the target note before you sing the hardest line.',
+            },
+            {
+              to: '/metronome',
+              label: 'Online Metronome',
+              hint: 'Run through the song at a slower tempo once pitch feels stable.',
+            },
+          ]}
+          blogLink={{
+            to: '/blog/vocal-range-chart',
+            label: 'Vocal Range Chart — see where your voice sits before you transpose',
+          }}
+        />
+
         {/* Tool Introduction Section */}
         <section className="bg-white rounded-2xl shadow-md p-6 sm:p-8 mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">What is a Song Key Finder?</h2>
@@ -828,9 +1004,9 @@ const SongKeyFinderPage = () => {
             </ul>
 
             <p className="text-gray-600 leading-relaxed mb-4">
-              Our Song Key Finder tool provides instant access to the keys of hundreds of popular songs. 
-              Simply search for a song by title or artist, and you'll get the original key, vocal range, 
-              and personalized transposition suggestions based on your own vocal range.
+              Upload audio for any song, or browse our sample list of {SAMPLE_SONG_COUNT} popular titles. 
+              Select a song to see its original key and vocal range, then get personalized transposition 
+              suggestions based on your own vocal range.
             </p>
 
             <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">How Keys Work in Music</h3>
@@ -857,11 +1033,11 @@ const SongKeyFinderPage = () => {
                 <span className="text-purple-700 font-bold">1</span>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Search for a Song</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Browse or Upload</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Type the song title or artist name in the search box. Our database includes hundreds of popular songs 
-                  across multiple genres including pop, rock, R&B, country, jazz, and musical theater. As you type, 
-                  matching songs will appear in the dropdown list.
+                  For any song, upload an audio file at the top of the page. For quick reference, scroll the sample 
+                  list ({SAMPLE_SONG_COUNT} titles)—use genre pills and the filter box to narrow by title or artist. 
+                  Not listed? Upload always works.
                 </p>
               </div>
             </div>

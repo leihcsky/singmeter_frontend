@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 import RealtimePianoKeyboard from '../components/RealtimePianoKeyboard';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
 import FAQSection from '../components/FAQSection';
+import PracticePathSection from '../components/PracticePathSection';
 
 const pitchDetectorFaqItems = [
   {
@@ -487,6 +488,83 @@ const PitchDetectorPage = () => {
           </Link>
         </div>
 
+        <PracticePathSection
+          theme="blue"
+          title="Singing Practice Path"
+          intro="Use this page as the feedback step in a short loop: hear a reference on the Tone Generator, sing here, then lock rhythm on the Metronome. If you are preparing a cover, pair with the Song Key Finder after the Vocal Range Test so you practice in a key that fits your voice."
+          comboTitle="10-Minute Session: Reference → Sing → Steady Time"
+          comboSteps={[
+            <>
+              On the{' '}
+              <Link to="/tone-generator" className="text-indigo-600 font-semibold hover:underline">
+                Tone Generator
+              </Link>
+              , play a comfortable note (often C4 or a note from your{' '}
+              <Link to="/vocal-range-test" className="text-indigo-600 font-semibold hover:underline">
+                Vocal Range Test
+              </Link>
+              ) at low volume with a sine wave. Listen for two seconds.
+            </>,
+            'Return here, start the microphone, and sing the same pitch on a steady “Ah” for 3–5 seconds. Aim for the green zone (within about ±10 cents).',
+            'Repeat with a second note a major third or fifth above—play the reference, then sing without scooping.',
+            <>
+              Finish with the{' '}
+              <Link to="/metronome" className="text-indigo-600 font-semibold hover:underline">
+                Online Metronome
+              </Link>{' '}
+              at 72–80 BPM: sing a five-note scale or one phrase of your song, one syllable per beat.
+            </>,
+          ]}
+          routines={[
+            {
+              title: 'Calibration Match',
+              duration: '3 minutes',
+              settings: 'Tone Generator · sine · 30–40% volume',
+              body: 'Play Middle C (C4) or your chosen root. Stop the tone, then sing and hold. If you are flat, add breath support; if sharp, relax the jaw and tongue.',
+              goal: 'Hold the needle in the green zone for 3 seconds on one note.',
+            },
+            {
+              title: 'Stability Hold',
+              duration: '5 minutes',
+              body: 'Pick a comfortable note in your range. Sing straight tone (no vibrato) for 5 seconds per attempt. Rest 10 seconds between tries.',
+              goal: 'Keep deviation within ±10 cents without wavering.',
+            },
+            {
+              title: 'Scale + Tempo',
+              duration: '7 minutes',
+              settings: 'Metronome 72 BPM · optional Tone on first note only',
+              body: 'Sing Do–Re–Mi–Fa–Sol up and down on “La.” Use the generator only on Do and Sol to check endpoints; inner notes are from memory.',
+              goal: 'Land each scale step in the center—not sliding up into pitch.',
+            },
+          ]}
+          nextTools={[
+            {
+              to: '/tone-generator',
+              label: 'Tone Generator',
+              hint: 'Reference pitch before you sing into this detector.',
+            },
+            {
+              to: '/metronome',
+              label: 'Online Metronome',
+              hint: 'Add steady rhythm after pitch is stable.',
+            },
+            {
+              to: '/vocal-range-test',
+              label: 'Vocal Range Test',
+              hint: 'Pick practice notes inside your comfortable range.',
+            },
+            {
+              to: '/song-key-finder',
+              label: 'Song Key Finder',
+              hint: 'Transpose a song to your range, then practice phrases here.',
+            },
+          ]}
+          blogLink={{
+            to: '/blog/ear-training-for-singers',
+            label: 'Ear Training for Singers — build pitch memory step by step',
+          }}
+        />
+
         {/* How to Use */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">📖 How to Use This Tool</h2>
@@ -593,54 +671,6 @@ const PitchDetectorPage = () => {
                     <p className="text-gray-700">Your pitch is slightly higher than the target note. Try singing a bit lower.</p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Interactive Practice Scenarios */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">🎯 3-Step Daily Pitch Workout</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Step 1 */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border border-blue-200">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">1</span>
-                <h3 className="font-bold text-blue-900">Calibration</h3>
-              </div>
-              <p className="text-sm text-blue-800 mb-4">
-                Use the <strong>Tone Generator</strong> to play a C4 (Middle C). Listen, then try to sing it into the detector.
-              </p>
-              <div className="text-xs font-semibold text-blue-700 bg-white/50 rounded-lg p-2">
-                Goal: Get the needle to stay green for 3 seconds.
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-5 border border-indigo-200">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold">2</span>
-                <h3 className="font-bold text-indigo-900">Stability</h3>
-              </div>
-              <p className="text-sm text-indigo-800 mb-4">
-                Pick a comfortable note. Hold it steadily without vibrato (straight tone).
-              </p>
-              <div className="text-xs font-semibold text-indigo-700 bg-white/50 rounded-lg p-2">
-                Goal: Keep deviation within ±10 cents (Green Zone).
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-5 border border-purple-200">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs font-bold">3</span>
-                <h3 className="font-bold text-purple-900">Agility</h3>
-              </div>
-              <p className="text-sm text-purple-800 mb-4">
-                Sing a simple 5-note scale (Do-Re-Mi-Fa-Sol) slowly.
-              </p>
-              <div className="text-xs font-semibold text-purple-700 bg-white/50 rounded-lg p-2">
-                Goal: Hit each note center without "sliding" up to it.
               </div>
             </div>
           </div>

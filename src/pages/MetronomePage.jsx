@@ -8,6 +8,7 @@ import BottomNav from '../components/BottomNav';
 import Footer from '../components/Footer';
 import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
+import PracticePathSection from '../components/PracticePathSection';
 
 const metronomeFaqItems = [
   {
@@ -658,6 +659,76 @@ const MetronomePage = () => {
               </div>
             </div>
           </div>
+
+          <PracticePathSection
+            theme="orange"
+            intro="Singers use a metronome differently from instrumentalists: you are managing breath, phrase length, and pitch at the same time. Turn on Vocal Practice Mode (breathing cue) for long lines, start slower than you think you need, and treat rushing or dragging as a technique problem—not just a tempo problem."
+            comboTitle="10-Minute A Cappella Rhythm Session"
+            comboSteps={[
+              'Set 4/4 time, 72–80 BPM (try the “Vocal Runs” or “Ballad” preset), Wood or Classic sound, volume around 50%. Enable Vocal Practice Mode so the last beat of each bar flashes “BREATHE”.',
+              'Listen for two full bars without singing. Tap your foot on beats 1 and 3, nod on 2 and 4—feel the pulse before you add pitch.',
+              'Hum a single comfortable pitch on every beat for four bars (no words). Keep the hum small and steady.',
+              'Replace the hum with a short lyric line or “la-la-la” phrase you know; plan your breath on the cue beat at the end of each two-bar phrase.',
+              <>
+                Optional check: sing the same phrase on the{' '}
+                <Link to="/pitch-detector" className="text-orange-600 font-semibold hover:underline">
+                  Pitch Detector
+                </Link>{' '}
+                to see if rushing made you drift sharp or flat.
+              </>,
+            ]}
+            routines={[
+              {
+                title: 'Long Phrase + Planned Breath',
+                duration: '6–8 minutes',
+                settings: '4/4 · 68–76 BPM · Breathing Cue ON',
+                body: 'Pick one line from a song you are learning (8–12 syllables). Sing it twice per phrase: first time half-volume to map where you need air, second time at performance volume. Take every breath on the highlighted cue beat—never gasp mid-word. If you run out of air, slow the BPM by 5 and repeat.',
+                goal: 'Complete the line without breaking rhythm and without a visible “catch-up” breath before the next phrase.',
+              },
+              {
+                title: 'Scale on the Beat',
+                duration: '5 minutes',
+                settings: '4/4 · 80 BPM (“Vocal Runs” preset) · Breathing Cue optional',
+                body: 'Sing a five-note major scale (Do–Re–Mi–Fa–Sol) up and down, one note per click. Use “La” or a light hum—consonants can hide sloppy timing. When you can do two clean passes, raise BPM by 5. If a note slides in late, stay at the current tempo until every attack lands on the beat.',
+                goal: 'Each note starts exactly with the click, not slightly after it.',
+              },
+              {
+                title: 'Tone First, Then Time (pitch + rhythm)',
+                duration: '10 minutes',
+                settings: 'Metronome 72 BPM + Tone Generator (sine, C4 or your root)',
+                body: 'Bar 1–2: play your reference tone on the Tone Generator and match pitch. Bar 3–8: stop the tone and hold the same pitch on the metronome, one “Ah” per beat. Bar 9–16: sing a slow five-note scale, one syllable per beat. Use the Pitch Detector on the last note of each pass.',
+                goal: 'Separate pitch memory from rhythm—then combine them without speeding up.',
+              },
+              {
+                title: 'Slow Vocal Run Prep',
+                duration: '8+ minutes',
+                settings: '4/4 · start 60–70 BPM · increase +5 BPM when clean',
+                body: 'Choose a short run or melisma (three to six notes). Sing it rhythmically on “di” or “la” at a slow tempo where every note is distinct. Only increase speed when you can repeat the run four times without rushing the last two notes. This is the same method vocal coaches use before up-tempo songs.',
+                goal: 'Clear, even notes at the goal tempo—not a blur of pitches.',
+              },
+            ]}
+            nextTools={[
+              {
+                to: '/tone-generator',
+                label: 'Tone Generator',
+                hint: 'Lock in the starting pitch before you add rhythm.',
+              },
+              {
+                to: '/pitch-detector',
+                label: 'Pitch Detector',
+                hint: 'See if rushing or dragging is pulling you off pitch.',
+              },
+              {
+                to: '/vocal-range-test',
+                label: 'Vocal Range Test',
+                hint: 'Choose scale patterns that sit in your comfortable range.',
+              },
+            ]}
+            blogLink={{
+              to: '/blog/high-notes-warmup-routine',
+              label: 'High Notes Warm-Up Routine — pair with slow metronome work',
+            }}
+          />
 
           {/* Tool Introduction */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">

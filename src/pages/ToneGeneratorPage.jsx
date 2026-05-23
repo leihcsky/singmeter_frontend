@@ -8,6 +8,7 @@ import BottomNav from '../components/BottomNav';
 import Footer from '../components/Footer';
 import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
+import PracticePathSection from '../components/PracticePathSection';
 
 // Musical note frequencies (A4 = 440 Hz)
 const NOTE_FREQUENCIES = {
@@ -465,6 +466,73 @@ const ToneGeneratorPage = () => {
               </div>
             </div>
           </div>
+
+          <PracticePathSection
+            theme="blue"
+            intro="This page works best as a pitch reference—not a tuner you glance at once. Use a sine wave at low volume, pick notes inside your comfortable range (from the Vocal Range Test), then verify every match on the Pitch Detector. The flow below is written for singers, not general audio testing."
+            comboTitle="10-Minute Session: Reference → Sing → Check"
+            comboSteps={[
+              <>
+                <Link to="/vocal-range-test" className="text-indigo-600 font-semibold hover:underline">
+                  Take the Vocal Range Test
+                </Link>{' '}
+                (or recall your last result). Choose a starting note in the middle of your comfortable range—often C4 for many voices or G3/A3 for lower voices.
+              </>,
+              'On this page: select that note preset (or matching frequency), choose sine waveform, set volume to about 30–40%, and press Play. Listen for two full seconds before you sing.',
+              'Sing the same pitch on a steady “Ah” or “Mah” for 3–5 seconds without scooping up to the note.',
+              <>
+                Open the{' '}
+                <Link to="/pitch-detector" className="text-indigo-600 font-semibold hover:underline">
+                  Pitch Detector
+                </Link>{' '}
+                in another tab, sing again, and aim to stay in the green zone (within about ±10 cents).
+              </>,
+            ]}
+            routines={[
+              {
+                title: 'Warm-Up Match (comfort notes)',
+                duration: '5 minutes',
+                settings: 'Sine wave · volume 30–40% · one note at a time',
+                body: 'Cycle through three comfortable notes (for example C4 → E4 → G4, or whatever sits in your range). Play each tone, listen, stop the tone, then sing and hold. Rest 10 seconds between notes. If your throat tightens, choose an easier note—this routine is about clean onset, not your highest pitch.',
+                goal: 'Start each note within one second of the reference, without sliding from below or above.',
+              },
+              {
+                title: 'Interval Jump (ear + voice)',
+                duration: '5–7 minutes',
+                settings: 'Sine wave · same volume',
+                body: 'Play your root note (e.g. C4). Stop. Sing a perfect fifth above (G4) from memory, then play G4 to check. Repeat with a major third (C4 → E4) and a fourth (C4 → F4). Wrong note? Replay the target tone once, re-sing, then check on the Pitch Detector.',
+                goal: 'Land the second note confidently; use the generator only to confirm, not to scoop into pitch.',
+              },
+              {
+                title: 'Scale Builder (with steady time)',
+                duration: '7 minutes',
+                settings: 'Sine on root note · optional Metronome at 70–80 BPM',
+                body: 'Play C4 (or your chosen root). Sing a five-note major scale up and down on “La” or “Mi”. Use the tone only on the first and last note of each pass; inner notes are from memory. For rhythm, turn on the Online Metronome at 72 BPM, one syllable per beat.',
+                goal: 'Finish the scale in tune on the top note—play that note on the generator to verify.',
+              },
+            ]}
+            nextTools={[
+              {
+                to: '/pitch-detector',
+                label: 'Pitch Detector',
+                hint: 'Instant feedback while you match reference tones.',
+              },
+              {
+                to: '/vocal-range-test',
+                label: 'Vocal Range Test',
+                hint: 'Pick starting notes that sit in your comfortable range.',
+              },
+              {
+                to: '/metronome',
+                label: 'Online Metronome',
+                hint: 'Keep scales and exercises rhythmically steady.',
+              },
+            ]}
+            blogLink={{
+              to: '/blog/ear-training-for-singers',
+              label: 'Ear Training for Singers — match pitch by ear',
+            }}
+          />
 
           {/* Tool Introduction */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">

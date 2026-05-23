@@ -96,6 +96,14 @@ export const songKeysDatabase = [
   { title: 'Love Story', artist: 'Taylor Swift', key: 'D Major', originalKey: 'D', vocalRange: 'A3-A5', genre: 'Pop' },
 ];
 
+/** Number of songs in the curated sample library (browse list). */
+export const SAMPLE_SONG_COUNT = songKeysDatabase.length;
+
+/** Sorted unique genre labels for browse filters. */
+export const SAMPLE_GENRES = [...new Set(songKeysDatabase.map((s) => s.genre))].sort((a, b) =>
+  a.localeCompare(b)
+);
+
 /**
  * Key conversion helper
  * Converts between major and relative minor keys
