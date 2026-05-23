@@ -11,6 +11,7 @@ import ResultScreen from '../components/ResultScreen';
 import { getGlobalPianoAudio } from '../utils/pianoAudio';
 import Header from '../components/Header';
 import FAQSection from '../components/FAQSection';
+import PracticePathSection from '../components/PracticePathSection';
 import BottomNav from '../components/BottomNav';
 import Footer from '../components/Footer';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
@@ -715,6 +716,62 @@ const VocalRangeTestPage = () => {
                   </div>
                 </div>
               </section>
+
+              <PracticePathSection
+                theme="purple"
+                title="Your Practice Path After the Test"
+                intro="Use this test as the first step in a weekly loop: measure your range, calibrate pitch, then choose songs in a key that fits. New to the test? Follow our guided tutorial for microphone setup and common mistakes."
+                comboTitle="12-Minute First Session"
+                comboSteps={[
+                  <>
+                    Follow the{' '}
+                    <Link to="/tutorials/vocal-range-test-guided" className="text-indigo-600 font-semibold hover:underline">
+                      guided range test tutorial
+                    </Link>{' '}
+                    or complete the test above—save your lowest and highest comfortable notes.
+                  </>,
+                  <>
+                    Open the{' '}
+                    <Link to="/pitch-detector" className="text-indigo-600 font-semibold hover:underline">
+                      Pitch Detector
+                    </Link>{' '}
+                    and sing your middle note three times; aim for the green zone (about ±10 cents).
+                  </>,
+                  <>
+                    Browse the{' '}
+                    <Link to="/song-key-finder" className="text-indigo-600 font-semibold hover:underline">
+                      Song Key Finder
+                    </Link>{' '}
+                    filtered for your range and pick one song to practice this week.
+                  </>,
+                ]}
+                routines={[
+                  {
+                    title: 'Guided first test',
+                    duration: '12 min',
+                    settings: 'Quiet room · headphones optional',
+                    body: 'Walk through warm-up, low note, high note, and save results. Do not push painful extremes—comfortable notes only.',
+                    goal: 'A saved range you can reuse in Song Key Finder.',
+                  },
+                  {
+                    title: 'Pitch check',
+                    duration: '5 min',
+                    body: 'After the test, sing your tessitura (everyday middle notes) on the Pitch Detector. Note whether you tend flat or sharp.',
+                    goal: 'Know your habitual pitch tendency before repertoire work.',
+                  },
+                  {
+                    title: 'Repertoire pick',
+                    duration: '10 min',
+                    body: 'Filter sample songs by genre and key. Try transposing one favorite up or down a semitone and hum the chorus.',
+                    goal: 'One song assigned for the week in a singable key.',
+                  },
+                ]}
+                nextTools={[
+                  { to: '/tutorials/pitch-calibration-10', label: 'Pitch calibration tutorial', hint: 'Next in the Start track' },
+                  { to: '/tutorials/song-in-the-right-key', label: 'Song in your key', hint: 'After you know your range' },
+                ]}
+                blogLink={{ to: '/blog/how-to-test-vocal-range', label: 'How to test vocal range (full guide)' }}
+              />
 
               {/* Educational content */}
               <div className="space-y-16 pb-16">

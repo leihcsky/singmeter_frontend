@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { getActiveTools } from '../config/tools';
 
 const AboutPage = () => {
 	useEffect(() => {
@@ -32,7 +33,7 @@ const AboutPage = () => {
 
 		setMetaTag(
 			'description',
-			'Learn about SingMeter, the team behind the free online vocal range test, pitch detector, and singing guides. We build simple tools and clear guidance for anyone who loves to sing.'
+			'Learn about SingMeter: free vocal range test, pitch detector, metronome, tone generator, song key finder, practice tutorials, and editorial book reviews.'
 		);
 		setMetaTag(
 			'keywords',
@@ -44,6 +45,8 @@ const AboutPage = () => {
 			document.title = 'SingMeter';
 		};
 	}, []);
+
+  const tools = [...getActiveTools()].sort((a, b) => a.priority - b.priority);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
@@ -86,13 +89,56 @@ const AboutPage = () => {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Tools</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter brings together simple vocal tools you can use in the browser:
+                Five free browser tools—no install, no signup. Audio stays on your device:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Vocal Range Test:</strong> Discover your lowest and highest notes, identify your voice type (Bass, Baritone, Tenor, Alto, Mezzo-Soprano, Soprano), and get personalized song recommendations</li>
-                <li><strong>Pitch Detector:</strong> Real-time pitch detection to help you practice singing in tune, see your notes instantly, and improve your pitch accuracy</li>
-                <li><strong>Guides &amp; blog:</strong> Articles, tips, and explainers on vocal health, technique, range, and choosing songs that feel good in your voice</li>
+                {tools.map((tool) => (
+                  <li key={tool.id}>
+                    <Link to={tool.path} className="text-indigo-600 font-semibold hover:underline">
+                      {tool.name}
+                    </Link>
+                    : {tool.description}
+                  </li>
+                ))}
               </ul>
+
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Learning on SingMeter</h2>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                Tools work best with structured practice—not random scrolling. We publish:
+              </p>
+              <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+                <li>
+                  <Link to="/tutorials" className="text-indigo-600 font-semibold hover:underline">
+                    Practice tutorials
+                  </Link>
+                  — step-by-step sessions that use our tools (start with the guided vocal range test)
+                </li>
+                <li>
+                  <Link to="/blog" className="text-indigo-600 font-semibold hover:underline">
+                    Blog guides
+                  </Link>
+                  — deeper articles on technique, range, and vocal health
+                </li>
+                <li>
+                  <Link to="/resources#books" className="text-indigo-600 font-semibold hover:underline">
+                    Book reviews &amp; curated resources
+                  </Link>
+                  — editorial reviews and vetted external picks
+                </li>
+                <li>
+                  <Link to="/glossary" className="text-indigo-600 font-semibold hover:underline">
+                    Vocal glossary
+                  </Link>
+                  — definitions for common singing terms
+                </li>
+              </ul>
+              <p className="text-gray-600 mb-6 leading-relaxed text-sm">
+                How we write and review content:{' '}
+                <Link to="/editorial-standards" className="text-indigo-600 font-semibold hover:underline">
+                  Editorial standards
+                </Link>
+                .
+              </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How It Works</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">

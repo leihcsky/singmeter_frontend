@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ContentSection from '../components/ContentSection';
+import LearnHubNav from '../components/LearnHubNav';
+import { bookReviews } from '../resources/bookReviews';
+import { videoPicks } from '../resources/videoPicks';
 
 const ResourcesPage = () => {
   useEffect(() => {
@@ -46,216 +48,114 @@ const ResourcesPage = () => {
     };
   }, []);
 
-  const tools = [
+  const singmeterTools = [
     {
-      name: 'SingMeter Vocal Range Test',
+      id: 'vocal-range-test',
+      name: 'Vocal Range Test',
       category: 'Testing Tools',
-      description: 'Our free online vocal range test helps you discover your voice type and range. Get instant results with personalized song recommendations.',
+      description: 'Discover your voice type and range in minutes. Get song ideas that fit your comfortable notes.',
       pros: ['100% free', 'No signup required', 'Privacy-first', 'Instant results'],
       cons: ['Requires microphone'],
       bestFor: 'All singers',
       link: '/vocal-range-test',
-      internal: true
     },
     {
-      name: 'SingMeter Pitch Detector',
+      id: 'pitch-detector',
+      name: 'Pitch Detector',
       category: 'Practice Tools',
-      description: 'Real-time pitch detection tool to improve your singing accuracy. See your pitch in real-time and practice staying in tune.',
+      description: 'Real-time pitch feedback while you sing. Practice staying in tune with a live visual display.',
       pros: ['Real-time feedback', 'Free', 'Works in browser', 'No installation'],
       cons: ['Requires microphone'],
       bestFor: 'Pitch training',
       link: '/pitch-detector',
-      internal: true
     },
     {
-      name: 'SingMeter Tone Generator',
+      id: 'tone-generator',
+      name: 'Tone Generator',
       category: 'Practice Tools',
-      description: 'Generate precise reference tones for ear training, warm-ups, and pitch matching practice. Supports multiple waveforms and adjustable frequency.',
+      description: 'Reference tones for ear training, warm-ups, and pitch matching. Adjustable frequency and waveforms.',
       pros: ['Adjustable frequency', 'Multiple waveforms', 'Free', 'No microphone needed'],
       cons: ['Requires speakers or headphones'],
       bestFor: 'Ear training & reference pitches',
       link: '/tone-generator',
-      internal: true
     },
     {
-      name: 'SingMeter Metronome',
+      id: 'metronome',
+      name: 'Metronome',
       category: 'Practice Tools',
-      description: 'Free online metronome for rhythm and tempo practice. Keep steady time while practicing scales, exercises, and songs.',
+      description: 'Keep steady time for scales, exercises, and songs. Adjustable BPM and time signatures in the browser.',
       pros: ['Adjustable BPM', 'Multiple time signatures', 'Free', 'Visual & audio beats'],
       cons: ['Requires speakers or headphones'],
       bestFor: 'Rhythm & timing practice',
       link: '/metronome',
-      internal: true
     },
     {
+      id: 'song-key-finder',
+      name: 'Song Key Finder',
+      category: 'Analysis Tools',
+      description: 'Browse sample songs by key and genre, filter for your range, and plan transposition before you practice.',
+      pros: ['Key & transpose hints', 'Free', 'Pairs with range test', 'No install'],
+      cons: ['Sample library, not every song'],
+      bestFor: 'Choosing keys for repertoire',
+      link: '/song-key-finder',
+    },
+  ];
+
+  const mobileApps = [
+    {
+      id: 'yousician',
       name: 'Yousician',
-      category: 'Practice Tools',
-      description: 'Interactive music learning app with vocal courses. Provides real-time feedback and structured lessons for all levels.',
-      pros: ['Interactive lessons', 'Real-time feedback', 'Structured courses', 'Multiple instruments'],
+      category: 'Learning',
+      description: 'Interactive music learning app with vocal courses. Structured lessons and real-time feedback on phone or tablet.',
+      pros: ['Interactive lessons', 'Real-time feedback', 'Structured courses', 'Progress tracking'],
       cons: ['Premium subscription required'],
-      bestFor: 'All levels',
+      bestFor: 'Structured learning',
       link: 'https://apps.apple.com/us/app/yousician-learn-guitar-piano-bass/id959883039',
-      internal: false
     },
     {
+      id: 'smule',
       name: 'Smule',
-      category: 'Practice Tools',
-      description: 'Popular karaoke app where you can sing along with millions of songs. Great for practice and fun.',
+      category: 'Practice',
+      description: 'Karaoke app with a large song library. Sing along for fun practice when you are away from your desk.',
       pros: ['Huge song library', 'Social features', 'Free version', 'Fun and engaging'],
       cons: ['Premium features paid', 'Internet required'],
       bestFor: 'Practice and fun',
       link: 'https://www.smule.com/',
-      internal: false
     },
     {
+      id: 'voice-memos',
       name: 'Voice Memos',
-      category: 'Recording Tools',
-      description: 'Built-in iOS voice recording app. Simple and reliable for capturing practice sessions and tracking progress.',
+      category: 'Recording',
+      description: 'Built-in iOS recorder for capturing takes and comparing progress over weeks.',
       pros: ['Built-in iOS app', 'High quality', 'Easy to use', 'Free'],
       cons: ['iOS only', 'Basic features'],
       bestFor: 'Practice recording',
       link: 'https://apps.apple.com/us/app/voice-memos/id1069512134',
-      internal: false
-    }
-  ];
-
-  const books = [
-    {
-      title: 'The Singing Book',
-      author: 'Meribeth Bunch Dayme and Cynthia Vaughn',
-      description: 'Comprehensive guide covering vocal technique, anatomy, and performance. Excellent for beginners and intermediate singers.',
-      pros: ['Comprehensive', 'Well-illustrated', 'Includes exercises', 'CD included'],
-      cons: ['Can be technical'],
-      bestFor: 'Serious students',
-      link: 'https://www.amazon.com/s?k=The+Singing+Book+Meribeth+Dayme&i=stripbooks'
     },
     {
-      title: 'Set Your Voice Free',
-      author: 'Roger Love',
-      description: 'Practical vocal training guide from a renowned voice coach. Focuses on technique and performance.',
-      pros: ['Practical approach', 'Easy to follow', 'Performance tips', 'Well-written'],
-      cons: ['Less technical detail'],
-      bestFor: 'All levels',
-      link: 'https://www.amazon.com/Set-Your-Voice-Free-Speaking/dp/031631126X'
-    },
-    {
-      title: 'The Complete Idiot\'s Guide to Singing',
-      author: 'Phyllis Fulford and Michael Miller',
-      description: 'Beginner-friendly guide to singing basics. Great starting point for new singers.',
-      pros: ['Very accessible', 'Beginner-friendly', 'Clear explanations', 'Affordable'],
-      cons: ['Less depth'],
-      bestFor: 'Beginners',
-      link: 'https://www.amazon.com/s?k=Complete+Idiot%27s+Guide+to+Singing+Phyllis+Fulford&i=stripbooks'
-    },
-    {
-      title: 'Vocal Technique: A Guide for Conductors, Teachers, and Singers',
-      author: 'Janet Radcliffe',
-      description: 'Technical guide to vocal anatomy and technique. Best for teachers and serious students.',
-      pros: ['Very detailed', 'Scientific approach', 'Comprehensive', 'Professional level'],
-      cons: ['Can be dense', 'Not for beginners'],
-      bestFor: 'Teachers and advanced students',
-      link: 'https://www.amazon.com/s?k=Vocal+Technique+Janet+Radcliffe&i=stripbooks'
-    },
-    {
-      title: 'The Contemporary Singer',
-      author: 'Anne Peckham',
-      description: 'Modern approach to vocal training with focus on contemporary styles. Includes exercises and techniques.',
-      pros: ['Modern approach', 'Contemporary focus', 'Includes exercises', 'CD included'],
-      cons: ['Less classical focus'],
-      bestFor: 'Contemporary singers',
-      link: 'https://www.amazon.com/s?k=The+Contemporary+Singer+Anne+Peckham&i=stripbooks'
-    }
-  ];
-
-  const videos = [
-    {
-      title: 'Vocal Warm-Up Routine',
-      creator: 'Eric Arceneaux',
-      description: 'Complete 15-minute vocal warm-up routine suitable for all voice types. Perfect for daily practice.',
-      duration: '15 min',
-      bestFor: 'Daily practice',
-      link: 'https://www.youtube.com/c/EricArceneaux'
-    },
-    {
-      title: 'Breathing Techniques for Singers',
-      creator: 'New York Vocal Coaching',
-      description: 'In-depth tutorial on diaphragmatic breathing and breath support. Essential foundation for good singing.',
-      duration: '20 min',
-      bestFor: 'Beginners',
-      link: 'https://www.youtube.com/user/NewYorkVocalCoaching'
-    },
-    {
-      title: 'How to Sing High Notes',
-      creator: 'Ken Tamplin Vocal Academy',
-      description: 'Advanced techniques for expanding your range and singing high notes safely. Includes exercises.',
-      duration: '30 min',
-      bestFor: 'Intermediate/Advanced',
-      link: 'https://www.youtube.com/results?search_query=Ken+Tamplin+how+to+sing+high+notes'
-    },
-    {
-      title: 'Pitch Accuracy Training',
-      creator: 'Singing Success',
-      description: 'Exercises and techniques to improve your pitch accuracy. Great for singers who struggle with staying in tune.',
-      duration: '25 min',
-      bestFor: 'Pitch training',
-      link: 'https://www.youtube.com/c/SingingSuccess'
-    },
-    {
-      title: 'Vocal Health Tips',
-      creator: 'Dr. Dan\'s Voice Essentials',
-      description: 'Essential tips for maintaining vocal health. Learn how to protect your voice and avoid strain.',
-      duration: '18 min',
-      bestFor: 'All singers',
-      link: 'https://www.youtube.com/results?search_query=Dr+Dan+Voice+Essentials+vocal+health'
-    }
-  ];
-
-  const apps = [
-    {
-      name: 'Yousician',
-      category: 'Learning',
-      description: 'Interactive music learning app with vocal courses. Provides real-time feedback and structured lessons.',
-      pros: ['Interactive lessons', 'Real-time feedback', 'Structured courses', 'Progress tracking'],
-      cons: ['Premium subscription required'],
-      bestFor: 'Structured learning',
-      link: 'https://apps.apple.com/us/app/yousician-learn-guitar-piano-bass/id959883039'
-    },
-    {
-      name: 'Smule',
-      category: 'Practice',
-      description: 'Popular karaoke app with millions of songs. Sing along and practice with your favorite tracks.',
-      pros: ['Huge song library', 'Social features', 'Free version', 'Fun and engaging'],
-      cons: ['Premium features paid', 'Internet required'],
-      bestFor: 'Practice and fun',
-      link: 'https://www.smule.com/'
-    },
-    {
-      name: 'Voice Memos',
-      category: 'Recording',
-      description: 'Built-in iOS voice recording app. Simple and reliable for capturing practice sessions and tracking progress.',
-      pros: ['Built-in iOS app', 'High quality', 'Easy to use', 'Free'],
-      cons: ['iOS only', 'Basic features'],
-      bestFor: 'Practice recording',
-      link: 'https://apps.apple.com/us/app/voice-memos/id1069512134'
-    },
-    {
+      id: 'pro-metronome',
       name: 'Pro Metronome',
       category: 'Practice',
-      description: 'Professional metronome app with customizable tempo and time signatures. Essential for rhythm training.',
-      pros: ['Very accurate', 'Highly customizable', 'Multiple time signatures', 'Free version'],
-      cons: ['Premium features paid'],
-      bestFor: 'Rhythm practice',
-      link: 'https://apps.apple.com/us/app/pro-metronome/id477960671'
+      description:
+        'Offline metronome when you practice without a browser. For everyday rhythm work on SingMeter, use our free web metronome instead.',
+      pros: ['Very accurate', 'Highly customizable', 'Multiple time signatures', 'Works offline'],
+      cons: ['Premium features paid', 'Separate from SingMeter'],
+      bestFor: 'Offline rhythm practice',
+      link: 'https://apps.apple.com/us/app/pro-metronome/id477960671',
+      singmeterAlternative: '/metronome',
     },
     {
+      id: 'pitchlab-lite',
       name: 'PitchLab Lite',
       category: 'Reference',
-      description: 'Accurate chromatic tuner for pitch reference. Great for checking pitch accuracy and tuning instruments.',
-      pros: ['Very accurate', 'Visual display', 'Free', 'Multiple instruments'],
-      cons: ['Ads in free version'],
-      bestFor: 'Pitch reference',
-      link: 'https://apps.apple.com/us/app/pitchlab-lite/id389225271'
-    }
+      description:
+        'Handy chromatic tuner for quick pitch checks. For sustained singing feedback, use our Pitch Detector in the browser.',
+      pros: ['Very accurate', 'Visual display', 'Free', 'Portable tuner'],
+      cons: ['Ads in free version', 'Not built for long vocal phrases'],
+      bestFor: 'Quick pitch checks',
+      link: 'https://apps.apple.com/us/app/pitchlab-lite/id389225271',
+      singmeterAlternative: '/pitch-detector',
+    },
   ];
 
   return (
@@ -281,45 +181,67 @@ const ResourcesPage = () => {
         </nav>
 
         {/* Page Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
             Singing Resources
           </h1>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover curated tools, books, videos, and apps to enhance your vocal training journey.
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            Curated tools, books, videos, and apps—with editor notes on why we recommend each pick and how to use
+            them with SingMeter.
           </p>
+          <LearnHubNav className="max-w-3xl mx-auto justify-center" />
         </div>
 
-        {/* Tools Section */}
+        <div className="grid sm:grid-cols-3 gap-4 mb-12">
+          <Link
+            to="/tutorials"
+            className="bg-white rounded-xl p-5 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition text-center"
+          >
+            <span className="text-2xl">🎯</span>
+            <h2 className="font-bold text-gray-900 mt-2">Practice tutorials</h2>
+            <p className="text-sm text-gray-600 mt-1">Step-by-step lessons with our tools</p>
+          </Link>
+          <div className="bg-indigo-50 rounded-xl p-5 border-2 border-indigo-200 text-center">
+            <span className="text-2xl">📚</span>
+            <h2 className="font-bold text-gray-900 mt-2">You are here</h2>
+            <p className="text-sm text-gray-600 mt-1">Reviews & external picks</p>
+          </div>
+          <Link
+            to="/blog"
+            className="bg-white rounded-xl p-5 border border-gray-100 hover:border-indigo-200 hover:shadow-md transition text-center"
+          >
+            <span className="text-2xl">📝</span>
+            <h2 className="font-bold text-gray-900 mt-2">Blog guides</h2>
+            <p className="text-sm text-gray-600 mt-1">Deep dives on technique</p>
+          </Link>
+        </div>
+
+        {/* SingMeter tools — third-party picks live in Mobile Apps only */}
         <section className="mb-16">
           <div className="flex items-center space-x-3 mb-8">
             <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
               <span className="text-2xl">🛠️</span>
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">Recommended Tools</h2>
-              <p className="text-gray-600">Essential tools for vocal training and practice</p>
+              <h2 className="text-3xl font-bold text-gray-900">SingMeter Tools</h2>
+              <p className="text-gray-600">Free browser tools on this site—no install required</p>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {tools.map((tool, index) => (
+            {singmeterTools.map((tool) => (
               <div
-                key={index}
-                className={`bg-white rounded-2xl p-6 shadow-md border-2 ${
-                  tool.internal ? 'border-indigo-200' : 'border-gray-100'
-                }`}
+                key={tool.id}
+                className="bg-white rounded-2xl p-6 shadow-md border-2 border-indigo-200"
               >
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-1">{tool.name}</h3>
                     <span className="text-sm text-gray-500">{tool.category}</span>
                   </div>
-                  {tool.internal && (
-                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full">
-                      Our Tool
-                    </span>
-                  )}
+                  <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full">
+                    Free on SingMeter
+                  </span>
                 </div>
                 <p className="text-gray-600 mb-4 leading-relaxed">{tool.description}</p>
                 <div className="grid sm:grid-cols-2 gap-4 mb-4">
@@ -342,23 +264,12 @@ const ResourcesPage = () => {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600"><strong>Best for:</strong> {tool.bestFor}</span>
-                  {tool.internal ? (
-                    <Link
-                      to={tool.link}
-                      className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm"
-                    >
-                      Try Now →
-                    </Link>
-                  ) : (
-                    <a
-                      href={tool.link}
-                      className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Learn More →
-                    </a>
-                  )}
+                  <Link
+                    to={tool.link}
+                    className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm"
+                  >
+                    Try now →
+                  </Link>
                 </div>
               </div>
             ))}
@@ -366,53 +277,46 @@ const ResourcesPage = () => {
         </section>
 
         {/* Books Section */}
-        <section className="mb-16">
+        <section id="books" className="mb-16 scroll-mt-24">
           <div className="flex items-center space-x-3 mb-8">
             <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
               <span className="text-2xl">📚</span>
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">Recommended Books</h2>
-              <p className="text-gray-600">Essential reading for vocal students and teachers</p>
+              <h2 className="text-3xl font-bold text-gray-900">Book reviews</h2>
+              <p className="text-gray-600">
+                Full editor reviews—not Amazon search links. Who each book is for and how to use it with SingMeter.
+              </p>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {books.map((book, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {bookReviews.map((book) => (
+              <article key={book.slug} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex flex-col">
+                <p className="text-xs font-semibold text-purple-600 uppercase tracking-wide mb-2">Editor review</p>
                 <h3 className="text-xl font-bold text-gray-900 mb-1">{book.title}</h3>
                 <p className="text-sm text-gray-600 mb-3">by {book.author}</p>
-                <p className="text-gray-600 mb-4 leading-relaxed">{book.description}</p>
-                <div className="grid sm:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <h4 className="text-sm font-semibold text-green-700 mb-2">✓ Pros</h4>
-                    <ul className="text-xs text-gray-600 space-y-1">
-                      {book.pros.map((pro, i) => (
-                        <li key={i}>• {pro}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-orange-700 mb-2">⚠ Cons</h4>
-                    <ul className="text-xs text-gray-600 space-y-1">
-                      {book.cons.map((con, i) => (
-                        <li key={i}>• {con}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600"><strong>Best for:</strong> {book.bestFor}</span>
-                  <a
-                    href={book.link}
-                    className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed flex-grow line-clamp-4">{book.summary}</p>
+                <p className="text-sm text-gray-700 mb-4">
+                  <strong>Best for:</strong> {book.bestFor}
+                </p>
+                <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-gray-100">
+                  <Link
+                    to={`/resources/books/${book.slug}`}
+                    className="text-indigo-600 font-semibold text-sm hover:underline"
                   >
-                    Find on Amazon →
+                    Read full review →
+                  </Link>
+                  <a
+                    href={book.amazonUrl}
+                    className="text-gray-500 text-sm hover:text-indigo-600"
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                  >
+                    Amazon
                   </a>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </section>
@@ -424,49 +328,82 @@ const ResourcesPage = () => {
               <span className="text-2xl">🎥</span>
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">Video Tutorials</h2>
-              <p className="text-gray-600">Top YouTube channels and video lessons for vocal training</p>
+              <h2 className="text-3xl font-bold text-gray-900">Video picks</h2>
+              <p className="text-gray-600">
+                Editor notes on YouTube channels we trust—each with why we recommend it and how to pair it with SingMeter
+                tutorials (no generic search links).
+              </p>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {videos.map((video, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+            {videoPicks.map((video) => (
+              <div key={video.id} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm text-gray-500">{video.duration}</span>
                   <span className="text-sm text-gray-600"><strong>Best for:</strong> {video.bestFor}</span>
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{video.title}</h3>
                 <p className="text-sm text-gray-600 mb-2">by {video.creator}</p>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">{video.description}</p>
-                <a
-                  href={video.link}
-                  className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Watch on YouTube →
-                </a>
+                <p className="text-gray-600 text-sm mb-3 leading-relaxed">{video.description}</p>
+                {video.whyRecommend && (
+                  <p className="text-sm text-gray-700 mb-2">
+                    <strong className="text-gray-900">Why we recommend it:</strong> {video.whyRecommend}
+                  </p>
+                )}
+                {video.singmeterPairing && (
+                  <p className="text-sm text-indigo-900 bg-indigo-50 rounded-lg p-3 mb-3">
+                    <strong>With SingMeter:</strong> {video.singmeterPairing}
+                  </p>
+                )}
+                {video.notIdealFor && (
+                  <p className="text-xs text-gray-500 mb-3">
+                    <strong>Not ideal for:</strong> {video.notIdealFor}
+                  </p>
+                )}
+                <div className="flex flex-wrap gap-x-4 gap-y-2">
+                  <a
+                    href={video.link}
+                    className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Watch on YouTube →
+                  </a>
+                  {video.tutorialLink && (
+                    <Link to={video.tutorialLink} className="text-indigo-600 hover:underline text-sm font-semibold">
+                      Our practice tutorial →
+                    </Link>
+                  )}
+                  {video.blogLink && (
+                    <Link to={video.blogLink} className="text-indigo-600 hover:underline text-sm font-semibold">
+                      Full article →
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Apps Section */}
-        <section className="mb-16">
+        {/* Third-party apps — each listed once (not duplicated under SingMeter Tools) */}
+        <section id="apps" className="mb-16 scroll-mt-24">
           <div className="flex items-center space-x-3 mb-8">
             <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
               <span className="text-2xl">📱</span>
             </div>
             <div>
               <h2 className="text-3xl font-bold text-gray-900">Mobile Apps</h2>
-              <p className="text-gray-600">Useful apps for practice and training on the go</p>
+              <p className="text-gray-600">
+                Third-party apps for learning, karaoke, and offline practice—we list each pick once here, not under
+                SingMeter Tools above.
+              </p>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {apps.map((app, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+            {mobileApps.map((app) => (
+              <div key={app.id} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h3 className="text-lg font-bold text-gray-900">{app.name}</h3>
@@ -492,16 +429,26 @@ const ResourcesPage = () => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-xs text-gray-600"><strong>Best for:</strong> {app.bestFor}</span>
-                  <a
-                    href={app.link}
-                    className="text-indigo-600 hover:text-indigo-700 font-semibold text-xs"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Download →
-                  </a>
+                  <div className="flex flex-wrap gap-3">
+                    {app.singmeterAlternative && (
+                      <Link
+                        to={app.singmeterAlternative}
+                        className="text-indigo-600 hover:text-indigo-700 font-semibold text-xs"
+                      >
+                        Use SingMeter instead →
+                      </Link>
+                    )}
+                    <a
+                      href={app.link}
+                      className="text-indigo-600 hover:text-indigo-700 font-semibold text-xs"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      App store / site →
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
@@ -538,6 +485,12 @@ const ResourcesPage = () => {
               className="inline-flex items-center px-6 py-3 bg-indigo-700 text-white font-bold rounded-lg hover:bg-indigo-800 transition"
             >
               Metronome
+            </Link>
+            <Link
+              to="/song-key-finder"
+              className="inline-flex items-center px-6 py-3 bg-indigo-700 text-white font-bold rounded-lg hover:bg-indigo-800 transition"
+            >
+              Song Key Finder
             </Link>
           </div>
         </section>

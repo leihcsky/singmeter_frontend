@@ -8,10 +8,13 @@ import BlogArticlePage from './pages/BlogArticlePage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
 import DisclaimerPage from './pages/DisclaimerPage'
+import EditorialStandardsPage from './pages/EditorialStandardsPage'
 import AboutPage from './pages/AboutPage.jsx'
 import ContactPage from './pages/ContactPage'
 import TutorialsPage from './pages/TutorialsPage'
+import TutorialDetailPage from './pages/TutorialDetailPage'
 import ResourcesPage from './pages/ResourcesPage'
+import ResourceBookReviewPage from './pages/ResourceBookReviewPage'
 import GlossaryPage from './pages/GlossaryPage'
 import FAQPage from './pages/FAQPage'
 import ToneGeneratorPage from './pages/ToneGeneratorPage'
@@ -65,10 +68,13 @@ function App() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/disclaimer" element={<DisclaimerPage />} />
+          <Route path="/editorial-standards" element={<EditorialStandardsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/tutorials" element={<TutorialsPage />} />
+          <Route path="/tutorials/:slug" element={<TutorialDetailPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/resources/books/:slug" element={<ResourceBookReviewPage />} />
           <Route path="/glossary" element={<GlossaryPage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/tone-generator" element={<ToneGeneratorPage />} />

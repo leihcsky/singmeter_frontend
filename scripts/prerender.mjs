@@ -3,14 +3,20 @@
  *
  * Usage: npm run build (runs automatically) or npm run prerender (after vite build)
  * Skip: PRERENDER_SKIP=1 npm run build
+ *
+ * Vercel: uses @sparticuz/chromium + puppeteer-core (stock puppeteer Chrome misses libnspr4 on CI).
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import http from 'node:http';
-import puppeteer from 'puppeteer';
 import { defaultSitemapPath, getRoutesFromSitemap } from './parse-sitemap-routes.mjs';
+
+// @sparticuz/chromium reads this at import time on Vercel Fluid / Node 22
+if (process.env.VERCEL && !process.env.AWS_LAMBDA_JS_RUNTIME) {
+  process.env.AWS_LAMBDA_JS_RUNTIME = 'nodejs22.x';
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -46,13 +52,48 @@ function waitForServer(url, timeoutMs = 120000) {
   });
 }
 
+function useServerlessChromium() {
+  return (
+    process.env.VERCEL === '1' ||
+    (process.env.CI === 'true' && process.platform === 'linux')
+  );
+}
+
+async function launchBrowser() {
+  if (useServerlessChromium()) {
+    const chromium = (await import('@sparticuz/chromium')).default;
+    const puppeteer = (await import('puppeteer-core')).default;
+
+    if (typeof chromium.setGraphicsMode === 'function') {
+      chromium.setGraphicsMode(false);
+    }
+
+    const executablePath = await chromium.executablePath();
+    process.env.LD_LIBRARY_PATH = path.dirname(executablePath);
+
+    return puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath,
+      headless: chromium.headless,
+    });
+  }
+
+  const puppeteer = (await import('puppeteer')).default;
+  return puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  });
+}
+
 function startPreviewServer() {
   return new Promise((resolve, reject) => {
-    const child = spawn(
-      'npm',
-      ['run', 'preview:prerender'],
-      { cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], shell: true, env: { ...process.env, NODE_ENV: 'production' } }
-    );
+    const child = spawn('npm', ['run', 'preview:prerender'], {
+      cwd: ROOT,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      shell: process.platform === 'win32',
+      env: { ...process.env, NODE_ENV: 'production' },
+    });
 
     let stderr = '';
     child.stderr.on('data', (chunk) => {
@@ -127,10 +168,7 @@ async function main() {
     log(`starting preview at ${PREVIEW_ORIGIN}`);
     preview = await startPreviewServer();
 
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    });
+    browser = await launchBrowser();
 
     const page = await browser.newPage();
     await page.setViewport({ width: 1280, height: 900 });

@@ -739,34 +739,112 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
         </div>
       )}
 
-      {/* Tips Section */}
-      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">💡 What's Next?</h3>
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="bg-white rounded-xl p-4">
-            <h4 className="font-semibold text-gray-900 mb-2">🎯 Practice Regularly</h4>
-            <p className="text-sm text-gray-600">
-              Your vocal range can expand with consistent practice and proper technique
-            </p>
-          </div>
-          <div className="bg-white rounded-xl p-4">
-            <h4 className="font-semibold text-gray-900 mb-2">🎵 Choose Right Songs</h4>
-            <p className="text-sm text-gray-600">
-              Select songs that fit your range to sound your best and avoid strain
-            </p>
-          </div>
-          <div className="bg-white rounded-xl p-4">
-            <h4 className="font-semibold text-gray-900 mb-2">👨‍🏫 Consider Training</h4>
-            <p className="text-sm text-gray-600">
-              A vocal coach can help you expand your range safely and effectively
-            </p>
-          </div>
-          <div className="bg-white rounded-xl p-4">
-            <h4 className="font-semibold text-gray-900 mb-2">🔄 Test Periodically</h4>
-            <p className="text-sm text-gray-600">
-              Track your progress by testing your range every few months
-            </p>
-          </div>
+      {/* 7-Day Practice Plan */}
+      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 border border-indigo-100">
+        <h3 className="text-2xl font-bold text-gray-900 mb-2">📅 Your 7-day practice plan</h3>
+        <p className="text-sm text-gray-600 mb-6">
+          Your range is saved for Song Key Finder. Follow this schedule—about 10–15 minutes per day. Skip a day if
+          your voice feels tired and use our{' '}
+          <Link to="/tutorials/vocal-health-recovery-day" className="text-indigo-600 font-semibold hover:underline">
+            recovery tutorial
+          </Link>
+          .
+        </p>
+        <ol className="space-y-3">
+          {[
+            {
+              day: 'Day 1',
+              title: 'Log your result',
+              body: 'Write your low–high notes. Bookmark the guided range tutorial if this was your first test.',
+              to: '/tutorials/vocal-range-test-guided',
+              label: 'Range test tutorial',
+            },
+            {
+              day: 'Day 2',
+              title: 'Pitch calibration',
+              body: 'Tone Generator → Pitch Detector. Aim for green zone on two notes.',
+              to: '/tutorials/pitch-calibration-10',
+              label: '10-minute calibration',
+            },
+            {
+              day: 'Day 3',
+              title: 'Warm-up habit',
+              body: 'Run the 15-minute warm-up before any singing.',
+              to: '/tutorials/daily-warmup-15',
+              label: 'Daily warm-up',
+            },
+            {
+              day: 'Day 4',
+              title: 'Breath & posture',
+              body: 'Short breath block—no heavy singing.',
+              to: '/tutorials/breath-and-posture-basics',
+              label: 'Breath & posture',
+            },
+            {
+              day: 'Day 5',
+              title: 'Song in your key',
+              body: 'Pick a song on Song Key Finder and practice the hardest phrase.',
+              to: '/tutorials/transpose-a-song',
+              label: 'Transpose workflow',
+            },
+            {
+              day: 'Day 6',
+              title: 'Ear training',
+              body: 'Major third and fifth: hear, sing, check.',
+              to: '/tutorials/ear-training-starter',
+              label: 'Ear training starter',
+            },
+            {
+              day: 'Day 7',
+              title: 'Review & retest',
+              body: 'Light warm-up, then optional quick range check. Compare to Day 1.',
+              to: '/vocal-range-test',
+              label: 'Retest range',
+            },
+          ].map((item) => (
+            <li key={item.day} className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+              <div className="flex flex-wrap items-baseline gap-2 mb-1">
+                <span className="text-xs font-bold uppercase tracking-wide text-indigo-600">{item.day}</span>
+                <span className="font-semibold text-gray-900">{item.title}</span>
+              </div>
+              <p className="text-sm text-gray-600 mb-2">{item.body}</p>
+              <Link to={item.to} className="text-sm font-semibold text-indigo-600 hover:underline">
+                {item.label} →
+              </Link>
+            </li>
+          ))}
+        </ol>
+        <p className="text-xs text-gray-500 mt-4">
+          Voice tired?{' '}
+          <Link to="/blog/vocal-health-and-maintenance" className="text-indigo-600 hover:underline">
+            Read vocal health tips
+          </Link>{' '}
+          and follow the recovery day lesson instead of pushing through.
+        </p>
+      </div>
+
+      {/* Quick links */}
+      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 sm:p-8">
+        <h3 className="text-xl font-bold text-gray-900 mb-4">Quick tool links</h3>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            to="/song-key-finder"
+            className="px-4 py-2 bg-white rounded-lg text-sm font-semibold text-indigo-700 shadow-sm hover:shadow-md transition"
+          >
+            Song Key Finder
+          </Link>
+          <Link
+            to="/pitch-detector"
+            className="px-4 py-2 bg-white rounded-lg text-sm font-semibold text-indigo-700 shadow-sm hover:shadow-md transition"
+          >
+            Pitch Detector
+          </Link>
+          <Link
+            to="/tutorials"
+            className="px-4 py-2 bg-white rounded-lg text-sm font-semibold text-indigo-700 shadow-sm hover:shadow-md transition"
+          >
+            All tutorials
+          </Link>
         </div>
       </div>
     </div>

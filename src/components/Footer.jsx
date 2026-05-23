@@ -18,6 +18,7 @@ const COMPANY_LINKS = [
 ];
 
 const LEGAL_LINKS = [
+  { to: '/editorial-standards', label: 'Editorial Standards' },
   { to: '/privacy', label: 'Privacy Policy' },
   { to: '/terms', label: 'Terms of Service' },
   { to: '/disclaimer', label: 'Disclaimer' },

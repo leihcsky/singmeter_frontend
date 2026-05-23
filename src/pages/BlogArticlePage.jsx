@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { blogIndex } from '../blog';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import BlogAuthorNote from '../components/BlogAuthorNote';
 
 /** Shorter brand suffix; total browser title length capped in buildMetaTitle */
 const TITLE_BRAND = ' | SingMeter';
@@ -243,16 +244,7 @@ const BlogArticlePage = () => {
             <div className="blog-article-content max-w-none">
               {article.component && <article.component />}
             </div>
-	            {/* Author Bio */}
-	            <div className="mt-10 p-6 bg-indigo-50 border border-indigo-100 rounded-xl">
-	              <h2 className="text-base font-semibold text-indigo-800 mb-2">About SingMeter Team</h2>
-	              <p className="text-sm text-indigo-900 leading-relaxed">
-	                SingMeter started as a side project by a singer who is also a software developer. Today, the SingMeter Team brings
-	                together a vocal enthusiast, a programmer, an audio engineer, and a vocal teacher from a music conservatory.
-	                We are not a big company - just a small group of people who love singing and technology, and we build simple,
-	                accurate online tools and practical guides to help everyday singers understand, train, and take care of their voices.
-	              </p>
-	            </div>
+            <BlogAuthorNote author={article.author} />
           </div>
         </article>
 

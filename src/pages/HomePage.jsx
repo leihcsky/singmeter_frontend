@@ -405,6 +405,26 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="mt-12 text-center">
+                <p className="text-gray-400 mb-4 max-w-xl mx-auto">
+                  Want minute-by-minute lessons? Follow our guided tutorials—the same path with exercises and
+                  self-checks.
+                </p>
+                <Link
+                  to="/tutorials/vocal-range-test-guided"
+                  className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-500 transition"
+                >
+                  Start guided tutorials
+                  <span className="ml-2" aria-hidden>
+                    →
+                  </span>
+                </Link>
+                <span className="mx-3 text-gray-600">·</span>
+                <Link to="/resources#books" className="text-indigo-300 font-semibold hover:text-white transition">
+                  Book reviews
+                </Link>
+              </div>
             </div>
           </section>
 
