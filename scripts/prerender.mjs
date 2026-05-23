@@ -4,7 +4,7 @@
  * Usage: npm run build (runs automatically) or npm run prerender (after vite build)
  * Skip: PRERENDER_SKIP=1 npm run build
  *
- * Vercel: uses @sparticuz/chromium + puppeteer-core (stock puppeteer Chrome misses libnspr4 on CI).
+ * Vercel/Linux CI: @sparticuz/chromium + puppeteer-core. Do not override LD_LIBRARY_PATH after executablePath().
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -13,9 +13,9 @@ import { spawn } from 'node:child_process';
 import http from 'node:http';
 import { defaultSitemapPath, getRoutesFromSitemap } from './parse-sitemap-routes.mjs';
 
-// @sparticuz/chromium reads this at import time on Vercel Fluid / Node 22
-if (process.env.VERCEL && !process.env.AWS_LAMBDA_JS_RUNTIME) {
-  process.env.AWS_LAMBDA_JS_RUNTIME = 'nodejs22.x';
+// @sparticuz/chromium picks AL2 vs AL2023 libs from this at import/runtime (Vercel Fluid needs it)
+if (process.env.VERCEL === '1' || process.env.VERCEL_ENV) {
+  process.env.AWS_LAMBDA_JS_RUNTIME ??= 'nodejs22.x';
 }
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -55,6 +55,7 @@ function waitForServer(url, timeoutMs = 120000) {
 function useServerlessChromium() {
   return (
     process.env.VERCEL === '1' ||
+    Boolean(process.env.VERCEL_ENV) ||
     (process.env.CI === 'true' && process.platform === 'linux')
   );
 }
@@ -69,13 +70,19 @@ async function launchBrowser() {
     }
 
     const executablePath = await chromium.executablePath();
-    process.env.LD_LIBRARY_PATH = path.dirname(executablePath);
+    // Do not assign LD_LIBRARY_PATH here — executablePath() already prepends paths
+    // such as /tmp/al2/lib where libnss3.so lives. Overwriting breaks Vercel builds.
+
+    const launchArgs =
+      typeof puppeteer.defaultArgs === 'function'
+        ? puppeteer.defaultArgs({ args: chromium.args, headless: 'shell' })
+        : chromium.args;
 
     return puppeteer.launch({
-      args: chromium.args,
+      args: launchArgs,
       defaultViewport: chromium.defaultViewport,
       executablePath,
-      headless: chromium.headless,
+      headless: 'shell',
     });
   }
 
