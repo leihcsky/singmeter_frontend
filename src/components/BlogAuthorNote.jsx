@@ -1,20 +1,22 @@
 /**
- * Short author note for blog articles — links to About / Editorial instead of repeating full team bio.
+ * Article footer byline — named author + team / policy links.
  */
 import { Link } from 'react-router-dom';
 
-const BlogAuthorNote = ({ author = 'SingMeter Team' }) => (
+const BlogAuthorNote = ({ author = 'SingMeter Team', authorRole }) => (
   <div className="mt-10 p-5 sm:p-6 bg-indigo-50 border border-indigo-100 rounded-xl">
     <p className="text-sm text-indigo-900 leading-relaxed">
-      <span className="font-semibold text-indigo-800">Written by {author}.</span>{' '}
-      SingMeter publishes practical singing guides and free browser tools. We are a small team of singers, teachers, and
-      engineers—not a medical provider.{' '}
+      <span className="font-semibold text-indigo-800">
+        Written by {author}
+        {authorRole ? ` · ${authorRole}` : ''}.
+      </span>{' '}
+      Reviewed for clarity and safety as part of the SingMeter editorial process—not medical advice.{' '}
       <Link to="/about" className="text-indigo-700 font-semibold hover:underline">
-        About us
+        Meet the team
       </Link>
       {' · '}
       <Link to="/editorial-standards" className="text-indigo-700 font-semibold hover:underline">
-        How we write &amp; review
+        Editorial standards
       </Link>
       {' · '}
       <Link to="/disclaimer" className="text-indigo-700 font-semibold hover:underline">

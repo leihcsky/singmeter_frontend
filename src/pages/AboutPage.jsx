@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getActiveTools } from '../config/tools';
+import TeamMemberCards from '../components/TeamMemberCards';
 
 const AboutPage = () => {
 	useEffect(() => {
@@ -33,7 +34,7 @@ const AboutPage = () => {
 
 		setMetaTag(
 			'description',
-			'Learn about SingMeter: free vocal range test, pitch detector, metronome, tone generator, song key finder, practice tutorials, and editorial book reviews.'
+			'Meet the SingMeter team led by Max Ray—developer and singer—plus collaborators in audio, voice pedagogy, and editorial. Free singing tools and practice tutorials.'
 		);
 		setMetaTag(
 			'keywords',
@@ -178,15 +179,21 @@ const AboutPage = () => {
                 <li><strong>Responsive Design:</strong> Works seamlessly on desktop, tablet, and mobile devices</li>
               </ul>
 
-	            	  <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">SingMeter Team</h2>
-	            	  <p className="text-gray-600 mb-4 leading-relaxed">
-	            	    SingMeter started as a side project by a singer who is also a software developer. Today, the SingMeter team brings
-	            	    together a vocal enthusiast, a programmer, an audio engineer, and a vocal teacher from a music conservatory.
-	            	    We are not a big company—just a small group who love singing and technology—and we want useful online tools and
-	            	    straightforward guidance to be easy to find for anyone who enjoys singing.
-	            	  </p>
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">SingMeter Team</h2>
+              <TeamMemberCards />
+              <p className="text-gray-600 mt-8 mb-4 leading-relaxed text-sm">
+                Questions about how we work? Read our{' '}
+                <Link to="/editorial-standards" className="text-indigo-600 font-semibold hover:underline">
+                  editorial standards
+                </Link>{' '}
+                or explore the{' '}
+                <Link to="/#learning-hub" className="text-indigo-600 font-semibold hover:underline">
+                  Learning Hub
+                </Link>{' '}
+                on the homepage.
+              </p>
 
-	            	  <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who We Serve</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who We Serve</h2>
 	            	  <p className="text-gray-600 mb-4 leading-relaxed">
 	            	    SingMeter is designed for singers of all levels:
 	            	  </p>

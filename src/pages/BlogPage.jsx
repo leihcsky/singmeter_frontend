@@ -134,6 +134,9 @@ const BlogPage = () => {
                           </span>
                           <span className="text-sm text-gray-500">{article.readTime}</span>
                         </div>
+                        <p className="text-xs text-gray-500 mb-3">
+                          By <span className="font-medium text-gray-700">{article.author}</span>
+                        </p>
                         <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">
                           {article.title}
                         </h2>

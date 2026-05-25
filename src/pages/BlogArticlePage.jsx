@@ -151,11 +151,11 @@ const BlogArticlePage = () => {
 		  "description": metaDescription,
 		  "datePublished": article.date,
 		  "dateModified": article.updatedDate || article.date,
-				  "author": {
-				    "@type": "Organization",
-				    "name": article.author || "SingMeter Team",
-				    "url": "https://www.singmeter.com"
-				  },
+		  "author": {
+		    "@type": "Person",
+		    "name": article.author || "Max Ray",
+		    "url": "https://www.singmeter.com/about"
+		  },
 				  "publisher": {
 				    "@type": "Organization",
 				    "name": "SingMeter",
@@ -218,9 +218,15 @@ const BlogArticlePage = () => {
                 {article.category}
               </span>
               <span className="text-gray-500 text-sm">{article.readTime}</span>
-	              <span className="text-gray-500 text-sm">
-	                By <span className="font-medium text-gray-700">{article.author || 'SingMeter Team'}</span>
-	              </span>
+              <span className="text-gray-500 text-sm">
+                By{' '}
+                <Link to="/about" className="font-medium text-gray-800 hover:text-indigo-600">
+                  {article.author || 'SingMeter Team'}
+                </Link>
+                {article.authorRole && (
+                  <span className="text-gray-400"> · {article.authorRole}</span>
+                )}
+              </span>
 	              <span className="text-gray-500 text-sm">
 	                {hasBeenUpdated
 	                  ? `Published on ${formattedPublishedDate} · Updated on ${formattedUpdatedDate}`
@@ -244,7 +250,7 @@ const BlogArticlePage = () => {
             <div className="blog-article-content max-w-none">
               {article.component && <article.component />}
             </div>
-            <BlogAuthorNote author={article.author} />
+            <BlogAuthorNote author={article.author} authorRole={article.authorRole} />
           </div>
         </article>
 

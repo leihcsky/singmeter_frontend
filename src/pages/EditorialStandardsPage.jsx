@@ -115,9 +115,9 @@ const EditorialStandardsPage = () => {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who creates content</h2>
               <p className="mb-4 leading-relaxed">
-                Articles are credited to the <strong>SingMeter Team</strong>: a small group including a vocalist-developer, an
-                audio engineer, and input from a conservatory-trained voice teacher. We are educators and tool builders, not
-                licensed clinicians. For credentials and mission, see{' '}
+                Articles are credited to the <strong>SingMeter Team</strong>. SingMeter was founded by{' '}
+                <strong>Max Ray</strong> (product and engineering), with review from collaborators in audio engineering, voice
+                pedagogy, and editorial. We are educators and tool builders, not licensed clinicians. For who does what, see{' '}
                 <Link to="/about" className="text-indigo-600 hover:underline">
                   About SingMeter
                 </Link>
