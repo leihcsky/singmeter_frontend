@@ -75,7 +75,7 @@ const PrivacyPage = () => {
               Privacy Policy
             </h1>
             <p className="text-gray-600 mb-8">
-              Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              Last updated: May 22, 2026
             </p>
 
             {/* Content */}

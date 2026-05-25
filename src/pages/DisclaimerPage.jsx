@@ -76,7 +76,7 @@ const DisclaimerPage = () => {
             </h1>
 
             <p className="text-sm text-gray-500 mb-8">
-              Last Updated: January 21, 2025
+              Last updated: May 22, 2026
             </p>
 
             {/* Content */}
@@ -92,10 +92,10 @@ const DisclaimerPage = () => {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Not Professional Medical or Vocal Advice</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                The Site and our tools are not intended to provide medical, vocal health, or professional singing advice. 
-                The vocal range test, pitch detector, and other tools are designed for entertainment, educational, and 
-                self-assessment purposes only. They should not be used as a substitute for professional vocal coaching, 
-                medical advice, diagnosis, or treatment.
+                The Site and our tools are for <strong>educational practice and self-assessment at home</strong> only.
+                They are not medical devices and do not provide medical advice, vocal therapy, diagnosis, or treatment.
+                They should not replace a qualified vocal coach, speech-language pathologist, or healthcare provider when
+                you need professional care.
               </p>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 If you have concerns about your vocal health, experience pain while singing, or have persistent voice 

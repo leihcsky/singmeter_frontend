@@ -7,6 +7,8 @@ import { blogIndex } from '../blog';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BlogAuthorNote from '../components/BlogAuthorNote';
+import BlogHubCallout from '../components/BlogHubCallout';
+import BlogPracticeTutorial from '../components/BlogPracticeTutorial';
 
 /** Shorter brand suffix; total browser title length capped in buildMetaTitle */
 const TITLE_BRAND = ' | SingMeter';
@@ -246,10 +248,12 @@ const BlogArticlePage = () => {
 
             {/* Divider */}
             <div className="border-t border-gray-200 mb-8"></div>
+            <BlogHubCallout slug={article.slug} />
             {/* Article Content */}
             <div className="blog-article-content max-w-none">
               {article.component && <article.component />}
             </div>
+            <BlogPracticeTutorial slug={article.slug} />
             <BlogAuthorNote author={article.author} authorRole={article.authorRole} />
           </div>
         </article>

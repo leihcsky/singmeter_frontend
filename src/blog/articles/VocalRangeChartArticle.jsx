@@ -282,11 +282,31 @@ const VocalRangeChartArticle = () => {
         />
       </div>
 
-      <h2>Related reading</h2>
+      <h2>More in this vocal range series</h2>
       <ul>
+        <li>
+          <Link to="/blog/how-to-test-vocal-range" className={linkClass}>
+            How to test your vocal range
+          </Link>
+        </li>
+        <li>
+          <Link to="/blog/how-to-find-your-voice-type" className={linkClass}>
+            How to find your voice type
+          </Link>
+        </li>
         <li>
           <Link to="/blog/vocal-range-vs-voice-type" className={linkClass}>
             Vocal range vs. voice type
+          </Link>
+        </li>
+        <li>
+          <Link to="/blog/tessitura-and-comfortable-range" className={linkClass}>
+            Tessitura &amp; comfortable range
+          </Link>
+        </li>
+        <li>
+          <Link to="/blog/can-vocal-range-change" className={linkClass}>
+            Can vocal range change?
           </Link>
         </li>
         <li>
@@ -295,8 +315,8 @@ const VocalRangeChartArticle = () => {
           </Link>
         </li>
         <li>
-          <Link to="/blog/how-to-test-vocal-range" className={linkClass}>
-            How to test your vocal range
+          <Link to="/blog/songs-for-your-voice-type" className={linkClass}>
+            Songs for your voice type
           </Link>
         </li>
       </ul>

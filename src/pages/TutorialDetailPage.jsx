@@ -7,6 +7,7 @@ import { getTutorialBySlug, tutorialIndex } from '../tutorials';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TutorialArticle from '../components/TutorialArticle';
+import TutorialDetailFooter from '../components/TutorialDetailFooter';
 import LearnHubNav from '../components/LearnHubNav';
 
 const TITLE_BRAND = ' | SingMeter';
@@ -168,6 +169,7 @@ const TutorialDetailPage = () => {
             goDeeper={goDeeper}
             nextTutorial={nextTutorial}
           />
+          <TutorialDetailFooter slug={meta.slug} />
         </div>
 
         {related.length > 0 && (

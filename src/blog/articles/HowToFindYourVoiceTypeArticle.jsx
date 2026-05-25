@@ -75,20 +75,10 @@ const content = `
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 3: Compare with Typical Voice Type Ranges</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
-    Now, compare your range + tessitura with typical ranges for common voice types
-    (these are <strong>approximate</strong> and can vary by singer):
-  </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-    <li><strong>Bass:</strong> roughly E2–E4, comfortable around G2–C4</li>
-    <li><strong>Baritone:</strong> roughly A2–A4, comfortable around C3–E4</li>
-    <li><strong>Tenor:</strong> roughly C3–C5, comfortable around E3–G4</li>
-    <li><strong>Alto (Contralto):</strong> roughly F3–F5, comfortable around A3–D5</li>
-    <li><strong>Mezzo-Soprano:</strong> roughly A3–A5, comfortable around C4–E5</li>
-    <li><strong>Soprano:</strong> roughly C4–C6, comfortable around E4–G5</li>
-  </ul>
-  <p class="text-gray-600 mb-4 leading-relaxed">
-    Ask yourself: <strong>Where does my comfortable zone overlap the most?</strong> That is usually
-    your best &quot;home base&quot; voice type.
+    Compare your measured range and tessitura to the reference table in our
+    <a href="/blog/vocal-range-chart" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range chart hub</a>
+    (approximate ranges for Bass through Soprano). Ask: <strong>where does my comfortable zone overlap the most?</strong>
+    That overlap is usually your best starting voice-type label.
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 4: Listen to Your Tone and Weight</h2>

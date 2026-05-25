@@ -75,7 +75,7 @@ const TermsPage = () => {
               Terms of Service
             </h1>
             <p className="text-gray-600 mb-8">
-              Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              Last updated: May 22, 2026
             </p>
 
             {/* Content */}
@@ -150,7 +150,7 @@ const TermsPage = () => {
                 <li>The Service will meet your specific requirements</li>
               </ul>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                <strong>Medical Disclaimer:</strong> The Service is for entertainment and educational purposes only. 
+                <strong>Medical Disclaimer:</strong> The Service is for educational practice and self-assessment at home only—not medical advice or voice therapy. 
                 It is not a substitute for professional vocal training or medical advice. If you experience vocal strain 
                 or discomfort, consult a healthcare professional.
               </p>

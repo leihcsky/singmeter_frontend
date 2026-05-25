@@ -21,9 +21,10 @@ const content = `
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Understanding Vocal Range</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Your <strong>vocal range</strong> is the span between the lowest and highest notes you can comfortably sing. 
-	        It's one of the most important characteristics of your voice and helps determine your voice type classification 
-	        (Bass, Baritone, Tenor, Alto, Mezzo-Soprano, or Soprano).
+	        Your <strong>vocal range</strong> is the span between the lowest and highest notes you can comfortably sing.
+	        It is the first number to measure before you explore voice type—see our
+	        <a href="/blog/vocal-range-chart" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range chart hub</a>
+	        for typical ranges by Bass, Baritone, Tenor, Alto, Mezzo-Soprano, and Soprano.
 	      </p>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Why Test Your Vocal Range?</h2>
@@ -78,20 +79,13 @@ const content = `
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Understanding Your Results</h2>
-	      <div class="my-6">
-	        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Vocal range chart showing different voice types" class="w-full rounded-xl shadow-md" />
-	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Once you know your range, you can identify your voice type:
+	        Once you know your lowest and highest comfortable notes, compare them to the reference chart in our
+	        <a href="/blog/vocal-range-chart" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range chart guide</a>
+	        —or use the voice-type hint from the
+	        <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">range test</a>
+	        as a starting point, not a final label.
 	      </p>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li><strong>Bass:</strong> E2 to E4 (lowest male voice)</li>
-	        <li><strong>Baritone:</strong> A2 to A4 (middle male voice)</li>
-	        <li><strong>Tenor:</strong> C3 to C5 (highest male voice)</li>
-	        <li><strong>Alto:</strong> F3 to F5 (lowest female voice)</li>
-	        <li><strong>Mezzo-Soprano:</strong> A3 to A5 (middle female voice)</li>
-	        <li><strong>Soprano:</strong> C4 to C6 (highest female voice)</li>
-	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step-by-Step Guide: Using an Online Vocal Range Test</h2>
 	      <div class="my-6">
