@@ -7,6 +7,7 @@ import { getActiveTools } from '../config/tools';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FAQSection from '../components/FAQSection';
+import HomeLearningHub from '../components/HomeLearningHub';
 import { homeFaqItems } from '../data/siteFaq';
 
 // Visual Components
@@ -141,37 +142,6 @@ const HomePage = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const blogArticles = [
-    {
-      slug: 'improve-singing-pitch',
-      title: 'How to Improve Your Singing Pitch: Complete Training Guide',
-      excerpt: 'Learn proven exercises and techniques to improve your singing pitch accuracy and sing in tune consistently.',
-      category: 'Guides',
-      readTime: '8 min read'
-    },
-    {
-      slug: 'how-to-test-vocal-range',
-      title: 'How to Test Your Vocal Range',
-      excerpt: 'Learn the professional methods to accurately test and measure your singing range.',
-      category: 'Guides',
-      readTime: '5 min read'
-    },
-    {
-      slug: 'singing-high-notes-techniques',
-      title: 'How to Sing High Notes',
-      excerpt: 'Master the art of singing high notes with proven vocal techniques and exercises.',
-      category: 'Techniques',
-      readTime: '6 min read'
-    },
-    {
-      slug: 'songs-for-your-voice-type',
-      title: 'Best Songs for Your Voice Type',
-      excerpt: 'Discover the perfect songs that match your vocal range and voice classification.',
-      category: 'Song Lists',
-      readTime: '7 min read'
-    }
-  ];
 
   return (
     <>
@@ -325,10 +295,10 @@ const HomePage = () => {
                   
                   <div className="mt-auto relative z-10">
                     <button 
-                      onClick={() => scrollToSection('practice-path')}
+                      onClick={() => scrollToSection('learning-hub')}
                       className="flex items-center justify-center w-full py-3 bg-pink-600 text-white rounded-lg font-semibold hover:bg-pink-700 transition-colors shadow-sm hover:shadow cursor-pointer"
                     >
-                      View Practice Path
+                      Explore Learning Hub
                       <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
                     </button>
                   </div>
@@ -336,6 +306,8 @@ const HomePage = () => {
               </div>
             </div>
           </section>
+
+          <HomeLearningHub />
 
           {/* Core Module 2: Practice Path */}
           <section id="practice-path" className="py-16 bg-gray-900 text-white">
@@ -345,7 +317,15 @@ const HomePage = () => {
                   A Simple Singing Practice Path
                 </h2>
                 <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                  Follow this sequence to systematically improve your singing ability.
+                  Open these five tools in order. For guided lessons on the same journey, see the{' '}
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection('learning-hub')}
+                    className="text-indigo-300 font-semibold hover:text-white underline cursor-pointer"
+                  >
+                    Learning Hub
+                  </button>{' '}
+                  above.
                 </p>
               </div>
 
@@ -407,22 +387,14 @@ const HomePage = () => {
               </div>
 
               <div className="mt-12 text-center">
-                <p className="text-gray-400 mb-4 max-w-xl mx-auto">
-                  Want minute-by-minute lessons? Follow our guided tutorials—the same path with exercises and
-                  self-checks.
-                </p>
                 <Link
                   to="/tutorials/vocal-range-test-guided"
                   className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-500 transition"
                 >
-                  Start guided tutorials
+                  Start guided range tutorial
                   <span className="ml-2" aria-hidden>
                     →
                   </span>
-                </Link>
-                <span className="mx-3 text-gray-600">·</span>
-                <Link to="/resources#books" className="text-indigo-300 font-semibold hover:text-white transition">
-                  Book reviews
                 </Link>
               </div>
             </div>
@@ -468,50 +440,6 @@ const HomePage = () => {
                     </div>
                   </Link>
                 ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Blog/Guides Section */}
-          <section className="py-12 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between items-end mb-8">
-                <div>
-                  <h2 className="text-3xl font-bold text-gray-900">Latest Singing Guides</h2>
-                  <p className="mt-2 text-gray-600">Expert tips to help you master your voice</p>
-                </div>
-                <Link to="/blog" className="hidden sm:inline-flex items-center text-indigo-600 font-semibold hover:text-indigo-700">
-                  View all articles <span aria-hidden="true" className="ml-2">&rarr;</span>
-                </Link>
-              </div>
-
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-                {blogArticles.map((article, index) => (
-                  <Link key={index} to={`/blog/${article.slug}`} className="group block">
-                    <div className="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 h-full border border-gray-100">
-                      <div className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-xs font-semibold px-2.5 py-0.5 rounded bg-indigo-100 text-indigo-800">
-                            {article.category}
-                          </span>
-                          <span className="text-xs text-gray-500">{article.readTime}</span>
-                        </div>
-                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors mb-2 line-clamp-2">
-                          {article.title}
-                        </h3>
-                        <p className="text-sm text-gray-600 line-clamp-3">
-                          {article.excerpt}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              <div className="mt-8 text-center sm:hidden">
-                <Link to="/blog" className="inline-flex items-center text-indigo-600 font-semibold hover:text-indigo-700">
-                  View all articles <span aria-hidden="true" className="ml-2">&rarr;</span>
-                </Link>
               </div>
             </div>
           </section>
