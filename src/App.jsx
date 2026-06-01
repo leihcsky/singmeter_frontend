@@ -21,6 +21,17 @@ import ToneGeneratorPage from './pages/ToneGeneratorPage'
 import MetronomePage from './pages/MetronomePage'
 import SongKeyFinderPage from './pages/SongKeyFinderPage'
 import './App.css'
+import { applyRobots } from './seo/applyRouteSeo'
+
+function RouteRobots() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    applyRobots(pathname)
+  }, [pathname])
+
+  return null
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -57,6 +68,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <RouteRobots />
       <PrerenderReady />
       <div className="App">
         <Routes>

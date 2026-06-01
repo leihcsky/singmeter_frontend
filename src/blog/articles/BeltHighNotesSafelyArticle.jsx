@@ -14,11 +14,6 @@ const meta = {
 };
 
 const content = `
-  <div class="mb-8">
-    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a93d?w=1200&h=600&fit=crop" alt="Singer belting high notes safely" class="w-full rounded-xl shadow-lg" />
-    <p class="text-sm text-gray-500 mt-2 text-center">Safe belting technique allows you to sing high notes with power without strain</p>
-  </div>
-
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">What Is Belting (Really)?</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     In pop and musical theatre, <strong>belting</strong> usually means singing higher notes with a strong, speech-like

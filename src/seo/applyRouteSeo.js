@@ -9,6 +9,35 @@ export function normalizePath(pathname) {
   return trimmed || '/';
 }
 
+/** Paths that should not appear in search results (still crawlable via follow). */
+const NOINDEX_EXACT_PATHS = new Set([
+  '/disclaimer',
+  '/faq',
+  '/glossary',
+  '/editorial-standards',
+  '/resources',
+  '/tutorials',
+]);
+
+export function isNoIndexPath(pathname) {
+  return NOINDEX_EXACT_PATHS.has(normalizePath(pathname));
+}
+
+function setRobotsMeta(content) {
+  let el = document.querySelector('meta[name="robots"]');
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute('name', 'robots');
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
+}
+
+/** Sets robots to noindex,follow or restores index,follow for the current route. */
+export function applyRobots(pathname) {
+  setRobotsMeta(isNoIndexPath(pathname) ? 'noindex, follow' : 'index, follow');
+}
+
 function setLinkRel(rel, href) {
   let el = document.querySelector(`link[rel="${rel}"]`);
   if (!el) {
