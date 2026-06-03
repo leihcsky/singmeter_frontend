@@ -6,7 +6,7 @@ const meta = {
 	readTime: '5 min read',
 		date: '2025-11-11',
 		updatedDate: '2025-11-11',
-		author: 'SingMeter Team',
+		author: 'Max Ray',
 	excerpt:
 	  'Learn the professional methods to accurately test and measure your singing range. Discover online tools, piano methods, and tips for accurate results.',
 	seoKeywords:

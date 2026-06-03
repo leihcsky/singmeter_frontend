@@ -6,7 +6,7 @@ const meta = {
   readTime: '8 min read',
   date: '2025-12-25',
   updatedDate: '2026-06-01',
-  author: 'SingMeter Team',
+  author: 'Elena V.',
   excerpt:
     'Protect your most valuable instrument. Learn the essential dos and don\'ts of vocal health, hydration tips, warning signs of damage, and how to recover from vocal fatigue.',
   seoKeywords:

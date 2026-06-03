@@ -9,7 +9,7 @@ const meta = {
   readTime: '7 min read',
   date: '2025-12-02',
   updatedDate: '2026-05-16',
-  author: 'SingMeter Team',
+  author: 'Max Ray',
   excerpt:
     'Wondering if you can expand your vocal range? Learn what really changes with training, what to expect at different ages, and how to grow your range safely.',
   seoKeywords:

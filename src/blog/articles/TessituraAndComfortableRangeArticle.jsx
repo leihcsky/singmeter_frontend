@@ -6,7 +6,7 @@ const meta = {
   readTime: '7 min read',
   date: '2025-12-02',
   updatedDate: '2025-12-02',
-  author: 'SingMeter Team',
+  author: 'Max Ray',
   excerpt:
     'Your tessitura – the part of your range where your voice feels best – matters more than your highest note. Learn how to find it and choose songs that fit.',
   seoKeywords:

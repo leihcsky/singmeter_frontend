@@ -9,7 +9,7 @@ const meta = {
   readTime: '10 min read',
   date: '2025-12-02',
   updatedDate: '2026-06-01',
-  author: 'SingMeter Team',
+  author: 'Jordan L.',
   excerpt:
     'Build a reliable musical ear so you can hear notes accurately and match pitch with confidence. This guide shows singers how to train the ear step by step, even without music theory background.',
   seoKeywords:

@@ -6,7 +6,7 @@ const meta = {
   readTime: '10 min read',
   date: '2025-12-25',
   updatedDate: '2025-12-25',
-  author: 'SingMeter Team',
+  author: 'Elena V.',
   excerpt:
     'Master the two most critical foundations of singing: correct breathing and proper posture. Learn diaphragmatic breathing techniques and alignment exercises to instantly improve your vocal power and control.',
   seoKeywords:

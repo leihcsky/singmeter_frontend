@@ -12,7 +12,7 @@ const meta = {
   readTime: '10 min read',
   date: '2025-12-02',
   updatedDate: '2026-06-01',
-  author: 'SingMeter Team',
+  author: 'Max Ray',
   excerpt:
     'Color-coded vocal range chart from E2 to C6 for male and female voice types plus SATB. See how to read the chart, use the reference table, and match your own range.',
   seoKeywords:

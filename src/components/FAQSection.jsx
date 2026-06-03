@@ -1,4 +1,12 @@
 import { useState } from 'react';
+import FaqAnswerContent, { faqAnswerToPlainText } from './FaqAnswerContent';
+
+function renderAnswer(answer) {
+  if (typeof answer === 'string') {
+    return <FaqAnswerContent text={answer} />;
+  }
+  return answer;
+}
 
 const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,12 +30,10 @@ const FAQItem = ({ question, answer }) => {
       </button>
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'
+          isOpen ? 'max-h-[2000px] opacity-100 mb-6' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="text-gray-600 leading-relaxed prose prose-indigo max-w-none">
-          {answer}
-        </div>
+        <div className="text-gray-600 leading-relaxed max-w-none">{renderAnswer(answer)}</div>
       </div>
     </div>
   );
@@ -55,7 +61,7 @@ const FAQSection = ({ title = "Frequently Asked Questions", items, id = 'faq' })
             "name": item.question,
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": item.answer
+              "text": typeof item.answer === 'string' ? faqAnswerToPlainText(item.answer) : item.answer
             }
           }))
         })}

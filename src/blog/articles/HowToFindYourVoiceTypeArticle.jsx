@@ -9,7 +9,7 @@ const meta = {
   readTime: '10 min read',
   date: '2025-12-02',
   updatedDate: '2026-06-01',
-  author: 'SingMeter Team',
+  author: 'Max Ray',
   excerpt:
     'Find your voice type at home: vocal range vs voice type explained, plus tessitura and tone. Step-by-step with our free range test.',
   seoKeywords:

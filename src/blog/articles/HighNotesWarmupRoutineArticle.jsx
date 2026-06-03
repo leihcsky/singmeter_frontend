@@ -6,7 +6,7 @@ const meta = {
   readTime: '7 min read',
   date: '2025-12-02',
   updatedDate: '2025-12-02',
-  author: 'SingMeter Team',
+  author: 'Elena V.',
   excerpt:
     'A practical 15-minute warm-up routine designed to prepare your voice for high notes, reduce strain, and track your progress over time.',
   seoKeywords:

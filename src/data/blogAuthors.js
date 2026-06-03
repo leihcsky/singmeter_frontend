@@ -1,6 +1,6 @@
 /**
  * Blog bylines — maps each article slug to a team author (see teamMembers.js).
- * Override per-article `author` in meta is ignored when index is built.
+ * Per-article `meta.author` should match these names; enrichBlogMeta merges role/id for the index.
  */
 
 export const BLOG_AUTHOR_IDS = {

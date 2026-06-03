@@ -124,7 +124,7 @@ const BlogArticlePage = () => {
 		// Basic meta tags
 		setMetaTag('description', metaDescription);
 		setMetaTag('keywords', metaKeywords);
-		setMetaTag('author', article.author || 'SingMeter Team');
+		setMetaTag('author', article.author || 'Max Ray');
 
 		// Open Graph tags
 		setMetaTag('og:type', 'article', true);

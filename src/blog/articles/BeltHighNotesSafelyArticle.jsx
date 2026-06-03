@@ -6,7 +6,7 @@ const meta = {
   readTime: '8 min read',
   date: '2025-12-02',
   updatedDate: '2025-12-02',
-  author: 'SingMeter Team',
+  author: 'Elena V.',
   excerpt:
     'Learn how to belt high notes with power and emotion while protecting your voice. Discover healthy belting technique, support, and practice routines.',
   seoKeywords:

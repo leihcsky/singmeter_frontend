@@ -6,7 +6,7 @@ const meta = {
 	readTime: '9 min read',
 		date: '2025-01-30',
 		updatedDate: '2026-06-01',
-		author: 'SingMeter Team',
+		author: 'Elena V.',
 	excerpt:
 	  'Master the art of singing high notes with these proven vocal techniques. Learn about breath support, vocal placement, and exercises to expand your range.',
 	seoKeywords:

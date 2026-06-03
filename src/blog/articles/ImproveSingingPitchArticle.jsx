@@ -9,7 +9,7 @@ const meta = {
 	readTime: '11 min read',
 	date: '2025-11-21',
 	updatedDate: '2026-06-01',
-	author: 'SingMeter Team',
+	author: 'Max Ray',
 	excerpt:
 	  'Learn proven exercises and techniques to improve your singing pitch accuracy. Master how to sing in tune with our complete training guide and 15-minute practice routine.',
 	seoKeywords:

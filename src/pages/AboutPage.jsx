@@ -79,6 +79,27 @@ const AboutPage = () => {
               About SingMeter
             </h1>
 
+            <div className="mb-10 pb-8 border-b border-gray-100 not-prose">
+              <blockquote className="text-lg sm:text-xl text-gray-700 leading-relaxed border-l-4 border-indigo-500 pl-5 mb-4">
+                <p>
+                  &ldquo;I built SingMeter after too many practice sessions with unclear feedback&mdash;I wanted range and
+                  pitch readings as straightforward as a tuner, without uploading voice recordings to a server.&rdquo;
+                </p>
+                <footer className="mt-3 text-base font-semibold text-gray-900">
+                  &mdash; Max Ray, founder
+                </footer>
+              </blockquote>
+              <Link
+                to="/editorial-standards"
+                className="inline-flex items-center text-indigo-600 font-semibold hover:text-indigo-800 hover:underline"
+              >
+                How we write &amp; review
+                <span aria-hidden className="ml-1">
+                  &rarr;
+                </span>
+              </Link>
+            </div>
+
             {/* Content */}
             <div className="prose prose-lg max-w-none">
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Mission</h2>
@@ -133,14 +154,6 @@ const AboutPage = () => {
                   — definitions for common singing terms
                 </li>
               </ul>
-              <p className="text-gray-600 mb-6 leading-relaxed text-sm">
-                How we write and review content:{' '}
-                <Link to="/editorial-standards" className="text-indigo-600 font-semibold hover:underline">
-                  Editorial standards
-                </Link>
-                .
-              </p>
-
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How It Works</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 SingMeter uses cutting-edge Web Audio API technology to analyze your voice directly in your browser.

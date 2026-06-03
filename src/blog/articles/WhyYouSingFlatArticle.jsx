@@ -9,7 +9,7 @@ const meta = {
   readTime: '9 min read',
   date: '2025-12-02',
   updatedDate: '2026-06-01',
-  author: 'SingMeter Team',
+  author: 'Jordan L.',
   excerpt:
     "Find out the real reasons why you sing flat and learn practical exercises to finally fix your pitch for good. We'll show you how to use simple techniques and tools to get in tune and stay there.",
   seoKeywords:

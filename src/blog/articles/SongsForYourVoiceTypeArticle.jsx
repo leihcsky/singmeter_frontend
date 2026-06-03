@@ -6,7 +6,7 @@ const meta = {
 	readTime: '7 min read',
 		date: '2025-01-29',
 		updatedDate: '2025-01-29',
-		author: 'SingMeter Team',
+		author: 'Sam K.',
 	excerpt:
 	  'Discover the perfect songs that match your vocal range and voice type. From Bass to Soprano, find repertoire that showcases your voice.',
 	seoKeywords:
