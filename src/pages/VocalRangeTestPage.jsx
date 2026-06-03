@@ -1075,15 +1075,15 @@ const VocalRangeTestPage = () => {
 	                  </Link>
 
 	                  <Link
-	                    to="/blog/famous-singers-vocal-ranges"
+	                    to="/blog/vocal-range-chart"
 	                    className="group bg-white rounded-2xl p-5 shadow-md hover:shadow-xl transition border border-gray-100 hover:border-indigo-200 flex flex-col justify-between"
 	                  >
 	                    <div>
 	                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition">
-	                        Famous Singers' Vocal Ranges
+	                        Vocal Range Chart &amp; Famous Singers
 	                      </h3>
 	                      <p className="text-sm text-gray-600 leading-relaxed">
-	                        Compare your range in a healthy way and see what you can actually learn from famous singers' ranges.
+	                        Read the chart hub with approximate famous-singer ranges and compare your test results in a healthy way.
 	                      </p>
 	                    </div>
 	                    <div className="mt-3 flex items-center text-indigo-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">

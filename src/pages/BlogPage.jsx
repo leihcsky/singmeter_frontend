@@ -17,8 +17,6 @@ const blogTopics = [
       'improve-singing-pitch',
       'why-you-sing-flat',
       'ear-training-for-singers',
-      'sing-in-tune-without-piano',
-      'use-pitch-detector-for-training',
     ],
   },
   {
@@ -29,11 +27,9 @@ const blogTopics = [
       'how-to-test-vocal-range',
       'how-to-find-your-voice-type',
       'vocal-range-chart',
-      'vocal-range-vs-voice-type',
       'can-vocal-range-change',
       'tessitura-and-comfortable-range',
       'songs-for-your-voice-type',
-      'famous-singers-vocal-ranges',
     ],
   },
   {
@@ -43,7 +39,6 @@ const blogTopics = [
     articleIds: [
       'singing-high-notes-techniques',
       'belt-high-notes-safely',
-      'mixed-voice-vs-head-voice',
       'high-notes-warmup-routine',
     ],
   },

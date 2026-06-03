@@ -1,35 +1,31 @@
 import { Link } from 'react-router-dom';
-import {
-  VOCAL_RANGE_HUB_PATH,
-  VOCAL_RANGE_HUB_TITLE,
-  isVocalRangeHub,
-  isVocalRangeSpoke,
-} from '../data/blogHub';
+import { getBlogCluster } from '../data/blogHub';
 
 const BlogHubCallout = ({ slug }) => {
-  if (isVocalRangeHub(slug)) {
+  const cluster = getBlogCluster(slug);
+  if (!cluster) return null;
+
+  if (cluster.role === 'hub') {
     return (
       <div className="mb-8 p-5 bg-indigo-50 border border-indigo-200 rounded-xl not-prose">
-        <p className="text-sm font-semibold text-indigo-800 mb-1">Vocal range guide series</p>
+        <p className="text-sm font-semibold text-indigo-800 mb-1">{cluster.seriesLabel}</p>
         <p className="text-sm text-indigo-900 leading-relaxed">
-          This is our main reference for voice types, chart reading, and typical ranges. Other articles in
-          this series link here instead of repeating the same tables.
+          This is the main guide in the series. Related articles below go deeper on one topic each without
+          repeating the same tables and exercises.
         </p>
       </div>
     );
   }
 
-  if (!isVocalRangeSpoke(slug)) return null;
-
   return (
     <div className="mb-8 p-5 bg-indigo-50 border-l-4 border-indigo-500 rounded-r-xl not-prose">
       <p className="text-sm text-indigo-900 leading-relaxed">
-        <strong className="text-indigo-950">Part of our vocal range series.</strong> For the full chart and
-        voice-type reference table, read the hub article first:{' '}
-        <Link to={VOCAL_RANGE_HUB_PATH} className="font-semibold text-indigo-700 hover:underline">
-          {VOCAL_RANGE_HUB_TITLE}
+        <strong className="text-indigo-950">Part of our {cluster.seriesLabel.toLowerCase()}.</strong> Start with
+        the hub article:{' '}
+        <Link to={cluster.hubPath} className="font-semibold text-indigo-700 hover:underline">
+          {cluster.hubTitle}
         </Link>
-        . This page focuses on one topic only.
+        . This page covers one focused topic only.
       </p>
     </div>
   );

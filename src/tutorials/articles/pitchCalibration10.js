@@ -75,7 +75,7 @@ const selfCheck = [
 const goDeeper = [
   { to: '/blog/improve-singing-pitch', label: 'Improve Singing Pitch: Exercises & Routine' },
   { to: '/blog/why-you-sing-flat', label: 'Why You Sing Flat (and How to Fix It)' },
-  { to: '/blog/use-pitch-detector-for-training', label: 'Pitch Detector Training Guide' },
+  { to: '/tutorials/ear-training-starter', label: 'Ear Training Starter tutorial' },
 ];
 
 export default { meta, intro, tools, steps, selfCheck, goDeeper };

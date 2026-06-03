@@ -11,7 +11,7 @@ const meta = {
   category: 'Vocal Range',
   readTime: '10 min read',
   date: '2025-12-02',
-  updatedDate: '2026-05-16',
+  updatedDate: '2026-06-01',
   author: 'SingMeter Team',
   excerpt:
     'Color-coded vocal range chart from E2 to C6 for male and female voice types plus SATB. See how to read the chart, use the reference table, and match your own range.',
@@ -254,6 +254,44 @@ const VocalRangeChartArticle = () => {
         , and avoid living at your chart extremes for full sets or long rehearsals.
       </p>
 
+      <h2>Famous singers (approximate ranges)</h2>
+      <p>
+        Comparing your range to well-known artists can be motivating if you treat numbers as rough references, not
+        goals to force. Public analyses vary; live performances are not always measured precisely.
+      </p>
+      <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2">Male singers (examples)</h3>
+      <ul>
+        <li>
+          <strong>Freddie Mercury</strong> — roughly F2–F6 (~4 octaves)
+        </li>
+        <li>
+          <strong>Johnny Cash</strong> — roughly E2–B4 (low baritone/bass color)
+        </li>
+        <li>
+          <strong>Bruno Mars</strong> — roughly A2–D6 (modern pop tenor)
+        </li>
+      </ul>
+      <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2">Female singers (examples)</h3>
+      <ul>
+        <li>
+          <strong>Whitney Houston</strong> — roughly A2–C6
+        </li>
+        <li>
+          <strong>Ariana Grande</strong> — roughly D3–E7 (very wide, strong whistle register)
+        </li>
+        <li>
+          <strong>Adele</strong> — roughly C3–F5 (mezzo-soprano area)
+        </li>
+      </ul>
+      <p>
+        Ask whether you share a similar <strong>home area</strong> (tenor, baritone, alto, etc.), not whether you
+        match their highest note. Study how they use tessitura and save extremes for emotional peaks — then run the{' '}
+        <Link to="/vocal-range-test" className={linkClass}>
+          Vocal Range Test
+        </Link>{' '}
+        to see where you sit on this chart.
+      </p>
+
       <h2>FAQ</h2>
       <div className="space-y-3 mb-8 not-prose">
         <FaqItem
@@ -291,12 +329,7 @@ const VocalRangeChartArticle = () => {
         </li>
         <li>
           <Link to="/blog/how-to-find-your-voice-type" className={linkClass}>
-            How to find your voice type
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog/vocal-range-vs-voice-type" className={linkClass}>
-            Vocal range vs. voice type
+            How to find your voice type (range vs. type explained)
           </Link>
         </li>
         <li>
@@ -307,11 +340,6 @@ const VocalRangeChartArticle = () => {
         <li>
           <Link to="/blog/can-vocal-range-change" className={linkClass}>
             Can vocal range change?
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog/famous-singers-vocal-ranges" className={linkClass}>
-            Famous singers&apos; vocal ranges
           </Link>
         </li>
         <li>

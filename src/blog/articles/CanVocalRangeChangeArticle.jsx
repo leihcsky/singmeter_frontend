@@ -17,12 +17,7 @@ const meta = {
 };
 
 const content = `
-  <div class="mb-8">
-    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&h=600&fit=crop" alt="Vocal range expansion and training" class="w-full rounded-xl shadow-lg" />
-    <p class="text-sm text-gray-500 mt-2 text-center">With proper training, your vocal range can expand safely over time</p>
-  </div>
-
-  <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Yes, Your Vocal Range Can Change (Within Reason)</h2>
+<h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Yes, Your Vocal Range Can Change (Within Reason)</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Many singers ask, <strong>&quot;Can I really increase my vocal range?&quot;</strong> The short answer is:
     <strong>yes, to a point</strong>. With healthy training, most people can expand their usable range by a few notes
@@ -52,10 +47,7 @@ const content = `
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">What Typically Changes with Training</h2>
-  <div class="my-6">
-    <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Vocal training exercises for range expansion" class="w-full rounded-xl shadow-md" />
-  </div>
-  <p class="text-gray-600 mb-4 leading-relaxed">
+<p class="text-gray-600 mb-4 leading-relaxed">
     With consistent, healthy practice, most singers can improve their range in these ways:
   </p>
   <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">

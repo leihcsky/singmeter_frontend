@@ -29,28 +29,28 @@ export const glossaryTerms = [
     category: 'Vocal Techniques',
     definition:
       'A light, airy upper register where the vocal folds vibrate differently from chest voice. Common for stylistic high notes in pop and musical theater; not the same as connected head voice.',
-    readMore: { slug: 'mixed-voice-vs-head-voice', label: 'Mixed voice vs. head voice' },
+    readMore: { slug: 'singing-high-notes-techniques', label: 'Chest, head & mixed voice' },
   },
   {
     term: 'Head Voice',
     category: 'Vocal Techniques',
     definition:
       'A higher register that feels more “in the head,” with a lighter, focused tone than chest voice. Well-trained head voice carries power without the breathiness of falsetto.',
-    readMore: { slug: 'mixed-voice-vs-head-voice', label: 'Mixed voice vs. head voice' },
+    readMore: { slug: 'singing-high-notes-techniques', label: 'Chest, head & mixed voice' },
   },
   {
     term: 'Chest Voice',
     category: 'Vocal Techniques',
     definition:
       'Your lower, fuller register—similar to speaking voice—with resonance felt in the chest. Most songs use chest voice for low and mid notes before blending upward.',
-    readMore: { slug: 'mixed-voice-vs-head-voice', label: 'Mixed voice vs. head voice' },
+    readMore: { slug: 'singing-high-notes-techniques', label: 'Chest, head & mixed voice' },
   },
   {
     term: 'Mixed Voice',
     category: 'Vocal Techniques',
     definition:
       'A blend of chest and head coordination that smooths the “break” between registers. It lets you keep one connected tone from low to high with less strain.',
-    readMore: { slug: 'mixed-voice-vs-head-voice', label: 'Mixed voice vs. head voice' },
+    readMore: { slug: 'singing-high-notes-techniques', label: 'Chest, head & mixed voice' },
   },
   {
     term: 'Vibrato',
@@ -71,7 +71,7 @@ export const glossaryTerms = [
     category: 'Fundamentals',
     definition:
       'How accurately you hit target pitches across a phrase or song. Good intonation keeps you in tune with accompaniment and other singers.',
-    readMore: { slug: 'use-pitch-detector-for-training', label: 'Using a pitch detector' },
+    readMore: { slug: 'improve-singing-pitch', label: 'Improve singing pitch' },
   },
   {
     term: 'Flat',
@@ -113,14 +113,14 @@ export const glossaryTerms = [
     category: 'Vocal Techniques',
     definition:
       'Distinct zones like chest, head, and falsetto produced by different fold setups and resonance. Training aims for smooth transitions, not isolated “modes” only.',
-    readMore: { slug: 'mixed-voice-vs-head-voice', label: 'Mixed voice vs. head voice' },
+    readMore: { slug: 'singing-high-notes-techniques', label: 'Chest, head & mixed voice' },
   },
   {
     term: 'Vocal Break',
     category: 'Vocal Techniques',
     definition:
       'The spot where tone suddenly shifts between registers—often heard as a crack. Mixing and support help disguise the break over time.',
-    readMore: { slug: 'mixed-voice-vs-head-voice', label: 'Mixed voice vs. head voice' },
+    readMore: { slug: 'singing-high-notes-techniques', label: 'Chest, head & mixed voice' },
   },
   {
     term: 'Passaggio',
@@ -253,13 +253,13 @@ export const glossaryTerms = [
     category: 'Music Theory',
     definition:
       'Sharps or flats at the start of a staff that define the home key. Tells you which notes are altered throughout the piece.',
-    readMore: { slug: 'sing-in-tune-without-piano', label: 'Sing in tune without a piano' },
+    readMore: { slug: 'improve-singing-pitch', label: 'Improve singing pitch' },
   },
   {
     term: 'Time Signature',
     category: 'Music Theory',
     definition:
       'Numbers showing beats per bar and which note gets one beat (e.g. 4/4, 3/4). Sets the rhythmic feel singers must maintain.',
-    readMore: { slug: 'sing-in-tune-without-piano', label: 'Sing in tune without a piano' },
+    readMore: { slug: 'improve-singing-pitch', label: 'Improve singing pitch' },
   },
 ];

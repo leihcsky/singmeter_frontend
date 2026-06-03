@@ -139,21 +139,21 @@
 
   <url>
     <loc>https://www.singmeter.com/resources/books/set-your-voice-free</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/resources/books/the-contemporary-singer</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/resources/books/the-singing-book</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -161,13 +161,6 @@
   <!-- Legal & Info Pages -->
   <url>
     <loc>https://www.singmeter.com/about</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/contact</loc>
     <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -211,7 +204,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/improve-singing-pitch</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -225,7 +218,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/singing-high-notes-techniques</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -252,36 +245,15 @@
   </url>
 
   <url>
-    <loc>https://www.singmeter.com/blog/sing-in-tune-without-piano</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/blog/use-pitch-detector-for-training</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://www.singmeter.com/blog/how-to-find-your-voice-type</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/blog/vocal-range-chart</loc>
-    <lastmod>2026-05-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/blog/vocal-range-vs-voice-type</loc>
-    <lastmod>2025-12-02</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -301,21 +273,7 @@
   </url>
 
   <url>
-    <loc>https://www.singmeter.com/blog/famous-singers-vocal-ranges</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://www.singmeter.com/blog/belt-high-notes-safely</loc>
-    <lastmod>2025-12-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/blog/mixed-voice-vs-head-voice</loc>
     <lastmod>2025-12-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

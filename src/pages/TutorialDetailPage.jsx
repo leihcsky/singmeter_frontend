@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import TutorialArticle from '../components/TutorialArticle';
 import TutorialDetailFooter from '../components/TutorialDetailFooter';
 import LearnHubNav from '../components/LearnHubNav';
+import { tutorialPracticeInsightsBySlug } from '../data/tutorialPracticeInsights';
 
 const TITLE_BRAND = ' | SingMeter';
 const MAX_TITLE_TOTAL = 60;
@@ -33,6 +34,7 @@ const TutorialDetailPage = () => {
 
   const { meta, intro, tools, steps, selfCheck, goDeeper, nextTutorial } = tutorial;
   const related = tutorialIndex.filter((t) => t.slug !== meta.slug).slice(0, 3);
+  const practiceInsights = tutorialPracticeInsightsBySlug[meta.slug];
 
   useEffect(() => {
     const setMetaTag = (name, content, isProperty = false) => {
@@ -167,6 +169,7 @@ const TutorialDetailPage = () => {
             steps={steps}
             selfCheck={selfCheck}
             goDeeper={goDeeper}
+            practiceInsights={practiceInsights}
             nextTutorial={nextTutorial}
           />
           <TutorialDetailFooter slug={meta.slug} />

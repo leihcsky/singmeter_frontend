@@ -14,12 +14,7 @@ const meta = {
 };
 
 const content = `
-	      <div class="mb-8">
-	        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Singer choosing songs that match their voice type" class="w-full rounded-xl shadow-lg" />
-	        <p class="text-sm text-gray-500 mt-2 text-center">Choosing the right songs for your voice type enhances your performance</p>
-	      </div>
-
-	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Choosing Songs That Fit Your Voice</h2>
+<h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Choosing Songs That Fit Your Voice</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Selecting songs that match your voice type and vocal range is crucial for successful performances and 
 	        enjoyable singing experiences. Singing songs that are too high or too low can strain your voice and 
@@ -27,10 +22,7 @@ const content = `
 	      </p>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Songs for Bass Voices (E2-E4)</h2>
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&h=600&fit=crop" alt="Bass singer performing" class="w-full rounded-xl shadow-md" />
-	      </div>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
+<p class="text-gray-600 mb-4 leading-relaxed">
 	        Bass voices are the lowest male voices, characterized by rich, deep tones. Great songs for bass singers include:
 	      </p>
 	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
@@ -111,10 +103,7 @@ const content = `
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Understanding Song Keys and Transposition</h2>
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Piano keyboard showing different keys for transposition" class="w-full rounded-xl shadow-md" />
-	      </div>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
+<p class="text-gray-600 mb-4 leading-relaxed">
 	        Even if a song isn't originally in your ideal range, you can often make it work through transposition (changing the key). Understanding keys and transposition opens up many more song options:
 	      </p>
 
@@ -181,10 +170,7 @@ const content = `
 	      </p>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">How to Analyze a Song for Your Voice</h2>
-	      <div class="my-6">
-	        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Analyzing song structure and vocal range" class="w-full rounded-xl shadow-md" />
-	      </div>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
+<p class="text-gray-600 mb-4 leading-relaxed">
 	        Before committing to learning a song, analyze it to see if it fits your voice:
 	      </p>
 

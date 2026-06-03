@@ -73,17 +73,59 @@ const ResourceBookReviewPage = () => {
         <article className="bg-white rounded-2xl shadow-md p-6 sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-wide text-purple-600 mb-2">Book review</p>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">{book.title}</h1>
-          <p className="text-lg text-gray-600 mb-6">
+          <p className={`text-lg text-gray-600 ${book.format ? 'mb-2' : 'mb-6'}`}>
             by {book.author}
             {book.year && <span className="text-gray-400"> · {book.year}</span>}
+            {book.pages && <span className="text-gray-400"> · {book.pages} pages</span>}
           </p>
+          {book.format && (
+            <p className="text-sm text-gray-500 mb-6">{book.format}</p>
+          )}
 
           <p className="text-gray-700 leading-relaxed mb-8">{book.summary}</p>
+
+          {book.editorialVerdict && (
+            <section className="mb-8 p-5 bg-indigo-50 border border-indigo-100 rounded-xl">
+              <h2 className="text-lg font-bold text-indigo-950 mb-2">Editorial verdict</h2>
+              <p className="text-indigo-900 leading-relaxed text-sm">{book.editorialVerdict}</p>
+            </section>
+          )}
+
+          {book.detailedSections?.map((section) => (
+            <section key={section.heading} className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 mb-3">{section.heading}</h2>
+              {section.paragraphs.map((para) => (
+                <p key={para.slice(0, 40)} className="text-gray-600 leading-relaxed mb-4">
+                  {para}
+                </p>
+              ))}
+            </section>
+          ))}
+
+          {book.chapterHighlights?.length > 0 && (
+            <section className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Key takeaways by section</h2>
+              <ul className="space-y-3">
+                {book.chapterHighlights.map((item) => (
+                  <li key={item.part} className="text-sm text-gray-600 border-l-4 border-indigo-200 pl-4">
+                    <span className="font-semibold text-gray-900">{item.part}:</span> {item.takeaway}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <section className="mb-8">
             <h2 className="text-xl font-bold text-gray-900 mb-3">Why we recommend it</h2>
             <p className="text-gray-600 leading-relaxed">{book.whyRecommend}</p>
           </section>
+
+          {book.honestLimits && (
+            <section className="mb-8 p-5 bg-amber-50 border border-amber-100 rounded-xl">
+              <h2 className="text-lg font-bold text-amber-950 mb-2">Honest limits</h2>
+              <p className="text-amber-900 leading-relaxed text-sm">{book.honestLimits}</p>
+            </section>
+          )}
 
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
             <div className="bg-green-50 rounded-xl p-4 border border-green-100">
@@ -100,6 +142,24 @@ const ResourceBookReviewPage = () => {
             <h2 className="text-xl font-bold text-gray-900 mb-3">Read this book if…</h2>
             <p className="text-gray-600 leading-relaxed">{book.readIf}</p>
           </section>
+
+          {book.weeklyPlan?.length > 0 && (
+            <section className="mb-8">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">4-week practice plan with SingMeter</h2>
+              <ol className="space-y-4">
+                {book.weeklyPlan.map((item) => (
+                  <li key={item.week} className="text-sm text-gray-600">
+                    <span className="font-bold text-gray-900">Week {item.week}:</span> {item.focus}
+                    <span className="block mt-1">
+                      <Link to={item.singmeter} className="text-indigo-600 font-semibold hover:underline">
+                        Open tool →
+                      </Link>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
 
           <section className="mb-8">
             <h2 className="text-xl font-bold text-gray-900 mb-4">Pair with SingMeter</h2>

@@ -728,10 +728,10 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
                   What matters most is how you use your range musically, not just how wide it is.
                 </p>
                 <Link
-                  to="/blog/famous-singers-vocal-ranges"
+                  to="/blog/vocal-range-chart"
                   className="text-sm text-purple-600 hover:text-purple-700 font-semibold underline inline-flex items-center"
                 >
-                  Learn more about famous singers' vocal ranges →
+                  Compare with famous singers on the vocal range chart →
                 </Link>
               </div>
             </div>

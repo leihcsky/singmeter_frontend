@@ -72,7 +72,7 @@ const selfCheck = [
 
 const goDeeper = [
   { to: '/blog/ear-training-for-singers', label: 'Ear Training for Singers' },
-  { to: '/blog/sing-in-tune-without-piano', label: 'Sing in Tune Without Piano' },
+  { to: '/blog/improve-singing-pitch', label: 'Improve Singing Pitch (hub guide)' },
 ];
 
 export default { meta, intro, tools, steps, selfCheck, goDeeper };

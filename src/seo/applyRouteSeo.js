@@ -11,6 +11,7 @@ export function normalizePath(pathname) {
 
 /** Paths that should not appear in search results (still crawlable via follow). */
 const NOINDEX_EXACT_PATHS = new Set([
+  '/contact',
   '/disclaimer',
   '/faq',
   '/glossary',

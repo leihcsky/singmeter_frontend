@@ -6,22 +6,17 @@ const meta = {
   seoDescription:
     'Find your voice type using range, tessitura, and tone at home. Step-by-step guide with our free vocal range test—no vocal coach required.',
   category: 'Guides',
-  readTime: '8 min read',
+  readTime: '10 min read',
   date: '2025-12-02',
-  updatedDate: '2026-05-16',
+  updatedDate: '2026-06-01',
   author: 'SingMeter Team',
   excerpt:
-    'Step-by-step method to find your voice type at home using your vocal range, tessitura, and tone, without needing a vocal coach.',
+    'Find your voice type at home: vocal range vs voice type explained, plus tessitura and tone. Step-by-step with our free range test.',
   seoKeywords:
-    'how to find your voice type, what is my voice type, voice type test, soprano alto tenor baritone, beginner voice classification',
+    'how to find your voice type, vocal range vs voice type, what is my voice type, voice type test, soprano alto tenor baritone, tessitura vs range',
 };
 
 const content = `
-  <div class="mb-8">
-    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&h=600&fit=crop" alt="Different voice types classification" class="w-full rounded-xl shadow-lg" />
-    <p class="text-sm text-gray-500 mt-2 text-center">Understanding your voice type helps you choose better songs and communicate with vocal coaches</p>
-  </div>
-
   <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Your Voice Type Matters (But Not Too Much)</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Knowing your <strong>voice type</strong> (Bass, Baritone, Tenor, Alto, Mezzo, Soprano) can help you
@@ -32,6 +27,26 @@ const content = `
     In this guide, you&apos;ll learn how to estimate your voice type <strong>by yourself at home</strong>
     using a combination of your vocal range, comfortable zone (tessitura), and tone color.
     We will also show you how to use SingMeter&apos;s tools to make this process easier.
+  </p>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Vocal Range vs. Voice Type: What Is the Difference?</h2>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Many singers ask: &quot;My range is G2&ndash;C5&mdash;what is my voice type?&quot; Your
+    <strong>vocal range alone cannot fully decide your voice type</strong>. Range is the distance between your lowest and
+    highest comfortable notes (for example, C3 to C5). <strong>Voice type</strong> also includes tessitura (where you sing
+    most easily), tone color, and where register shifts tend to happen.
+  </p>
+  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+    <li><strong>Range can expand</strong> with training, age, and vocal health&mdash;often you unlock notes you already had but could not control.</li>
+    <li><strong>Voice type labels</strong> (Tenor, Alto, etc.) are useful guides for repertoire and choir placement, not strict limits.</li>
+    <li><strong>What changes with practice:</strong> usable range, ease on high notes, mix and resonance habits.</li>
+    <li><strong>What stays more stable:</strong> basic vocal weight, natural tone color, and whether you lean lower or higher overall.</li>
+  </ul>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    See typical ranges on our
+    <a href="/blog/vocal-range-chart" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range chart hub</a>,
+    then use the steps below to place yourself. For how range shifts over time, read
+    <a href="/blog/can-vocal-range-change" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Can Your Vocal Range Change?</a>
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 1: Measure Your Vocal Range</h2>
@@ -53,9 +68,6 @@ const content = `
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 2: Find Your Tessitura (Comfort Zone)</h2>
-  <div class="my-6">
-    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Vocal range chart showing tessitura" class="w-full rounded-xl shadow-md" />
-  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Your <strong>tessitura</strong> is the part of your range where your voice feels easiest and sounds
     the best. This is often <strong>more important</strong> than your extreme highest or lowest notes.

@@ -79,7 +79,7 @@ const selfCheck = [
 
 const goDeeper = [
   { to: '/blog/how-to-test-vocal-range', label: 'How to Test Your Vocal Range (theory & FAQ)' },
-  { to: '/blog/vocal-range-vs-voice-type', label: 'Vocal Range vs Voice Type' },
+  { to: '/blog/how-to-find-your-voice-type', label: 'How to Find Your Voice Type' },
 ];
 
 export default { meta, intro, tools, steps, selfCheck, goDeeper };

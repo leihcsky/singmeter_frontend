@@ -10,10 +10,11 @@ import { Link } from 'react-router-dom';
  *   steps: Array<{ title: string, duration?: string, body: string, toolCallout?: { to: string, label: string } }>,
  *   selfCheck: string[],
  *   goDeeper: Array<{ to: string, label: string }>,
+ *   practiceInsights?: { whyItWorks: string, commonMistakes: string[], whenToStop: string },
  *   nextTutorial?: { slug: string, title: string },
  * }} props
  */
-const TutorialArticle = ({ intro, tools, steps, selfCheck, goDeeper, nextTutorial }) => (
+const TutorialArticle = ({ intro, tools, steps, selfCheck, goDeeper, practiceInsights, nextTutorial }) => (
   <article className="prose prose-indigo max-w-none">
     <p className="text-gray-700 leading-relaxed text-lg mb-8">{intro}</p>
 
@@ -77,6 +78,24 @@ const TutorialArticle = ({ intro, tools, steps, selfCheck, goDeeper, nextTutoria
         ))}
       </ul>
     </section>
+
+    {practiceInsights && (
+      <section className="mb-10 not-prose bg-amber-50 border border-amber-100 rounded-xl p-5 sm:p-6">
+        <h2 className="text-lg font-bold text-gray-900 mb-3">Why this routine works</h2>
+        <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-6">{practiceInsights.whyItWorks}</p>
+        <h3 className="text-base font-bold text-gray-900 mb-2">Common mistakes</h3>
+        <ul className="space-y-2 mb-6">
+          {practiceInsights.commonMistakes.map((item) => (
+            <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
+              <span className="text-amber-600 font-bold mt-0.5">!</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <h3 className="text-base font-bold text-gray-900 mb-2">When to stop</h3>
+        <p className="text-gray-700 text-sm sm:text-base leading-relaxed">{practiceInsights.whenToStop}</p>
+      </section>
+    )}
 
     <section className="mb-10 not-prose">
       <h2 className="text-lg font-bold text-gray-900 mb-3">Go deeper (blog)</h2>

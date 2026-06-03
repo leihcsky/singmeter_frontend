@@ -14,12 +14,7 @@ const meta = {
 };
 
 const content = `
-  <div class="mb-8">
-    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Tessitura and comfortable singing range chart" class="w-full rounded-xl shadow-lg" />
-    <p class="text-sm text-gray-500 mt-2 text-center">Your tessitura is where your voice feels most comfortable and sounds best</p>
-  </div>
-
-  <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Tessitura: More Important Than Your Highest Note</h2>
+<h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Tessitura: More Important Than Your Highest Note</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Many singers obsess over how high or low they can sing. But for real-world singing, what matters most is your
     <strong>tessitura</strong>: the part of your range where your voice feels comfortable and sounds the best.
@@ -53,10 +48,7 @@ const content = `
   </ul>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 2: Find Your Real Comfort Zone</h2>
-  <div class="my-6">
-    <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&h=600&fit=crop" alt="Finding your comfortable vocal range zone" class="w-full rounded-xl shadow-md" />
-  </div>
-  <p class="text-gray-600 mb-4 leading-relaxed">
+<p class="text-gray-600 mb-4 leading-relaxed">
     Next, pay attention to where your voice feels the most <strong>relaxed and dependable</strong> in real songs.
   </p>
   <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">

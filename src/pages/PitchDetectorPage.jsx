@@ -803,7 +803,7 @@ const PitchDetectorPage = () => {
 	            Use the SingMeter Pitch Detector together with these step-by-step guides to fix flat notes, train your ear,
 	            and practice singing in tune without an instrument.
 	          </p>
-	          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+	          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 	            <Link
 	              to="/blog/why-you-sing-flat"
 	              className="group bg-indigo-50 rounded-2xl p-4 hover:bg-indigo-100 transition flex flex-col justify-between"
@@ -845,39 +845,19 @@ const PitchDetectorPage = () => {
 	            </Link>
 
 	            <Link
-	              to="/blog/sing-in-tune-without-piano"
+	              to="/blog/improve-singing-pitch"
 	              className="group bg-pink-50 rounded-2xl p-4 hover:bg-pink-100 transition flex flex-col justify-between"
 	            >
 	              <div>
 	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-pink-700">
-	                  Sing in Tune Without a Piano
+	                  Improve Singing Pitch (hub guide)
 	                </h3>
 	                <p className="text-xs text-gray-600 leading-relaxed">
-	                  Learn how to stay in key and practice melodies even when you do not have an instrument nearby.
+	                  Daily detector routines, practice without a piano, cents explained, and links to flat-note and ear-training guides.
 	                </p>
 	              </div>
 	              <span className="mt-3 text-xs font-semibold text-pink-700 flex items-center group-hover:translate-x-1 transition-transform">
 	                View guide
-	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-	                </svg>
-	              </span>
-	            </Link>
-
-	            <Link
-	              to="/blog/use-pitch-detector-for-training"
-	              className="group bg-indigo-50 rounded-2xl p-4 hover:bg-indigo-100 transition flex flex-col justify-between"
-	            >
-	              <div>
-	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-indigo-700">
-	                  Use a Pitch Detector for Training
-	                </h3>
-	                <p className="text-xs text-gray-600 leading-relaxed">
-	                  Turn this tool into a daily coach for warm-ups, scales, and fixing your most common pitch issues.
-	                </p>
-	              </div>
-	              <span className="mt-3 text-xs font-semibold text-indigo-700 flex items-center group-hover:translate-x-1 transition-transform">
-	                See how
 	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
 	                </svg>

@@ -76,7 +76,7 @@ const selfCheck = [
 ];
 
 const goDeeper = [
-  { to: '/blog/use-pitch-detector-for-training', label: 'Pitch Detector for Training (full guide)' },
+  { to: '/blog/improve-singing-pitch', label: 'Improve Singing Pitch (hub guide)' },
   { to: '/blog/improve-singing-pitch', label: 'Improve Singing Pitch' },
 ];
 

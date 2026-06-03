@@ -122,7 +122,7 @@ const content = `
       <a href="/vocal-range-test" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">SingMeter Vocal Range Test</a>,
 	      then slowly build belting skills in the upper part of that range instead of chasing extreme high notes immediately.
 	      To understand how mixed and head voice support healthy belting, you can also read
-	      <a href="/blog/mixed-voice-vs-head-voice" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">Mixed Voice vs Head Voice</a>.
+	      <a href="/blog/singing-high-notes-techniques" class="ml-1 text-indigo-600 hover:text-indigo-800 font-semibold underline">How to Sing High Notes (hub guide)</a>.
     </p>
   </div>
 `;

@@ -3,9 +3,9 @@ const meta = {
 	slug: 'singing-high-notes-techniques',
 	title: 'How to Sing High Notes: Techniques and Tips',
 	category: 'Techniques',
-	readTime: '6 min read',
+	readTime: '9 min read',
 		date: '2025-01-30',
-		updatedDate: '2025-01-30',
+		updatedDate: '2026-06-01',
 		author: 'SingMeter Team',
 	excerpt:
 	  'Master the art of singing high notes with these proven vocal techniques. Learn about breath support, vocal placement, and exercises to expand your range.',
@@ -14,11 +14,6 @@ const meta = {
 };
 
 const content = `
-	      <div class="mb-8">
-	        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a93d?w=1200&h=600&fit=crop" alt="Singer performing high notes on stage" class="w-full rounded-xl shadow-lg" />
-	        <p class="text-sm text-gray-500 mt-2 text-center">Mastering high notes requires proper technique and consistent practice</p>
-	      </div>
-
 	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">The Challenge of High Notes</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Singing high notes is one of the most challenging aspects of vocal performance. Many singers struggle with 
@@ -29,9 +24,6 @@ const content = `
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Essential Techniques for High Notes</h2>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">1. Proper Breath Support</h3>
-	      <div class="my-6">
-	        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Diaphragmatic breathing technique for singing" class="w-full rounded-xl shadow-md" />
-	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Breath support is the foundation of singing high notes. Use diaphragmatic breathing to provide steady, 
 	        controlled airflow. Imagine your breath supporting the note from below, rather than pushing from your throat.
@@ -44,9 +36,6 @@ const content = `
 	      </ul>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">2. Vocal Placement and Resonance</h3>
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Vocal resonance and placement techniques" class="w-full rounded-xl shadow-md" />
-	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        High notes require forward placement and proper resonance. Think of directing the sound toward your "mask" 
 	        (the area around your nose and cheekbones) rather than pushing from your throat.
@@ -58,23 +47,20 @@ const content = `
 	        tense up when attempting high notes, which actually makes them harder to reach.
 	      </p>
 
-	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">4. Use Mixed Voice</h3>
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">4. Chest, Head, and Mixed Voice</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Mixed voice (or "mix") blends chest voice and head voice, allowing you to sing high notes with power and 
-	        control. This technique prevents the "flip" or "break" that occurs when transitioning between registers.
+	        <strong>Chest voice</strong> feels low and strong (your speaking zone).
+	        <strong>Head voice</strong> is lighter and higher, with resonance in the face.
+	        <strong>Mixed voice</strong> blends both so you can carry power above your break without shouting.
 	      </p>
-		      <p class="text-gray-600 mb-4 leading-relaxed">
-		        If you want a deeper breakdown of how mixed and head voice work together, read our
-		        <a href="/blog/mixed-voice-vs-head-voice" class="ml-1 text-indigo-600 hover:text-indigo-700 font-semibold underline">Mixed Voice vs Head Voice</a>
-		        guide. And if you&apos;re aiming for powerful pop or musical theatre sounds, follow it up with
-		        <a href="/blog/belt-high-notes-safely" class="ml-1 text-indigo-600 hover:text-indigo-700 font-semibold underline">How to Belt High Notes Safely</a>.
-		      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Try light &quot;gee&quot; sirens and short &quot;nay&quot; patterns while watching the
+	        <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
+	        to stay in tune as register feel changes. For safe belting in pop or musical theatre, read
+	        <a href="/blog/belt-high-notes-safely" class="ml-1 text-indigo-600 hover:text-indigo-700 font-semibold underline">How to Belt High Notes Safely</a>.
+	      </p>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Exercises to Improve High Range</h2>
-
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Vocal exercises for high range development" class="w-full rounded-xl shadow-md" />
-	      </div>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Lip Trills</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
@@ -120,10 +106,15 @@ const content = `
 		        for a simple 15-minute plan before you tackle more demanding songs.
 		      </p>
 
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">More in This High Notes Series</h2>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><a href="/blog/belt-high-notes-safely" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">How to Belt High Notes Safely</a></li>
+	        <li><a href="/blog/high-notes-warmup-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">High Notes Warm-Up Routine (15 min)</a></li>
+	        <li><a href="/tutorials/bridge-and-mix-practice" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Mixed Voice Practice tutorial</a></li>
+	        <li><a href="/tutorials/belt-prep-safe" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Safe Belt Prep tutorial</a></li>
+	      </ul>
+
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Science Behind High Notes</h2>
-	      <div class="my-6">
-	        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Vocal anatomy and high note mechanics" class="w-full rounded-xl shadow-md" />
-	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Understanding the physical mechanics of singing high notes can help you approach them more effectively. When you sing higher notes:
 	      </p>

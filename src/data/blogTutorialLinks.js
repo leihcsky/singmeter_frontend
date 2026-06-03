@@ -15,10 +15,6 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/vocal-range-test-guided',
     title: 'Your First Vocal Range Test',
   },
-  'vocal-range-vs-voice-type': {
-    path: '/tutorials/song-in-the-right-key',
-    title: 'Choose & Practice a Song in Your Key',
-  },
   'can-vocal-range-change': {
     path: '/tutorials/vocal-range-test-guided',
     title: 'Your First Vocal Range Test',
@@ -26,10 +22,6 @@ export const blogPracticeTutorialBySlug = {
   'tessitura-and-comfortable-range': {
     path: '/tutorials/song-in-the-right-key',
     title: 'Choose & Practice a Song in Your Key',
-  },
-  'famous-singers-vocal-ranges': {
-    path: '/tutorials/vocal-range-test-guided',
-    title: 'Your First Vocal Range Test',
   },
   'songs-for-your-voice-type': {
     path: '/tutorials/song-in-the-right-key',
@@ -39,19 +31,11 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/pitch-calibration-10',
     title: '10-Minute Pitch Calibration',
   },
-  'use-pitch-detector-for-training': {
-    path: '/tutorials/pitch-calibration-10',
-    title: '10-Minute Pitch Calibration',
-  },
   'why-you-sing-flat': {
     path: '/tutorials/pitch-calibration-10',
     title: '10-Minute Pitch Calibration',
   },
   'ear-training-for-singers': {
-    path: '/tutorials/ear-training-starter',
-    title: 'Ear Training Starter',
-  },
-  'sing-in-tune-without-piano': {
     path: '/tutorials/ear-training-starter',
     title: 'Ear Training Starter',
   },
@@ -70,10 +54,6 @@ export const blogPracticeTutorialBySlug = {
   'belt-high-notes-safely': {
     path: '/tutorials/belt-prep-safe',
     title: 'Safe Belt Prep',
-  },
-  'mixed-voice-vs-head-voice': {
-    path: '/tutorials/bridge-and-mix-practice',
-    title: 'Mixed Voice Practice',
   },
   'high-notes-warmup-routine': {
     path: '/tutorials/daily-warmup-15',

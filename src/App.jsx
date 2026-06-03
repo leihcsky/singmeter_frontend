@@ -34,12 +34,28 @@ function RouteRobots() {
 }
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
   useEffect(() => {
-    // 每次路由变化时，将页面滚动到顶部
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (!hash) {
+      window.scrollTo(0, 0)
+      return
+    }
+
+    const id = decodeURIComponent(hash.slice(1))
+    const scrollToTarget = () => {
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+
+    // Wait for route content to paint (sections below the fold)
+    const raf = requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToTarget)
+    })
+    return () => cancelAnimationFrame(raf)
+  }, [pathname, hash])
 
   return null
 }

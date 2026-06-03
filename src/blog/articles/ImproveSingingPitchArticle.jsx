@@ -6,9 +6,9 @@ const meta = {
 	seoDescription:
 	  'Improve pitch accuracy with breath, vowels, scales, intervals, and a short daily routine using a pitch detector. Fix sharp or flat habits and track progress over time.',
 	category: 'Guides',
-	readTime: '8 min read',
+	readTime: '11 min read',
 	date: '2025-11-21',
-	updatedDate: '2026-05-14',
+	updatedDate: '2026-06-01',
 	author: 'SingMeter Team',
 	excerpt:
 	  'Learn proven exercises and techniques to improve your singing pitch accuracy. Master how to sing in tune with our complete training guide and 15-minute practice routine.',
@@ -17,11 +17,6 @@ const meta = {
 };
 
 const content = `
-	      <div class="mb-8">
-	        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Singer practicing pitch accuracy with pitch detector" class="w-full rounded-xl shadow-lg" />
-	        <p class="text-sm text-gray-500 mt-2 text-center">Improving pitch accuracy is essential for professional-sounding performances</p>
-	      </div>
-
 	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Pitch Accuracy Matters</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Singing in tune</strong> is one of the most fundamental skills in vocal performance. Even the most beautiful
@@ -52,9 +47,6 @@ const content = `
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Tools for Pitch Training</h2>
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Pitch detector tool showing visual feedback" class="w-full rounded-xl shadow-md" />
-	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        While this guide focuses on exercises and techniques, using the right tools can accelerate your progress.
 	        A <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
@@ -73,9 +65,6 @@ const content = `
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">5 Proven Exercises to Improve Your Singing Pitch</h2>
-	      <div class="my-6">
-	        <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Vocal exercises for pitch accuracy training" class="w-full rounded-xl shadow-md" />
-	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        These exercises are designed to progressively build your pitch accuracy. Start with Exercise 1 and work your way
 	        through. For best results, use a <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
@@ -152,9 +141,6 @@ const content = `
 	      </ol>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Understanding Cents and Pitch Deviation</h2>
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Pitch deviation chart showing cents measurement" class="w-full rounded-xl shadow-md" />
-	      </div>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        The pitch detector shows deviation in <strong>cents</strong>. Here's what you need to know:
 	      </p>
@@ -275,6 +261,39 @@ const content = `
 	        develop your ear and muscle memory so you can sing accurately without constantly monitoring yourself.
 	      </p>
 
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Practice in Tune Without a Piano</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        You do not need a piano or karaoke track to train pitch. Use the
+	        <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
+	        as your feedback screen, and the
+	        <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a>
+	        for reference notes. Listen once, sing back, and adjust until cents stay near zero.
+	      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Try our step-by-step
+	        <a href="/tutorials/pitch-calibration-10" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">10-minute pitch calibration tutorial</a>
+	        if you want a timed routine without any instrument.
+	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Using a Pitch Detector Every Day</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Treat the detector like a mirror: warm up with light humming while watching cents, then practice single notes,
+	        short scales, and one problem phrase from a song. Log whether you tend flat or sharp each day&mdash;that bias is
+	        what you correct first.
+	      </p>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Note name:</strong> the closest pitch (e.g. A4, C4).</li>
+	        <li><strong>Cents:</strong> how far you are from center; aim for about &plusmn;10 cents in daily practice.</li>
+	        <li><strong>Green zone:</strong> on SingMeter, hold steady in the green before moving to harder intervals.</li>
+	      </ul>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">More in This Pitch Series</h2>
+	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><a href="/blog/why-you-sing-flat" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Why You Sing Flat (and How to Fix It)</a></li>
+	        <li><a href="/blog/ear-training-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training for Singers</a></li>
+	        <li><a href="/tutorials/ear-training-starter" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training Starter tutorial</a></li>
+	      </ul>
+
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Creating a Practice Routine</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Here's a suggested 15-minute daily practice routine using a pitch detector:
@@ -313,16 +332,13 @@ const content = `
 	        </p>
 	        <div class="flex flex-wrap gap-3">
 	          <a href="/pitch-detector" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
-	            🎤 Practice with Pitch Detector
+	            Practice with Pitch Detector
 	          </a>
-	          <a href="/tone-generator" class="blog-cta inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
-	            🔊 Try the Tone Generator
+	          <a href="/tutorials/pitch-calibration-10" class="blog-cta inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
+	            10-Minute Pitch Tutorial
 	          </a>
-	          <a href="/metronome" class="blog-cta inline-block px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition shadow-md hover:shadow-lg">
-	            🥁 Practice with Metronome
-	          </a>
-	          <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
-	            🎵 Test Your Vocal Range
+	          <a href="/tone-generator" class="blog-cta inline-block px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition shadow-md hover:shadow-lg">
+	            Tone Generator
 	          </a>
 	        </div>
 	      </div>

@@ -8,7 +8,7 @@ const meta = {
   category: 'Pitch & Intonation',
   readTime: '9 min read',
   date: '2025-12-02',
-  updatedDate: '2026-05-14',
+  updatedDate: '2026-06-01',
   author: 'SingMeter Team',
   excerpt:
     "Find out the real reasons why you sing flat and learn practical exercises to finally fix your pitch for good. We'll show you how to use simple techniques and tools to get in tune and stay there.",
@@ -17,15 +17,10 @@ const meta = {
 };
 
 const content = `
-      <div class="mb-8">
-        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Singer practicing pitch accuracy to avoid singing flat" class="w-full rounded-xl shadow-lg" />
-        <p class="text-sm text-gray-500 mt-2 text-center">Understanding why you sing flat is the first step to fixing your pitch</p>
-      </div>
-
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">What Does It Mean to Sing Flat?</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
         When singers say they are <strong>singing flat</strong>, it means their pitch is consistently below the correct note.
-        Sometimes it is only a small amount (10â€?0 cents), but even that is enough for sensitive ears to notice. If the note
+        Sometimes it is only a small amount (10&ndash;20 cents), but even that is enough for sensitive ears to notice. If the note
         is flat by 50 cents or more, most listeners will clearly feel that something is off.
       </p>
       <p class="text-gray-600 mb-4 leading-relaxed">
@@ -55,9 +50,6 @@ const content = `
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Use a Pitch Detector to See How Flat You Are</h2>
-      <div class="my-6">
-        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Pitch detector showing flat pitch measurement" class="w-full rounded-xl shadow-md" />
-      </div>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Before you start fixing anything, it helps to measure it. Open the
         <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">SingMeter Pitch Detector</a>
@@ -70,7 +62,7 @@ const content = `
       </ul>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Do this test on a few different notes. You might discover a pattern: for example, maybe you are fine in the middle but
-        always flat on low notes or at the end of long phrases. That information is valuable â€?it tells you where to focus.
+        always flat on low notes or at the end of long phrases. That information is valuable&mdash;it tells you where to focus.
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Exercise 1: Supported Long Tones (Fix Sagging Notes)</h2>
@@ -80,27 +72,27 @@ const content = `
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Stand tall with relaxed shoulders and take a low, quiet breath into your belly.</li>
         <li>Choose a comfortable note in your mid-range (for example, G3 for lower voices or G4 for higher voices).</li>
-        <li>Open the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a> and start singing the note on â€œahâ€?or â€œooâ€?</li>
-        <li>Watch the cents display. Your goal is to keep it within Â±10 cents for 8â€?0 seconds.</li>
+        <li>Open the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a> and start singing the note on &ldquo;ah&rdquo; or &ldquo;oo&rdquo;.</li>
+        <li>Watch the cents display. Your goal is to keep it within &plusmn;10 cents for 8&ndash;10 seconds.</li>
         <li>If the pitch starts falling, gently increase your breath support and brightness to bring it back up.</li>
       </ol>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Repeat this on 4â€? different notes. Over time, you will feel how much energy is needed to keep the pitch from
+        Repeat this on 4&ndash;5 different notes. Over time, you will feel how much energy is needed to keep the pitch from
         sagging. That feeling is what you want to remember when you sing real songs.
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Exercise 2: Low Note Activation (Fix Flat Low Notes)</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Many singers go flat on low notes because they let the sound go â€œdeadâ€? The tone becomes lazy and falls under the
+        Many singers go flat on low notes because they let the sound go &ldquo;dead.&rdquo; The tone becomes lazy and falls under the
         pitch. This exercise keeps low notes alive and in tune.
       </p>
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Find the lower part of your comfortable range using the
           <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range test</a>.</li>
-        <li>Pick two or three notes in that area (for example, C3â€“E3 for low voices, C4â€“E4 for higher voices).</li>
-        <li>On each note, sing a short pattern like â€œyah-yah-yah-yahâ€?with clear consonants and bright vowels.</li>
+        <li>Pick two or three notes in that area (for example, C3&ndash;E3 for low voices, C4&ndash;E4 for higher voices).</li>
+        <li>On each note, sing a short pattern like &ldquo;yah-yah-yah-yah&rdquo; with clear consonants and bright vowels.</li>
         <li>Use the pitch detector to make sure every repeat lands close to 0 cents, not sliding down with each repetition.</li>
-        <li>Imagine the pitch aiming slightly <strong>above</strong> where you think it is â€?this mental trick often corrects flatness.</li>
+        <li>Imagine the pitch aiming slightly <strong>above</strong> where you think it is&mdash;this mental trick often corrects flatness.</li>
       </ol>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Exercise 3: End-of-Phrase Support (Fix Notes That Fall at the End)</h2>
@@ -128,7 +120,7 @@ const content = `
         <li>Notice how each version <strong>feels</strong> in your body and how it <strong>sounds</strong> in your ears.</li>
       </ul>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Over time, your brain builds an internal â€œmapâ€?of what in-tune singing feels and sounds like. This is the foundation
+        Over time, your brain builds an internal &ldquo;map&rdquo; of what in-tune singing feels and sounds like. This is the foundation
         of reliable pitch.
       </p>
 
@@ -138,7 +130,7 @@ const content = `
       </p>
       <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
         <li><strong>2 minutes:</strong> gentle warm-up (humming, lip trills) to wake up the voice.</li>
-        <li><strong>3 minutes:</strong> supported long tones with the pitch detector, focusing on keeping within Â±10 cents.</li>
+        <li><strong>3 minutes:</strong> supported long tones with the pitch detector, focusing on keeping within &plusmn;10 cents.</li>
         <li><strong>3 minutes:</strong> low-note activation patterns to keep the bottom of your range energized.</li>
         <li><strong>2 minutes:</strong> one song line practice, watching the end-of-phrase notes carefully.</li>
       </ol>
@@ -149,7 +141,7 @@ const content = `
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">You Can Fix Flat Singing</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Singing flat can feel discouraging, but it is not a sign that you are â€œtone deafâ€?or untalented. It is a very common,
+        Singing flat can feel discouraging, but it is not a sign that you are &ldquo;tone deaf&rdquo; or untalented. It is a very common,
         very fixable coordination issue. With a bit of structured practice, a clear visual tool like a pitch detector, and
         honest listening, you can bring your pitch up to where it belongs.
       </p>
@@ -166,13 +158,13 @@ const content = `
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="/pitch-detector" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
-            ðŸŽ¤ Try the Pitch Detector
+            Try the Pitch Detector
           </a>
           <a href="/tone-generator" class="blog-cta inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
-            ðŸ”Š Practice with Tone Generator
+            Practice with Tone Generator
           </a>
           <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
-            ðŸŽµ Test Your Vocal Range
+            Test Your Vocal Range
           </a>
         </div>
       </div>

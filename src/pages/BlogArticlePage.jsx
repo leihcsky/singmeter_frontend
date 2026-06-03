@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import BlogAuthorNote from '../components/BlogAuthorNote';
 import BlogHubCallout from '../components/BlogHubCallout';
 import BlogPracticeTutorial from '../components/BlogPracticeTutorial';
+import { BLOG_REDIRECTS } from '../data/blogHub';
 
 /** Shorter brand suffix; total browser title length capped in buildMetaTitle */
 const TITLE_BRAND = ' | SingMeter';
@@ -58,6 +59,11 @@ function buildSocialTitle(article) {
 const BlogArticlePage = () => {
   const { slug } = useParams();
   const article = blogIndex.find((a) => a.slug === slug);
+
+	const redirectTo = slug && BLOG_REDIRECTS[slug];
+	if (redirectTo) {
+		return <Navigate to={redirectTo} replace />;
+	}
 
 	// If article not found, redirect to blog page
 	if (!article) {

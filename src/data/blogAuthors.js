@@ -43,27 +43,22 @@ const slugToAuthorId = {
   'how-to-test-vocal-range': BLOG_AUTHOR_IDS.MAX,
   'how-to-find-your-voice-type': BLOG_AUTHOR_IDS.MAX,
   'vocal-range-chart': BLOG_AUTHOR_IDS.MAX,
-  'vocal-range-vs-voice-type': BLOG_AUTHOR_IDS.MAX,
   'can-vocal-range-change': BLOG_AUTHOR_IDS.MAX,
   'tessitura-and-comfortable-range': BLOG_AUTHOR_IDS.MAX,
 
   // Pitch & ear — Jordan / Max on flagship tool piece
   'improve-singing-pitch': BLOG_AUTHOR_IDS.MAX,
-  'use-pitch-detector-for-training': BLOG_AUTHOR_IDS.MAX,
   'ear-training-for-singers': BLOG_AUTHOR_IDS.JORDAN,
   'why-you-sing-flat': BLOG_AUTHOR_IDS.JORDAN,
-  'sing-in-tune-without-piano': BLOG_AUTHOR_IDS.JORDAN,
 
   // Repertoire & editorial lists — Sam
   'songs-for-your-voice-type': BLOG_AUTHOR_IDS.SAM,
-  'famous-singers-vocal-ranges': BLOG_AUTHOR_IDS.SAM,
 
   // Technique, health, high notes — Elena
   'breathing-and-posture-for-singers': BLOG_AUTHOR_IDS.ELENA,
   'vocal-health-and-maintenance': BLOG_AUTHOR_IDS.ELENA,
   'singing-high-notes-techniques': BLOG_AUTHOR_IDS.ELENA,
   'belt-high-notes-safely': BLOG_AUTHOR_IDS.ELENA,
-  'mixed-voice-vs-head-voice': BLOG_AUTHOR_IDS.ELENA,
   'high-notes-warmup-routine': BLOG_AUTHOR_IDS.ELENA,
 };
 

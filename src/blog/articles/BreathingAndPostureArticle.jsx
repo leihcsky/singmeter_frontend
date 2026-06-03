@@ -14,12 +14,7 @@ const meta = {
 };
 
 const content = `
-      <div class="mb-8">
-        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Singer practicing proper posture" class="w-full rounded-xl shadow-lg" />
-        <p class="text-sm text-gray-500 mt-2 text-center">Proper alignment and breath support are the secret to vocal power</p>
-      </div>
-
-      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Breathing and Posture Come First</h2>
+<h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Breathing and Posture Come First</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
         If you were building a house, you wouldn't start with the roof. You would start with a solid foundation. In singing, 
         <strong>breathing</strong> and <strong>posture</strong> are that foundation. Before you sing a single note, your body must be aligned 

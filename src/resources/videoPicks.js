@@ -69,7 +69,7 @@ export const videoPicks = [
       'Run the 10-Minute Pitch Calibration tutorial, then pick one Singing Success video on the same topic (matching pitch to a reference).',
     notIdealFor: 'Substituting for medical advice if your voice is injured.',
     tutorialLink: '/tutorials/pitch-calibration-10',
-    blogLink: '/blog/use-pitch-detector-for-training',
+    blogLink: '/blog/improve-singing-pitch',
   },
   {
     id: 'dr-dan-vocal-health',

@@ -14,12 +14,7 @@ const meta = {
 };
 
 const content = `
-	      <div class="mb-8">
-	        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&h=600&fit=crop" alt="Singer testing vocal range with microphone" class="w-full rounded-xl shadow-lg" />
-	        <p class="text-sm text-gray-500 mt-2 text-center">Testing your vocal range is the first step to understanding your voice</p>
-	      </div>
-
-	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Understanding Vocal Range</h2>
+<h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Understanding Vocal Range</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Your <strong>vocal range</strong> is the span between the lowest and highest notes you can comfortably sing.
 	        It is the first number to measure before you explore voice type—see our
@@ -40,12 +35,7 @@ const content = `
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Methods to Test Your Vocal Range</h2>
-	      
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=600&fit=crop" alt="Person using online vocal range test tool on computer" class="w-full rounded-xl shadow-md" />
-	      </div>
-
-	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">1. Online Vocal Range Test (Recommended)</h3>
+<h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">1. Online Vocal Range Test (Recommended)</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Modern online tools like SingMeter use advanced pitch detection technology to accurately measure your vocal range. 
 	        This method is quick, accurate, and provides instant results. Simply sing into your device's microphone, and the 
@@ -53,10 +43,7 @@ const content = `
 	      </p>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">2. Piano or Keyboard Method</h3>
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=1200&h=600&fit=crop" alt="Piano keyboard for vocal range testing" class="w-full rounded-xl shadow-md" />
-	      </div>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
+<p class="text-gray-600 mb-4 leading-relaxed">
 	        If you have access to a piano or keyboard, you can manually test your range by matching pitches. Start at middle C 
 	        and sing along with each note, moving up and down the keyboard until you reach your comfortable limits. Record the 
 	        lowest and highest notes you can sing clearly.
@@ -88,10 +75,7 @@ const content = `
 	      </p>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step-by-Step Guide: Using an Online Vocal Range Test</h2>
-	      <div class="my-6">
-	        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1200&h=600&fit=crop" alt="Step by step vocal range testing process" class="w-full rounded-xl shadow-md" />
-	      </div>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
+<p class="text-gray-600 mb-4 leading-relaxed">
 	        Online vocal range tests have revolutionized how singers discover their range. Here's a detailed walkthrough of how to use them effectively:
 	      </p>
 	      

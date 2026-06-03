@@ -16,6 +16,31 @@
       "has": [{ "type": "host", "value": "singmeter.com" }],
       "destination": "https://www.singmeter.com/:path*",
       "permanent": true
+    },
+    {
+      "source": "/blog/vocal-range-vs-voice-type",
+      "destination": "/blog/how-to-find-your-voice-type",
+      "permanent": true
+    },
+    {
+      "source": "/blog/sing-in-tune-without-piano",
+      "destination": "/blog/improve-singing-pitch",
+      "permanent": true
+    },
+    {
+      "source": "/blog/use-pitch-detector-for-training",
+      "destination": "/blog/improve-singing-pitch",
+      "permanent": true
+    },
+    {
+      "source": "/blog/famous-singers-vocal-ranges",
+      "destination": "/blog/vocal-range-chart",
+      "permanent": true
+    },
+    {
+      "source": "/blog/mixed-voice-vs-head-voice",
+      "destination": "/blog/singing-high-notes-techniques",
+      "permanent": true
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
