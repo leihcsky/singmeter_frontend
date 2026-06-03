@@ -396,13 +396,6 @@ const SongKeyFinderPage = () => {
             "Support for MP3, WAV, and M4A files"
           ],
           "screenshot": "https://www.singmeter.com/og-image.svg",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.7",
-            "ratingCount": "290",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
           "creator": {
             "@type": "Organization",
             "name": "SingMeter",

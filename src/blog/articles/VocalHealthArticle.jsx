@@ -5,7 +5,7 @@ const meta = {
   category: 'Guides',
   readTime: '8 min read',
   date: '2025-12-25',
-  updatedDate: '2025-12-25',
+  updatedDate: '2026-06-01',
   author: 'SingMeter Team',
   excerpt:
     'Protect your most valuable instrument. Learn the essential dos and don\'ts of vocal health, hydration tips, warning signs of damage, and how to recover from vocal fatigue.',
@@ -14,21 +14,19 @@ const meta = {
 };
 
 const content = `
-      <div class="mb-8">
-        <img src="https://images.unsplash.com/photo-1525926477800-7a3be580c765?w=1200&h=600&fit=crop" alt="Singer drinking water for vocal health" class="w-full rounded-xl shadow-lg" />
-        <p class="text-sm text-gray-500 mt-2 text-center">Your voice is a biological instrument‚Äîtreat it with care</p>
-      </div>
-
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Vocal Health Matters</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Imagine a guitarist smashing their guitar after every show. It sounds ridiculous, right? Yet many singers abuse their instrument‚Äîtheir vocal cords‚Äîdaily without realizing it. 
-        Unlike a guitar strings, you can't just buy a new set of vocal cords. 
+        Imagine a guitarist smashing their guitar after every show. It sounds ridiculous, right? Yet many singers abuse their instrument&mdash;their vocal cords&mdash;daily without realizing it.
+        Unlike guitar strings, you cannot simply replace your vocal cords.
         <strong>Vocal health</strong> is the practice of maintaining your voice to prevent injury, nodules, and chronic hoarseness.
+      </p>
+      <p class="text-gray-600 mb-4 leading-relaxed text-sm">
+        <strong>Educational note:</strong> This guide supports home practice only. It is not medical advice. See a qualified clinician if hoarseness lasts more than two weeks or you feel pain while singing.
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Golden Rule: Hydration</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Your vocal cords are coated in a mucous membrane that needs to stay moist to vibrate efficiently. 
+        Your vocal cords are coated in a mucous membrane that needs to stay moist to vibrate efficiently.
         When you are dehydrated, this mucus becomes thick and sticky, causing friction and irritation.
       </p>
       <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
@@ -42,25 +40,25 @@ const content = `
       </div>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Vocal Dos and Don'ts</h2>
-      
+
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-green-50 p-6 rounded-lg border border-green-200">
-          <h3 class="text-xl font-bold text-green-900 mb-3">‚ú?DO:</h3>
-          <ul class="space-y-2 text-green-800">
-            <li>‚ú?<strong>Warm up</strong> before singing (even for 5-10 mins).</li>
-            <li>‚ú?<strong>Cool down</strong> after a long session with gentle humming.</li>
-            <li>‚ú?<strong>Rest your voice</strong> (vocal nap) if you've been talking/singing all day.</li>
-            <li>‚ú?<strong>Sleep well.</strong> Your voice repairs itself while you sleep.</li>
+          <h3 class="text-xl font-bold text-green-900 mb-3">DO:</h3>
+          <ul class="list-disc list-inside space-y-2 text-green-800">
+            <li><strong>Warm up</strong> before singing (even for 5-10 mins).</li>
+            <li><strong>Cool down</strong> after a long session with gentle humming.</li>
+            <li><strong>Rest your voice</strong> (vocal nap) if you have been talking or singing all day.</li>
+            <li><strong>Sleep well.</strong> Your voice repairs itself while you sleep.</li>
           </ul>
         </div>
 
         <div class="bg-red-50 p-6 rounded-lg border border-red-200">
-          <h3 class="text-xl font-bold text-red-900 mb-3">‚ù?DON'T:</h3>
-          <ul class="space-y-2 text-red-800">
-            <li>‚ú?<strong>Clear your throat.</strong> It slams your vocal cords together violently. Swallow or sip water instead.</li>
-            <li>‚ú?<strong>Whisper.</strong> Surprisingly, whispering forces the vocal cords tight and causes more strain than speaking softly.</li>
-            <li>‚ú?<strong>Shout or scream</strong> in loud environments (concerts, bars).</li>
-            <li>‚ú?<strong>Sing through pain.</strong> Pain is a stop sign.</li>
+          <h3 class="text-xl font-bold text-red-900 mb-3">DON'T:</h3>
+          <ul class="list-disc list-inside space-y-2 text-red-800">
+            <li><strong>Clear your throat.</strong> It slams your vocal cords together violently. Swallow or sip water instead.</li>
+            <li><strong>Whisper.</strong> Whispering forces the vocal cords tight and can cause more strain than speaking softly.</li>
+            <li><strong>Shout or scream</strong> in loud environments (concerts, bars).</li>
+            <li><strong>Sing through pain.</strong> Pain is a stop sign.</li>
           </ul>
         </div>
       </div>
@@ -89,7 +87,7 @@ const content = `
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The "Vocal Nap"</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Just as athletes take rest days, singers need vocal rest. A "vocal nap" is a period of absolute silence‚Äîno talking, no humming, no whispering.
+        Just as athletes take rest days, singers need vocal rest. A "vocal nap" is a period of absolute silence&mdash;no talking, no humming, no whispering.
         Try taking a 20-minute vocal nap before a show or after a long rehearsal. It works wonders for resetting your voice.
       </p>
 
@@ -105,13 +103,10 @@ const content = `
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
-            üéµ Find Your Safe Range
+            Find Your Safe Range
           </a>
-          <a href="/tone-generator" class="blog-cta inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg">
-            üîä Warm Up with Tone Generator
-          </a>
-          <a href="/metronome" class="blog-cta inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
-            ‚è±Ô∏è Practice Rhythm
+          <a href="/tutorials/vocal-health-recovery-day" class="blog-cta inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition shadow-md hover:shadow-lg">
+            Vocal Health Recovery Tutorial
           </a>
         </div>
       </div>
@@ -124,7 +119,5 @@ export default function VocalHealthArticle() {
     </div>
   );
 }
-
-VocalHealthArticle.meta = meta;
 
 VocalHealthArticle.meta = meta;

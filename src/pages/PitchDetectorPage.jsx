@@ -204,13 +204,6 @@ const PitchDetectorPage = () => {
             "Instant feedback for vocal training"
           ],
           "screenshot": "https://www.singmeter.com/og-image.svg",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.7",
-            "ratingCount": "620",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
           "creator": {
             "@type": "Organization",
             "name": "SingMeter",

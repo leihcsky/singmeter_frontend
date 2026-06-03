@@ -266,7 +266,7 @@ const VocalRangeChartArticle = () => {
         />
         <FaqItem
           q="Can my range change over time?"
-          a="Yes?training, health, and age can shift your usable range. Retest periodically with a vocal range test."
+          a="Yes&mdash;training, health, and age can shift your usable range. Retest periodically with a vocal range test."
         />
         <FaqItem
           q="Does my highest note define my voice type?"

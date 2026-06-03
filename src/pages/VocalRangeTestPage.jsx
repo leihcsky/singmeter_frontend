@@ -476,13 +476,6 @@ const VocalRangeTestPage = () => {
             "Visual piano keyboard display"
           ],
           "screenshot": "https://www.singmeter.com/og-image.svg",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "ratingCount": "850",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
           "creator": {
             "@type": "Organization",
             "name": "SingMeter",

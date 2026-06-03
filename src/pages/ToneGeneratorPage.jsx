@@ -285,13 +285,6 @@ const ToneGeneratorPage = () => {
             "Perfect for ear training and pitch reference"
           ],
           "screenshot": "https://www.singmeter.com/og-image.svg",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "ratingCount": "450",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
           "creator": {
             "@type": "Organization",
             "name": "SingMeter",

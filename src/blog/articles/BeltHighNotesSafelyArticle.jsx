@@ -37,9 +37,6 @@ const content = `
   </ul>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 2: Support from the Body, Not the Throat</h2>
-  <div class="my-6">
-    <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?w=1200&h=600&fit=crop" alt="Breath support for safe belting" class="w-full rounded-xl shadow-md" />
-  </div>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Safe belting starts with <strong>breath support</strong> and a stable body. When you belt, think:
   </p>

@@ -14,7 +14,6 @@ const NOINDEX_EXACT_PATHS = new Set([
   '/disclaimer',
   '/faq',
   '/glossary',
-  '/editorial-standards',
   '/resources',
   '/tutorials',
 ]);

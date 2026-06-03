@@ -187,6 +187,13 @@
     <priority>0.5</priority>
   </url>
 
+  <url>
+    <loc>https://www.singmeter.com/editorial-standards</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <!-- Blog Articles (lastmod from article meta updatedDate or date) -->
   <url>
     <loc>https://www.singmeter.com/blog/breathing-and-posture-for-singers</loc>
@@ -197,7 +204,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/vocal-health-and-maintenance</loc>
-    <lastmod>2025-12-25</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -239,7 +246,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/ear-training-for-singers</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
