@@ -21,11 +21,11 @@ const WelcomeScreen = ({ onStart, error }) => {
       readTime: '6 min read'
     },
     {
-      slug: 'songs-for-your-voice-type',
-      title: 'Best Songs for Your Voice Type',
-      excerpt: 'Discover the perfect songs that match your vocal range and voice classification.',
-      category: 'Song Lists',
-      readTime: '7 min read'
+      slug: 'how-to-find-your-voice-type',
+      title: 'How to Find Your Voice Type',
+      excerpt: 'Estimate your voice type at home using range, tessitura, and tone—no teacher required.',
+      category: 'Guides',
+      readTime: '10 min read'
     }
   ];
   return (

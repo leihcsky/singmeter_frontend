@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
 import PracticePathSection from '../components/PracticePathSection';
+import ToolPageDeepDive from '../components/ToolPageDeepDive';
 
 const metronomeFaqItems = [
   {
@@ -718,8 +719,59 @@ const MetronomePage = () => {
               },
             ]}
             blogLink={{
-              to: '/blog/high-notes-warmup-routine',
-              label: 'High Notes Warm-Up Routine — pair with slow metronome work',
+              to: '/blog/improve-singing-pitch',
+              label: 'Improve Singing Pitch — rhythm and intonation together',
+            }}
+          />
+
+          <ToolPageDeepDive
+            accent="orange"
+            heading="Rhythm practice for singers — not a drummer-only metronome"
+            howWeTest={{
+              intro:
+                'Before we ship metronome changes, we run timed sessions on desktop Chrome, mobile Safari, and a mid-range Android phone with laptop speakers and wired earbuds. We are checking whether the click stays steady when the tab is active and whether Vocal Practice Mode (breathing cue) lines up with real 4/4 ballad phrases.',
+              bullets: [
+                'Tap Tempo: ten taps on the downbeat of a known song; we expect the calculated BPM to land within about ±2 BPM of the track’s published tempo.',
+                'Drift check: let the metronome run at 72 BPM for three minutes while humming one pitch—we listen for “creep” where the last bar feels rushed compared to the first.',
+                'Breathing cue: with 4/4 and the cue on beat 4, we sing an 8-syllable line twice; the cue should land where a singer would naturally inhale, not mid-word.',
+                'Speaker vs headphones: clicks should be audible at 40–55% volume without drowning a quiet hum; we do not treat phone speaker bleed as a pitch reference.',
+              ],
+            }}
+            practiceCase={{
+              title: '15-minute ballad phrase: tempo, breath, then pitch check',
+              duration: '15 min · 4/4 · start 68 BPM',
+              steps: [
+                'Pick one chorus line (8–12 syllables) from a slow song you know. Use Tap Tempo on the recording, then set this metronome 5–8 BPM slower than the track.',
+                'Enable Vocal Practice Mode (breathing cue). Listen two bars, then sing the line twice per phrase—first at half volume to map breath, second at normal volume.',
+                'If you rush the last two words, drop BPM by 5 and repeat. Do not speed up until both passes feel even.',
+                'On the final pass, open the Pitch Detector and hold the highest word of the line for 3 seconds. If you drift sharp, you were likely pushing tempo; if flat, add support instead of volume.',
+                'Write one note: “rushed / dragged / steady” and tomorrow’s starting BPM.',
+              ],
+            }}
+            misconceptions={[
+              {
+                myth: '“A metronome is only for instruments.”',
+                reality:
+                  'Singers use it to lock phrase length, plan breaths, and stop rushing on high notes. If your line falls apart without a beat, the problem is often timing—not range.',
+              },
+              {
+                myth: '“Faster practice = faster progress.”',
+                reality:
+                  'We increase BPM in steps of 5 only after four clean repeats. Speed without clarity trains sloppy onset and pitch scooping.',
+              },
+              {
+                myth: '“Breathing cue replaces a vocal coach.”',
+                reality:
+                  'It is a visual reminder for self-practice. It does not correct posture or diagnose strain—stop if you feel pain or hoarseness.',
+              },
+            ]}
+            blogLink={{
+              to: '/blog/improve-singing-pitch',
+              label: 'Improve Singing Pitch (hub)',
+            }}
+            tutorialLink={{
+              to: '/tutorials/daily-warmup-15',
+              label: '15-Minute Daily Warm-Up',
             }}
           />
 

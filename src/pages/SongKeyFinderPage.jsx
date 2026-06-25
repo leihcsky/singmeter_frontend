@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
 import PracticePathSection from '../components/PracticePathSection';
+import ToolPageDeepDive from '../components/ToolPageDeepDive';
 import { songKeysDatabase, transposeKey, SAMPLE_SONG_COUNT, SAMPLE_GENRES } from '../data/songKeys';
 
 // FAQ Items
@@ -972,8 +973,60 @@ const SongKeyFinderPage = () => {
             },
           ]}
           blogLink={{
+            to: '/blog/tessitura-and-comfortable-range',
+            label: 'Tessitura & comfortable range — why “in range” is not enough',
+          }}
+        />
+
+        <ToolPageDeepDive
+          accent="purple"
+          heading="Transpose from your measured range — not a generic key chart"
+          howWeTest={{
+            intro:
+              'We maintain the sample song list against common recorded keys and run upload tests with studio MP3s, phone voice memos, and karaoke exports. Transposition suggestions are checked so the melody span sits inside the range you enter—not just touching your lowest and highest notes.',
+            bullets: [
+              `Browse list: ${SAMPLE_SONG_COUNT} entries cross-checked against published charts; live versions may differ—we label suggestions “Best Match” from your range, not from chart fame.`,
+              'Upload analyzer: short clips (chorus or verse) processed in-browser; we test major vs minor detection on clean pop vocals and flag noisy files with a clear error instead of a random key.',
+              'Range overlay: when you load results from the Vocal Range Test, we verify the high note of the song span is not sitting on your top comfortable semitone unless you have headroom.',
+              'Transpose math: semitone shifts are applied to the displayed key name and checked against our internal key circle so +2 from C major reads D major, not an enharmonic mismatch.',
+            ],
+          }}
+          practiceCase={{
+            title: '20-minute cover prep: range → Best Match → phrase rehearsal',
+            duration: '20 min · one song',
+            steps: [
+              'Run or refresh the Vocal Range Test. Return here—your low–high notes should show as loaded.',
+              'Pick a target song from the browse list (or upload your backing track). Note original key and how many semitones the melody spans.',
+              'Apply the Best Match suggestion. If the chorus still feels high, try the next lower option (−1/−2 semitones) even if the chart says you “fit” on paper.',
+              'In your karaoke app or DAW, set the new key. Sing only the hardest 8 bars—do not run the full song yet.',
+              'Open Pitch Detector on the peak note of the chorus: hold 3 seconds in the green zone. If not, transpose one more semitone down or swap to an easier song.',
+              'Optional: use Tone Generator on that peak note once, then match on the detector before lyrics.',
+            ],
+          }}
+          misconceptions={[
+            {
+              myth: '“The original key is the ‘correct’ key.”',
+              reality:
+                'Chart keys describe the recording, not your voice. Professional singers transpose routinely; comfort and tessitura matter more than matching the artist.',
+            },
+            {
+              myth: '“If it’s inside my range, I don’t need to transpose.”',
+              reality:
+                'A song can stay within your lowest and highest notes but sit too high for the whole chorus. We optimize for where you sing most often, not one extreme note.',
+            },
+            {
+              myth: '“The browse list covers every song.”',
+              reality:
+                `It is a curated sample of ${SAMPLE_SONG_COUNT} popular covers. Upload audio for anything else—analysis runs locally on your file.`,
+            },
+          ]}
+          blogLink={{
             to: '/blog/vocal-range-chart',
-            label: 'Vocal Range Chart — see where your voice sits before you transpose',
+            label: 'Vocal Range Chart (hub)',
+          }}
+          tutorialLink={{
+            to: '/tutorials/song-in-the-right-key',
+            label: 'Choose & Practice a Song in Your Key',
           }}
         />
 
@@ -1241,12 +1294,12 @@ const SongKeyFinderPage = () => {
               <p className="text-sm text-indigo-100">Keep steady tempo while practicing songs in a new key</p>
             </Link>
             <Link
-              to="/blog/songs-for-your-voice-type"
+              to="/blog/how-to-find-your-voice-type"
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
             >
               <div className="text-2xl mb-2">📝</div>
-              <h3 className="font-bold mb-1">Song Selection Guide</h3>
-              <p className="text-sm text-indigo-100">Learn how to choose songs that fit your voice</p>
+              <h3 className="font-bold mb-1">Voice Type Guide</h3>
+              <p className="text-sm text-indigo-100">Find your voice type and choose songs that fit</p>
             </Link>
           </div>
         </section>

@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
 import PracticePathSection from '../components/PracticePathSection';
+import ToolPageDeepDive from '../components/ToolPageDeepDive';
 
 // Musical note frequencies (A4 = 440 Hz)
 const NOTE_FREQUENCIES = {
@@ -522,8 +523,59 @@ const ToneGeneratorPage = () => {
               },
             ]}
             blogLink={{
-              to: '/blog/ear-training-for-singers',
-              label: 'Ear Training for Singers — match pitch by ear',
+              to: '/blog/improve-singing-pitch',
+              label: 'Improve Singing Pitch — daily detector routines',
+            }}
+          />
+
+          <ToolPageDeepDive
+            accent="blue"
+            heading="Pitch reference tuned for vocal practice, not lab audio"
+            howWeTest={{
+              intro:
+                'We validate this generator against concert A4 (440 Hz) on multiple devices and compare sung matches on our Pitch Detector. The goal is a stable reference singers can hear clearly at low volume—not the loudest possible tone.',
+              bullets: [
+                'Frequency readout: Web Audio oscillator targets the selected Hz; we spot-check A4, C4, and G4 against an external tuner and expect agreement within about ±0.1 Hz at comfortable volumes.',
+                'Waveform choice: sine wave only for vocal matching tests—square/sawtooth add harmonics that confuse the ear and can pull the Pitch Detector toward overtones.',
+                'Volume safety: default 50% with earbuds; we flag any session where users need >70% volume to hear the tone over room noise (fix the room, not the slider).',
+                'Note presets: each labeled note (C4–A5) is checked against our internal frequency table so preset buttons match the Hz field after selection.',
+              ],
+            }}
+            practiceCase={{
+              title: '15-minute pitch calibration loop (Tone → sing → detector)',
+              duration: '15 min · sine wave · 30–40% volume',
+              steps: [
+                'From your Vocal Range Test, pick a middle note (e.g. G3, C4, or G4). Select it here, sine waveform, volume ~35%.',
+                'Play 3 seconds → stop → sing “Ah” on that pitch for 4 seconds without scooping. Repeat once.',
+                'Open Pitch Detector: sing the same note and hold until cents stay within about ±10 for 3 seconds.',
+                'Move up a major third (e.g. C4 → E4): play reference, sing, check on detector. One replay of the tone allowed if you miss.',
+                'Finish on your starting note. Log whether you tended flat or sharp today—that bias is what you correct tomorrow.',
+              ],
+            }}
+            misconceptions={[
+              {
+                myth: '“The tone generator tells me if I’m in tune.”',
+                reality:
+                  'It only plays the target pitch. You still need your ear or the Pitch Detector for feedback—this tool is the reference, not the judge.',
+              },
+              {
+                myth: '“Louder reference = easier to match.”',
+                reality:
+                  'High volume masks pitch errors and fatigues your ear. We practice at 30–40% with headphones; increase room quietness before volume.',
+              },
+              {
+                myth: '“Any waveform works for vocals.”',
+                reality:
+                  'Use sine for pitch work. Square or sawtooth are useful to hear timbre differences, but they are poor references for matching vocal pitch cleanly.',
+              },
+            ]}
+            blogLink={{
+              to: '/blog/improve-singing-pitch',
+              label: 'Improve Singing Pitch (hub)',
+            }}
+            tutorialLink={{
+              to: '/tutorials/pitch-calibration-10',
+              label: '10-Minute Pitch Calibration',
             }}
           />
 

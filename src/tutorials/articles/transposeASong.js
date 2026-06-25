@@ -77,7 +77,7 @@ const selfCheck = [
 ];
 
 const goDeeper = [
-  { to: '/blog/songs-for-your-voice-type', label: 'Best Songs for Your Voice Type' },
+  { to: '/blog/how-to-find-your-voice-type', label: 'How to Find Your Voice Type' },
   { to: '/blog/tessitura-and-comfortable-range', label: 'Tessitura and Comfortable Range' },
 ];
 

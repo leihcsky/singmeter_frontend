@@ -32,10 +32,10 @@ export const videoPicks = [
     whyRecommend:
       'NYVC videos are among the most cited free resources for “why diaphragmatic breath matters.” We link them after you have done hands-on drills, not before.',
     singmeterPairing:
-      'Start with our Breath & Posture tutorial (exercises only), then watch NYVC for deeper explanation in the blog article.',
+      'Start with our Breath & Posture tutorial (exercises only), then watch NYVC for deeper explanation—or read vocal health basics for daily habits.',
     notIdealFor: 'Quick pre-show warm-up—use the daily warm-up tutorial instead.',
     tutorialLink: '/tutorials/breath-and-posture-basics',
-    blogLink: '/blog/breathing-and-posture-for-singers',
+    blogLink: '/blog/vocal-health-and-maintenance',
   },
   {
     id: 'ken-tamplin-high-notes',

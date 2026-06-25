@@ -24,10 +24,11 @@ const content = `
         ear training is a skill you can develop at any age, even if you cannot read music.
       </p>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        In this guide, we will focus on practical ear training for singers: how to hear a note, imagine it in your mind, and then
-        match it with your voice. You will also learn how to use tools like the
-        <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">SingMeter Pitch Detector</a>
-        to check your accuracy in real time.
+        This guide focuses on <strong>listening skills</strong>&mdash;how to hear notes and intervals. For full pitch exercises and a daily detector routine, see the
+        <a href="/blog/improve-singing-pitch" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">improve singing pitch hub</a>.
+        Use the
+        <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Pitch Detector</a>
+        here to verify what your ear learns.
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 1: Learn to Match a Single Note</h2>
@@ -129,6 +130,21 @@ const content = `
       <p class="text-gray-600 mb-4 leading-relaxed">
         Over a few weeks, you will notice that it becomes easier to tell when you are off pitch and easier to correct yourself in
         real time while you sing.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">SingMeter 10-minute calibration loop</h2>
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        A compact session that ties listening to measurable feedback:
+      </p>
+      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+        <li><strong>2 min:</strong> tone generator plays a note&mdash;listen, then sing back; check cents on the detector.</li>
+        <li><strong>3 min:</strong> practice one interval (e.g. perfect fifth) from a fixed starting note.</li>
+        <li><strong>3 min:</strong> hold a drone on the tone generator and sing a short scale above it.</li>
+        <li><strong>2 min:</strong> sing one phrase from a song on a vowel only; mark any note that drifts sharp or flat.</li>
+      </ol>
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        Repeat three to four times per week. For a guided version, try the
+        <a href="/tutorials/ear-training-starter" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training Starter tutorial</a>.
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">You Can Train Your Ear Like a Musician</h2>

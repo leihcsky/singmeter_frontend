@@ -29,7 +29,6 @@ const blogTopics = [
       'vocal-range-chart',
       'can-vocal-range-change',
       'tessitura-and-comfortable-range',
-      'songs-for-your-voice-type',
     ],
   },
   {
@@ -46,10 +45,7 @@ const blogTopics = [
     id: 'foundation-and-health',
     title: 'Foundation & Vocal Health',
     description: 'Breath, posture, and daily habits that keep your voice healthy for long-term singing.',
-    articleIds: [
-      'breathing-and-posture-for-singers',
-      'vocal-health-and-maintenance',
-    ],
+    articleIds: ['vocal-health-and-maintenance'],
   },
 ];
 

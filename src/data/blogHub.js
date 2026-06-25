@@ -11,7 +11,6 @@ export const VOCAL_RANGE_SPOKE_SLUGS = [
   'how-to-find-your-voice-type',
   'can-vocal-range-change',
   'tessitura-and-comfortable-range',
-  'songs-for-your-voice-type',
 ];
 
 export const PITCH_HUB_SLUG = 'improve-singing-pitch';

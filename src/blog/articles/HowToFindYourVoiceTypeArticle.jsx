@@ -123,6 +123,19 @@ const content = `
     <strong>choir placement, song choice, and basic training</strong>.
   </p>
 
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Worked example: placing a real range</h2>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Suppose your range test returns <strong>G2&ndash;E4</strong> and most of your favorite songs sit around C3&ndash;D4.
+    Your comfortable zone overlaps Baritone and Tenor on the
+    <a href="/blog/vocal-range-chart" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range chart</a>.
+    If your tone is darker and heavier, Baritone is a sensible starting label; if it is lighter and sits higher in phrases, lean Tenor.
+    You do not need a perfect fit&mdash;overlap is normal.
+  </p>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    For tessitura detail (why comfort beats peak notes), see
+    <a href="/blog/tessitura-and-comfortable-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tessitura and comfortable range</a>.
+  </p>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Common Mistakes When Finding Your Voice Type</h2>
   <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Only looking at extreme notes:</strong> your highest note is less important than your tessitura.</li>

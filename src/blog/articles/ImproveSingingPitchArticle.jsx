@@ -161,31 +161,15 @@ const content = `
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Problem 1: Consistently Singing Flat</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        <strong>Causes:</strong> Lack of breath support, fatigue, or poor posture
+	        If you mostly drift below the note, read our dedicated guide
+	        <a href="/blog/why-you-sing-flat" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Why You Sing Flat</a>
+	        for causes and targeted fixes. On this hub, log your daily flat bias on the pitch detector and prioritize breath support before adding volume.
 	      </p>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        <strong>Solutions:</strong>
-	      </p>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li>Improve breath support with diaphragmatic breathing exercises</li>
-	        <li>Stand up straight with shoulders back</li>
-	        <li>Imagine the pitch coming from above rather than below</li>
-	        <li>Practice with the pitch detector to develop muscle memory for correct pitch</li>
-	      </ul>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Problem 2: Consistently Singing Sharp</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        <strong>Causes:</strong> Tension, over-singing, or pushing too hard
+	        Sharp habits usually come from tension or pushing too hard. Sing at moderate volume, relax jaw and tongue, and use the detector to find a supported but easy tone. If sharpness spikes on high notes, ease off and check register transitions before forcing louder.
 	      </p>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        <strong>Solutions:</strong>
-	      </p>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li>Relax your jaw, tongue, and throat</li>
-	        <li>Reduce volume and focus on pitch accuracy first</li>
-	        <li>Practice singing with less effort and more breath control</li>
-	        <li>Use the pitch detector to find the "sweet spot" of relaxed, accurate singing</li>
-	      </ul>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Problem 3: Pitch Instability (Wavering)</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
@@ -203,95 +187,24 @@ const content = `
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Problem 4: Difficulty Hearing Pitch</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        <strong>Causes:</strong> Underdeveloped ear training or hearing yourself incorrectly
-	      </p>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        <strong>Solutions:</strong>
-	      </p>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li>Use the pitch detector regularly to train your ear</li>
-	        <li>Record yourself and listen back</li>
-	        <li>Practice pitch matching exercises daily</li>
-	        <li>Consider using one ear monitor or covering one ear to hear yourself better</li>
-	      </ul>
-
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Advanced Tips for Maximum Improvement</h2>
-
-	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">1. Practice Daily (Even 5 Minutes Helps)</h3>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Consistency is key. Even 5-10 minutes of daily practice with a pitch detector will yield better results than
-	        occasional long sessions. Your muscle memory and ear training develop through regular repetition.
+	        If you struggle to hear whether you are on pitch, work through
+	        <a href="/blog/ear-training-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training for Singers</a>
+	        for listening drills. Use the pitch detector here to confirm what your ear learns.
 	      </p>
 
-	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">2. Start Slow, Then Increase Speed</h3>
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Daily Practice Without a Piano</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        When practicing scales or songs, start at a very slow tempo where you can hit every note accurately. Gradually
-	        increase speed only when you can maintain accuracy. Speed without accuracy reinforces bad habits.
-	      </p>
-
-	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">3. Focus on Problem Areas</h3>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Use the pitch detector to identify your weak spots. Do you go flat on low notes? Sharp on high notes? Struggle
-	        with certain intervals? Spend extra time on these specific challenges.
-	      </p>
-
-	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">4. Combine with Other Tools</h3>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Use the pitch detector alongside other vocal training tools. For example, first
-	        <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">test your vocal range</a>
-	        to understand your comfortable singing range, then use the
+	        Use the
 	        <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
-	        to practice accuracy within that range. Use the
+	        as feedback and the
 	        <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a>
-	        to create precise reference pitches for ear training, and practice with the
-	        <a href="/metronome" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">metronome</a>
-	        to develop steady timing while singing scales and exercises.
-	      </p>
-
-	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">5. Record Your Progress</h3>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Keep a practice journal noting which notes or exercises you struggle with. Take screenshots of your pitch detector
-	        results to track improvement over weeks and months. Seeing measurable progress is incredibly motivating.
-	      </p>
-
-	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">6. Don't Obsess Over Perfection</h3>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        While the pitch detector is a valuable tool, remember that music is about expression, not just technical perfection.
-	        Use it as a training aid, but don't let it make you overly self-conscious during performances. The goal is to
-	        develop your ear and muscle memory so you can sing accurately without constantly monitoring yourself.
-	      </p>
-
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Practice in Tune Without a Piano</h2>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        You do not need a piano or karaoke track to train pitch. Use the
-	        <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
-	        as your feedback screen, and the
-	        <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a>
-	        for reference notes. Listen once, sing back, and adjust until cents stay near zero.
-	      </p>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Try our step-by-step
-	        <a href="/tutorials/pitch-calibration-10" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">10-minute pitch calibration tutorial</a>
-	        if you want a timed routine without any instrument.
-	      </p>
-
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Using a Pitch Detector Every Day</h2>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Treat the detector like a mirror: warm up with light humming while watching cents, then practice single notes,
-	        short scales, and one problem phrase from a song. Log whether you tend flat or sharp each day&mdash;that bias is
-	        what you correct first.
+	        for reference notes. Warm up with light humming while watching cents, then single notes, short scales, and one problem phrase. Log whether you tend flat or sharp each day&mdash;that bias is what you correct first. For a timed routine, try the
+	        <a href="/tutorials/pitch-calibration-10" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">10-minute pitch calibration tutorial</a>.
 	      </p>
 	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li><strong>Note name:</strong> the closest pitch (e.g. A4, C4).</li>
 	        <li><strong>Cents:</strong> how far you are from center; aim for about &plusmn;10 cents in daily practice.</li>
 	        <li><strong>Green zone:</strong> on SingMeter, hold steady in the green before moving to harder intervals.</li>
-	      </ul>
-
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">More in This Pitch Series</h2>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li><a href="/blog/why-you-sing-flat" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Why You Sing Flat (and How to Fix It)</a></li>
-	        <li><a href="/blog/ear-training-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training for Singers</a></li>
-	        <li><a href="/tutorials/ear-training-starter" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training Starter tutorial</a></li>
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Creating a Practice Routine</h2>
@@ -306,22 +219,10 @@ const content = `
 	        <li><strong>Song Application (2 minutes):</strong> Apply what you've learned to a short song phrase</li>
 	      </ol>
 
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Conclusion: Your Journey to Singing in Tune</h2>
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Conclusion</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Improving your singing pitch is a journey that requires patience, consistent practice, and the right techniques.
-	        By incorporating these exercises into your daily routine and focusing on the fundamentals—breath support, relaxation,
-	        and ear training—you'll develop the muscle memory and pitch awareness needed to sing in tune consistently.
-	      </p>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Remember: every professional singer you admire has spent countless hours training their pitch accuracy. The good
-	        news is that with modern practice tools and the techniques outlined in this guide, you can achieve professional-level
-	        pitch accuracy faster than ever before. Start with just 15 minutes a day, and you'll be amazed at your progress
-	        within a few weeks.
-	      </p>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        The key is consistency. Make pitch training a regular part of your vocal practice, celebrate small improvements,
-	        and don't get discouraged by temporary setbacks. Your voice is a muscle, and like any muscle, it gets stronger
-	        and more accurate with proper training.
+	        Pitch accuracy improves with short, consistent sessions: breath support, relaxed technique, and detector feedback.
+	        Start with 15 minutes a day using the routine above, and track cents over weeks rather than chasing perfection in one sitting.
 	      </p>
 
 	      <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">

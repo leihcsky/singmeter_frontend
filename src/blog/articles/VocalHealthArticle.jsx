@@ -1,14 +1,17 @@
 const meta = {
   id: 'vocal-health-and-maintenance',
   slug: 'vocal-health-and-maintenance',
-  title: 'Vocal Health 101: How to Keep Your Voice Healthy for Life',
+  title: 'Vocal Health Basics: How to Keep Your Voice Healthy for Life',
+  seoTitle: 'Vocal Health Basics for Singers',
+  seoDescription:
+    'Protect your voice with hydration, warm-ups, safe home practice limits, and recovery when hoarse. Practical singer health guide—not medical advice.',
   category: 'Guides',
-  readTime: '8 min read',
+  readTime: '9 min read',
   date: '2025-12-25',
   updatedDate: '2026-06-01',
   author: 'Elena V.',
   excerpt:
-    'Protect your most valuable instrument. Learn the essential dos and don\'ts of vocal health, hydration tips, warning signs of damage, and how to recover from vocal fatigue.',
+    'Protect your most valuable instrument. Learn hydration, warning signs, safe practice limits at home, and how to recover from vocal fatigue.',
   seoKeywords:
     'vocal health tips, singer hydration, vocal rest, nodules prevention, singer diet, voice care, vocal fatigue recovery',
 };
@@ -16,8 +19,7 @@ const meta = {
 const content = `
       <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Why Vocal Health Matters</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Imagine a guitarist smashing their guitar after every show. It sounds ridiculous, right? Yet many singers abuse their instrument&mdash;their vocal cords&mdash;daily without realizing it.
-        Unlike guitar strings, you cannot simply replace your vocal cords.
+        Unlike guitar strings, you cannot replace your vocal cords.
         <strong>Vocal health</strong> is the practice of maintaining your voice to prevent injury, nodules, and chronic hoarseness.
       </p>
       <p class="text-gray-600 mb-4 leading-relaxed text-sm">
@@ -26,16 +28,15 @@ const content = `
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Golden Rule: Hydration</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Your vocal cords are coated in a mucous membrane that needs to stay moist to vibrate efficiently.
-        When you are dehydrated, this mucus becomes thick and sticky, causing friction and irritation.
+        Your vocal cords need a moist mucous layer to vibrate efficiently. Dehydration makes that layer thick and sticky, increasing friction.
       </p>
       <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
         <h4 class="font-bold text-blue-900 mb-2">Hydration Tips:</h4>
         <ul class="list-disc list-inside text-blue-800 space-y-1">
           <li><strong>Drink Water:</strong> Aim for 8-10 glasses a day. Room temperature is best.</li>
-          <li><strong>Timing Matters:</strong> Water takes about 2 hours to reach your vocal cords. Drinking <em>during</em> a show helps a little, but drinking <em>before</em> helps a lot.</li>
-          <li><strong>Avoid Drying Agents:</strong> Caffeine and alcohol are diuretics (they dehydrate you). Balance them with extra water.</li>
-          <li><strong>Steaming:</strong> Inhaling steam directly hydrates the vocal tract. Use a personal steamer or a bowl of hot water with a towel over your head.</li>
+          <li><strong>Timing Matters:</strong> Water takes about 2 hours to reach your vocal cords. Drinking <em>before</em> practice helps more than sipping only during.</li>
+          <li><strong>Avoid Drying Agents:</strong> Caffeine and alcohol dehydrate. Balance them with extra water.</li>
+          <li><strong>Steaming:</strong> Inhaling steam hydrates the vocal tract directly.</li>
         </ul>
       </div>
 
@@ -55,51 +56,55 @@ const content = `
         <div class="bg-red-50 p-6 rounded-lg border border-red-200">
           <h3 class="text-xl font-bold text-red-900 mb-3">DON'T:</h3>
           <ul class="list-disc list-inside space-y-2 text-red-800">
-            <li><strong>Clear your throat.</strong> It slams your vocal cords together violently. Swallow or sip water instead.</li>
-            <li><strong>Whisper.</strong> Whispering forces the vocal cords tight and can cause more strain than speaking softly.</li>
-            <li><strong>Shout or scream</strong> in loud environments (concerts, bars).</li>
+            <li><strong>Clear your throat.</strong> Swallow or sip water instead.</li>
+            <li><strong>Whisper.</strong> It can strain cords more than soft speech.</li>
+            <li><strong>Shout or scream</strong> in loud environments.</li>
             <li><strong>Sing through pain.</strong> Pain is a stop sign.</li>
           </ul>
         </div>
       </div>
 
-      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Warning Signs: When to Stop</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Safe limits for home practice</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Your body will tell you when something is wrong. Watch out for these red flags:
+        At home with SingMeter tools, treat strain prevention as part of technique&mdash;not an afterthought:
       </p>
       <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-        <li><strong>Hoarseness:</strong> A raspy or breathy tone that lasts more than 2 weeks requires a doctor (ENT) visit.</li>
-        <li><strong>Loss of High Notes:</strong> Often the first sign of swelling (edema).</li>
-        <li><strong>Tickling or Pain:</strong> If it hurts to sing or swallow, stop immediately.</li>
-        <li><strong>Vocal Fatigue:</strong> If your voice gets tired after only 10 minutes of singing, your technique may be forcing.</li>
+        <li><strong>Cap peak-note drills</strong> at 5&ndash;10 minutes after warm-up; stop when the top note feels effortful.</li>
+        <li><strong>Retest range when tired</strong> with the <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Vocal Range Test</a>&mdash;a sudden drop often means rest, not push harder.</li>
+        <li><strong>Use the pitch detector</strong> at moderate volume; chasing green cents while shouting trains bad habits.</li>
+        <li><strong>Follow a structured warm-up</strong> such as the <a href="/tutorials/daily-warmup-15" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">15-minute daily warm-up tutorial</a> before high or belt work.</li>
       </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Warning Signs: When to Stop</h2>
+      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+        <li><strong>Hoarseness</strong> lasting more than 2 weeks&mdash;see an ENT.</li>
+        <li><strong>Loss of high notes</strong>&mdash;often early swelling.</li>
+        <li><strong>Tickling or pain</strong> when singing or swallowing.</li>
+        <li><strong>Early fatigue</strong>&mdash;voice tired after only 10 minutes may mean forcing.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Recovery when you are hoarse</h2>
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        A light hoarse day is not a &quot;push through&quot; day. Switch to silent rest or gentle humming only, hydrate, steam if helpful,
+        and postpone peak-range work. When you return, start with the
+        <a href="/tutorials/vocal-health-recovery-day" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal health recovery tutorial</a>
+        before full songs. For warm-up habits that reduce daily strain, see the
+        <a href="/tutorials/daily-warmup-15" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">15-minute daily warm-up tutorial</a>.
+      </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Foods and Reflux (GERD)</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Acid reflux (heartburn) is a singer's enemy. Stomach acid can rise up while you sleep and burn your vocal cords.
-      </p>
-      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">How to Manage Reflux:</h3>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-        <li>Avoid eating late at night (2-3 hours before bed).</li>
-        <li>Limit spicy, acidic, or fried foods.</li>
-        <li>Elevate the head of your bed slightly.</li>
-      </ul>
-
-      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The "Vocal Nap"</h2>
-      <p class="text-gray-600 mb-4 leading-relaxed">
-        Just as athletes take rest days, singers need vocal rest. A "vocal nap" is a period of absolute silence&mdash;no talking, no humming, no whispering.
-        Try taking a 20-minute vocal nap before a show or after a long rehearsal. It works wonders for resetting your voice.
+        Acid reflux can burn vocal cords overnight. Avoid late heavy meals, limit spicy or acidic food before bed, and elevate your head slightly if reflux is an issue.
       </p>
 
-      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Conclusion</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Vocal Nap</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Vocal health isn't just about avoiding damage; it's about longevity. If you want to be singing happily in 10, 20, or 30 years, start taking care of your instrument today.
-        Stay hydrated, warm up properly, and listen to your body!
+        A vocal nap is 20+ minutes of true silence&mdash;no talking, humming, or whispering. Use one before a demanding session or after a long rehearsal.
       </p>
 
       <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
         <p class="text-indigo-900 leading-relaxed mb-4">
-          <strong>Practice Safely!</strong> Use our tools to ensure you are singing within your comfortable range and staying on pitch without straining.
+          <strong>Practice safely.</strong> Stay inside your comfortable range and use tools for feedback, not ego peaks.
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">

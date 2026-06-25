@@ -10,6 +10,7 @@ import BlogAuthorNote from '../components/BlogAuthorNote';
 import BlogHubCallout from '../components/BlogHubCallout';
 import BlogPracticeTutorial from '../components/BlogPracticeTutorial';
 import { BLOG_REDIRECTS } from '../data/blogHub';
+import { isNoIndexBlogSlug } from '../seo/indexingPolicy';
 
 /** Shorter brand suffix; total browser title length capped in buildMetaTitle */
 const TITLE_BRAND = ' | SingMeter';
@@ -70,9 +71,9 @@ const BlogArticlePage = () => {
 		return <Navigate to="/blog" replace />;
 	}
 
-	// Get related articles (other articles in same category or just other articles)
+	// Related articles — exclude noindex / deprioritized posts
 	const relatedArticles = blogIndex
-		.filter(a => a.id !== article.id)
+		.filter((a) => a.id !== article.id && !isNoIndexBlogSlug(a.slug))
 		.slice(0, 2);
 
 	// Dates and author information

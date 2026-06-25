@@ -65,7 +65,7 @@ const selfCheck = [
 ];
 
 const goDeeper = [
-  { to: '/blog/breathing-and-posture-for-singers', label: 'Breathing and Posture for Singers (full guide)' },
+  { to: '/blog/vocal-health-and-maintenance', label: 'Vocal health basics' },
   { to: '/blog/vocal-health-and-maintenance', label: 'Vocal Health and Maintenance' },
 ];
 

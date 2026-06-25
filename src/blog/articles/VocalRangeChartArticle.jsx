@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import VocalRangeChartVisual, { VOICE_TYPES } from '../../components/VocalRangeChartVisual';
+import VocalRangeChartVisual from '../../components/VocalRangeChartVisual';
 
 const meta = {
   id: 'vocal-range-chart',
@@ -9,46 +9,17 @@ const meta = {
   seoDescription:
     'Visual vocal range chart for bass, baritone, tenor, alto, mezzo, soprano and SATB. Learn how to read the bars, compare your voice, and test your range free.',
   category: 'Vocal Range',
-  readTime: '10 min read',
+  readTime: '9 min read',
   date: '2025-12-02',
   updatedDate: '2026-06-01',
   author: 'Max Ray',
   excerpt:
-    'Color-coded vocal range chart from E2 to C6 for male and female voice types plus SATB. See how to read the chart, use the reference table, and match your own range.',
+    'Color-coded vocal range chart from E2 to C6 for male and female voice types plus SATB. See how to read the chart and match your own range from the vocal range test.',
   seoKeywords:
     'vocal range chart, vocal range chart male female, SATB vocal range, soprano range, alto range, tenor range, baritone range, bass range, mezzo soprano range',
 };
 
 const linkClass = 'text-indigo-600 hover:text-indigo-700 font-semibold underline';
-
-function ReferenceTable() {
-  return (
-    <div className="overflow-x-auto my-6 rounded-xl border border-gray-200 not-prose">
-      <table className="min-w-full text-sm text-left">
-        <thead className="bg-indigo-50 text-gray-900">
-          <tr>
-            <th className="px-4 py-3 font-semibold text-left">Voice type</th>
-            <th className="px-4 py-3 font-semibold text-left">Approximate range</th>
-            <th className="px-4 py-3 font-semibold text-left hidden sm:table-cell">Group</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-100 text-gray-600">
-          {VOICE_TYPES.map((v) => (
-            <tr key={v.label} className="bg-white even:bg-gray-50/80">
-              <td className="px-4 py-3 font-medium text-gray-900 text-left">{v.label}</td>
-              <td className="px-4 py-3 whitespace-nowrap text-left">
-                {v.low}
-                {' \u2013 '}
-                {v.high}
-              </td>
-              <td className="px-4 py-3 hidden sm:table-cell text-gray-500 text-left">{v.group}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
 
 function Callout({ children }) {
   return (
@@ -71,132 +42,51 @@ const VocalRangeChartArticle = () => {
   return (
     <div className="blog-post-body text-left">
       <p>
-        A <strong>vocal range chart</strong> is one of the first references most singers look up, and one of the
-        easiest to misread. Many people match their highest note to a voice type and assume the question is
-        settled, then wonder why songs still feel uncomfortable.
+        A <strong>vocal range chart</strong> maps typical low and high notes for each voice type on the same
+        pitch axis. It is a starting map—not a label you must fit into, and not a substitute for how your voice
+        feels when you sing real songs.
       </p>
-      <p>
-        This guide centers on a <strong>visual vocal range chart</strong> you can use right away: typical ranges
-        for male and female voice types, plus a SATB choir reference. You will also learn what the chart
-        measures, what it leaves out, and how to pair it with your own{' '}
-        <Link to="/vocal-range-test" className={linkClass}>
-          vocal range test
-        </Link>{' '}
-        results on SingMeter.
-      </p>
-
-      <Callout>
-        <p className="text-indigo-900 text-sm sm:text-base mb-0">
-          <strong>At a glance:</strong> Soprano (C4{' \u2013 '}C6), Alto (F3{' \u2013 '}F5), Tenor (C3{' \u2013 '}C5), Bass (E2{' \u2013 '}E4), with
-          Mezzo-Soprano and Baritone in the middle. Charts describe <em>typical</em> ranges; your comfortable
-          tessitura matters more than a single peak note.
-        </p>
-      </Callout>
-
-      <h2>Vocal range chart (interactive reference)</h2>
-      <p>
-        Use the chart below to see how voice types overlap on the same pitch axis from <strong>E2</strong> (low)
-        to <strong>C6</strong> (high). Colored bars show approximate ranges for trained singers, not rigid boxes
-        for every voice.
-      </p>
-
-      <VocalRangeChartVisual />
-
-      <h3>Quick reference table</h3>
-      <p className="mb-2">
-        The table matches the chart above. Ranges overlap by design; overlap does not mean two voices are the
-        same; it reflects natural variation.
-      </p>
-      <ReferenceTable />
 
       <h2>What is a vocal range chart?</h2>
       <p>
-        A <strong>vocal range chart</strong> is a visual map of the typical lowest and highest notes associated
-        with each voice type, written in pitch names (for example C4, A3, F5). It gives you orientation, not a
-        diagnosis.
+        Each colored bar shows an <strong>approximate comfortable span</strong> for a voice type (for example
+        Tenor C3–C5), written in pitch names from E2 (low) to C6 (high). Charts help with choir placement,
+        repertoire browsing, and comparing your own test results to common references.
       </p>
-      <p>A standard chart usually shows:</p>
+      <p>A useful chart shows:</p>
       <ul>
-        <li>Common voice types (Soprano, Alto, Tenor, Bass, and others)</li>
-        <li>Approximate low and high notes for each type</li>
-        <li>Overlap between categories on the keyboard</li>
-        <li>Sometimes choir labels (SATB) for ensemble placement</li>
+        <li>Voice types from Bass through Soprano (and SATB choir parts)</li>
+        <li>Low and high note names for each type</li>
+        <li>Overlap between categories—because real voices do not sit in non-overlapping boxes</li>
       </ul>
-      <p>
-        Charts were built for choirs, teachers, and repertoire planning. They still help in pop, rock, and
-        musical theater when you treat them as <strong>flexible guides</strong>, not permanent labels.
-      </p>
 
-      <h2>What a vocal range chart does not show</h2>
+      <Callout>
+        <p className="text-indigo-900 text-sm sm:text-base mb-0">
+          <strong>At a glance:</strong> Soprano (C4{' \u2013 '}C6), Alto (F3{' \u2013 '}F5), Tenor (C3{' \u2013 '}C5),
+          Bass (E2{' \u2013 '}E4), with Mezzo-Soprano and Baritone between. Your{' '}
+          <strong>tessitura</strong>—where you sing most easily—matters more than one peak note.
+        </p>
+      </Callout>
+
+      <h2>What a chart does not show</h2>
       <p>
-        This is where most confusion starts. A chart does <strong>not</strong> show:
-      </p>
-      <ul>
-        <li>How comfortable a note feels day to day</li>
-        <li>How long you can sustain notes in a phrase</li>
-        <li>Tone color, weight, or brightness</li>
-        <li>Fatigue, recovery, or vocal health limits</li>
-        <li>Whether an extreme note is useful in real songs</li>
-      </ul>
-      <p>
-        Charts show <strong>range</strong>, not <strong>tessitura</strong>?the zone where your voice sounds and
-        feels best. Learn more in our guide to{' '}
+        Charts list <strong>range</strong>, not <strong>tessitura</strong>, tone color, fatigue, or vocal health.
+        Two singers with the same numbers can need different songs. For comfort zone vs. extremes, see{' '}
         <Link to="/blog/tessitura-and-comfortable-range" className={linkClass}>
           tessitura and comfortable range
         </Link>
         .
       </p>
 
-      <h2>Range vs. tessitura on the chart</h2>
+      <h2>Interactive vocal range chart</h2>
       <p>
-        Two singers can share the same numbers on a vocal range chart and still need different songs. One may
-        live comfortably in the lower half of that span; another in the upper half. Classification should follow
-        where you sing <strong>most of the time</strong>, not the one note you touched once.
-      </p>
-      <p>
-        When choosing repertoire, prioritize tessitura over extremes. See{' '}
-        <Link to="/blog/songs-for-your-voice-type" className={linkClass}>
-          songs for your voice type
-        </Link>{' '}
-        for matching melodies to your comfort zone.
+        Read the axis left (low) to right (high). Each bar lists its note span in the center. Overlap is
+        intentional—use it to see where your test results sit, not to force a single category.
       </p>
 
-      <h2>Why vocal ranges overlap (and why that is healthy)</h2>
-      <p>
-        Look at the chart again: bars cross each other on purpose. Human anatomy varies, training expands usable
-        range, and voice type is a <strong>functional</strong> label, not a fixed slot. The goal is to respect
-        comfort, not to force your voice into the tightest box on the page.
-      </p>
+      <VocalRangeChartVisual />
 
-      <h2>Five things every singer should know</h2>
-      <ol>
-        <li>
-          <strong>Your highest note does not define your voice.</strong> Comfort, endurance, and consistency
-          across a song matter more than a single peak.
-        </li>
-        <li>
-          <strong>Overlapping ranges are normal.</strong> Use the chart to see where types share notes, then
-          listen for where <em>you</em> sound strongest.
-        </li>
-        <li>
-          <strong>Charts do not measure fatigue.</strong> If high notes collapse after a few songs, the chart
-          cannot explain why?your body can.
-        </li>
-        <li>
-          <strong>Charts are starting points.</strong> Voices change with training, health, and age. Revisit after
-          you{' '}
-          <Link to="/blog/can-vocal-range-change" className={linkClass}>
-            work on range over time
-          </Link>
-          .
-        </li>
-        <li>
-          <strong>Song choice beats labels.</strong> Picking music in your tessitura often improves pitch and
-          confidence faster than chasing a new category name.
-        </li>
-      </ol>
-
-      <h2>How to use this vocal range chart (step by step)</h2>
+      <h2>How to use this chart with your own voice</h2>
       <ol>
         <li>
           Run the{' '}
@@ -206,69 +96,57 @@ const VocalRangeChartArticle = () => {
           and note your lowest and highest <strong>comfortable</strong> notes.
         </li>
         <li>Find those notes on the chart and see which bars they overlap.</li>
-        <li>Identify where most practice songs feel easiest?that is likely your tessitura, not the edges.</li>
+        <li>Notice where most of your practice songs feel easiest—that is likely your tessitura.</li>
         <li>
-          Use the{' '}
+          Optional: hear any note on the{' '}
           <Link to="/tone-generator" className={linkClass}>
             Tone Generator
           </Link>{' '}
-          to hear any note on the chart and check pitch with the{' '}
+          and check pitch with the{' '}
           <Link to="/pitch-detector" className={linkClass}>
             Pitch Detector
           </Link>
           .
         </li>
         <li>
-          Read{' '}
+          For range <em>and</em> voice type together, continue with{' '}
           <Link to="/blog/how-to-find-your-voice-type" className={linkClass}>
             how to find your voice type
-          </Link>{' '}
-          for range plus tone and tessitura together.
+          </Link>
+          .
         </li>
       </ol>
 
       <h2>Common mistakes when reading a chart</h2>
       <ul>
         <li>Using only the highest note as your voice type</li>
-        <li>Ignoring fatigue and recovery after practice</li>
-        <li>Forcing your voice to &quot;fit&quot; a bar on the chart</li>
-        <li>Comparing your range to professional studio recordings</li>
-        <li>Treating ranges as fixed rules instead of references</li>
+        <li>Forcing your voice to fit the tightest box on the page</li>
+        <li>Comparing your range to studio recordings or celebrity extremes</li>
+        <li>Ignoring fatigue—chart extremes are not where you should live in rehearsal</li>
+        <li>Treating ranges as fixed (they can shift with training and health)</li>
       </ul>
 
-      <h2>SATB and choir placement</h2>
+      <h2>SATB choir reference</h2>
       <p>
-        In four-part choir music, parts are labeled <strong>Soprano (S)</strong>, <strong>Alto (A)</strong>,{' '}
-        <strong>Tenor (T)</strong>, and <strong>Bass (B)</strong>. The SATB block in the chart shows typical
-        section ranges. Directors usually assign parts by tessitura and blend, not by a singer's single highest
-        note.
-      </p>
-
-      <h2>Charts, song selection, and vocal health</h2>
-      <p>
-        When repertoire fits your chart-informed comfort zone, strain often drops and pitch improves. Pair chart
-        reading with habits from our{' '}
-        <Link to="/blog/vocal-health-and-maintenance" className={linkClass}>
-          vocal health guide
-        </Link>
-        , and avoid living at your chart extremes for full sets or long rehearsals.
+        Four-part music uses <strong>Soprano, Alto, Tenor, Bass</strong>. Directors usually assign by tessitura
+        and blend, not by a singer&apos;s single highest note. The SATB block in the chart above shows typical
+        section spans.
       </p>
 
       <h2>Famous singers (approximate ranges)</h2>
       <p>
-        Comparing your range to well-known artists can be motivating if you treat numbers as rough references, not
-        goals to force. Public analyses vary; live performances are not always measured precisely.
+        Public analyses vary; treat these as rough references, not goals to force.
       </p>
       <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2">Male singers (examples)</h3>
       <ul>
         <li>
-          <strong>Freddie Mercury</strong> — roughly F2–F6 (~4 octaves)
+          <strong>Freddie Mercury</strong> — roughly F2–F6
         </li>
         <li>
-          <strong>Johnny Cash</strong> — roughly E2–B4 (low baritone/bass color)
+          <strong>Johnny Cash</strong> — roughly E2–B4
         </li>
         <li>
-          <strong>Bruno Mars</strong> — roughly A2–D6 (modern pop tenor)
+          <strong>Bruno Mars</strong> — roughly A2–D6
         </li>
       </ul>
       <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2">Female singers (examples)</h3>
@@ -277,19 +155,15 @@ const VocalRangeChartArticle = () => {
           <strong>Whitney Houston</strong> — roughly A2–C6
         </li>
         <li>
-          <strong>Ariana Grande</strong> — roughly D3–E7 (very wide, strong whistle register)
+          <strong>Ariana Grande</strong> — roughly D3–E7
         </li>
         <li>
-          <strong>Adele</strong> — roughly C3–F5 (mezzo-soprano area)
+          <strong>Adele</strong> — roughly C3–F5
         </li>
       </ul>
       <p>
-        Ask whether you share a similar <strong>home area</strong> (tenor, baritone, alto, etc.), not whether you
-        match their highest note. Study how they use tessitura and save extremes for emotional peaks — then run the{' '}
-        <Link to="/vocal-range-test" className={linkClass}>
-          Vocal Range Test
-        </Link>{' '}
-        to see where you sit on this chart.
+        Ask whether you share a similar <strong>home area</strong>, not whether you match their highest note.
+        Then overlay your own test on the chart above.
       </p>
 
       <h2>FAQ</h2>
@@ -304,7 +178,7 @@ const VocalRangeChartArticle = () => {
         />
         <FaqItem
           q="Can my range change over time?"
-          a="Yes&mdash;training, health, and age can shift your usable range. Retest periodically with a vocal range test."
+          a="Yes—training, health, and age can shift your usable range. Retest periodically with a vocal range test."
         />
         <FaqItem
           q="Does my highest note define my voice type?"
@@ -319,35 +193,6 @@ const VocalRangeChartArticle = () => {
           a="For everyday singing and long-term comfort, usually yes."
         />
       </div>
-
-      <h2>More in this vocal range series</h2>
-      <ul>
-        <li>
-          <Link to="/blog/how-to-test-vocal-range" className={linkClass}>
-            How to test your vocal range
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog/how-to-find-your-voice-type" className={linkClass}>
-            How to find your voice type (range vs. type explained)
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog/tessitura-and-comfortable-range" className={linkClass}>
-            Tessitura &amp; comfortable range
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog/can-vocal-range-change" className={linkClass}>
-            Can vocal range change?
-          </Link>
-        </li>
-        <li>
-          <Link to="/blog/songs-for-your-voice-type" className={linkClass}>
-            Songs for your voice type
-          </Link>
-        </li>
-      </ul>
 
       <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg text-left not-prose">
         <p className="text-indigo-900 mb-3">

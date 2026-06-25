@@ -69,7 +69,7 @@ const selfCheck = [
 ];
 
 const goDeeper = [
-  { to: '/blog/vocal-health-and-maintenance', label: 'Vocal Health 101 (full article)' },
+  { to: '/blog/vocal-health-and-maintenance', label: 'Vocal health basics (full article)' },
   { to: '/blog/high-notes-warmup-routine', label: 'High Notes Warm-Up (for return days only)' },
 ];
 

@@ -92,14 +92,14 @@ export const glossaryTerms = [
     category: 'Technique',
     definition:
       'Steady airflow from the body (diaphragm and ribs) that powers the voice without squeezing the throat. Strong support stabilizes pitch, volume, and long phrases.',
-    readMore: { slug: 'breathing-and-posture-for-singers', label: 'Breathing & posture for singers' },
+    readMore: { slug: 'vocal-health-and-maintenance', label: 'Vocal health basics' },
   },
   {
     term: 'Diaphragm',
     category: 'Anatomy',
     definition:
       'The dome-shaped muscle under the lungs that moves when you breathe in and out. Singers train coordinated belly/back expansion—not “pushing” the stomach—for controlled exhalation.',
-    readMore: { slug: 'breathing-and-posture-for-singers', label: 'Breathing & posture for singers' },
+    readMore: { slug: 'vocal-health-and-maintenance', label: 'Vocal health basics' },
   },
   {
     term: 'Resonance',
@@ -162,7 +162,7 @@ export const glossaryTerms = [
     category: 'Technique',
     definition:
       'How clearly consonants and vowels are shaped so lyrics stay understandable. Balance clarity with a relaxed jaw and tongue.',
-    readMore: { slug: 'breathing-and-posture-for-singers', label: 'Breathing & posture for singers' },
+    readMore: { slug: 'vocal-health-and-maintenance', label: 'Vocal health basics' },
   },
   {
     term: 'Vowel Modification',
