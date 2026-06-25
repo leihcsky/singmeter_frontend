@@ -32,7 +32,7 @@ const content = `
       </p>
       <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
         <h4 class="font-bold text-blue-900 mb-2">Hydration Tips:</h4>
-        <ul class="list-disc list-inside text-blue-800 space-y-1">
+        <ul class="list-disc list-outside text-blue-800 space-y-1">
           <li><strong>Drink Water:</strong> Aim for 8-10 glasses a day. Room temperature is best.</li>
           <li><strong>Timing Matters:</strong> Water takes about 2 hours to reach your vocal cords. Drinking <em>before</em> practice helps more than sipping only during.</li>
           <li><strong>Avoid Drying Agents:</strong> Caffeine and alcohol dehydrate. Balance them with extra water.</li>
@@ -45,7 +45,7 @@ const content = `
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-green-50 p-6 rounded-lg border border-green-200">
           <h3 class="text-xl font-bold text-green-900 mb-3">DO:</h3>
-          <ul class="list-disc list-inside space-y-2 text-green-800">
+          <ul class="list-disc list-outside space-y-2 text-green-800">
             <li><strong>Warm up</strong> before singing (even for 5-10 mins).</li>
             <li><strong>Cool down</strong> after a long session with gentle humming.</li>
             <li><strong>Rest your voice</strong> (vocal nap) if you have been talking or singing all day.</li>
@@ -55,7 +55,7 @@ const content = `
 
         <div class="bg-red-50 p-6 rounded-lg border border-red-200">
           <h3 class="text-xl font-bold text-red-900 mb-3">DON'T:</h3>
-          <ul class="list-disc list-inside space-y-2 text-red-800">
+          <ul class="list-disc list-outside space-y-2 text-red-800">
             <li><strong>Clear your throat.</strong> Swallow or sip water instead.</li>
             <li><strong>Whisper.</strong> It can strain cords more than soft speech.</li>
             <li><strong>Shout or scream</strong> in loud environments.</li>
@@ -68,7 +68,7 @@ const content = `
       <p class="text-gray-600 mb-4 leading-relaxed">
         At home with SingMeter tools, treat strain prevention as part of technique&mdash;not an afterthought:
       </p>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li><strong>Cap peak-note drills</strong> at 5&ndash;10 minutes after warm-up; stop when the top note feels effortful.</li>
         <li><strong>Retest range when tired</strong> with the <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Vocal Range Test</a>&mdash;a sudden drop often means rest, not push harder.</li>
         <li><strong>Use the pitch detector</strong> at moderate volume; chasing green cents while shouting trains bad habits.</li>
@@ -76,7 +76,7 @@ const content = `
       </ul>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Warning Signs: When to Stop</h2>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li><strong>Hoarseness</strong> lasting more than 2 weeks&mdash;see an ENT.</li>
         <li><strong>Loss of high notes</strong>&mdash;often early swelling.</li>
         <li><strong>Tickling or pain</strong> when singing or swallowing.</li>

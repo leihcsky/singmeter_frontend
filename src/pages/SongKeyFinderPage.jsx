@@ -10,6 +10,7 @@ import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
 import PracticePathSection from '../components/PracticePathSection';
 import ToolPageDeepDive from '../components/ToolPageDeepDive';
+import NumberedSteps from '../components/NumberedSteps';
 import { songKeysDatabase, transposeKey, SAMPLE_SONG_COUNT, SAMPLE_GENRES } from '../data/songKeys';
 
 // FAQ Items
@@ -1041,7 +1042,7 @@ const SongKeyFinderPage = () => {
             </p>
             
             <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Why Knowing the Key Matters</h3>
-            <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+            <ul className="list-disc list-outside pl-6 space-y-2 mb-6 text-left">
               <li><strong>Song Selection:</strong> Choose songs that naturally fit your vocal range</li>
               <li><strong>Transposition:</strong> Change the key to make songs more comfortable for your voice</li>
               <li><strong>Practice:</strong> Understand the musical structure to practice more effectively</li>
@@ -1060,7 +1061,7 @@ const SongKeyFinderPage = () => {
               Musical keys are organized into <strong>major</strong> and <strong>minor</strong> keys. 
               There are 12 major keys and 12 minor keys, each with a unique sound and emotional character:
             </p>
-            <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+            <ul className="list-disc list-outside pl-6 space-y-2 mb-6 text-left">
               <li><strong>Major keys</strong> (C, D, E, F, G, A, B, and their sharps/flats) typically sound bright, happy, or triumphant</li>
               <li><strong>Minor keys</strong> (Am, Dm, Em, etc.) typically sound darker, sadder, or more introspective</li>
               <li>Each major key has a <strong>relative minor</strong> that shares the same notes but starts from a different note</li>
@@ -1070,67 +1071,65 @@ const SongKeyFinderPage = () => {
         </section>
 
         {/* How to Use Section */}
-        <section className="bg-white rounded-2xl shadow-md p-6 sm:p-8 mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">How to Use the Song Key Finder</h2>
-          
-          <div className="space-y-6">
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                <span className="text-purple-700 font-bold">1</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Browse or Upload</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  For any song, upload an audio file at the top of the page. For quick reference, scroll the sample 
-                  list ({SAMPLE_SONG_COUNT} titles)—use genre pills and the filter box to narrow by title or artist. 
-                  Not listed? Upload always works.
-                </p>
-              </div>
-            </div>
+        <section className="bg-white rounded-2xl shadow-md p-6 sm:p-8 mb-8 text-left">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-left">How to Use the Song Key Finder</h2>
 
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                <span className="text-indigo-700 font-bold">2</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">View Key Information</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Click on a song to see detailed information including the original key, vocal range required, 
-                  genre, and artist. This information helps you understand whether the song is a good fit for your voice 
-                  in its original key.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
-                <span className="text-pink-700 font-bold">3</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Get Transposition Suggestions</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Enter your vocal range (e.g., "C3-C5") in the provided field. If you don't know your range, 
-                  you can <Link to="/vocal-range-test" className="text-indigo-600 hover:underline font-semibold">test it here</Link>. 
-                  Our tool will automatically calculate and suggest alternative keys that better match your vocal range, 
-                  showing you exactly how many semitones to transpose up or down.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                <span className="text-green-700 font-bold">4</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Apply the Suggestions</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Use the suggested keys when practicing or performing. Many karaoke apps, backing track services, 
-                  and music software allow you to change keys easily. The tool shows you which suggestions are the 
-                  best match (marked as "Best Match") based on how well they align with your vocal range.
-                </p>
-              </div>
-            </div>
-          </div>
+          <NumberedSteps
+            steps={[
+              {
+                number: 1,
+                badgeClass: 'bg-purple-100 text-purple-700',
+                title: 'Browse or Upload',
+                body: (
+                  <p>
+                    For any song, upload an audio file at the top of the page. For quick reference, scroll the sample
+                    list ({SAMPLE_SONG_COUNT} titles)—use genre pills and the filter box to narrow by title or artist.
+                    Not listed? Upload always works.
+                  </p>
+                ),
+              },
+              {
+                number: 2,
+                badgeClass: 'bg-indigo-100 text-indigo-700',
+                title: 'View Key Information',
+                body: (
+                  <p>
+                    Click on a song to see detailed information including the original key, vocal range required,
+                    genre, and artist. This information helps you understand whether the song is a good fit for your voice
+                    in its original key.
+                  </p>
+                ),
+              },
+              {
+                number: 3,
+                badgeClass: 'bg-pink-100 text-pink-700',
+                title: 'Get Transposition Suggestions',
+                body: (
+                  <p>
+                    Enter your vocal range (e.g., &quot;C3-C5&quot;) in the provided field. If you don&apos;t know your range,
+                    you can{' '}
+                    <Link to="/vocal-range-test" className="text-indigo-600 hover:underline font-semibold">
+                      test it here
+                    </Link>
+                    . Our tool will automatically calculate and suggest alternative keys that better match your vocal range,
+                    showing you exactly how many semitones to transpose up or down.
+                  </p>
+                ),
+              },
+              {
+                number: 4,
+                badgeClass: 'bg-green-100 text-green-700',
+                title: 'Apply the Suggestions',
+                body: (
+                  <p>
+                    Use the suggested keys when practicing or performing. Many karaoke apps, backing track services,
+                    and music software allow you to change keys easily. The tool shows you which suggestions are the
+                    best match (marked as &quot;Best Match&quot;) based on how well they align with your vocal range.
+                  </p>
+                ),
+              },
+            ]}
+          />
         </section>
 
         {/* Transposition Tips Section */}
@@ -1153,7 +1152,7 @@ const SongKeyFinderPage = () => {
 
             <div className="bg-white rounded-xl p-5 border border-indigo-100">
               <h3 className="text-lg font-bold text-gray-900 mb-3">When to Transpose</h3>
-              <ul className="list-disc list-inside text-gray-600 space-y-2 ml-4">
+              <ul className="list-disc list-outside pl-6 space-y-2 text-left">
                 <li><strong>Song is too high:</strong> Transpose down 1-3 semitones to bring it into your range</li>
                 <li><strong>Song is too low:</strong> Transpose up 1-3 semitones to raise it to your comfort zone</li>
                 <li><strong>Song sits at your extremes:</strong> Even if technically in range, transpose to move it to your tessitura</li>
@@ -1164,7 +1163,7 @@ const SongKeyFinderPage = () => {
 
             <div className="bg-white rounded-xl p-5 border border-pink-100">
               <h3 className="text-lg font-bold text-gray-900 mb-3">How to Transpose Songs</h3>
-              <ol className="list-decimal list-inside text-gray-600 space-y-2 ml-4">
+              <ol className="list-decimal list-outside pl-6 space-y-2 text-left">
                 <li>Use our tool to find the original key of the song</li>
                 <li>Enter your vocal range to get personalized suggestions</li>
                 <li>Note the suggested key and semitone difference</li>

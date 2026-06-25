@@ -5,11 +5,11 @@
 
 /** Hub/list pages — noindex exact paths (see applyRouteSeo NOINDEX_EXACT_PATHS). */
 
-/** Blog spokes deprioritized until P1 rewrite (thin / overlapping). */
-export const NOINDEX_BLOG_SLUGS = new Set([
-  'breathing-and-posture-for-singers',
-  'songs-for-your-voice-type',
-]);
+/**
+ * Blog spokes deprioritized (thin / overlapping). Empty now that the two
+ * remaining thin articles were 301-merged into their flagship pages.
+ */
+export const NOINDEX_BLOG_SLUGS = new Set([]);
 
 /** Flagship tutorials kept in sitemap; all other /tutorials/:slug are noindex. */
 export const INDEXED_TUTORIAL_SLUGS = new Set([

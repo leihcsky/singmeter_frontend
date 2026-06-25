@@ -23,10 +23,6 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/song-in-the-right-key',
     title: 'Choose & Practice a Song in Your Key',
   },
-  'songs-for-your-voice-type': {
-    path: '/tutorials/song-in-the-right-key',
-    title: 'Choose & Practice a Song in Your Key',
-  },
   'improve-singing-pitch': {
     path: '/tutorials/pitch-calibration-10',
     title: '10-Minute Pitch Calibration',
@@ -38,10 +34,6 @@ export const blogPracticeTutorialBySlug = {
   'ear-training-for-singers': {
     path: '/tutorials/ear-training-starter',
     title: 'Ear Training Starter',
-  },
-  'breathing-and-posture-for-singers': {
-    path: '/tutorials/breath-and-posture-basics',
-    title: 'Breath & Posture for Singers',
   },
   'vocal-health-and-maintenance': {
     path: '/tutorials/vocal-health-recovery-day',

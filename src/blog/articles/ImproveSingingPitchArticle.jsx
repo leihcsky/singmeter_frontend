@@ -37,7 +37,7 @@ const content = `
 	        When you sing "in tune," your voice matches the intended pitch within a small margin of error (typically ±10 cents,
 	        or 1/10th of a semitone).
 	      </p>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li><strong>Professional Sound:</strong> Singing in tune is the difference between amateur and professional performances</li>
 	        <li><strong>Confidence Boost:</strong> Knowing you can hit the right notes builds performance confidence</li>
 	        <li><strong>Better Recordings:</strong> Accurate pitch makes your recordings sound polished and professional</li>
@@ -55,7 +55,7 @@ const content = `
 	      </p>
 
 	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Before You Start: Preparation Tips</h3>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li><strong>Warm Up:</strong> Always warm up your voice with gentle humming and scales before practicing</li>
 	        <li><strong>Good Posture:</strong> Stand or sit up straight with shoulders back and relaxed</li>
 	        <li><strong>Breath Support:</strong> Use diaphragmatic breathing for better pitch control</li>
@@ -75,7 +75,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Goal:</strong> Learn to hit and sustain a single note perfectly in tune.
 	      </p>
-	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Choose a comfortable note in your mid-range (e.g., C4 for women, C3 for men)</li>
 	        <li>Play the note on a piano or use a reference tone</li>
 	        <li>Sing the note and watch the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a></li>
@@ -92,7 +92,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Goal:</strong> Improve pitch accuracy across multiple notes in sequence.
 	      </p>
-	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Sing a simple scale (C-D-E-F-G-F-E-D-C)</li>
 	        <li>Watch the pitch detector for each note</li>
 	        <li>Identify which notes you tend to sing sharp or flat</li>
@@ -108,7 +108,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Goal:</strong> Develop accuracy when jumping between notes.
 	      </p>
-	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Start on a comfortable note (e.g., C4)</li>
 	        <li>Jump to a higher note (e.g., G4 - a perfect fifth)</li>
 	        <li>Check both notes with the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a></li>
@@ -120,7 +120,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Goal:</strong> Apply pitch accuracy to real songs.
 	      </p>
-	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Choose a song you know well</li>
 	        <li>Sing it slowly with the pitch detector running</li>
 	        <li>Identify phrases where you go off-pitch</li>
@@ -132,7 +132,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Goal:</strong> Develop quick pitch recognition and matching skills.
 	      </p>
-	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Have someone play random notes on a piano (or use an app)</li>
 	        <li>Try to match each note as quickly as possible</li>
 	        <li>Use the pitch detector to verify accuracy</li>
@@ -144,7 +144,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        The pitch detector shows deviation in <strong>cents</strong>. Here's what you need to know:
 	      </p>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li><strong>0 cents:</strong> Perfect pitch (exactly on the note)</li>
 	        <li><strong>±5 cents:</strong> Excellent accuracy (most listeners won't notice)</li>
 	        <li><strong>±10 cents:</strong> Good accuracy (generally considered "in tune")</li>
@@ -178,7 +178,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Solutions:</strong>
 	      </p>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Practice long tones with steady breath support</li>
 	        <li>Focus on maintaining consistent air pressure</li>
 	        <li>Watch the pitch detector and try to keep the indicator perfectly still</li>
@@ -201,7 +201,7 @@ const content = `
 	        for reference notes. Warm up with light humming while watching cents, then single notes, short scales, and one problem phrase. Log whether you tend flat or sharp each day&mdash;that bias is what you correct first. For a timed routine, try the
 	        <a href="/tutorials/pitch-calibration-10" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">10-minute pitch calibration tutorial</a>.
 	      </p>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li><strong>Note name:</strong> the closest pitch (e.g. A4, C4).</li>
 	        <li><strong>Cents:</strong> how far you are from center; aim for about &plusmn;10 cents in daily practice.</li>
 	        <li><strong>Green zone:</strong> on SingMeter, hold steady in the green before moving to harder intervals.</li>
@@ -211,7 +211,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Here's a suggested 15-minute daily practice routine using a pitch detector:
 	      </p>
-	      <ol class="list-decimal list-inside text-gray-600 space-y-3 mb-6 ml-4">
+	      <ol class="list-decimal list-outside text-gray-600 space-y-3 mb-6 ml-4">
 	        <li><strong>Warm-up (3 minutes):</strong> Gentle humming and lip trills to prepare your voice</li>
 	        <li><strong>Single Note Accuracy (3 minutes):</strong> Practice holding 5-6 different notes perfectly in tune</li>
 	        <li><strong>Scale Practice (4 minutes):</strong> Sing major and minor scales, checking each note</li>

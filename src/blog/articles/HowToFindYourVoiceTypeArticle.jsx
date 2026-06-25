@@ -36,7 +36,7 @@ const content = `
     highest comfortable notes (for example, C3 to C5). <strong>Voice type</strong> also includes tessitura (where you sing
     most easily), tone color, and where register shifts tend to happen.
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Range can expand</strong> with training, age, and vocal health&mdash;often you unlock notes you already had but could not control.</li>
     <li><strong>Voice type labels</strong> (Tenor, Alto, etc.) are useful guides for repertoire and choir placement, not strict limits.</li>
     <li><strong>What changes with practice:</strong> usable range, ease on high notes, mix and resonance habits.</li>
@@ -54,7 +54,7 @@ const content = `
     First, you need to know the <strong>lowest</strong> and <strong>highest</strong> notes you can
     sing clearly. The easiest way is to use an online range tool.
   </p>
-  <ul class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>
       Go to the <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Vocal Range Test</a>
       on SingMeter.
@@ -72,7 +72,7 @@ const content = `
     Your <strong>tessitura</strong> is the part of your range where your voice feels easiest and sounds
     the best. This is often <strong>more important</strong> than your extreme highest or lowest notes.
   </p>
-  <ul class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Pick 3–5 simple songs you know well.</li>
     <li>Notice where your voice feels relaxed and natural most of the time.</li>
     <li>
@@ -98,7 +98,7 @@ const content = `
     Range is only part of the story. Voice type also relates to the <strong>color</strong> and
     <strong>weight</strong> of your sound.
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Lighter, brighter voices often lean toward Tenor or Soprano.</li>
     <li>Darker, heavier voices often lean toward Baritone, Bass, Alto, or Contralto.</li>
     <li>Many singers feel &quot;in between&quot; (for example, between Alto and Mezzo-Soprano).</li>
@@ -112,7 +112,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Combine these three elements:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Your measured vocal range (from the Vocal Range Test)</li>
     <li>Your comfortable tessitura from real songs</li>
     <li>The tone and weight of your voice</li>
@@ -137,7 +137,7 @@ const content = `
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Common Mistakes When Finding Your Voice Type</h2>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Only looking at extreme notes:</strong> your highest note is less important than your tessitura.</li>
     <li><strong>Forcing high notes:</strong> if it feels strained, don&apos;t count it as part of your real range.</li>
     <li><strong>Comparing to others:</strong> your voice grows at its own pace — focus on healthy singing.</li>

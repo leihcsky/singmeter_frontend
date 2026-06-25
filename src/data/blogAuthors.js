@@ -51,11 +51,7 @@ const slugToAuthorId = {
   'ear-training-for-singers': BLOG_AUTHOR_IDS.JORDAN,
   'why-you-sing-flat': BLOG_AUTHOR_IDS.JORDAN,
 
-  // Repertoire & editorial lists — Sam
-  'songs-for-your-voice-type': BLOG_AUTHOR_IDS.SAM,
-
   // Technique, health, high notes — Elena
-  'breathing-and-posture-for-singers': BLOG_AUTHOR_IDS.ELENA,
   'vocal-health-and-maintenance': BLOG_AUTHOR_IDS.ELENA,
   'singing-high-notes-techniques': BLOG_AUTHOR_IDS.ELENA,
   'belt-high-notes-safely': BLOG_AUTHOR_IDS.ELENA,

@@ -24,7 +24,7 @@ const content = `
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Before chasing new peaks, know your baseline:
 	      </p>
-	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Run the <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Vocal Range Test</a> and note your comfortable high note.</li>
 	        <li>Warm up with the <a href="/blog/high-notes-warmup-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">15-minute high-notes warm-up</a> (do not skip this on tired days).</li>
 	        <li>Practice sirens and scales while watching the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Pitch Detector</a>&mdash;accuracy matters as much as height.</li>
@@ -54,7 +54,7 @@ const content = `
 	      </p>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Core Exercises</h2>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li><strong>Lip trills:</strong> scales with loose lips to reduce throat squeeze.</li>
 	        <li><strong>Sirens:</strong> glide low to high on &quot;ng&quot; or &quot;oo&quot; to smooth register transitions.</li>
 	        <li><strong>Octave jumps:</strong> short leaps on a vowel to build muscle memory for quick access.</li>
@@ -62,7 +62,7 @@ const content = `
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Common Mistakes</h2>
-	      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Pushing or forcing volume instead of support</li>
 	        <li>Skipping warm-up before peak notes</li>
 	        <li>Lifting the chin or closing the throat</li>
@@ -79,7 +79,7 @@ const content = `
 	      </p>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">20-Minute Practice Routine</h2>
-	      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li><strong>5 min:</strong> humming, lip trills, light scales</li>
 	        <li><strong>3 min:</strong> diaphragmatic breath pulses</li>
 	        <li><strong>4 min:</strong> &quot;nay&quot; or forward-placement slides</li>

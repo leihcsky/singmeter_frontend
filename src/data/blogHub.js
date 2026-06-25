@@ -32,6 +32,8 @@ export const BLOG_REDIRECTS = {
   'use-pitch-detector-for-training': `/blog/${PITCH_HUB_SLUG}`,
   'famous-singers-vocal-ranges': VOCAL_RANGE_HUB_PATH,
   'mixed-voice-vs-head-voice': `/blog/${HIGH_NOTES_HUB_SLUG}`,
+  'songs-for-your-voice-type': '/blog/how-to-find-your-voice-type',
+  'breathing-and-posture-for-singers': '/blog/vocal-health-and-maintenance',
 };
 
 const CLUSTERS = [

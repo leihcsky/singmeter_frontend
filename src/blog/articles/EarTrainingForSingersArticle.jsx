@@ -36,7 +36,7 @@ const content = `
         The most basic ear training skill for singers is <strong>single-note matching</strong>. You hear one note and sing the
         same note back.
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Use a piano, keyboard app, or <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tone generator</a> to play one clear note in your comfortable range.</li>
         <li>Listen to the note without singing. Then stop the sound and try to hear it in your head.</li>
         <li>Sing the note on a simple vowel like &ldquo;oo&rdquo; or &ldquo;ah&rdquo;.</li>
@@ -53,7 +53,7 @@ const content = `
         Once you can match single notes, the next step is to recognize the distance between two notes. These distances are called
         <strong>intervals</strong> (for example, a third, a fifth, an octave).
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Pick a starting note and sing it accurately with help from the pitch detector.</li>
         <li>Decide on an interval to practice (for example, a perfect fifth: &ldquo;do&rdquo; up to &ldquo;so&rdquo;).</li>
         <li>From your starting note, imagine the next note in your head before you sing it.</li>
@@ -70,7 +70,7 @@ const content = `
         When you sing with a backing track or a band, you are not just matching single notes&mdash;you are singing inside a
         <strong>key</strong>. Your ear needs to feel where &ldquo;home base&rdquo; is so you do not drift sharp or flat.
       </p>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Play a simple major scale up and down (for example, C&ndash;D&ndash;E&ndash;F&ndash;G&ndash;A&ndash;B&ndash;C&ndash;B&ndash;A&ndash;G&ndash;F&ndash;E&ndash;D&ndash;C).</li>
         <li>Notice how the first and last note (&ldquo;do&rdquo;) feel the most stable and resolved.</li>
         <li>Hum that &ldquo;home&rdquo; note after you stop playing&mdash;can you still hear it in your mind?</li>
@@ -85,7 +85,7 @@ const content = `
         A powerful ear training exercise is to sing melodies against a constant background note called a <strong>drone</strong>.
         This helps you feel how each note relates to the key.
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Use a drone app, our <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Tone Generator</a>, or hold a low note on a keyboard (for example, C).</li>
         <li>Keep the drone playing while you sing a simple scale or melody above it.</li>
         <li>Notice how some notes feel very stable (like the root and fifth) and others feel more tense.</li>
@@ -97,7 +97,7 @@ const content = `
         Call-and-response is one of the most natural ways to train your ear, and you do not need a teacher in the room. You can
         do it with recordings or apps.
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Play a short pattern of 3&ndash;5 notes on a keyboard app, or use an ear training app with simple melodies.</li>
         <li>Listen once without singing and try to remember the contour: does it go up, down, or stay the same?</li>
         <li>Sing the pattern back on a single vowel.</li>
@@ -110,7 +110,7 @@ const content = `
         Ear training only becomes truly useful when you apply it to music you care about. Here is how to connect the exercises
         to your favorite songs:
       </p>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Pick a short phrase from a song and figure out the starting note with an instrument or pitch detector.</li>
         <li>Sing the phrase slowly without lyrics, just on a vowel, while watching the pitch detector.</li>
         <li>Mark which notes tend to be sharp or flat and practice them separately as intervals.</li>
@@ -121,7 +121,7 @@ const content = `
       <p class="text-gray-600 mb-4 leading-relaxed">
         You do not need hours of practice. Consistent, short sessions work best for building a strong ear.
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li><strong>3 minutes:</strong> single-note matching with the pitch detector.</li>
         <li><strong>3 minutes:</strong> interval practice (choose one or two intervals per day).</li>
         <li><strong>2 minutes:</strong> singing scales or simple melodies against a drone.</li>
@@ -136,7 +136,7 @@ const content = `
       <p class="text-gray-600 mb-4 leading-relaxed">
         A compact session that ties listening to measurable feedback:
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li><strong>2 min:</strong> tone generator plays a note&mdash;listen, then sing back; check cents on the detector.</li>
         <li><strong>3 min:</strong> practice one interval (e.g. perfect fifth) from a fixed starting note.</li>
         <li><strong>3 min:</strong> hold a drone on the tone generator and sing a short scale above it.</li>

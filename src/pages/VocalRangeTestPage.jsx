@@ -12,6 +12,7 @@ import { getGlobalPianoAudio } from '../utils/pianoAudio';
 import Header from '../components/Header';
 import FAQSection from '../components/FAQSection';
 import PracticePathSection from '../components/PracticePathSection';
+import ToolPageDeepDive from '../components/ToolPageDeepDive';
 import BottomNav from '../components/BottomNav';
 import Footer from '../components/Footer';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
@@ -766,6 +767,56 @@ const VocalRangeTestPage = () => {
                 blogLink={{ to: '/blog/how-to-test-vocal-range', label: 'How to test vocal range (full guide)' }}
               />
 
+              <ToolPageDeepDive
+                accent="purple"
+                heading="How we keep this range test honest on real devices"
+                howWeTest={{
+                  intro:
+                    'We test this tool on phone and laptop microphones in ordinary rooms, because that is where singers actually use it. The aim is a result you can trust as a comfortable working range—not a one-off peak you hit by straining.',
+                  bullets: [
+                    'Microphone reality: laptop and phone mics roll off the lowest bass notes. If your lowest note reads higher than it feels, we recommend retesting closer to the mic and trusting the note that still has solid tone—not breathy “fry”.',
+                    'Octave errors: built-in mics sometimes report a note one octave off on very low or very breathy sounds. We cross-check by holding the note 2–3 seconds and watching for a stable reading before recording it.',
+                    'Detection window: the analyzer locks onto a sustained pitch, so a quick scoop or slide can misread. We hold each target note steady rather than gliding into it.',
+                    'Day-to-day variance: morning voices often lose a few top notes. We treat a single test as a snapshot and retest on 2–3 days to find a dependable average.',
+                  ],
+                }}
+                practiceCase={{
+                  title: 'A real first-test session (and what the numbers meant)',
+                  duration: '12 min · quiet room · earbuds',
+                  steps: [
+                    'A baritone-leaning user warmed up 3 minutes, then recorded a lowest usable note of A2 and a highest controlled note of E4.',
+                    'First attempt misfired: a glide into the low note read G2, but the tone was unstable, so we re-recorded with a steady 3-second hold and got a clean A2.',
+                    'Result mapped to roughly A2–E4, overlapping Baritone on the chart. Rather than chase a higher top note, the user noted most songs felt easy around C3–C4 (their tessitura).',
+                    'We saved the range and opened Song Key Finder to transpose one song down two semitones so the chorus sat inside that comfortable zone.',
+                  ],
+                }}
+                misconceptions={[
+                  {
+                    myth: '“My highest note is my voice type.”',
+                    reality:
+                      'Voice type follows your comfortable zone (tessitura) and tone, not the single highest note you can squeak out. Two singers with the same top note can be different types.',
+                  },
+                  {
+                    myth: '“A bigger range number is always better.”',
+                    reality:
+                      'A reliable, strain-free range you can actually sing in beats a wider range full of unusable extremes. We only count notes with solid tone.',
+                  },
+                  {
+                    myth: '“The test result is fixed forever.”',
+                    reality:
+                      'Range shifts with warm-up, time of day, health, and training. Retest periodically—this tool is for tracking change, not a permanent label.',
+                  },
+                ]}
+                blogLink={{
+                  to: '/blog/vocal-range-chart',
+                  label: 'Vocal Range Chart (all six voice types)',
+                }}
+                tutorialLink={{
+                  to: '/tutorials/vocal-range-test-guided',
+                  label: 'Your First Vocal Range Test',
+                }}
+              />
+
               {/* Educational content */}
               <div className="space-y-16 pb-16">
                 <ContentSection title="Understanding Vocal Range & Voice Types">
@@ -818,7 +869,7 @@ const VocalRangeTestPage = () => {
                   <p>
                     Your vocal range isn't static. It can change day-to-day and over the course of your life. Several factors influence how high or low you can sing:
                   </p>
-                  <ul className="list-disc pl-5 space-y-2">
+                  <ul>
                     <li><strong>Age:</strong> Voices tend to drop in pitch during puberty and may lower further or lose high range with advanced age.</li>
                     <li><strong>Training:</strong> Proper vocal technique can expand your usable range by teaching you how to access your "head voice" or "mixed voice" safely.</li>
                     <li><strong>Health:</strong> Fatigue, hydration, allergies, and vocal fold health directly impact your range. A tired voice often loses its highest and lowest notes.</li>
@@ -833,24 +884,17 @@ const VocalRangeTestPage = () => {
 
                 <ContentSection title="How to Use This Vocal Range Test">
                   <p>
-                    The SingMeter Vocal Range Test is designed to be a quick, accurate, and safe way to assess your voice.
+                    In short: warm up gently, sing down to your lowest <em>usable</em> note, sing up to your highest controlled
+                    note, and let the analyzer calculate your range and closest voice type. Never push into pain or scream—comfortable
+                    notes only.
                   </p>
-                  <ol className="list-decimal pl-5 space-y-4 mt-4">
-                    <li>
-                      <strong>Warm Up First:</strong> Before starting, hum gently or do some lip trills. A cold voice won't give you accurate results and you risk strain.
-                    </li>
-                    <li>
-                      <strong>Find Your Lowest Note:</strong> Start singing a comfortable mid-range note and descend the scale (do-ti-la-so...) until the notes become breathy or "fry." Your lowest <em>usable</em> note is the last one that still has a solid tone.
-                    </li>
-                    <li>
-                      <strong>Find Your Highest Note:</strong> Start from the middle and ascend. Stop when you feel your throat closing up or if you have to scream. Your highest note should still be controlled.
-                    </li>
-                    <li>
-                      <strong>Analyze:</strong> Once you've inputted both, our algorithm calculates your range in octaves and semitones and matches you to the closest standard voice type.
-                    </li>
-                  </ol>
-                  <p className="mt-6">
-                    Ready to find out? Scroll up and start the test!
+                  <p>
+                    For a guided 12-minute walkthrough with microphone setup, the exact descend/ascend method, and the most common
+                    mistakes to avoid, follow our{' '}
+                    <Link to="/tutorials/vocal-range-test-guided" className="text-indigo-600 hover:text-indigo-700 font-semibold underline">
+                      step-by-step Vocal Range Test tutorial
+                    </Link>
+                    . Otherwise, scroll up and start the test now.
                   </p>
                 </ContentSection>
               </div>
@@ -928,46 +972,20 @@ const VocalRangeTestPage = () => {
                   </div>
                 </div>
 
-                {/* Voice Types Overview */}
-                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
-                  <h3 className="text-2xl font-bold text-gray-900 text-center mb-6">Understanding Voice Types</h3>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="bg-white rounded-xl p-5">
-                      <div className="text-3xl mb-3">🎻</div>
-                      <h4 className="font-bold text-gray-900 mb-2">Bass</h4>
-                      <p className="text-sm text-gray-600 mb-2">Lowest male voice (E2-E4)</p>
-                      <p className="text-xs text-gray-500">Deep, powerful, resonant. Examples: Barry White, Johnny Cash</p>
-                    </div>
-                    <div className="bg-white rounded-xl p-5">
-                      <div className="text-3xl mb-3">🎸</div>
-                      <h4 className="font-bold text-gray-900 mb-2">Baritone</h4>
-                      <p className="text-sm text-gray-600 mb-2">Most common male voice (A2-A4)</p>
-                      <p className="text-xs text-gray-500">Warm, versatile, naturally appealing. Examples: Frank Sinatra, Elvis Presley</p>
-                    </div>
-                    <div className="bg-white rounded-xl p-5">
-                      <div className="text-3xl mb-3">🎺</div>
-                      <h4 className="font-bold text-gray-900 mb-2">Tenor</h4>
-                      <p className="text-sm text-gray-600 mb-2">Highest male voice (C3-C5)</p>
-                      <p className="text-xs text-gray-500">Bright, powerful, emotionally expressive. Examples: Freddie Mercury, Pavarotti</p>
-                    </div>
-                    <div className="bg-white rounded-xl p-5">
-                      <div className="text-3xl mb-3">🎼</div>
-                      <h4 className="font-bold text-gray-900 mb-2">Alto</h4>
-                      <p className="text-sm text-gray-600 mb-2">Lowest female voice (F3-F5)</p>
-                      <p className="text-xs text-gray-500">Rich, warm, soulful depth. Examples: Adele, Amy Winehouse</p>
-                    </div>
-                    <div className="bg-white rounded-xl p-5">
-                      <div className="text-3xl mb-3">🎵</div>
-                      <h4 className="font-bold text-gray-900 mb-2">Mezzo-Soprano</h4>
-                      <p className="text-sm text-gray-600 mb-2">Most common female voice (A3-A5)</p>
-                      <p className="text-xs text-gray-500">Versatile, expressive, dynamic. Examples: Beyoncé, Lady Gaga</p>
-                    </div>
-                    <div className="bg-white rounded-xl p-5">
-                      <div className="text-3xl mb-3">🦜</div>
-                      <h4 className="font-bold text-gray-900 mb-2">Soprano</h4>
-                      <p className="text-sm text-gray-600 mb-2">Highest female voice (C4-C6)</p>
-                      <p className="text-xs text-gray-500">Bright, agile, crystalline clarity. Examples: Mariah Carey, Ariana Grande</p>
-                    </div>
+                {/* Voice type reference — full table lives in the chart hub to avoid repeating it here */}
+                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 sm:p-8 border border-indigo-100 text-center">
+                  <p className="text-gray-700 max-w-2xl mx-auto mb-4">
+                    Your test result maps to one of six voice types. Rather than repeat the full table here, we keep a single,
+                    up-to-date reference in our guides—match your low and high notes there, then read how comfort zone (tessitura)
+                    refines the label.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-4">
+                    <Link to="/blog/vocal-range-chart" className="inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-800 hover:underline">
+                      Vocal range chart (all six types) →
+                    </Link>
+                    <Link to="/blog/how-to-find-your-voice-type" className="inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-800 hover:underline">
+                      How to find your voice type →
+                    </Link>
                   </div>
                 </div>
 
@@ -1075,19 +1093,19 @@ const VocalRangeTestPage = () => {
 	                  </Link>
 
 	                  <Link
-	                    to="/blog/vocal-range-chart"
+	                    to="/blog/can-vocal-range-change"
 	                    className="group bg-white rounded-2xl p-5 shadow-md hover:shadow-xl transition border border-gray-100 hover:border-indigo-200 flex flex-col justify-between"
 	                  >
 	                    <div>
 	                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition">
-	                        Vocal Range Chart &amp; Famous Singers
+	                        Can Your Vocal Range Change?
 	                      </h3>
 	                      <p className="text-sm text-gray-600 leading-relaxed">
-	                        Read the chart hub with approximate famous-singer ranges and compare your test results in a healthy way.
+	                        How training, age, and vocal health shift your usable range over time—and when to retest.
 	                      </p>
 	                    </div>
 	                    <div className="mt-3 flex items-center text-indigo-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">
-	                      Get inspired
+	                      Read article
 	                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 	                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
 	                      </svg>

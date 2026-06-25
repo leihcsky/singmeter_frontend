@@ -1,7 +1,6 @@
 import ImproveSingingPitchArticle from './articles/ImproveSingingPitchArticle';
 import HowToTestVocalRangeArticle from './articles/HowToTestVocalRangeArticle';
 import SingingHighNotesTechniquesArticle from './articles/SingingHighNotesTechniquesArticle';
-import SongsForYourVoiceTypeArticle from './articles/SongsForYourVoiceTypeArticle';
 import WhyYouSingFlatArticle from './articles/WhyYouSingFlatArticle';
 import EarTrainingForSingersArticle from './articles/EarTrainingForSingersArticle';
 import HowToFindYourVoiceTypeArticle from './articles/HowToFindYourVoiceTypeArticle';
@@ -10,7 +9,6 @@ import CanVocalRangeChangeArticle from './articles/CanVocalRangeChangeArticle';
 import TessituraAndComfortableRangeArticle from './articles/TessituraAndComfortableRangeArticle';
 import BeltHighNotesSafelyArticle from './articles/BeltHighNotesSafelyArticle';
 import HighNotesWarmupRoutineArticle from './articles/HighNotesWarmupRoutineArticle';
-import BreathingAndPostureArticle from './articles/BreathingAndPostureArticle';
 import VocalHealthArticle from './articles/VocalHealthArticle';
 import { enrichBlogMeta } from '../data/blogAuthors';
 
@@ -18,7 +16,6 @@ export const blogIndex = [
   { ...enrichBlogMeta(ImproveSingingPitchArticle.meta), component: ImproveSingingPitchArticle },
   { ...enrichBlogMeta(HowToTestVocalRangeArticle.meta), component: HowToTestVocalRangeArticle },
   { ...enrichBlogMeta(SingingHighNotesTechniquesArticle.meta), component: SingingHighNotesTechniquesArticle },
-  { ...enrichBlogMeta(SongsForYourVoiceTypeArticle.meta), component: SongsForYourVoiceTypeArticle },
   { ...enrichBlogMeta(WhyYouSingFlatArticle.meta), component: WhyYouSingFlatArticle },
   { ...enrichBlogMeta(EarTrainingForSingersArticle.meta), component: EarTrainingForSingersArticle },
   { ...enrichBlogMeta(HowToFindYourVoiceTypeArticle.meta), component: HowToFindYourVoiceTypeArticle },
@@ -27,6 +24,5 @@ export const blogIndex = [
   { ...enrichBlogMeta(TessituraAndComfortableRangeArticle.meta), component: TessituraAndComfortableRangeArticle },
   { ...enrichBlogMeta(BeltHighNotesSafelyArticle.meta), component: BeltHighNotesSafelyArticle },
   { ...enrichBlogMeta(HighNotesWarmupRoutineArticle.meta), component: HighNotesWarmupRoutineArticle },
-  { ...enrichBlogMeta(BreathingAndPostureArticle.meta), component: BreathingAndPostureArticle },
   { ...enrichBlogMeta(VocalHealthArticle.meta), component: VocalHealthArticle },
 ];

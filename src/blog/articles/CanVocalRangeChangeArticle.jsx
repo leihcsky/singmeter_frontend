@@ -33,7 +33,7 @@ const content = `
     Before you work on changing your range, you need to know where you are right now. The easiest way is to use
     a simple online test.
   </p>
-  <ul class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>
       Take the
       <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">SingMeter Vocal Range Test</a>
@@ -50,7 +50,7 @@ const content = `
 <p class="text-gray-600 mb-4 leading-relaxed">
     With consistent, healthy practice, most singers can improve their range in these ways:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Top notes become easier:</strong> you&apos;re able to hit them with less strain and more control.</li>
     <li><strong>Bottom notes become clearer:</strong> low notes you used to mumble become more stable and resonant.</li>
     <li><strong>Middle range strengthens:</strong> your &quot;everyday&quot; singing area gains power and flexibility.</li>
@@ -61,7 +61,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Some aspects of your voice are more stable and are related to your physical build:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Your overall <strong>vocal weight</strong> (light vs heavy).</li>
     <li>Your natural <strong>tone color</strong> (bright vs dark).</li>
     <li>The general zone where your voice feels most at home (lower, middle, or higher).</li>
@@ -75,7 +75,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Your age also affects how your range behaves:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>
       <strong>Teens:</strong> voices can change quickly, especially for boys during puberty. Be gentle and avoid
       forcing high notes.
@@ -94,7 +94,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     The goal is to <strong>nudge</strong> your limits, not attack them. Here is a simple, safe approach:
   </p>
-  <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Warm up gently with humming, lip trills, and light scales.</li>
     <li>Use a piano, app, or
       <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
@@ -109,7 +109,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Try this mini-routine 3–4 times per week, using SingMeter&apos;s tools to guide you:
   </p>
-  <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>
       <strong>2 minutes – Warm up:</strong> gentle humming and lip trills in the middle of your range.
     </li>
@@ -132,7 +132,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Progress in range training is often <strong>slow and subtle</strong>. That&apos;s why measurement helps:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>
       Run the
       <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Vocal Range Test</a>

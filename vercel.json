@@ -41,6 +41,16 @@
       "source": "/blog/mixed-voice-vs-head-voice",
       "destination": "/blog/singing-high-notes-techniques",
       "permanent": true
+    },
+    {
+      "source": "/blog/songs-for-your-voice-type",
+      "destination": "/blog/how-to-find-your-voice-type",
+      "permanent": true
+    },
+    {
+      "source": "/blog/breathing-and-posture-for-singers",
+      "destination": "/blog/vocal-health-and-maintenance",
+      "permanent": true
     }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]

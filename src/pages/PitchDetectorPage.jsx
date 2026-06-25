@@ -12,6 +12,7 @@ import RealtimePianoKeyboard from '../components/RealtimePianoKeyboard';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
 import FAQSection from '../components/FAQSection';
 import PracticePathSection from '../components/PracticePathSection';
+import ToolPageDeepDive from '../components/ToolPageDeepDive';
 
 const pitchDetectorFaqItems = [
   {
@@ -558,6 +559,56 @@ const PitchDetectorPage = () => {
           }}
         />
 
+        <ToolPageDeepDive
+          accent="blue"
+          heading="What the cents readout really tells you (and what it doesn't)"
+          howWeTest={{
+            intro:
+              'We use this detector the way singers do—into a laptop or phone mic, in a normal room—and tune its readings against a reference tone. The point is honest feedback on your sustained pitch, not chasing a perfect zero that fights your natural vibrato.',
+            bullets: [
+              'Reference check: we sing notes matched to the Tone Generator (A4 = 440 Hz) and expect the detector to agree within a few cents on a steady, sustained tone.',
+              'Vibrato vs. drift: a trained vibrato naturally swings ±10–15 cents around the center. We read the average position, not every momentary number—a wobble that always sits low means flat, not vibrato.',
+              'Room and mic noise: fans, echo, and low-quality mics make the readout jumpy. We quiet the room first; a noisy signal reads as false sharp/flat spikes.',
+              'Latency: there is a small delay between singing and display. We hold each note 2–3 seconds so the reading settles before judging it.',
+            ],
+          }}
+          practiceCase={{
+            title: 'Finding a hidden flat habit on long notes',
+            duration: '10 min · quiet room · headphones',
+            steps: [
+              'A user sang G3 and the readout sat near 0 for a second, then slowly drifted to −20 cents as the note continued.',
+              'That pattern—fine at onset, flat over time—pointed to fading breath support, not a tin ear.',
+              'Fix: take a low breath, keep the ribs expanded, and add a touch of brightness as the note continues. On the next try the cents held within ±8 for the full 5 seconds.',
+              'We repeated on three notes and logged the tendency, then moved to a song phrase that ends on a long held note to apply it.',
+            ],
+          }}
+          misconceptions={[
+            {
+              myth: '“In tune means exactly 0 cents the whole time.”',
+              reality:
+                'Expressive singing moves slightly around the center. Aiming for a robotic 0 creates tension. We target a stable average within about ±10 cents.',
+            },
+            {
+              myth: '“The detector is wrong because the number jumps around.”',
+              reality:
+                'Most jumpiness is room noise, a breathy onset, or vibrato. Quiet the space, hold the note, and read the settled average before blaming the tool.',
+            },
+            {
+              myth: '“If I’m flat, I just need to sing louder.”',
+              reality:
+                'Volume is not pitch. Flatness on held notes is usually weak breath support or fatigue. We fix support and listening first—see the flat-singing guide below.',
+            },
+          ]}
+          blogLink={{
+            to: '/blog/why-you-sing-flat',
+            label: 'Why You Sing Flat (and How to Fix It)',
+          }}
+          tutorialLink={{
+            to: '/tutorials/pitch-calibration-10',
+            label: '10-Minute Pitch Calibration',
+          }}
+        />
+
         {/* How to Use */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">📖 How to Use This Tool</h2>
@@ -626,7 +677,7 @@ const PitchDetectorPage = () => {
               </p>
               <div className="bg-purple-50 rounded-lg p-3 text-sm space-y-1">
                 <p className="text-purple-900"><strong>Common frequencies:</strong></p>
-                <ul className="list-disc list-inside text-purple-800 ml-2">
+                <ul className="list-disc list-outside pl-5 space-y-1 text-purple-800">
                   <li>Male voices: typically 85-180 Hz (low notes) to 330-660 Hz (high notes)</li>
                   <li>Female voices: typically 165-255 Hz (low notes) to 660-1,100 Hz (high notes)</li>
                   <li>Middle C (C4): 261.63 Hz</li>
@@ -886,7 +937,7 @@ const PitchDetectorPage = () => {
             <p>
               In music, the distance between two semitones (like C and C#) is divided into 100 smaller units called <strong>cents</strong>.
             </p>
-            <ul className="list-disc pl-5 space-y-2">
+            <ul>
               <li><strong>0 cents:</strong> Perfect pitch accuracy.</li>
               <li><strong>±10 cents:</strong> Generally considered "in tune" to the human ear.</li>
               <li><strong>±25 cents:</strong> Noticeably out of tune for trained listeners.</li>

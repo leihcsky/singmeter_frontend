@@ -5,7 +5,7 @@ const meta = {
   category: 'Techniques',
   readTime: '8 min read',
   date: '2025-12-02',
-  updatedDate: '2025-12-02',
+  updatedDate: '2026-06-25',
   author: 'Elena V.',
   excerpt:
     'Learn how to belt high notes with power and emotion while protecting your voice. Discover healthy belting technique, support, and practice routines.',
@@ -30,7 +30,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Belting is an extension of your <strong>speech mechanism</strong>. Try this:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Say a confident phrase like "<strong>Hey!</strong>" or "<strong>Listen!</strong>" as if you&apos;re calling a friend.</li>
     <li>Notice the natural support from your belly and the forward placement of the sound.</li>
     <li>Now put that same feeling on a simple scale on "<strong>yeah</strong>" or "<strong>hey</strong>".</li>
@@ -40,7 +40,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Safe belting starts with <strong>breath support</strong> and a stable body. When you belt, think:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Inhale low &mdash; feel expansion around your ribs and lower belly.</li>
     <li>Keep your chest comfortably lifted, not collapsed.</li>
     <li>Engage your core gently as you sing, like a steady &quot;push from below".</li>
@@ -52,7 +52,7 @@ const content = `
     High belting relies on efficient resonance. Instead of pushing air, you want to <strong>tune the vowel</strong> and
     direct sound into the &quot;mask&quot; area (cheeks, nose, forehead):
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Use brighter vowels like &quot;eh&quot;, &quot;ay&quot;, or &quot;ee&quot; rather than very dark &quot;ah&quot;.</li>
     <li>Imagine the sound spinning between your eyes or behind your nose.</li>
     <li>Keep your mouth open enough for resonance, but don&apos;t spread it sideways into a shout.</li>
@@ -63,7 +63,7 @@ const content = `
     In classical singing, we often aim for a low, stable larynx. Modern belt usually uses a slightly <strong>higher</strong>
     larynx, closer to speech. The key is control:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Let the larynx rise <strong>a bit</strong>, like when you speak loudly, but avoid extreme &quot;gag&quot; feeling.</li>
     <li>Keep the tongue relaxed and forward (think &quot;ng&quot; position) to avoid choking the sound.</li>
     <li>If you feel squeezing or scratching, back off immediately.</li>
@@ -84,7 +84,7 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Try this 10-minute sequence 3&ndash;4 times per week:
   </p>
-  <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>2 minutes &mdash; Gentle sirens:</strong> on &quot;ng&quot; or &quot;oo&quot;, slide through your range to connect registers.</li>
     <li><strong>3 minutes &mdash; &quot;Hey&quot; calls:</strong> speak-shout a mid-range &quot;hey!&quot;, then match it on a 3-note pattern.</li>
     <li><strong>3 minutes &mdash; 5-note scales:</strong> on &quot;yeah&quot;, go up and down 5-note scales, slowly moving higher.</li>
@@ -102,11 +102,56 @@ const content = `
 	    <a href="/blog/singing-high-notes-techniques" class="ml-1 text-indigo-600 hover:text-indigo-700 font-semibold underline">How to Sing High Notes: Techniques and Tips</a>.
 	  </p>
 
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Belt or Yell? A 30-Second Self-Check</h2>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    The line between a healthy belt and a strained yell is mostly about <strong>coordination, not loudness</strong>. Run this
+    quick check on any note you are about to belt:
+  </p>
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 pl-6">
+    <li><strong>Pitch stability:</strong> can you hold the note steady, or does it waver and drift? A yell usually loses pitch control.</li>
+    <li><strong>Vowel:</strong> is the vowel still recognizable, or has it collapsed into a generic &quot;aaah&quot; shout?</li>
+    <li><strong>Release:</strong> can you get quieter on the same note without cracking? If you can only go louder, you are pushing.</li>
+    <li><strong>After-feel:</strong> does your throat feel worked-but-fine, or scratchy? Scratch = back off.</li>
+  </ul>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    If any check fails, the note is currently above your healthy belt zone for today&mdash;take it lower or lighter rather than forcing.
+  </p>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Belting by Style: Pop vs. Musical Theatre</h2>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    &quot;Belt&quot; is not one sound. Matching the style keeps you efficient instead of over-singing:
+  </p>
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 pl-6">
+    <li><strong>Pop / R&amp;B:</strong> often a lighter, speech-like mix with less sustained volume; runs and stylings sit on top of a relaxed belt.</li>
+    <li><strong>Musical theatre:</strong> typically brighter and more sustained, with clear vowels that carry to the back row&mdash;more &quot;ring&quot;, still supported.</li>
+    <li><strong>Rock:</strong> grit and edge are <em>effects layered on a healthy belt</em>, never a substitute for support. Add distortion sparingly and stop if it scratches.</li>
+  </ul>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Check Your Belt on SingMeter</h2>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Belting hides pitch problems because intensity distracts your ear. Use the
+    <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Pitch Detector</a>
+    as an honesty check:
+  </p>
+  <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 pl-6">
+    <li>Pick a target belt note one or two semitones <strong>below</strong> your current ceiling.</li>
+    <li>Sing it softly first and confirm the cents sit near center.</li>
+    <li>Now add belt intensity on the same note. Watch whether the reading jumps <strong>sharp</strong> (common when pushing) or sags flat.</li>
+    <li>Adjust support and vowel until the louder version holds the same center the soft one did&mdash;that is a coordinated belt, not a yell.</li>
+  </ol>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    This is different from a general high-note workout: here you are isolating <em>intensity vs. pitch</em>, not extending range.
+    For overall technique, see the
+    <a href="/blog/singing-high-notes-techniques" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">high notes hub</a>;
+    for a full warm-up before belting, use the
+    <a href="/blog/high-notes-warmup-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">High Notes Warm-Up Routine</a>.
+  </p>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Red Flags: When to Stop</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Healthy belting should feel <strong>energetic but not painful</strong>. Stop immediately and rest if you notice:
   </p>
-  <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Sharp pain or burning in the throat.</li>
     <li>Persistent hoarseness after practice.</li>
     <li>Neck and jaw muscles working harder than your breath support.</li>

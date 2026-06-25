@@ -34,7 +34,7 @@ const content = `
         Most singers who struggle with flat pitch share a few common patterns. You might recognize yourself in one or more of
         these situations:
       </p>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li><strong>Weak breath support:</strong> the sound loses energy as you hold a note and the pitch sags downward.</li>
         <li><strong>Fatigue:</strong> after singing for a while, your muscles tire and stop supporting the pitch.</li>
         <li><strong>Low notes without support:</strong> on the bottom of your range, you let the sound fall instead of keeping it active.</li>
@@ -55,7 +55,7 @@ const content = `
         <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">SingMeter Pitch Detector</a>
         in your browser and sing a few notes in the middle of your range. Watch the readout:
       </p>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>If the display is around <strong>0 cents</strong>, you are on the note.</li>
         <li>If it stays around <strong>-10 to -20 cents</strong>, you are slightly flat but still close.</li>
         <li>If it drops to <strong>-30, -40, -50 cents or more</strong>, you are clearly under the note.</li>
@@ -69,7 +69,7 @@ const content = `
       <p class="text-gray-600 mb-4 leading-relaxed">
         This exercise targets the most common cause of flat singing: <strong>losing support over time</strong>.
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Stand tall with relaxed shoulders and take a low, quiet breath into your belly.</li>
         <li>Choose a comfortable note in your mid-range (for example, G3 for lower voices or G4 for higher voices).</li>
         <li>Open the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a> and start singing the note on &ldquo;ah&rdquo; or &ldquo;oo&rdquo;.</li>
@@ -86,7 +86,7 @@ const content = `
         Many singers go flat on low notes because they let the sound go &ldquo;dead.&rdquo; The tone becomes lazy and falls under the
         pitch. This exercise keeps low notes alive and in tune.
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Find the lower part of your comfortable range using the
           <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal range test</a>.</li>
         <li>Pick two or three notes in that area (for example, C3&ndash;E3 for low voices, C4&ndash;E4 for higher voices).</li>
@@ -100,7 +100,7 @@ const content = `
         Another classic flat problem: the last note of a phrase droops as you run out of breath. This is especially obvious on
         ballads and slow songs.
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Choose one line from a song you like that ends on a held note.</li>
         <li>Practice just that last note with the pitch detector running.</li>
         <li>Start slightly softer than you think you need, and focus on a steady, supported airflow.</li>
@@ -113,7 +113,7 @@ const content = `
         Breath support is only half of the story. The other half is your <strong>ear</strong>. If you cannot clearly hear when you
         are under the note, your body will not know what to correct. Simple ear training can change this.
       </p>
-      <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li>Play a note on a keyboard app or piano and sing it back.</li>
         <li>Use the pitch detector to see whether you are below or above the note.</li>
         <li>Intentionally sing the note too low, then too high, then exactly in the middle.</li>
@@ -128,7 +128,7 @@ const content = `
       <p class="text-gray-600 mb-4 leading-relaxed">
         Here is a simple routine you can use every day to reduce flat singing:
       </p>
-      <ol class="list-decimal list-inside text-gray-600 space-y-2 mb-6 ml-4">
+      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li><strong>2 minutes:</strong> gentle warm-up (humming, lip trills) to wake up the voice.</li>
         <li><strong>3 minutes:</strong> supported long tones with the pitch detector, focusing on keeping within &plusmn;10 cents.</li>
         <li><strong>3 minutes:</strong> low-note activation patterns to keep the bottom of your range energized.</li>
