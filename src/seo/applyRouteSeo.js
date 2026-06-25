@@ -2,6 +2,11 @@
  * Early canonical only — title / description / keywords stay on each page's useEffect.
  * Do not set document.title or meta description here (ranking-sensitive).
  */
+import {
+  isNoIndexBlogSlug,
+  isNoIndexTutorialSlug,
+} from './indexingPolicy';
+
 export const SITE_ORIGIN = 'https://www.singmeter.com';
 
 export function normalizePath(pathname) {
@@ -20,7 +25,23 @@ const NOINDEX_EXACT_PATHS = new Set([
 ]);
 
 export function isNoIndexPath(pathname) {
-  return NOINDEX_EXACT_PATHS.has(normalizePath(pathname));
+  const path = normalizePath(pathname);
+
+  if (NOINDEX_EXACT_PATHS.has(path)) {
+    return true;
+  }
+
+  const blogMatch = path.match(/^\/blog\/([^/]+)$/);
+  if (blogMatch && isNoIndexBlogSlug(blogMatch[1])) {
+    return true;
+  }
+
+  const tutorialMatch = path.match(/^\/tutorials\/([^/]+)$/);
+  if (tutorialMatch && isNoIndexTutorialSlug(tutorialMatch[1])) {
+    return true;
+  }
+
+  return false;
 }
 
 function setRobotsMeta(content) {

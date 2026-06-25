@@ -62,77 +62,28 @@
 
   <url>
     <loc>https://www.singmeter.com/tutorials/vocal-range-test-guided</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/tutorials/pitch-calibration-10</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/tutorials/transpose-a-song</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/tutorials/daily-warmup-15</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/tutorials/ear-training-starter</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/tutorials/song-in-the-right-key</loc>
-    <lastmod>2026-05-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/tutorials/breath-and-posture-basics</loc>
-    <lastmod>2026-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/tutorials/vocal-health-recovery-day</loc>
-    <lastmod>2026-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/tutorials/home-recording-vocal-check</loc>
-    <lastmod>2026-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/tutorials/bridge-and-mix-practice</loc>
-    <lastmod>2026-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>https://www.singmeter.com/tutorials/belt-prep-safe</loc>
-    <lastmod>2026-05-23</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -189,13 +140,6 @@
 
   <!-- Blog Articles (lastmod from article meta updatedDate or date) -->
   <url>
-    <loc>https://www.singmeter.com/blog/breathing-and-posture-for-singers</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
     <loc>https://www.singmeter.com/blog/vocal-health-and-maintenance</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -224,15 +168,8 @@
   </url>
 
   <url>
-    <loc>https://www.singmeter.com/blog/songs-for-your-voice-type</loc>
-    <lastmod>2025-01-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://www.singmeter.com/blog/why-you-sing-flat</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
