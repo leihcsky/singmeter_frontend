@@ -181,6 +181,11 @@ async function main() {
     await page.setViewport({ width: 1280, height: 900 });
 
     await page.evaluateOnNewDocument(() => {
+      // Signal the app/index.html that we're prerendering so runtime-only
+      // mutations (third-party scripts, font media swap) are skipped and the
+      // captured static HTML stays clean.
+      window.__PRERENDER__ = true;
+
       Object.defineProperty(navigator, 'mediaDevices', {
         value: {
           getUserMedia: async () => {

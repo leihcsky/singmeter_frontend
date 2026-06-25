@@ -1,27 +1,38 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
-import HomePage from './pages/HomePage'
-import VocalRangeTestPage from './pages/VocalRangeTestPage'
-import PitchDetectorPage from './pages/PitchDetectorPage'
-import BlogPage from './pages/BlogPage'
-import BlogArticlePage from './pages/BlogArticlePage'
-import PrivacyPage from './pages/PrivacyPage'
-import TermsPage from './pages/TermsPage'
-import DisclaimerPage from './pages/DisclaimerPage'
-import EditorialStandardsPage from './pages/EditorialStandardsPage'
-import AboutPage from './pages/AboutPage.jsx'
-import ContactPage from './pages/ContactPage'
-import TutorialsPage from './pages/TutorialsPage'
-import TutorialDetailPage from './pages/TutorialDetailPage'
-import ResourcesPage from './pages/ResourcesPage'
-import ResourceBookReviewPage from './pages/ResourceBookReviewPage'
-import GlossaryPage from './pages/GlossaryPage'
-import FAQPage from './pages/FAQPage'
-import ToneGeneratorPage from './pages/ToneGeneratorPage'
-import MetronomePage from './pages/MetronomePage'
-import SongKeyFinderPage from './pages/SongKeyFinderPage'
+import { useEffect, lazy, Suspense } from 'react'
 import './App.css'
 import { applyRobots } from './seo/applyRouteSeo'
+
+// Route-level code splitting: each page (and its heavy deps such as Tone.js /
+// pitchy) loads only when its route is visited, keeping the initial bundle small.
+const HomePage = lazy(() => import('./pages/HomePage'))
+const VocalRangeTestPage = lazy(() => import('./pages/VocalRangeTestPage'))
+const PitchDetectorPage = lazy(() => import('./pages/PitchDetectorPage'))
+const BlogPage = lazy(() => import('./pages/BlogPage'))
+const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage'))
+const PrivacyPage = lazy(() => import('./pages/PrivacyPage'))
+const TermsPage = lazy(() => import('./pages/TermsPage'))
+const DisclaimerPage = lazy(() => import('./pages/DisclaimerPage'))
+const EditorialStandardsPage = lazy(() => import('./pages/EditorialStandardsPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage.jsx'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const TutorialsPage = lazy(() => import('./pages/TutorialsPage'))
+const TutorialDetailPage = lazy(() => import('./pages/TutorialDetailPage'))
+const ResourcesPage = lazy(() => import('./pages/ResourcesPage'))
+const ResourceBookReviewPage = lazy(() => import('./pages/ResourceBookReviewPage'))
+const GlossaryPage = lazy(() => import('./pages/GlossaryPage'))
+const FAQPage = lazy(() => import('./pages/FAQPage'))
+const ToneGeneratorPage = lazy(() => import('./pages/ToneGeneratorPage'))
+const MetronomePage = lazy(() => import('./pages/MetronomePage'))
+const SongKeyFinderPage = lazy(() => import('./pages/SongKeyFinderPage'))
+
+function RouteFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50" aria-busy="true">
+      <div className="w-10 h-10 border-4 border-gray-200 border-t-indigo-600 rounded-full animate-spin" />
+    </div>
+  )
+}
 
 function RouteRobots() {
   const { pathname } = useLocation()
@@ -87,6 +98,7 @@ function App() {
       <RouteRobots />
       <PrerenderReady />
       <div className="App">
+        <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/vocal-range-test" element={<VocalRangeTestPage />} />
@@ -109,6 +121,7 @@ function App() {
           <Route path="/metronome" element={<MetronomePage />} />
           <Route path="/song-key-finder" element={<SongKeyFinderPage />} />
         </Routes>
+        </Suspense>
       </div>
     </Router>
   )
