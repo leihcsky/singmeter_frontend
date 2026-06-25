@@ -8,6 +8,11 @@ export default defineConfig({
     dedupe: ['react', 'react-dom']
   },
   build: {
+    // Don't eagerly inject <link rel="modulepreload"> for the whole chunk graph.
+    // Pages are prerendered (content paints from static HTML), so letting the
+    // render-critical CSS win bandwidth at first paint improves FCP/LCP on mobile;
+    // route chunks are still fetched as soon as the entry executes.
+    modulePreload: false,
     rollupOptions: {
       output: {
         manualChunks(id) {

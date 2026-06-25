@@ -10,62 +10,13 @@ import FAQSection from '../components/FAQSection';
 import HomeLearningHub from '../components/HomeLearningHub';
 import { homeFaqItems } from '../data/siteFaq';
 
-// Visual Components
-const SoundWaveVisual = () => (
-  <svg viewBox="0 0 1200 400" className="w-full h-full opacity-30" preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="rgba(99, 102, 241, 0)" />
-        <stop offset="20%" stopColor="rgba(99, 102, 241, 0.5)" />
-        <stop offset="50%" stopColor="rgba(168, 85, 247, 0.8)" />
-        <stop offset="80%" stopColor="rgba(236, 72, 153, 0.5)" />
-        <stop offset="100%" stopColor="rgba(236, 72, 153, 0)" />
-      </linearGradient>
-    </defs>
-    {/* Frequency Lines */}
-    <path d="M0,200 Q150,300 300,200 T600,200 T900,200 T1200,200" fill="none" stroke="url(#waveGradient)" strokeWidth="2" className="animate-pulse" style={{ animationDuration: '3s' }} />
-    <path d="M0,200 Q150,100 300,200 T600,200 T900,200 T1200,200" fill="none" stroke="url(#waveGradient)" strokeWidth="2" className="animate-pulse" style={{ animationDuration: '4s' }} />
-    <path d="M0,200 Q150,250 300,200 T600,200 T900,200 T1200,200" fill="none" stroke="url(#waveGradient)" strokeWidth="1.5" opacity="0.5" />
-    <path d="M0,200 Q150,150 300,200 T600,200 T900,200 T1200,200" fill="none" stroke="url(#waveGradient)" strokeWidth="1.5" opacity="0.5" />
-    
-    {/* Digital Bars (Visualizing Pitch) */}
-    {[...Array(20)].map((_, i) => {
-      const height = Math.random() * 100 + 20;
-      return (
-        <rect 
-          key={i} 
-          x={300 + i * 30} 
-          y={200 - height / 2} 
-          width="10" 
-          height={height} 
-          fill="url(#waveGradient)" 
-          rx="5"
-          opacity="0.6"
-          className="animate-pulse"
-          style={{ animationDelay: `${i * 0.1}s`, animationDuration: '1.5s' }}
-        />
-      );
-    })}
-  </svg>
-);
-
+// Lightweight static hero backdrop — pure CSS gradients, no animated/blurred
+// layers or large inline SVG, so it stays cheap to parse and paint on mobile.
 const BackgroundPattern = () => (
-  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-    {/* Circular Gradients */}
-    <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-200 blur-3xl opacity-20 animate-blob"></div>
-    <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-purple-200 blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-    <div className="absolute -bottom-[10%] left-[20%] w-[40%] h-[40%] rounded-full bg-pink-200 blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-    
-    {/* Grid Pattern */}
-    <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-    </svg>
-  </div>
+  <div
+    className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-br from-indigo-50 via-white to-pink-50"
+    aria-hidden
+  />
 );
 
 const HomePage = () => {
@@ -173,11 +124,6 @@ const HomePage = () => {
             <BackgroundPattern />
             
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 flex flex-col items-center text-center z-10">
-              {/* Sound Wave Decoration */}
-              <div className="absolute top-1/2 left-0 w-full h-full transform -translate-y-1/2 pointer-events-none z-0">
-                <SoundWaveVisual />
-              </div>
-
               <div className="relative z-10 max-w-5xl">
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-8 leading-tight text-gray-900 tracking-tight">
                   SingMeter helps singers
