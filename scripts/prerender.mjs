@@ -11,6 +11,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import http from 'node:http';
+import Beasties from 'beasties';
 import { defaultSitemapPath, getRoutesFromSitemap } from './parse-sitemap-routes.mjs';
 
 // @sparticuz/chromium picks AL2 vs AL2023 libs from this at import/runtime (Vercel Fluid needs it)
@@ -128,7 +129,7 @@ function outputHtmlPath(route) {
   return path.join(DIST, ...segments, 'index.html');
 }
 
-async function prerenderRoute(page, route) {
+async function prerenderRoute(page, route, beasties) {
   const url = `${PREVIEW_ORIGIN}${route === '/' ? '/' : route}`;
   await page.goto(url, { waitUntil: 'networkidle0', timeout: 120000 });
 
@@ -143,7 +144,18 @@ async function prerenderRoute(page, route) {
     throw new Error(`#root is empty for ${route}`);
   }
 
-  const html = await page.content();
+  let html = await page.content();
+
+  // Inline this route's above-the-fold CSS and make the full stylesheet load
+  // async, so first paint isn't blocked on the render-blocking CSS round-trip.
+  if (beasties) {
+    try {
+      html = await beasties.process(html);
+    } catch (err) {
+      log(`  ⚠ critical CSS inline failed for ${route}: ${err.message}`);
+    }
+  }
+
   const outPath = outputHtmlPath(route);
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, html, 'utf8');
@@ -167,6 +179,16 @@ async function main() {
 
   const routes = getRoutesFromSitemap(defaultSitemapPath());
   log(`routes: ${routes.length} from sitemap.xml`);
+
+  const beasties = new Beasties({
+    path: DIST,
+    publicPath: '/',
+    preload: 'swap',
+    pruneSource: false,
+    inlineFonts: false,
+    fonts: false,
+    logLevel: 'silent',
+  });
 
   let preview;
   let browser;
@@ -199,7 +221,7 @@ async function main() {
 
     for (const route of routes) {
       try {
-        await prerenderRoute(page, route);
+        await prerenderRoute(page, route, beasties);
       } catch (err) {
         console.error(`[prerender] FAILED ${route}:`, err.message);
         process.exitCode = 1;
