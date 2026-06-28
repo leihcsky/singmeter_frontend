@@ -187,6 +187,9 @@ async function main() {
     pruneSource: false,
     inlineFonts: false,
     fonts: false,
+    // Keep our hand-written inline <style> (the @font-face block) untouched —
+    // otherwise beasties prunes the @font-face rules as "unused".
+    reduceInlineStyles: false,
     logLevel: 'silent',
   });
 
