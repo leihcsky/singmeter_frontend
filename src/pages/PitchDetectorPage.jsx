@@ -108,6 +108,8 @@ const PitchDetectorPage = () => {
     }
 
     console.log('✅ Microphone initialized, starting detection...');
+    setCurrentPitch(null);
+    setCurrentNote(null);
     setIsListening(true);
     startDetection();
   };
@@ -135,29 +137,17 @@ const PitchDetectorPage = () => {
     }
 
     let lastUpdateTime = 0;
-    const updateInterval = 50; // Update UI every 50ms for smoother animations
+    const updateInterval = 33;
 
-    // Use AudioPitchDetector's startDetection method with callback
     detectorRef.current.startDetection((pitch) => {
+      if (!pitch) return;
+
       const now = Date.now();
+      if (now - lastUpdateTime < updateInterval) return;
 
-      if (pitch) {
-        // console.log('🔊 Pitch detected:', {
-        //   pitch: pitch.toFixed(2),
-        //   clarity: clarity.toFixed(2)
-        // });
-
-        // 音高已经过 AudioPitchDetector 的过滤和平滑处理
-        const noteInfo = frequencyToNote(pitch);
-
-        // Throttled UI updates
-        if (now - lastUpdateTime >= updateInterval) {
-          setCurrentPitch(pitch);
-          setCurrentNote(noteInfo);
-
-          lastUpdateTime = now;
-        }
-      }
+      setCurrentPitch(pitch);
+      setCurrentNote(frequencyToNote(pitch));
+      lastUpdateTime = now;
     });
 
     console.log('✅ Detection started with AudioPitchDetector.startDetection()');
@@ -356,7 +346,7 @@ const PitchDetectorPage = () => {
 
                       {/* Moving Needle Indicator */}
                       <div 
-                        className="absolute top-0 bottom-0 w-0 transition-all duration-100 ease-out z-20 will-change-transform"
+                        className="absolute top-0 bottom-0 w-0 transition-all duration-75 ease-out z-20 will-change-transform"
                         style={{
                           left: `calc(50% + ${Math.max(-48, Math.min(48, deviation))}%)`,
                         }}
@@ -723,125 +713,39 @@ const PitchDetectorPage = () => {
         {/* FAQ Section */}
         <FAQSection items={pitchDetectorFaqItems} />
 
-        {/* Practice Guide Section */}
-        <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border-2 border-indigo-200">
-          <div className="flex items-start gap-4 mb-6">
-            <div className="text-4xl">📚</div>
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Complete Practice Guide</h2>
-              <p className="text-gray-600">
-                Want to master pitch accuracy? Learn proven exercises and techniques to improve your singing with our comprehensive guide.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            {/* Exercise Preview 1 */}
-            <div className="bg-white rounded-xl p-5 shadow-sm border border-indigo-100">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">🎯</span>
-                <h3 className="font-bold text-gray-900">Single Note Accuracy</h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-3">
-                Learn to hit and sustain a single note perfectly in tune. Master the foundation of pitch accuracy with step-by-step guidance.
-              </p>
-              <div className="text-xs text-indigo-600 font-semibold">
-                ✓ 6-step detailed method
-              </div>
-            </div>
-
-            {/* Exercise Preview 2 */}
-            <div className="bg-white rounded-xl p-5 shadow-sm border border-purple-100">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">🎼</span>
-                <h3 className="font-bold text-gray-900">Scale & Interval Training</h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-3">
-                Improve pitch accuracy across multiple notes. Practice scales and intervals with real-time feedback to identify problem areas.
-              </p>
-              <div className="text-xs text-purple-600 font-semibold">
-                ✓ Common issues & solutions
-              </div>
-            </div>
-
-            {/* Exercise Preview 3 */}
-            <div className="bg-white rounded-xl p-5 shadow-sm border border-pink-100">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">🎵</span>
-                <h3 className="font-bold text-gray-900">Song Application</h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-3">
-                Apply pitch accuracy to real songs. Learn how to practice effectively and identify phrases where you go off-pitch.
-              </p>
-              <div className="text-xs text-pink-600 font-semibold">
-                ✓ 5-step practice method
-              </div>
-            </div>
-
-            {/* Exercise Preview 4 */}
-            <div className="bg-white rounded-xl p-5 shadow-sm border border-indigo-100">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-2xl">🔧</span>
-                <h3 className="font-bold text-gray-900">Problem Solving</h3>
-              </div>
-              <p className="text-sm text-gray-600 mb-3">
-                Fix common pitch problems like singing flat, sharp, or unstable. Get specific solutions for each issue with expert tips.
-              </p>
-              <div className="text-xs text-indigo-600 font-semibold">
-                ✓ 4 common problems solved
-              </div>
-            </div>
-          </div>
-
-          {/* What You'll Learn */}
-          <div className="bg-white rounded-xl p-5 mb-6 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-              <span className="text-xl">✨</span>
-              What You'll Learn in the Complete Guide
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-gray-600">
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
-                <span>5 proven exercises for pitch accuracy</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
-                <span>Understanding cents and deviation</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
-                <span>Common pitch problems & solutions</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
-                <span>15-minute daily practice routine</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
-                <span>Professional accuracy standards</span>
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="text-green-600 font-bold">✓</span>
-                <span>Advanced tips for maximum improvement</span>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA Button */}
-          <div className="text-center">
+        {/* Practice resources — hub links only; exercises live in blog/tutorial */}
+        <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border border-indigo-200">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Go Deeper on Pitch Training</h2>
+          <p className="text-gray-600 mb-2">
+            This page is your real-time feedback tool—watch cents while you sing. Structured exercises, daily routines,
+            and problem-specific fixes live in our guides so we don&apos;t repeat them here.
+          </p>
+          <p className="text-gray-600 mb-5">
+            Start with the{' '}
+            <Link to="/tutorials/pitch-calibration-10" className="text-indigo-600 hover:text-indigo-700 font-semibold underline">
+              10-minute pitch calibration tutorial
+            </Link>{' '}
+            if you want a timed first session on SingMeter.
+          </p>
+          <div className="flex flex-wrap gap-3">
             <Link
               to="/blog/improve-singing-pitch"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-lg font-bold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition"
             >
-              <span>📖</span>
-              <span>Read the Complete Guide</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              Pitch training hub →
             </Link>
-            <p className="text-sm text-gray-600 mt-3">
-              8-minute read • Comprehensive exercises • Expert tips
-            </p>
+            <Link
+              to="/blog/why-you-sing-flat"
+              className="inline-flex items-center px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
+            >
+              Why you sing flat
+            </Link>
+            <Link
+              to="/blog/ear-training-for-singers"
+              className="inline-flex items-center px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
+            >
+              Ear training guide
+            </Link>
           </div>
         </div>
 
@@ -948,33 +852,30 @@ const PitchDetectorPage = () => {
             </p>
           </ContentSection>
 
-          <ContentSection title="Vocal Practice Routines">
-            <div className="grid md:grid-cols-2 gap-6 not-prose">
-              <div className="bg-white p-6 rounded-xl border border-indigo-100 shadow-sm">
-                <h4 className="font-bold text-indigo-900 mb-2">1. The "Siren" Exercise</h4>
-                <p className="text-sm text-gray-600">
-                  Slide your voice from your lowest comfortable note to your highest and back down, like a siren. Watch the pitch detector track your movement. 
-                  Aim for a smooth line without breaks or jumps.
-                </p>
-              </div>
-              <div className="bg-white p-6 rounded-xl border border-purple-100 shadow-sm">
-                <h4 className="font-bold text-purple-900 mb-2">2. Long Tones</h4>
-                <p className="text-sm text-gray-600">
-                  Pick a comfortable note (like C4 or G3) and hold it for as long as you can on a single breath. Try to keep the needle in the green zone the entire time.
-                </p>
-              </div>
-              <div className="bg-white p-6 rounded-xl border border-pink-100 shadow-sm">
-                <h4 className="font-bold text-pink-900 mb-2">3. Interval Jumps</h4>
-                <p className="text-sm text-gray-600">
-                  Sing a root note, then jump up a 5th (e.g., C to G) and hold it. Check if you landed directly on the note or if you had to "scoop" up to it.
-                </p>
-              </div>
-              <div className="bg-white p-6 rounded-xl border border-blue-100 shadow-sm">
-                <h4 className="font-bold text-blue-900 mb-2">4. Steps vs. Skips</h4>
-                <p className="text-sm text-gray-600">
-                  Practice moving by half-steps (chromatic scale) versus whole steps. This trains your fine motor control.
-                </p>
-              </div>
+          <ContentSection title="Structured Pitch Practice">
+            <p className="text-gray-600 mb-4 leading-relaxed">
+              Siren slides, long tones, interval jumps, and scale work are best followed step-by-step—not repeated here.
+              Use the timed tutorial for a first session on SingMeter, or the pitch hub for problem-specific fixes (flat vs sharp, ear training, daily loop).
+            </p>
+            <div className="flex flex-wrap gap-3 not-prose">
+              <Link
+                to="/tutorials/pitch-calibration-10"
+                className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition"
+              >
+                10-minute calibration tutorial
+              </Link>
+              <Link
+                to="/blog/improve-singing-pitch"
+                className="inline-flex items-center px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
+              >
+                Pitch training hub
+              </Link>
+              <Link
+                to="/blog/why-you-sing-flat"
+                className="inline-flex items-center px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
+              >
+                Why you sing flat
+              </Link>
             </div>
           </ContentSection>
 

@@ -6,9 +6,9 @@ const meta = {
   seoDescription:
     'Protect your voice with hydration, warm-ups, safe home practice limits, and recovery when hoarse. Practical singer health guide—not medical advice.',
   category: 'Guides',
-  readTime: '9 min read',
+  readTime: '10 min read',
   date: '2025-12-25',
-  updatedDate: '2026-06-01',
+  updatedDate: '2026-07-05',
   author: 'Elena V.',
   excerpt:
     'Protect your most valuable instrument. Learn hydration, warning signs, safe practice limits at home, and how to recover from vocal fatigue.',
@@ -64,7 +64,40 @@ const content = `
         </div>
       </div>
 
-      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Safe limits for home practice</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">How SingMeter helps you spot strain early</h2>
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        Generic health advice does not tell you when <em>your</em> voice is done for the day. On SingMeter, you can use the same tools you practice with as early-warning signals&mdash;before pain shows up.
+      </p>
+      <ol class="list-decimal list-outside text-gray-600 space-y-3 mb-6 ml-4">
+        <li>
+          <strong>Baseline your range when rested.</strong> Run the
+          <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Vocal Range Test</a>
+          after a normal warm-up and save your comfortable low and high notes. That pair is your reference for the week.
+        </li>
+        <li>
+          <strong>Retest when something feels off.</strong> If your high note drops by a semitone or more on a tired day, treat that as a rest signal&mdash;not a reason to push volume. A sudden narrow range often beats &quot;I feel fine&quot; as honest feedback.
+        </li>
+        <li>
+          <strong>Watch pitch stability, not just pitch height.</strong> Open the
+          <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Pitch Detector</a>
+          on a mid-range note you know well. Healthy days: the cents reading holds near zero with small vibrato. Fatigue days: the needle wavers wider or you drift flat under the same effort. Stop peak work when stability drops.
+        </li>
+        <li>
+          <strong>Keep volume moderate while checking cents.</strong> Chasing a green reading while shouting trains strain. If you need more volume to &quot;hit&quot; the note, you are past today&apos;s safe top&mdash;see the safe limits section below.
+        </li>
+        <li>
+          <strong>Match songs to your key before long reps.</strong> Singing too high for hours is a common injury path. Use
+          <a href="/song-key-finder" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Song Key Finder</a>
+          to transpose problem lines into your comfortable tessitura, then use the detector on phrases&mdash;not full sets&mdash;when you are recovering.
+        </li>
+      </ol>
+      <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mb-6 rounded-r-lg">
+        <p class="text-amber-900 text-sm leading-relaxed">
+          <strong>SingMeter rule of thumb:</strong> If range test, pitch stability, <em>or</em> comfort disagree, trust the tools and shorten the session. Two of three &quot;off&quot; readings means vocal nap or recovery day&mdash;not another high-note drill.
+        </p>
+      </div>
+
+      <h2 id="safe-limits" class="text-2xl font-bold text-gray-900 mt-8 mb-4">Safe limits for home practice</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
         At home with SingMeter tools, treat strain prevention as part of technique&mdash;not an afterthought:
       </p>

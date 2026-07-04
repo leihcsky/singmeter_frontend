@@ -7,7 +7,7 @@
 
 /**
  * Blog spokes deprioritized (thin / overlapping). Empty now that the two
- * remaining thin articles were 301-merged into their flagship pages.
+ * remaining thin articles were removed; retired URLs return 404.
  */
 export const NOINDEX_BLOG_SLUGS = new Set([]);
 

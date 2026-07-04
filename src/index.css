@@ -206,10 +206,15 @@ details[open] summary::after {
     @apply text-indigo-600 hover:text-indigo-700 font-semibold underline;
   }
 
-  /* Solid CTA buttons — generic link styles must not override text-white on colored buttons */
-  .blog-article-content a.blog-cta,
-  .blog-article-content a.rounded-lg[class*='bg-'] {
+  /* Solid CTA buttons — generic link styles must not override text on colored buttons */
+  .blog-article-content a.blog-cta:not([class*='bg-white']),
+  .blog-article-content a.rounded-lg[class*='bg-']:not([class*='bg-white']) {
     @apply text-white no-underline hover:text-white hover:no-underline;
+  }
+
+  .blog-article-content a.blog-cta[class*='bg-white'],
+  .blog-article-content a.rounded-lg[class*='bg-white'] {
+    @apply no-underline hover:no-underline;
   }
 
   .blog-article-content table {
@@ -259,5 +264,14 @@ details[open] summary::after {
 
   .tool-page-content a {
     @apply text-indigo-600 hover:text-indigo-700 font-semibold underline;
+  }
+
+  /* Solid CTA links inside tool content — do not inherit generic link color */
+  .tool-page-content a.rounded-lg[class*='bg-']:not([class*='bg-white']) {
+    @apply text-white no-underline hover:text-white hover:no-underline;
+  }
+
+  .tool-page-content a.rounded-lg[class*='bg-white'] {
+    @apply no-underline hover:no-underline;
   }
 }

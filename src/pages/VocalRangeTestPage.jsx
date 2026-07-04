@@ -56,6 +56,104 @@ const vocalRangeFaqItems = [
   }
 ];
 
+/** Result-oriented voice type quick reference — matches getVoiceType() labels */
+const VOICE_TYPE_REFERENCE = [
+  {
+    type: 'Soprano',
+    label: 'Soprano',
+    tag: 'High Female',
+    range: 'C4 – C6',
+    hint: 'Likely if your comfortable center sits high and your top reaches toward C6.',
+    border: 'border-indigo-100',
+    title: 'text-indigo-900',
+  },
+  {
+    type: 'Mezzo-Soprano',
+    label: 'Mezzo-Soprano',
+    tag: 'Mid Female',
+    range: 'A3 – A5',
+    hint: 'Likely if most everyday singing feels easy between A3 and A5.',
+    border: 'border-purple-100',
+    title: 'text-purple-900',
+  },
+  {
+    type: 'Alto',
+    label: 'Alto / Contralto',
+    tag: 'Low Female',
+    range: 'F3 – F5',
+    hint: 'Likely if your tone is warm and your range centers around F3–F5.',
+    border: 'border-pink-100',
+    title: 'text-pink-900',
+  },
+  {
+    type: 'Tenor',
+    label: 'Tenor',
+    tag: 'High Male',
+    range: 'C3 – C5',
+    hint: 'Likely if you carry melody lines around C3–C5 without straining.',
+    border: 'border-sky-100',
+    title: 'text-sky-900',
+  },
+  {
+    type: 'Baritone',
+    label: 'Baritone',
+    tag: 'Mid Male',
+    range: 'A2 – A4',
+    hint: 'Likely if your everyday singing sits around A2–A4.',
+    border: 'border-blue-100',
+    title: 'text-blue-900',
+  },
+  {
+    type: 'Bass',
+    label: 'Bass',
+    tag: 'Low Male',
+    range: 'E2 – E4',
+    hint: 'Likely if your lowest usable notes reach E2–E3 with solid chest tone.',
+    border: 'border-gray-200',
+    title: 'text-gray-900',
+  },
+];
+
+function VoiceTypeReferenceGrid({ highlightType }) {
+  const showHighlight = highlightType && highlightType !== 'Unknown';
+
+  return (
+    <>
+      {showHighlight && (
+        <p className="text-sm text-indigo-700 font-medium mb-4">
+          Your result suggests <strong>{highlightType}</strong> — see the highlighted card below.
+        </p>
+      )}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 not-prose">
+        {VOICE_TYPE_REFERENCE.map((vt) => {
+          const highlighted = showHighlight && vt.type === highlightType;
+          return (
+            <div
+              key={vt.type}
+              className={`bg-white p-4 rounded-xl border shadow-sm ${
+                highlighted
+                  ? 'border-indigo-400 ring-2 ring-indigo-300 bg-indigo-50/50'
+                  : vt.border
+              }`}
+            >
+              <h4 className={`font-bold ${vt.title} mb-1`}>{vt.label}</h4>
+              <p className="text-xs text-gray-500 mb-1">{vt.tag} · {vt.range}</p>
+              <p className="text-sm text-gray-600">{vt.hint}</p>
+            </div>
+          );
+        })}
+      </div>
+      <p className="text-sm text-gray-500 mt-4">
+        Estimate only—not a substitute for a vocal coach. Full chart, SATB notes, and examples in our{' '}
+        <Link to="/blog/vocal-range-chart" className="text-indigo-600 hover:text-indigo-700 font-semibold underline">
+          vocal range chart
+        </Link>
+        .
+      </p>
+    </>
+  );
+}
+
 const VocalRangeTestPage = () => {
   // Test phase: 'testing' or 'result'
   const [testPhase, setTestPhase] = useState('testing');
@@ -579,34 +677,17 @@ const VocalRangeTestPage = () => {
               <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">Vocal Range Test Results</h2>
                 <p className="text-gray-600 mb-6">
-                  After completing the vocal range test, you'll receive detailed results including your voice type classification 
-                  (Soprano, Alto, Tenor, Bass, Baritone, or Mezzo-Soprano), vocal range in notes and octaves, personalized song 
-                  recommendations, and comparison with famous singers who share your voice type.
+                  After completing the vocal range test, you receive your voice type, note range, and octave width.
+                  Match your low and high notes to the reference below.
                 </p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Voice Types</h3>
-                    <ul className="space-y-2 text-gray-600">
-                      <li><strong>Bass:</strong> E2-E4 - Deep, powerful male voice (Barry White, Johnny Cash)</li>
-                      <li><strong>Baritone:</strong> A2-A4 - Most common male voice (Frank Sinatra, Elvis Presley)</li>
-                      <li><strong>Tenor:</strong> C3-C5 - Highest male voice (Freddie Mercury, Pavarotti)</li>
-                      <li><strong>Alto:</strong> F3-F5 - Lowest female voice (Adele, Amy Winehouse)</li>
-                      <li><strong>Mezzo-Soprano:</strong> A3-A5 - Most common female voice (Beyoncé, Lady Gaga)</li>
-                      <li><strong>Soprano:</strong> C4-C6 - Highest female voice (Mariah Carey, Ariana Grande)</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">What Results Include</h3>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>• Exact vocal range (lowest to highest note)</li>
-                      <li>• Range width in octaves and semitones</li>
-                      <li>• Voice type classification</li>
-                      <li>• Frequency measurements in Hz</li>
-                      <li>• Personalized song recommendations</li>
-                      <li>• Comparison with famous singers</li>
-                    </ul>
-                  </div>
-                </div>
+                <ul className="space-y-2 text-gray-600 text-sm">
+                  <li><strong>Bass:</strong> E2–E4</li>
+                  <li><strong>Baritone:</strong> A2–A4</li>
+                  <li><strong>Tenor:</strong> C3–C5</li>
+                  <li><strong>Alto:</strong> F3–F5</li>
+                  <li><strong>Mezzo-Soprano:</strong> A3–A5</li>
+                  <li><strong>Soprano:</strong> C4–C6</li>
+                </ul>
               </div>
             </div>
           </noscript>
@@ -821,63 +902,25 @@ const VocalRangeTestPage = () => {
               <div className="space-y-16 pb-16">
                 <ContentSection title="Understanding Vocal Range & Voice Types">
                   <p>
-                    Your <strong>vocal range</strong> is the span of notes you can sing comfortably and clearly, from the lowest to the highest. 
-                    Unlike a simple "high score," a healthy vocal range focuses on <strong>usable notes</strong>—those you can sustain without straining or cracking.
+                    Your <strong>vocal range</strong> is the span of comfortable, usable notes from lowest to highest—not
+                    forced extremes. After the test, match your low and high notes to the cards below to see which voice
+                    type your result most closely resembles.
                   </p>
-                  <p>
-                    Knowing your range is the first step to classifying your <strong>voice type</strong>. In classical music and choral singing, 
-                    voice types help singers choose roles and parts that fit their instrument. In contemporary music, knowing your type helps you 
-                    pick songs that highlight your strengths rather than your weaknesses.
-                  </p>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">The 6 Main Voice Types</h3>
-                  <div className="grid md:grid-cols-2 gap-6 not-prose">
-                    <div className="bg-white p-6 rounded-xl border border-indigo-100 shadow-sm">
-                      <h4 className="font-bold text-indigo-900 mb-2">Soprano (High Female)</h4>
-                      <p className="text-sm text-gray-600 mb-2">Typical Range: C4 – C6</p>
-                      <p className="text-sm text-gray-500">The highest female voice type. Sopranos often carry the melody and can hit bright, soaring high notes.</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-xl border border-purple-100 shadow-sm">
-                      <h4 className="font-bold text-purple-900 mb-2">Mezzo-Soprano (Mid Female)</h4>
-                      <p className="text-sm text-gray-600 mb-2">Typical Range: A3 – A5</p>
-                      <p className="text-sm text-gray-500">The most common female voice. Darker and richer than a soprano, but higher than an alto.</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-xl border border-pink-100 shadow-sm">
-                      <h4 className="font-bold text-pink-900 mb-2">Alto / Contralto (Low Female)</h4>
-                      <p className="text-sm text-gray-600 mb-2">Typical Range: F3 – F5</p>
-                      <p className="text-sm text-gray-500">The lowest female voice type. Known for a deep, warm, and resonant timbre.</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-xl border border-indigo-100 shadow-sm">
-                      <h4 className="font-bold text-indigo-900 mb-2">Tenor (High Male)</h4>
-                      <p className="text-sm text-gray-600 mb-2">Typical Range: C3 – C5</p>
-                      <p className="text-sm text-gray-500">The highest common male voice. Tenors are often the lead singers in rock and pop bands.</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-xl border border-blue-100 shadow-sm">
-                      <h4 className="font-bold text-blue-900 mb-2">Baritone (Mid Male)</h4>
-                      <p className="text-sm text-gray-600 mb-2">Typical Range: A2 – A4</p>
-                      <p className="text-sm text-gray-500">The most common male voice. Situated between bass and tenor, with a versatile, warm sound.</p>
-                    </div>
-                    <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                      <h4 className="font-bold text-gray-900 mb-2">Bass (Low Male)</h4>
-                      <p className="text-sm text-gray-600 mb-2">Typical Range: E2 – E4</p>
-                      <p className="text-sm text-gray-500">The lowest male voice type. Famous for deep, rumbling low notes that provide harmonic foundation.</p>
-                    </div>
-                  </div>
-                </ContentSection>
 
-                <ContentSection title="Factors That Affect Your Vocal Range">
-                  <p>
-                    Your vocal range isn't static. It can change day-to-day and over the course of your life. Several factors influence how high or low you can sing:
+                  <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">Quick Voice Type Reference</h3>
+                  <VoiceTypeReferenceGrid highlightType={testResult?.voiceType} />
+
+                  <p className="text-gray-600 mt-6">
+                    Range can shift with training, health, and age—this test captures today&apos;s comfortable span, not a
+                    lifetime label.{' '}
+                    <Link to="/blog/can-vocal-range-change" className="text-indigo-600 hover:text-indigo-700 font-semibold underline">
+                      Learn what can change safely →
+                    </Link>
                   </p>
-                  <ul>
-                    <li><strong>Age:</strong> Voices tend to drop in pitch during puberty and may lower further or lose high range with advanced age.</li>
-                    <li><strong>Training:</strong> Proper vocal technique can expand your usable range by teaching you how to access your "head voice" or "mixed voice" safely.</li>
-                    <li><strong>Health:</strong> Fatigue, hydration, allergies, and vocal fold health directly impact your range. A tired voice often loses its highest and lowest notes.</li>
-                    <li><strong>Physical Build:</strong> Generally, longer and thicker vocal folds produce lower pitches, while shorter and thinner folds produce higher pitches.</li>
-                  </ul>
-                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4 rounded-r-lg">
                     <p className="text-sm text-yellow-800">
-                      <strong>Note:</strong> Never force your voice to reach notes that feel painful or extremely tight. This test is about finding your <em>comfortable</em> range, not your absolute limits.
+                      <strong>Note:</strong> Never force notes that feel painful or extremely tight. Record comfortable,
+                      clear tones only.
                     </p>
                   </div>
                 </ContentSection>
@@ -902,120 +945,28 @@ const VocalRangeTestPage = () => {
               {/* FAQ Section */}
               <FAQSection items={vocalRangeFaqItems} />
 
-	              {/* Example Results Section - SEO Optimized */}
+              {/* Example result preview */}
               <section className="mb-16">
                 <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
-                  Example <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Test Results</span>
+                  Example <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Test Result</span>
                 </h2>
-                <p className="text-center text-gray-600 max-w-2xl mx-auto mb-8">
-                  Here's what your results will look like after completing the test. The analysis includes your voice type classification, vocal range details, and personalized song recommendations.
+                <p className="text-center text-gray-600 max-w-xl mx-auto mb-8">
+                  After you finish, the analyzer shows your voice type, note range, and octave width—like this sample.
                 </p>
-                
-                {/* Example Result Cards */}
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  {/* Example 1: Tenor */}
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                    <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-white text-center">
-                      <div className="text-5xl mb-3">🎺</div>
-                      <h3 className="text-2xl font-bold mb-2">Tenor</h3>
-                      <p className="text-sm opacity-90">Bright and soaring voice with clarity and power</p>
-                    </div>
-                    <div className="p-6">
-                      <div className="grid grid-cols-2 gap-4 mb-4">
-                        <div className="bg-indigo-50 rounded-xl p-4">
-                          <div className="text-xs font-semibold text-gray-600 mb-1">Vocal Range</div>
-                          <div className="text-2xl font-bold text-indigo-700">C3 - C5</div>
-                        </div>
-                        <div className="bg-indigo-50 rounded-xl p-4">
-                          <div className="text-xs font-semibold text-gray-600 mb-1">Range Width</div>
-                          <div className="text-2xl font-bold text-indigo-700">2.0 octaves</div>
-                        </div>
-                      </div>
-                      <div className="bg-gray-50 rounded-xl p-4 mb-4">
-                        <div className="text-sm font-semibold text-gray-700 mb-2">Voice Characteristics</div>
-                        <p className="text-sm text-gray-600">Bright, powerful, and emotionally expressive. Best for rock, opera, R&B, and power ballads.</p>
-                      </div>
-                      <div className="bg-gray-50 rounded-xl p-4">
-                        <div className="text-sm font-semibold text-gray-700 mb-2">Famous Voices</div>
-                        <p className="text-sm text-gray-600">Freddie Mercury, Luciano Pavarotti, Bruno Mars</p>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* Example 2: Mezzo-Soprano */}
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                    <div className="bg-gradient-to-r from-pink-500 to-rose-600 p-6 text-white text-center">
-                      <div className="text-5xl mb-3">🎵</div>
-                      <h3 className="text-2xl font-bold mb-2">Mezzo-Soprano</h3>
-                      <p className="text-sm opacity-90">Versatile voice blending warmth and brightness</p>
-                    </div>
-                    <div className="p-6">
-                      <div className="grid grid-cols-2 gap-4 mb-4">
-                        <div className="bg-pink-50 rounded-xl p-4">
-                          <div className="text-xs font-semibold text-gray-600 mb-1">Vocal Range</div>
-                          <div className="text-2xl font-bold text-pink-700">A3 - A5</div>
-                        </div>
-                        <div className="bg-pink-50 rounded-xl p-4">
-                          <div className="text-xs font-semibold text-gray-600 mb-1">Range Width</div>
-                          <div className="text-2xl font-bold text-pink-700">2.0 octaves</div>
-                        </div>
-                      </div>
-                      <div className="bg-gray-50 rounded-xl p-4 mb-4">
-                        <div className="text-sm font-semibold text-gray-700 mb-2">Voice Characteristics</div>
-                        <p className="text-sm text-gray-600">Versatile, expressive, and dynamic. Best for pop, R&B, musical theater, and opera.</p>
-                      </div>
-                      <div className="bg-gray-50 rounded-xl p-4">
-                        <div className="text-sm font-semibold text-gray-700 mb-2">Famous Voices</div>
-                        <p className="text-sm text-gray-600">Beyoncé, Lady Gaga, Adele, Celine Dion</p>
-                      </div>
-                    </div>
+                <div className="max-w-sm mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                  <div className="bg-gradient-to-r from-indigo-500 to-purple-600 px-6 py-5 text-white text-center">
+                    <p className="text-xs uppercase tracking-wide opacity-80 mb-1">Voice type</p>
+                    <h3 className="text-2xl font-bold">Tenor</h3>
                   </div>
-                </div>
-
-                {/* Voice type reference — full table lives in the chart hub to avoid repeating it here */}
-                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 sm:p-8 border border-indigo-100 text-center">
-                  <p className="text-gray-700 max-w-2xl mx-auto mb-4">
-                    Your test result maps to one of six voice types. Rather than repeat the full table here, we keep a single,
-                    up-to-date reference in our guides—match your low and high notes there, then read how comfort zone (tessitura)
-                    refines the label.
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-4">
-                    <Link to="/blog/vocal-range-chart" className="inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-800 hover:underline">
-                      Vocal range chart (all six types) →
-                    </Link>
-                    <Link to="/blog/how-to-find-your-voice-type" className="inline-flex items-center font-semibold text-indigo-600 hover:text-indigo-800 hover:underline">
-                      How to find your voice type →
-                    </Link>
-                  </div>
-                </div>
-
-                {/* What You'll Get Section */}
-                <div className="mt-8 bg-white rounded-2xl shadow-md p-8 border border-gray-100">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">What Your Results Include</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-bold text-gray-900 mb-3 flex items-center">
-                        <span className="text-2xl mr-2">📊</span>
-                        Detailed Analysis
-                      </h4>
-                      <ul className="space-y-2 text-sm text-gray-600">
-                        <li>• Your exact vocal range (lowest to highest note)</li>
-                        <li>• Range width in octaves and semitones</li>
-                        <li>• Voice type classification (Soprano, Alto, Tenor, Bass, etc.)</li>
-                        <li>• Frequency measurements in Hz</li>
-                      </ul>
+                  <div className="p-6 grid grid-cols-2 gap-4">
+                    <div className="bg-indigo-50 rounded-xl p-4 text-center">
+                      <div className="text-xs font-semibold text-gray-600 mb-1">Vocal Range</div>
+                      <div className="text-xl font-bold text-indigo-700">C3 – C5</div>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 mb-3 flex items-center">
-                        <span className="text-2xl mr-2">🎵</span>
-                        Personalized Recommendations
-                      </h4>
-                      <ul className="space-y-2 text-sm text-gray-600">
-                        <li>• Songs that match your vocal range</li>
-                        <li>• Comparison with famous singers</li>
-                        <li>• Voice type characteristics and tips</li>
-                        <li>• Practice recommendations</li>
-                      </ul>
+                    <div className="bg-indigo-50 rounded-xl p-4 text-center">
+                      <div className="text-xs font-semibold text-gray-600 mb-1">Range Width</div>
+                      <div className="text-xl font-bold text-indigo-700">2.0 oct</div>
                     </div>
                   </div>
                 </div>
@@ -1145,11 +1096,16 @@ const VocalRangeTestPage = () => {
 	              </section>
               </>
             ) : (
-              /* During result phase, show a brief message with link back to test */
-              <div className="text-center py-8">
-                <p className="text-gray-600 mb-4">
-                  Want to see example results? <Link to="/vocal-range-test" className="text-indigo-600 hover:underline font-semibold">View example results and voice type information</Link>
+              <div className="py-8 pb-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">Match Your Result</h2>
+                <p className="text-center text-gray-600 max-w-xl mx-auto mb-6">
+                  Compare your range to the six voice types below. For the full chart and tessitura guidance, see our{' '}
+                  <Link to="/blog/vocal-range-chart" className="text-indigo-600 hover:underline font-semibold">
+                    vocal range chart
+                  </Link>
+                  .
                 </p>
+                <VoiceTypeReferenceGrid highlightType={testResult?.voiceType} />
               </div>
             )}
           </div>

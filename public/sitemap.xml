@@ -23,7 +23,7 @@
   <!-- Pitch Detector Tool -->
   <url>
     <loc>https://www.singmeter.com/pitch-detector</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -141,14 +141,14 @@
   <!-- Blog Articles (lastmod from article meta updatedDate or date) -->
   <url>
     <loc>https://www.singmeter.com/blog/vocal-health-and-maintenance</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/blog/improve-singing-pitch</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -162,7 +162,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/singing-high-notes-techniques</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

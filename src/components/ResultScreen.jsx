@@ -317,18 +317,18 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      {/* Success Animation */}
-      <div className="text-center mb-6 sm:mb-8">
-        <div className="inline-block animate-bounce mb-3 sm:mb-4">
+    <div className="max-w-4xl mx-auto pt-20 sm:pt-24 px-4 sm:px-6">
+      {/* Success header — pt clears sticky site header; no bounce (avoids clipping under nav) */}
+      <div className="text-center mb-6 sm:mb-8 scroll-mt-24">
+        <div className="inline-block mb-3 sm:mb-4">
           <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg">
             <svg className="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
             </svg>
           </div>
         </div>
-        <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-2 px-4">Test Complete! 🎉</h1>
-        <p className="text-base sm:text-lg text-gray-600 px-4">Here's your unique vocal signature</p>
+        <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-2">Test Complete!</h1>
+        <p className="text-base sm:text-lg text-gray-600">Here&apos;s your unique vocal signature</p>
       </div>
 
       {/* Warning for unusual range */}
@@ -670,12 +670,11 @@ const ResultScreen = ({ result, onReset, warnings = [] }) => {
         <div className="bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 rounded-2xl p-6 sm:p-8 mb-6 sm:mb-8 border border-purple-100">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">🌟 Compare with Famous Singers</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Compare with Famous Singers</h3>
               <p className="text-sm sm:text-base text-gray-600">
                 See how your vocal range compares to famous singers with similar voice types
               </p>
             </div>
-            <span className="text-3xl sm:text-4xl">🎤</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">

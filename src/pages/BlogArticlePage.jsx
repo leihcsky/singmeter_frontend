@@ -1,7 +1,7 @@
 /**
  * Blog Article Page - Individual Article View
  */
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { blogIndex } from '../blog';
 import Header from '../components/Header';
@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 import BlogAuthorNote from '../components/BlogAuthorNote';
 import BlogHubCallout from '../components/BlogHubCallout';
 import BlogPracticeTutorial from '../components/BlogPracticeTutorial';
-import { BLOG_REDIRECTS } from '../data/blogHub';
 import { isNoIndexBlogSlug } from '../seo/indexingPolicy';
 
 /** Shorter brand suffix; total browser title length capped in buildMetaTitle */
@@ -57,42 +56,48 @@ function buildSocialTitle(article) {
   return `${cut.trimEnd()}…`;
 }
 
+function BlogArticleNotFound() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+      <Header />
+      <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+        <p className="text-sm font-semibold text-indigo-600 mb-2">404</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">Article not found</h1>
+        <p className="text-gray-600 mb-8">
+          This article has been removed or the link is incorrect. Browse current guides on the blog or try a free tool.
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <Link
+            to="/blog"
+            className="inline-flex items-center px-5 py-2.5 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition"
+          >
+            Back to Blog
+          </Link>
+          <Link
+            to="/vocal-range-test"
+            className="inline-flex items-center px-5 py-2.5 bg-white text-indigo-700 font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
+          >
+            Vocal Range Test
+          </Link>
+        </div>
+      </main>
+      <Footer variant="muted" />
+    </div>
+  );
+}
+
 const BlogArticlePage = () => {
   const { slug } = useParams();
   const article = blogIndex.find((a) => a.slug === slug);
 
-	const redirectTo = slug && BLOG_REDIRECTS[slug];
-	if (redirectTo) {
-		return <Navigate to={redirectTo} replace />;
-	}
-
-	// If article not found, redirect to blog page
-	if (!article) {
-		return <Navigate to="/blog" replace />;
-	}
-
-	// Related articles — exclude noindex / deprioritized posts
-	const relatedArticles = blogIndex
-		.filter((a) => a.id !== article.id && !isNoIndexBlogSlug(a.slug))
-		.slice(0, 2);
-
-	// Dates and author information
-	const publishedDate = new Date(article.date);
-	const updatedDate = article.updatedDate ? new Date(article.updatedDate) : publishedDate;
-	const hasBeenUpdated = !!article.updatedDate && article.updatedDate !== article.date;
-	const formattedPublishedDate = publishedDate.toLocaleDateString('en-US', {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	});
-	const formattedUpdatedDate = updatedDate.toLocaleDateString('en-US', {
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	});
-
   // Set document title and meta tags
   useEffect(() => {
+    if (!article) {
+      document.title = 'Page Not Found | SingMeter';
+      return () => {
+        document.title = 'SingMeter';
+      };
+    }
     // Set or update meta tags
     const setMetaTag = (name, content, isProperty = false) => {
       const attribute = isProperty ? 'property' : 'name';
@@ -182,11 +187,34 @@ const BlogArticlePage = () => {
 		});
     document.head.appendChild(script);
 
-    // Cleanup function
     return () => {
       document.title = 'SingMeter';
     };
   }, [article]);
+
+  if (!article) {
+    return <BlogArticleNotFound />;
+  }
+
+  // Related articles — exclude noindex / deprioritized posts
+  const relatedArticles = blogIndex
+    .filter((a) => a.id !== article.id && !isNoIndexBlogSlug(a.slug))
+    .slice(0, 2);
+
+  // Dates and author information
+  const publishedDate = new Date(article.date);
+  const updatedDate = article.updatedDate ? new Date(article.updatedDate) : publishedDate;
+  const hasBeenUpdated = !!article.updatedDate && article.updatedDate !== article.date;
+  const formattedPublishedDate = publishedDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  const formattedUpdatedDate = updatedDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">

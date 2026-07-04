@@ -8,6 +8,37 @@ import { PitchDetector } from 'pitchy';
 // 音符频率映射表 (A4 = 440Hz)
 const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
+function computeRms(buffer) {
+  let sum = 0;
+  for (let i = 0; i < buffer.length; i++) {
+    sum += buffer[i] * buffer[i];
+  }
+  return Math.sqrt(sum / buffer.length);
+}
+
+function isLikelyPowerLineHum(frequency) {
+  if (!frequency || frequency < 45) return false;
+  for (const base of [50, 60]) {
+    const ratio = frequency / base;
+    const harmonic = Math.round(ratio);
+    if (harmonic >= 1 && harmonic <= 20 && Math.abs(ratio - harmonic) < 0.03) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function getClarityThreshold(pitch, tracking = false) {
+  let t;
+  if (pitch < 150) t = 0.84;
+  else if (pitch < 300) t = 0.87;
+  else t = 0.90;
+  return tracking ? Math.max(0.76, t - 0.07) : t;
+}
+
+const MIN_HUMAN_FREQUENCY = 65;
+const MAX_HUMAN_FREQUENCY = 1318;
+
 /**
  * 将频率转换为音符名称
  * @param {number} frequency - 频率 (Hz)
@@ -191,27 +222,20 @@ export class AudioPitchDetector {
           throw mobileError;
         }
       } else {
-        // Desktop: try simple first, then detailed
+        // Desktop: prefer noise suppression for cleaner pitch reads; fall back if needed
         try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            audio: {
+              echoCancellation: true,
+              noiseSuppression: true,
+              autoGainControl: false,
+            },
+          });
+          console.log('✅ Got microphone stream with noise suppression');
+        } catch (detailedError) {
+          console.warn('⚠️ Detailed constraints failed, trying simple audio:', detailedError);
           stream = await navigator.mediaDevices.getUserMedia({ audio: true });
           console.log('✅ Got microphone stream with simple constraints');
-        } catch (simpleError) {
-          console.warn('⚠️ Simple constraints failed, trying with detailed constraints:', simpleError);
-
-          // Try with detailed constraints
-          try {
-            stream = await navigator.mediaDevices.getUserMedia({
-              audio: {
-                echoCancellation: true,
-                noiseSuppression: true,
-                autoGainControl: false
-              }
-            });
-            console.log('✅ Got microphone stream with detailed constraints');
-          } catch (detailedError) {
-            console.error('❌ Detailed constraints also failed:', detailedError);
-            throw simpleError; // Throw the original error
-          }
         }
       }
 
@@ -263,9 +287,96 @@ export class AudioPitchDetector {
     
     // 初始化平滑缓冲区
     this.pitchBuffer = [];
-    this.BUFFER_SIZE = 5; // 使用5个样本的中值滤波
+    this.BUFFER_SIZE = 3;
+    this.consecutiveValidFrames = 0;
+    this.isTracking = false;
+    this.lastSmoothedPitch = null;
+    this.silenceFrames = 0;
+    this.missFrames = 0;
+    this.calibrated = false;
+    this.calibrationSamples = [];
+    this.noiseFloorRms = 0.005;
+    this.volumeThreshold = 1.0;
+    this.MIN_CONSECUTIVE_FRAMES = 2;
+    this.CALIBRATION_FRAMES = 25;
+    this.SILENCE_FRAMES_TO_UNLOCK = 12;
+    this.MAX_MISS_FRAMES_WHILE_LOUD = 18;
     
     console.log('✅ Pitch detector created');
+  }
+
+  /**
+   * 根据环境噪声校准音量门槛（启动后约 0.5s 内完成）
+   */
+  calibrateNoiseFloor(rms) {
+    this.calibrationSamples.push(rms);
+    if (this.calibrationSamples.length < this.CALIBRATION_FRAMES) {
+      return false;
+    }
+
+    const sorted = [...this.calibrationSamples].sort((a, b) => a - b);
+    const p75 = sorted[Math.floor(sorted.length * 0.75)] ?? 0.005;
+    const p90 = sorted[Math.floor(sorted.length * 0.9)] ?? p75;
+    this.noiseFloorRms = p75;
+    // 信号需明显高于环境底噪；下限 1.0 避免安静房间误触发
+    this.volumeThreshold = Math.max(1.0, p90 * 100 * 4.5);
+    this.calibrated = true;
+    console.log(
+      `✅ Noise calibrated — floor RMS: ${this.noiseFloorRms.toFixed(5)}, volume threshold: ${this.volumeThreshold.toFixed(2)}`
+    );
+    return true;
+  }
+
+  /**
+   * 判断当前帧是否为可信的人声 pitch
+   * @param {boolean} tracking 已进入跟唱模式时放宽门槛
+   */
+  isValidPitch(pitch, clarity, volume, tracking = false) {
+    if (!pitch || pitch <= 0) return false;
+    if (pitch < MIN_HUMAN_FREQUENCY || pitch > MAX_HUMAN_FREQUENCY) return false;
+
+    const clarityMin = getClarityThreshold(pitch, tracking);
+    const volumeMin = this.volumeThreshold * (tracking ? 0.65 : 1);
+
+    if (clarity <= clarityMin) return false;
+    if (volume <= volumeMin) return false;
+
+    const humVolumeCap = this.volumeThreshold * (tracking ? 2.2 : 1.8);
+    if (isLikelyPowerLineHum(pitch) && volume < humVolumeCap) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * 跟唱中偶发弱帧：仅过滤明显无效值，避免指针卡住
+   */
+  isLoosePitch(pitch, clarity, volume) {
+    if (!pitch || pitch <= 0) return false;
+    if (pitch < MIN_HUMAN_FREQUENCY || pitch > MAX_HUMAN_FREQUENCY) return false;
+    if (volume <= this.volumeThreshold * 0.55) return false;
+    if (clarity <= 0.72) return false;
+    if (isLikelyPowerLineHum(pitch) && volume < this.volumeThreshold * 1.5) return false;
+    return true;
+  }
+
+  isVolumeActive(volume) {
+    return volume > this.volumeThreshold * 0.65;
+  }
+
+  pushPitchSample(pitch) {
+    this.pitchBuffer.push(pitch);
+    if (this.pitchBuffer.length > this.BUFFER_SIZE) {
+      this.pitchBuffer.shift();
+    }
+  }
+
+  emitSmoothedPitch() {
+    const minBuffer = this.isTracking ? 2 : 3;
+    if (this.pitchBuffer.length < minBuffer) return null;
+    this.lastSmoothedPitch = this.getMedianPitch(this.pitchBuffer);
+    return this.lastSmoothedPitch;
   }
 
   /**
@@ -315,80 +426,87 @@ export class AudioPitchDetector {
     }
 
     this.isRunning = true;
+    this.calibrated = false;
+    this.calibrationSamples = [];
+    this.pitchBuffer = [];
+    this.consecutiveValidFrames = 0;
+    this.isTracking = false;
+    this.lastSmoothedPitch = null;
+    this.silenceFrames = 0;
+    this.missFrames = 0;
     console.log('✅ Started pitch detection');
-
-    // 人声频率范围：
-    // 标准范围：E2 (82 Hz) - C6 (1046 Hz)
-    // 为了安全过滤噪音，我们扩展到 C2 (65 Hz) - E6 (1318 Hz)
-    // 这样可以捕捉到极少数 Basso Profundo 的超低音
-    const MIN_HUMAN_FREQUENCY = 65;   // C2 (extended range for noise filtering)
-    const MAX_HUMAN_FREQUENCY = 1318; // E6 (extended range for noise filtering)
 
     const detect = () => {
       if (!this.isRunning) return;
 
-      // 获取音频数据
       this.analyser.getFloatTimeDomainData(this.buffer);
-
-      // 检测音高
       const [pitch, clarity] = this.detector.findPitch(this.buffer, this.audioContext.sampleRate);
+      const rms = computeRms(this.buffer);
+      const volume = rms * 100;
 
-      // 计算音量（RMS - Root Mean Square）
-      let sum = 0;
-      for (let i = 0; i < this.buffer.length; i++) {
-        sum += this.buffer[i] * this.buffer[i];
-      }
-      const rms = Math.sqrt(sum / this.buffer.length);
-      const volume = rms * 100; // 转换为 0-100 的范围
-
-      // 过滤条件：
-      // 1. 频率为正数且在人声范围内
-      // 2. 清晰度要求（动态调整）：
-      //    - 极低音（< 150 Hz）：clarity > 0.75（很宽松，因为极低音很难检测）
-      //    - 低音（150-300 Hz）：clarity > 0.80（宽松，因为低音清晰度较低）
-      //    - 中音（300-500 Hz）：clarity > 0.85（适中）
-      //    - 高音（>= 500 Hz）：clarity > 0.85（适中，高音通常清晰度也不高）
-      // 3. 音量足够（> 0.3，确保用户在发声，过滤极小的噪音）
-      let clarityThreshold;
-      if (pitch < 150) {
-        clarityThreshold = 0.75; // 极低音
-      } else if (pitch < 300) {
-        clarityThreshold = 0.80; // 低音
-      } else {
-        clarityThreshold = 0.85; // 中高音
+      if (!this.calibrated) {
+        this.calibrateNoiseFloor(rms);
+        callback(null, clarity, volume);
+        requestAnimationFrame(detect);
+        return;
       }
 
-      // 调试：每秒输出一次检测状态
       const now = Date.now();
-      if (!this.lastDebugTime || now - this.lastDebugTime > 1000) {
+      if (!this.lastDebugTime || now - this.lastDebugTime > 2000) {
         this.lastDebugTime = now;
-        console.log(`🎵 Pitch: ${pitch?.toFixed(1) || 'null'} Hz, Clarity: ${clarity.toFixed(2)}, Volume: ${volume.toFixed(2)}, Threshold: ${clarityThreshold}`);
+        console.log(
+          `🎵 Pitch: ${pitch?.toFixed(1) || 'null'} Hz, Clarity: ${clarity.toFixed(2)}, Volume: ${volume.toFixed(2)}, Gate: ${this.volumeThreshold.toFixed(2)}, Tracking: ${this.isTracking}`
+        );
       }
 
-      if (pitch > 0 &&
-          pitch >= MIN_HUMAN_FREQUENCY &&
-          pitch <= MAX_HUMAN_FREQUENCY &&
-          clarity > clarityThreshold &&
-          volume > 0.3) {
-        
-        // 添加到平滑缓冲区
-        this.pitchBuffer.push(pitch);
-        if (this.pitchBuffer.length > this.BUFFER_SIZE) {
-          this.pitchBuffer.shift();
+      const volumeActive = this.isVolumeActive(volume);
+      const strictValid = this.isValidPitch(pitch, clarity, volume, false);
+      const trackingValid = this.isTracking && this.isValidPitch(pitch, clarity, volume, true);
+
+      if (volumeActive) {
+        this.silenceFrames = 0;
+
+        if (strictValid || trackingValid) {
+          this.missFrames = 0;
+          this.consecutiveValidFrames += 1;
+          if (this.consecutiveValidFrames >= this.MIN_CONSECUTIVE_FRAMES) {
+            this.isTracking = true;
+          }
+
+          this.pushPitchSample(pitch);
+          const smoothed = this.emitSmoothedPitch();
+          callback(smoothed, clarity, volume);
+        } else if (this.isTracking) {
+          this.missFrames += 1;
+
+          if (this.isLoosePitch(pitch, clarity, volume)) {
+            this.missFrames = 0;
+            this.pushPitchSample(pitch);
+            const smoothed = this.emitSmoothedPitch();
+            callback(smoothed ?? this.lastSmoothedPitch, clarity, volume);
+          } else if (this.missFrames <= this.MAX_MISS_FRAMES_WHILE_LOUD && this.lastSmoothedPitch) {
+            // 音量仍在、偶发弱帧：继续输出上次平滑值，避免指针停住
+            callback(this.lastSmoothedPitch, clarity, volume);
+          } else {
+            callback(this.lastSmoothedPitch, clarity, volume);
+          }
+        } else {
+          this.consecutiveValidFrames = 0;
+          callback(null, clarity, volume);
+        }
+      } else {
+        this.silenceFrames += 1;
+        this.missFrames = 0;
+
+        if (this.silenceFrames >= this.SILENCE_FRAMES_TO_UNLOCK) {
+          this.isTracking = false;
+          this.consecutiveValidFrames = 0;
+          this.pitchBuffer = [];
         }
 
-        // 计算平滑后的音高
-        const smoothedPitch = this.getMedianPitch(this.pitchBuffer);
-        
-        callback(smoothedPitch, clarity, volume);
-      } else {
-        // 如果信号丢失或不清晰，清空缓冲区以避免“拖尾”
-        // 但不要立即清空，允许短暂的信号丢失（可选，这里选择清空以保持反应灵敏）
-        this.pitchBuffer = [];
         callback(null, clarity, volume);
       }
 
-      // 继续检测
       requestAnimationFrame(detect);
     };
 

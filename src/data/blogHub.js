@@ -1,5 +1,5 @@
 /**
- * Blog topic clusters — hub + spoke URLs, redirects for merged articles.
+ * Blog topic clusters — hub + spoke URLs; retired slugs return 404.
  */
 
 export const VOCAL_RANGE_HUB_SLUG = 'vocal-range-chart';
@@ -25,16 +25,16 @@ export const HIGH_NOTES_HUB_TITLE = 'How to Sing High Notes: Techniques and Tips
 
 export const HIGH_NOTES_SPOKE_SLUGS = ['belt-high-notes-safely', 'high-notes-warmup-routine'];
 
-/** Permanent redirects for merged / retired blog URLs */
-export const BLOG_REDIRECTS = {
-  'vocal-range-vs-voice-type': '/blog/how-to-find-your-voice-type',
-  'sing-in-tune-without-piano': `/blog/${PITCH_HUB_SLUG}`,
-  'use-pitch-detector-for-training': `/blog/${PITCH_HUB_SLUG}`,
-  'famous-singers-vocal-ranges': VOCAL_RANGE_HUB_PATH,
-  'mixed-voice-vs-head-voice': `/blog/${HIGH_NOTES_HUB_SLUG}`,
-  'songs-for-your-voice-type': '/blog/how-to-find-your-voice-type',
-  'breathing-and-posture-for-singers': '/blog/vocal-health-and-maintenance',
-};
+/** Slugs removed from the site — no article file; show 404 (not 301). */
+export const RETIRED_BLOG_SLUGS = new Set([
+  'vocal-range-vs-voice-type',
+  'sing-in-tune-without-piano',
+  'use-pitch-detector-for-training',
+  'famous-singers-vocal-ranges',
+  'mixed-voice-vs-head-voice',
+  'songs-for-your-voice-type',
+  'breathing-and-posture-for-singers',
+]);
 
 const CLUSTERS = [
   {
