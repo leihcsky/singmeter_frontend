@@ -14,9 +14,12 @@ export function normalizePath(pathname) {
   return trimmed || '/';
 }
 
-/** Paths that should not appear in search results (still crawlable via follow). */
+/**
+ * Thin list/legal hubs stay noindex to focus crawl budget on articles & tools.
+ * /contact is intentionally indexable (AdSense trust signal).
+ * These paths are still in sitemap so prerender emits correct HTML (not homepage).
+ */
 const NOINDEX_EXACT_PATHS = new Set([
-  '/contact',
   '/disclaimer',
   '/faq',
   '/glossary',

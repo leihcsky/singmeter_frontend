@@ -2,13 +2,14 @@
 User-agent: *
 Allow: /
 
+# AdSense crawler — must not be blocked
+User-agent: Mediapartners-Google
+Allow: /
+
 # Sitemaps
 Sitemap: https://www.singmeter.com/sitemap.xml
 
-# Crawl-delay (optional, helps prevent server overload)
-Crawl-delay: 1
-
-# Allow all major search engines
+# Allow major search engines
 User-agent: Googlebot
 Allow: /
 
@@ -26,4 +27,3 @@ Allow: /
 
 User-agent: YandexBot
 Allow: /
-

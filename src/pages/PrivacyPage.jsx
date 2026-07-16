@@ -75,15 +75,16 @@ const PrivacyPage = () => {
               Privacy Policy
             </h1>
             <p className="text-gray-600 mb-8">
-              Last updated: May 22, 2026
+              Last updated: July 16, 2026
             </p>
 
             {/* Content */}
             <div className="prose prose-lg max-w-none">
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Introduction</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Welcome to SingMeter. We respect your privacy and are committed to protecting your personal data. 
-                This privacy policy explains how we handle your information when you use our vocal range testing service.
+                Welcome to SingMeter. We respect your privacy and are committed to protecting your personal data.
+                This privacy policy explains how we handle information when you use our free singing tools,
+                practice guides, and related pages on singmeter.com.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Information We Collect</h2>
@@ -154,9 +155,14 @@ const PrivacyPage = () => {
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Google AdSense</h3>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                We use Google AdSense to display advertisements. Google may use cookies to serve ads based on 
-                your prior visits to our website or other websites. You can opt out of personalized advertising 
-                by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">Google Ads Settings</a>.
+                We use Google AdSense to display advertisements. Third parties, including Google, may use cookies,
+                web beacons, and similar technologies, and may collect or use IP addresses and other identifiers,
+                to serve ads based on your prior visits to this site or other websites across the Internet.
+                Google&apos;s use of advertising cookies enables it and its partners to serve ads based on your visit
+                to this site and/or other sites. You can opt out of personalized advertising by visiting{' '}
+                <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">Google Ads Settings</a>
+                {' '}or by visiting{' '}
+                <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">www.aboutads.info</a>.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Microsoft Clarity</h3>

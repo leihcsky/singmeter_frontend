@@ -1,9 +1,7 @@
 /**
  * Which URLs are promoted in sitemap vs noindex,follow (still linked internally).
- * P0: align crawl budget with pages Google should index.
+ * Trust pages like /contact are indexable; thin list hubs may stay noindex.
  */
-
-/** Hub/list pages — noindex exact paths (see applyRouteSeo NOINDEX_EXACT_PATHS). */
 
 /**
  * Blog spokes deprioritized (thin / overlapping). Empty now that the two
@@ -11,12 +9,19 @@
  */
 export const NOINDEX_BLOG_SLUGS = new Set([]);
 
-/** Flagship tutorials kept in sitemap; all other /tutorials/:slug are noindex. */
+/** All practice tutorials are indexable and listed in sitemap. */
 export const INDEXED_TUTORIAL_SLUGS = new Set([
   'vocal-range-test-guided',
   'pitch-calibration-10',
-  'song-in-the-right-key',
   'daily-warmup-15',
+  'breath-and-posture-basics',
+  'transpose-a-song',
+  'ear-training-starter',
+  'song-in-the-right-key',
+  'vocal-health-recovery-day',
+  'home-recording-vocal-check',
+  'bridge-and-mix-practice',
+  'belt-prep-safe',
 ]);
 
 export function isNoIndexBlogSlug(slug) {

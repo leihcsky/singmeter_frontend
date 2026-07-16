@@ -6,100 +6,147 @@ const meta = {
 	seoDescription:
 	  'Improve pitch accuracy with breath, vowels, scales, intervals, and a short daily routine using a pitch detector. Fix sharp or flat habits and track progress over time.',
 	category: 'Guides',
-	readTime: '7 min read',
+	readTime: '14 min read',
 	date: '2025-11-21',
-	updatedDate: '2026-07-05',
+	updatedDate: '2026-07-16',
 	author: 'Max Ray',
 	excerpt:
-	  'Hub guide for singing in tune: read cents on the Pitch Detector, follow problem-specific articles, and use our 10-minute calibration tutorial for daily practice.',
+	  'A complete pitch-training guide you can run at home: how to read cents, fix flat or sharp bias, and follow a 15-minute daily loop with SingMeter tools.',
 	seoKeywords:
 	  'improve singing pitch, how to sing in tune, pitch accuracy exercises, singing pitch training, vocal pitch improvement, pitch control techniques',
 };
 
 const content = `
-	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">What This Hub Covers</h2>
+	      <h2 class="text-2xl font-bold text-gray-900 mt-6 mb-4">Pitch Is Trainable—If You Get Honest Feedback</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Pitch accuracy is trainable. This page is the <strong>overview</strong>&mdash;how to use SingMeter for feedback,
-	        which problem to fix first, and where to find step-by-step exercises. Detailed drills live in the linked articles
-	        and tutorial so we don&apos;t repeat the same routines in five places.
+	        Most singers who think they are &quot;tone deaf&quot; are not. They lack a clear feedback loop: you sing,
+	        you guess whether it was in tune, and you move on. This guide gives you a full home practice system—
+	        how to <strong>read a pitch detector</strong>, diagnose flat vs sharp habits, and run exercises you can
+	        finish without leaving the page. Linked articles go deeper on one problem; you do not need them to start.
+	      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        You will need a quiet room, headphones if possible, and SingMeter&apos;s
+	        <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Pitch Detector</a>
+	        plus
+	        <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Tone Generator</a>.
+	        Microphone audio is analyzed in your browser—nothing is uploaded.
 	      </p>
 
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Read the Pitch Detector</h2>
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">How to Read the Pitch Detector (Cents)</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Open the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Pitch Detector</a>,
-	        sing a steady note, and watch the cents reading. In daily practice, aim to hold the green zone (about &plusmn;10 cents).
-	        Log whether you tend flat or sharp each session&mdash;that bias is what you correct first.
+	        Open the Pitch Detector, sing a steady mid-range note (something easy in your speaking range), and watch the cents reading.
+	        In daily practice, aim to hold the green zone (about &plusmn;10 cents). Log whether you tend flat or sharp each session—
+	        that bias is what you correct first.
 	      </p>
 	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li><strong>0 cents:</strong> center of the note</li>
-	        <li><strong>&plusmn;5 cents:</strong> excellent; most listeners won&apos;t notice</li>
+	        <li><strong>&plusmn;5 cents:</strong> excellent; most listeners will not notice</li>
 	        <li><strong>&plusmn;10 cents:</strong> good; generally &quot;in tune&quot; for practice</li>
 	        <li><strong>&plusmn;20 cents or more:</strong> noticeable; slow down and isolate the phrase</li>
 	      </ul>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Pair the detector with the <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Tone Generator</a>
-	        for reference pitches when you don&apos;t have a keyboard handy.
+	        Pair the detector with the Tone Generator for reference pitches when you do not have a keyboard.
+	        Play a target tone, match it, then mute the tone and hold the note while watching cents alone.
 	      </p>
 
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Match Your Problem to a Guide</h2>
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Diagnose Your Bias Before You Drill</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Spend two minutes diagnosing—not ten minutes randomly matching notes. Sing five mid-range notes you know well.
+	        Count how many land flat vs sharp vs centered.
+	      </p>
 	      <ul class="list-disc list-outside text-gray-600 space-y-3 mb-6 ml-4">
 	        <li>
-	          <strong>Mostly flat:</strong>
+	          <strong>Mostly flat:</strong> common when support drops at the end of phrases or when notes sit low in your range.
+	          Fix with shorter phrases, firmer onset, and the drills in
 	          <a href="/blog/why-you-sing-flat" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Why You Sing Flat</a>
-	          &mdash; causes, cents thresholds, and three targeted fixes on the detector.
+	          after you finish today&apos;s loop.
 	        </li>
 	        <li>
-	          <strong>Mostly sharp:</strong> ease volume, relax jaw and tongue, and check register transitions on high notes before pushing louder.
+	          <strong>Mostly sharp:</strong> often excess volume, jaw/tongue tension, or pushing into a register change.
+	          Ease volume first; relax the jaw; check that high notes are not dragged chest voice.
 	        </li>
 	        <li>
-	          <strong>Can&apos;t tell if you&apos;re on pitch:</strong>
-	          <a href="/blog/ear-training-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training for Singers</a>
-	          &mdash; listening drills plus the detector to confirm what you hear.
+	          <strong>Cannot tell if you are on pitch:</strong> add listening drills from
+	          <a href="/blog/ear-training-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training for Singers</a>,
+	          but still use the detector to confirm what you hear.
 	        </li>
 	        <li>
-	          <strong>Wavering / unstable:</strong> practice long tones with steady breath; watch the cents line stay still before adding speed or songs.
+	          <strong>Wavering / unstable:</strong> practice long tones with steady breath; watch the cents line stay still
+	          before adding speed or songs.
 	        </li>
 	      </ul>
 
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Practice Tracks (Details Elsewhere)</h2>
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Core Exercises (Do These on This Page)</h2>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">1. Single-note accuracy (3 minutes)</h3>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Use these entry points; each link goes to the full step-by-step version:
+	        Pick one mid-range note. Play it on the Tone Generator, match it, then hold for 8–10 seconds while watching cents.
+	        Goal: stay inside &plusmn;10 cents without raising volume. Repeat on three notes spanning a fifth.
+	        If you drift, restart the hold—do not &quot;nudge&quot; with more air mid-note until the start is clean.
 	      </p>
-	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li>
-	          <a href="/tutorials/pitch-calibration-10" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">10-minute pitch calibration tutorial</a>
-	          &mdash; timed Tone + Pitch loop for beginners.
-	        </li>
-	        <li>
-	          <strong>Single-note accuracy</strong> &mdash; hold one mid-range note in the green zone for 10 seconds; repeat across your range.
-	        </li>
-	        <li>
-	          <strong>Scales &amp; intervals</strong> &mdash; slow major scales and simple jumps (thirds, fifths); fix the note that drifts before speeding up.
-	        </li>
-	        <li>
-	          <strong>Song phrases</strong> &mdash; one problem line from a song, slowly, with the detector running; see
-	          <a href="/blog/ear-training-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">ear training guide</a>
-	          for phrase-matching drills.
-	        </li>
-	      </ul>
 
-	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">15-Minute Daily Loop (Summary)</h2>
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">2. Slow major scale (4 minutes)</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Choose a key in your comfortable middle range (C major is fine for many singers). Sing ascending and descending
+	        one octave at a slow tempo—about one note per two seconds. On the Pitch Detector, mark which scale degree
+	        drifts most. That degree is tomorrow&apos;s focus note. Do not speed up until every step stays in the green zone twice in a row.
+	      </p>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">3. Interval matching (3 minutes)</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        From the Tone Generator, play a root, then a major third or perfect fifth. Sing the jump, hold the second note,
+	        and check cents. Alternate ascending and descending. If the landing note is sharp, soften volume; if flat,
+	        renew breath support before the jump instead of scooping up to pitch.
+	      </p>
+
+	      <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">4. Song phrase isolation (3–4 minutes)</h3>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Pick one problem line from a song—not the whole chorus. Sing it slowly with the detector running.
+	        Freeze on the note that usually goes wrong and hold it until cents settle. Then reconnect the phrase at half speed.
+	        If the line sits too high, transpose with
+	        <a href="/song-key-finder" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Song Key Finder</a>
+	        before repeating.
+	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">15-Minute Daily Loop (Full Protocol)</h2>
 	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li>Warm up lightly (3 min): humming or lip trills</li>
-	        <li>Single notes in the green zone (3 min)</li>
-	        <li>One slow scale, note the problem steps (4 min)</li>
-	        <li>One interval or short phrase (3 min)</li>
-	        <li>Log flat vs sharp bias for tomorrow (2 min)</li>
+	        <li><strong>Warm up lightly (3 min):</strong> humming or lip trills in mid-range—no peak notes.</li>
+	        <li><strong>Single notes in the green zone (3 min):</strong> three pitches, 8–10 second holds.</li>
+	        <li><strong>One slow scale (4 min):</strong> log the problem scale degree.</li>
+	        <li><strong>One interval or short phrase (3 min):</strong> quality over quantity.</li>
+	        <li><strong>Log bias (2 min):</strong> write &quot;flat / sharp / mixed&quot; and one note that improved.</li>
 	      </ol>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        For a guided version with self-checks, use the
-	        <a href="/tutorials/pitch-calibration-10" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">10-minute calibration tutorial</a>
-	        instead of improvising the clock.
+	        Prefer a timed, click-through version with self-checks? Use the
+	        <a href="/tutorials/pitch-calibration-10" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">10-minute pitch calibration tutorial</a>
+	        after you understand the loop above.
 	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Weekly Progress Plan</h2>
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Days 1–2:</strong> diagnosis + single notes only. Build a clean onset.</li>
+	        <li><strong>Days 3–4:</strong> add slow scales; keep volume moderate.</li>
+	        <li><strong>Days 5–6:</strong> intervals and one song phrase.</li>
+	        <li><strong>Day 7:</strong> light review or rest. Retest one &quot;problem note&quot; from day 1.</li>
+	      </ul>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Track cents over weeks—not perfection in one sitting. A smaller average error on the same five notes
+	        is real progress even if songs still feel hard.
+	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Common Mistakes</h2>
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Chasing green cents by shouting—volume is not accuracy.</li>
+	        <li>Practicing only songs; never isolating the bad note.</li>
+	        <li>Changing keys every session so you never build muscle memory.</li>
+	        <li>Skipping warm-up, then blaming the detector for &quot;bad days.&quot;</li>
+	        <li>Expecting overnight results; pitch habits take consistent short sessions.</li>
+	      </ul>
 
 	      <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
 	        <p class="text-indigo-900 leading-relaxed mb-4">
-	          <strong>Ready to practice?</strong> Open the detector, pick one problem guide above, and track cents over weeks&mdash;not perfection in one sitting.
+	          <strong>Ready to practice?</strong> Open the detector, run the 15-minute loop once today, and log your bias.
+	          Tomorrow, start with yesterday&apos;s problem note.
 	        </p>
 	        <div class="flex flex-wrap gap-3">
 	          <a href="/pitch-detector" class="blog-cta inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition shadow-md hover:shadow-lg">

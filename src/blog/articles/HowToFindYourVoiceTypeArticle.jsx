@@ -6,12 +6,12 @@ const meta = {
   seoDescription:
     'Find your voice type using range, tessitura, and tone at home. Step-by-step guide with our free vocal range test—no vocal coach required.',
   category: 'Guides',
-  readTime: '10 min read',
+  readTime: '13 min read',
   date: '2025-12-02',
-  updatedDate: '2026-06-01',
+  updatedDate: '2026-07-16',
   author: 'Max Ray',
   excerpt:
-    'Find your voice type at home: vocal range vs voice type explained, plus tessitura and tone. Step-by-step with our free range test.',
+    'Find your voice type at home with a complete session: range test, tessitura check, tone notes, a worked example, and a 20-minute SingMeter workflow.',
   seoKeywords:
     'how to find your voice type, vocal range vs voice type, what is my voice type, voice type test, soprano alto tenor baritone, tessitura vs range',
 };
@@ -136,12 +136,33 @@ const content = `
     <a href="/blog/tessitura-and-comfortable-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tessitura and comfortable range</a>.
   </p>
 
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">20-Minute Voice-Type Session (Full Workflow)</h2>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Use this once, write the results, then revisit in 8–12 weeks. You do not need a teacher for a useful first label.
+  </p>
+  <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
+    <li><strong>Minutes 0–4:</strong> Light warm-up (humming, lip trills). No peak chasing.</li>
+    <li><strong>Minutes 4–8:</strong> Run the Vocal Range Test. Write usable low and high only.</li>
+    <li><strong>Minutes 8–12:</strong> Sing two familiar songs. Note which mid-range notes feel easiest. Open the Pitch Detector on those notes and list the ones that stay stable.</li>
+    <li><strong>Minutes 12–16:</strong> Record one short scale or verse on your phone. Listen once for tone weight (lighter vs darker)—not technique critique.</li>
+    <li><strong>Minutes 16–20:</strong> Compare range + comfort band to the chart. Write one provisional label and one &quot;maybe also&quot; (for example, Baritone / light Tenor). Pick one song key to try this week with Song Key Finder.</li>
+  </ol>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">How to Use the Label in Practice</h2>
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+    <li><strong>Song choice:</strong> prefer keys where the melody sits in your tessitura for most of the song.</li>
+    <li><strong>Choir / group singing:</strong> share your comfortable mid-range, not only your extreme high.</li>
+    <li><strong>Training focus:</strong> lower voices often need careful high-note mix work; higher voices often need low-note support—use the Pitch Detector on the weaker edge.</li>
+    <li><strong>Revisit:</strong> if training expands your usable range, update the label; do not cling to a year-old test.</li>
+  </ul>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Common Mistakes When Finding Your Voice Type</h2>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Only looking at extreme notes:</strong> your highest note is less important than your tessitura.</li>
     <li><strong>Forcing high notes:</strong> if it feels strained, don&apos;t count it as part of your real range.</li>
     <li><strong>Comparing to others:</strong> your voice grows at its own pace — focus on healthy singing.</li>
     <li><strong>Thinking it&apos;s permanent:</strong> your range and comfort zone can shift with training and age.</li>
+    <li><strong>Skipping the comfort check:</strong> a chart match without tessitura leads to songs that look &quot;in range&quot; but feel exhausting.</li>
   </ul>
 
   <div class="bg-indigo-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">

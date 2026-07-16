@@ -6,12 +6,12 @@ const meta = {
   seoDescription:
     'Protect your voice with hydration, warm-ups, safe home practice limits, and recovery when hoarse. Practical singer health guide—not medical advice.',
   category: 'Guides',
-  readTime: '10 min read',
+  readTime: '13 min read',
   date: '2025-12-25',
-  updatedDate: '2026-07-05',
+  updatedDate: '2026-07-16',
   author: 'Elena V.',
   excerpt:
-    'Protect your most valuable instrument. Learn hydration, warning signs, safe practice limits at home, and how to recover from vocal fatigue.',
+    'Protect your voice with hydration, SingMeter early-warning checks, safe practice limits, a weekly schedule, and a clear recovery plan when you are hoarse.',
   seoKeywords:
     'vocal health tips, singer hydration, vocal rest, nodules prevention, singer diet, voice care, vocal fatigue recovery',
 };
@@ -134,6 +134,31 @@ const content = `
       <p class="text-gray-600 mb-4 leading-relaxed">
         A vocal nap is 20+ minutes of true silence&mdash;no talking, humming, or whispering. Use one before a demanding session or after a long rehearsal.
       </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">A Simple Weekly Schedule for Healthy Practice</h2>
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        Consistency beats marathon sessions. Use this as a default week and adjust intensity to how your tools read—not to social media goals.
+      </p>
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+        <li><strong>3–4 technique days (20–30 min):</strong> warm-up tutorial + Pitch Detector work in mid-range. Cap peak notes at 5–10 minutes.</li>
+        <li><strong>1 song day:</strong> transpose with Song Key Finder first; isolate hard phrases instead of full-set volume.</li>
+        <li><strong>1 recovery or light day:</strong> humming only, or the
+          <a href="/tutorials/vocal-health-recovery-day" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">recovery tutorial</a>
+          if you feel tired.</li>
+        <li><strong>1 full rest day:</strong> no singing practice; keep talking load reasonable if you work in noisy rooms.</li>
+      </ul>
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        Once a week when rested, re-run a quick range check and one mid-range hold on the Pitch Detector. If both look worse than last week without illness,
+        cut intensity for several days before adding high-note or belt work again.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Red-Flag Checklist Before You Practice</h2>
+      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+        <li>Pain when singing or swallowing → stop; seek clinical care if it persists.</li>
+        <li>Hoarseness left over from yesterday → recovery day, not &quot;push through.&quot;</li>
+        <li>Sudden loss of high notes after a loud night → rest and retest before peaks.</li>
+        <li>You need more volume every session to &quot;hit&quot; the same note → technique or fatigue issue; reduce load.</li>
+      </ul>
 
       <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
         <p class="text-indigo-900 leading-relaxed mb-4">
