@@ -11,19 +11,24 @@ export const VOCAL_RANGE_SPOKE_SLUGS = [
   'how-to-find-your-voice-type',
   'can-vocal-range-change',
   'tessitura-and-comfortable-range',
+  'songs-that-fit-your-vocal-range',
 ];
 
 export const PITCH_HUB_SLUG = 'improve-singing-pitch';
 export const PITCH_HUB_PATH = `/blog/${PITCH_HUB_SLUG}`;
 export const PITCH_HUB_TITLE = 'How to Improve Your Singing Pitch: Complete Training Guide';
 
-export const PITCH_SPOKE_SLUGS = ['why-you-sing-flat', 'ear-training-for-singers'];
+export const PITCH_SPOKE_SLUGS = ['why-you-sing-flat', 'why-you-sing-sharp', 'ear-training-for-singers'];
 
 export const HIGH_NOTES_HUB_SLUG = 'singing-high-notes-techniques';
 export const HIGH_NOTES_HUB_PATH = `/blog/${HIGH_NOTES_HUB_SLUG}`;
 export const HIGH_NOTES_HUB_TITLE = 'How to Sing High Notes: Techniques and Tips';
 
-export const HIGH_NOTES_SPOKE_SLUGS = ['belt-high-notes-safely', 'high-notes-warmup-routine'];
+export const HIGH_NOTES_SPOKE_SLUGS = [
+  'belt-high-notes-safely',
+  'high-notes-warmup-routine',
+  'mixed-voice-explained',
+];
 
 /** Slugs removed from the site — no article file; show 404 (not 301). */
 export const RETIRED_BLOG_SLUGS = new Set([
@@ -33,7 +38,6 @@ export const RETIRED_BLOG_SLUGS = new Set([
   'famous-singers-vocal-ranges',
   'mixed-voice-vs-head-voice',
   'songs-for-your-voice-type',
-  'breathing-and-posture-for-singers',
 ]);
 
 const CLUSTERS = [

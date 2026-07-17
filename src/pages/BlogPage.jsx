@@ -16,6 +16,7 @@ const blogTopics = [
     articleIds: [
       'improve-singing-pitch',
       'why-you-sing-flat',
+      'why-you-sing-sharp',
       'ear-training-for-singers',
     ],
   },
@@ -29,6 +30,7 @@ const blogTopics = [
       'vocal-range-chart',
       'can-vocal-range-change',
       'tessitura-and-comfortable-range',
+      'songs-that-fit-your-vocal-range',
     ],
   },
   {
@@ -39,13 +41,18 @@ const blogTopics = [
       'singing-high-notes-techniques',
       'belt-high-notes-safely',
       'high-notes-warmup-routine',
+      'mixed-voice-explained',
     ],
   },
   {
     id: 'foundation-and-health',
     title: 'Foundation & Vocal Health',
-    description: 'Breath, posture, and daily habits that keep your voice healthy for long-term singing.',
-    articleIds: ['vocal-health-and-maintenance'],
+    description: 'Breath, posture, daily practice habits, and care that keep your voice healthy for long-term singing.',
+    articleIds: [
+      'daily-singing-practice-routine',
+      'breathing-and-posture-for-singers',
+      'vocal-health-and-maintenance',
+    ],
   },
 ];
 

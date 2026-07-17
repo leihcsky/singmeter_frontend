@@ -51,6 +51,26 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/daily-warmup-15',
     title: '15-Minute Daily Warm-Up',
   },
+  'daily-singing-practice-routine': {
+    path: '/tutorials/daily-warmup-15',
+    title: '15-Minute Daily Warm-Up',
+  },
+  'songs-that-fit-your-vocal-range': {
+    path: '/tutorials/song-in-the-right-key',
+    title: 'Choose & Practice a Song in Your Key',
+  },
+  'breathing-and-posture-for-singers': {
+    path: '/tutorials/breath-and-posture-basics',
+    title: 'Breath & Posture Basics',
+  },
+  'mixed-voice-explained': {
+    path: '/tutorials/bridge-and-mix-practice',
+    title: 'Mixed Voice Practice',
+  },
+  'why-you-sing-sharp': {
+    path: '/tutorials/pitch-calibration-10',
+    title: '10-Minute Pitch Calibration',
+  },
 };
 
 export function getBlogPracticeTutorial(slug) {

@@ -50,12 +50,19 @@ const slugToAuthorId = {
   'improve-singing-pitch': BLOG_AUTHOR_IDS.MAX,
   'ear-training-for-singers': BLOG_AUTHOR_IDS.JORDAN,
   'why-you-sing-flat': BLOG_AUTHOR_IDS.JORDAN,
+  'why-you-sing-sharp': BLOG_AUTHOR_IDS.JORDAN,
+
+  // Practice habits & repertoire — Max
+  'daily-singing-practice-routine': BLOG_AUTHOR_IDS.MAX,
+  'songs-that-fit-your-vocal-range': BLOG_AUTHOR_IDS.MAX,
 
   // Technique, health, high notes — Elena
   'vocal-health-and-maintenance': BLOG_AUTHOR_IDS.ELENA,
   'singing-high-notes-techniques': BLOG_AUTHOR_IDS.ELENA,
   'belt-high-notes-safely': BLOG_AUTHOR_IDS.ELENA,
   'high-notes-warmup-routine': BLOG_AUTHOR_IDS.ELENA,
+  'breathing-and-posture-for-singers': BLOG_AUTHOR_IDS.ELENA,
+  'mixed-voice-explained': BLOG_AUTHOR_IDS.ELENA,
 };
 
 export function getBlogAuthorForSlug(slug) {

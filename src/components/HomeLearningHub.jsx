@@ -153,7 +153,7 @@ const HomeLearningHub = () => {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-indigo-600 font-bold">✓</span>
-                <span>YouTube and app picks with editor notes—not search pages</span>
+                <span>Book reviews and two trusted video picks with editor notes—not app directories</span>
               </li>
             </ul>
 

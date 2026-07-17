@@ -233,7 +233,7 @@ const TutorialsPage = () => {
         <section className="bg-white rounded-2xl p-8 shadow-md">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Learning hub</h2>
           <p className="text-gray-600 mb-6 text-sm">
-            Tutorials = do; blog = understand; resources = curated books & apps with our reviews.
+            Tutorials = do; blog = understand; resources = book reviews and a few editor video picks.
           </p>
           <LearnHubNav />
         </section>

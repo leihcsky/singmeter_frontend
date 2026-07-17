@@ -62,8 +62,9 @@ const content = `
 	          after you finish today&apos;s loop.
 	        </li>
 	        <li>
-	          <strong>Mostly sharp:</strong> often excess volume, jaw/tongue tension, or pushing into a register change.
-	          Ease volume first; relax the jaw; check that high notes are not dragged chest voice.
+	          <strong>Mostly sharp:</strong>
+	          <a href="/blog/why-you-sing-sharp" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Why You Sing Sharp</a>
+	          &mdash; often excess volume, jaw/tongue tension, or pushing into a register change; soft-first detector drills.
 	        </li>
 	        <li>
 	          <strong>Cannot tell if you are on pitch:</strong> add listening drills from
