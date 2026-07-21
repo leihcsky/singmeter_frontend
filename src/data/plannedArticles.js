@@ -69,7 +69,7 @@ export const plannedArticles = [
     cluster: 'scenarios',
     targetWords: 1100,
     singmeterTools: ['/tutorials/daily-warmup-15', '/song-key-finder', '/vocal-range-test'],
-    status: 'planned',
+    status: 'published',
   },
   {
     priority: 7,
@@ -80,7 +80,7 @@ export const plannedArticles = [
     cluster: 'feedback',
     targetWords: 1200,
     singmeterTools: ['/tutorials/home-recording-vocal-check', '/pitch-detector'],
-    status: 'planned',
+    status: 'published',
   },
   {
     priority: 8,
@@ -91,7 +91,7 @@ export const plannedArticles = [
     cluster: 'repertoire',
     targetWords: 1200,
     singmeterTools: ['/tutorials/transpose-a-song', '/song-key-finder', '/tone-generator'],
-    status: 'planned',
+    status: 'published',
   },
   {
     priority: 9,
@@ -102,7 +102,7 @@ export const plannedArticles = [
     cluster: 'health',
     targetWords: 1100,
     singmeterTools: ['/tutorials/vocal-health-recovery-day', '/blog/vocal-health-and-maintenance'],
-    status: 'planned',
+    status: 'published',
   },
   {
     priority: 10,

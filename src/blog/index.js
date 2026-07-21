@@ -15,9 +15,17 @@ import DailySingingPracticeRoutineArticle from './articles/DailySingingPracticeR
 import SongsThatFitYourVocalRangeArticle from './articles/SongsThatFitYourVocalRangeArticle';
 import BreathingAndPostureForSingersArticle from './articles/BreathingAndPostureForSingersArticle';
 import MixedVoiceExplainedArticle from './articles/MixedVoiceExplainedArticle';
+import KaraokeWarmupAndSongKeyArticle from './articles/KaraokeWarmupAndSongKeyArticle';
+import RecordYourselfToImproveSingingArticle from './articles/RecordYourselfToImproveSingingArticle';
+import TransposeSongsForYourVoiceArticle from './articles/TransposeSongsForYourVoiceArticle';
+import SingingWhenTiredOrHoarseArticle from './articles/SingingWhenTiredOrHoarseArticle';
 import { enrichBlogMeta } from '../data/blogAuthors';
 
 export const blogIndex = [
+  { ...enrichBlogMeta(KaraokeWarmupAndSongKeyArticle.meta), component: KaraokeWarmupAndSongKeyArticle },
+  { ...enrichBlogMeta(RecordYourselfToImproveSingingArticle.meta), component: RecordYourselfToImproveSingingArticle },
+  { ...enrichBlogMeta(TransposeSongsForYourVoiceArticle.meta), component: TransposeSongsForYourVoiceArticle },
+  { ...enrichBlogMeta(SingingWhenTiredOrHoarseArticle.meta), component: SingingWhenTiredOrHoarseArticle },
   { ...enrichBlogMeta(DailySingingPracticeRoutineArticle.meta), component: DailySingingPracticeRoutineArticle },
   { ...enrichBlogMeta(SongsThatFitYourVocalRangeArticle.meta), component: SongsThatFitYourVocalRangeArticle },
   { ...enrichBlogMeta(WhyYouSingSharpArticle.meta), component: WhyYouSingSharpArticle },

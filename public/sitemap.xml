@@ -232,6 +232,34 @@
 
   <!-- Blog Articles -->
   <url>
+    <loc>https://www.singmeter.com/blog/karaoke-warmup-and-song-key</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.singmeter.com/blog/record-yourself-to-improve-singing</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.singmeter.com/blog/transpose-songs-for-your-voice</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.singmeter.com/blog/singing-when-tired-or-hoarse</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
     <loc>https://www.singmeter.com/blog/daily-singing-practice-routine</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>

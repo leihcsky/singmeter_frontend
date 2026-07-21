@@ -12,13 +12,19 @@ export const VOCAL_RANGE_SPOKE_SLUGS = [
   'can-vocal-range-change',
   'tessitura-and-comfortable-range',
   'songs-that-fit-your-vocal-range',
+  'transpose-songs-for-your-voice',
 ];
 
 export const PITCH_HUB_SLUG = 'improve-singing-pitch';
 export const PITCH_HUB_PATH = `/blog/${PITCH_HUB_SLUG}`;
 export const PITCH_HUB_TITLE = 'How to Improve Your Singing Pitch: Complete Training Guide';
 
-export const PITCH_SPOKE_SLUGS = ['why-you-sing-flat', 'why-you-sing-sharp', 'ear-training-for-singers'];
+export const PITCH_SPOKE_SLUGS = [
+  'why-you-sing-flat',
+  'why-you-sing-sharp',
+  'ear-training-for-singers',
+  'record-yourself-to-improve-singing',
+];
 
 export const HIGH_NOTES_HUB_SLUG = 'singing-high-notes-techniques';
 export const HIGH_NOTES_HUB_PATH = `/blog/${HIGH_NOTES_HUB_SLUG}`;

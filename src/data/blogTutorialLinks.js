@@ -71,6 +71,22 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/pitch-calibration-10',
     title: '10-Minute Pitch Calibration',
   },
+  'karaoke-warmup-and-song-key': {
+    path: '/tutorials/daily-warmup-15',
+    title: '15-Minute Daily Warm-Up',
+  },
+  'record-yourself-to-improve-singing': {
+    path: '/tutorials/home-recording-vocal-check',
+    title: 'Home Recording Vocal Check',
+  },
+  'transpose-songs-for-your-voice': {
+    path: '/tutorials/transpose-a-song',
+    title: 'Transpose a Song',
+  },
+  'singing-when-tired-or-hoarse': {
+    path: '/tutorials/vocal-health-recovery-day',
+    title: 'Vocal Health Recovery Day',
+  },
 };
 
 export function getBlogPracticeTutorial(slug) {

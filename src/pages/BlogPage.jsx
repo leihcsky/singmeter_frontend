@@ -18,6 +18,7 @@ const blogTopics = [
       'why-you-sing-flat',
       'why-you-sing-sharp',
       'ear-training-for-singers',
+      'record-yourself-to-improve-singing',
     ],
   },
   {
@@ -31,6 +32,7 @@ const blogTopics = [
       'can-vocal-range-change',
       'tessitura-and-comfortable-range',
       'songs-that-fit-your-vocal-range',
+      'transpose-songs-for-your-voice',
     ],
   },
   {
@@ -52,6 +54,8 @@ const blogTopics = [
       'daily-singing-practice-routine',
       'breathing-and-posture-for-singers',
       'vocal-health-and-maintenance',
+      'singing-when-tired-or-hoarse',
+      'karaoke-warmup-and-song-key',
     ],
   },
 ];

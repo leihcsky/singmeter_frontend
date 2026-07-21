@@ -55,6 +55,13 @@ const slugToAuthorId = {
   // Practice habits & repertoire — Max
   'daily-singing-practice-routine': BLOG_AUTHOR_IDS.MAX,
   'songs-that-fit-your-vocal-range': BLOG_AUTHOR_IDS.MAX,
+  'transpose-songs-for-your-voice': BLOG_AUTHOR_IDS.MAX,
+
+  // Scenarios & editorial — Sam
+  'karaoke-warmup-and-song-key': BLOG_AUTHOR_IDS.SAM,
+
+  // Recording & pitch feedback — Jordan
+  'record-yourself-to-improve-singing': BLOG_AUTHOR_IDS.JORDAN,
 
   // Technique, health, high notes — Elena
   'vocal-health-and-maintenance': BLOG_AUTHOR_IDS.ELENA,
@@ -63,6 +70,7 @@ const slugToAuthorId = {
   'high-notes-warmup-routine': BLOG_AUTHOR_IDS.ELENA,
   'breathing-and-posture-for-singers': BLOG_AUTHOR_IDS.ELENA,
   'mixed-voice-explained': BLOG_AUTHOR_IDS.ELENA,
+  'singing-when-tired-or-hoarse': BLOG_AUTHOR_IDS.ELENA,
 };
 
 export function getBlogAuthorForSlug(slug) {
