@@ -62,6 +62,8 @@ const slugToAuthorId = {
 
   // Recording & pitch feedback — Jordan
   'record-yourself-to-improve-singing': BLOG_AUTHOR_IDS.JORDAN,
+  'metronome-practice-for-singers': BLOG_AUTHOR_IDS.JORDAN,
+  'sing-in-tune-without-piano': BLOG_AUTHOR_IDS.JORDAN,
 
   // Technique, health, high notes — Elena
   'vocal-health-and-maintenance': BLOG_AUTHOR_IDS.ELENA,
@@ -71,6 +73,7 @@ const slugToAuthorId = {
   'breathing-and-posture-for-singers': BLOG_AUTHOR_IDS.ELENA,
   'mixed-voice-explained': BLOG_AUTHOR_IDS.ELENA,
   'singing-when-tired-or-hoarse': BLOG_AUTHOR_IDS.ELENA,
+  'fix-wavering-pitch': BLOG_AUTHOR_IDS.ELENA,
 };
 
 export function getBlogAuthorForSlug(slug) {

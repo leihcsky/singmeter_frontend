@@ -19,6 +19,8 @@ const blogTopics = [
       'why-you-sing-sharp',
       'ear-training-for-singers',
       'record-yourself-to-improve-singing',
+      'sing-in-tune-without-piano',
+      'fix-wavering-pitch',
     ],
   },
   {
@@ -56,6 +58,7 @@ const blogTopics = [
       'vocal-health-and-maintenance',
       'singing-when-tired-or-hoarse',
       'karaoke-warmup-and-song-key',
+      'metronome-practice-for-singers',
     ],
   },
 ];

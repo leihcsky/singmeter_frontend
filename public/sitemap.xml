@@ -232,6 +232,27 @@
 
   <!-- Blog Articles -->
   <url>
+    <loc>https://www.singmeter.com/blog/metronome-practice-for-singers</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.singmeter.com/blog/sing-in-tune-without-piano</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.singmeter.com/blog/fix-wavering-pitch</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
     <loc>https://www.singmeter.com/blog/karaoke-warmup-and-song-key</loc>
     <lastmod>2026-07-21</lastmod>
     <changefreq>monthly</changefreq>

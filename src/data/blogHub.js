@@ -24,6 +24,8 @@ export const PITCH_SPOKE_SLUGS = [
   'why-you-sing-sharp',
   'ear-training-for-singers',
   'record-yourself-to-improve-singing',
+  'sing-in-tune-without-piano',
+  'fix-wavering-pitch',
 ];
 
 export const HIGH_NOTES_HUB_SLUG = 'singing-high-notes-techniques';
@@ -39,7 +41,6 @@ export const HIGH_NOTES_SPOKE_SLUGS = [
 /** Slugs removed from the site — no article file; show 404 (not 301). */
 export const RETIRED_BLOG_SLUGS = new Set([
   'vocal-range-vs-voice-type',
-  'sing-in-tune-without-piano',
   'use-pitch-detector-for-training',
   'famous-singers-vocal-ranges',
   'mixed-voice-vs-head-voice',

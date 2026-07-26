@@ -19,9 +19,15 @@ import KaraokeWarmupAndSongKeyArticle from './articles/KaraokeWarmupAndSongKeyAr
 import RecordYourselfToImproveSingingArticle from './articles/RecordYourselfToImproveSingingArticle';
 import TransposeSongsForYourVoiceArticle from './articles/TransposeSongsForYourVoiceArticle';
 import SingingWhenTiredOrHoarseArticle from './articles/SingingWhenTiredOrHoarseArticle';
+import MetronomePracticeForSingersArticle from './articles/MetronomePracticeForSingersArticle';
+import SingInTuneWithoutPianoArticle from './articles/SingInTuneWithoutPianoArticle';
+import FixWaveringPitchArticle from './articles/FixWaveringPitchArticle';
 import { enrichBlogMeta } from '../data/blogAuthors';
 
 export const blogIndex = [
+  { ...enrichBlogMeta(MetronomePracticeForSingersArticle.meta), component: MetronomePracticeForSingersArticle },
+  { ...enrichBlogMeta(SingInTuneWithoutPianoArticle.meta), component: SingInTuneWithoutPianoArticle },
+  { ...enrichBlogMeta(FixWaveringPitchArticle.meta), component: FixWaveringPitchArticle },
   { ...enrichBlogMeta(KaraokeWarmupAndSongKeyArticle.meta), component: KaraokeWarmupAndSongKeyArticle },
   { ...enrichBlogMeta(RecordYourselfToImproveSingingArticle.meta), component: RecordYourselfToImproveSingingArticle },
   { ...enrichBlogMeta(TransposeSongsForYourVoiceArticle.meta), component: TransposeSongsForYourVoiceArticle },

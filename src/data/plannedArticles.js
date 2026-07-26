@@ -113,7 +113,7 @@ export const plannedArticles = [
     cluster: 'timing',
     targetWords: 1100,
     singmeterTools: ['/metronome', '/pitch-detector'],
-    status: 'planned',
+    status: 'published',
   },
   {
     priority: 11,
@@ -124,7 +124,7 @@ export const plannedArticles = [
     cluster: 'pitch',
     targetWords: 1100,
     singmeterTools: ['/tone-generator', '/pitch-detector', '/tutorials/pitch-calibration-10'],
-    status: 'planned',
+    status: 'published',
   },
   {
     priority: 12,
@@ -135,7 +135,7 @@ export const plannedArticles = [
     cluster: 'pitch',
     targetWords: 1100,
     singmeterTools: ['/pitch-detector', '/tone-generator'],
-    status: 'planned',
+    status: 'published',
   },
 ];
 

@@ -87,6 +87,18 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/vocal-health-recovery-day',
     title: 'Vocal Health Recovery Day',
   },
+  'metronome-practice-for-singers': {
+    path: '/tutorials/pitch-calibration-10',
+    title: '10-Minute Pitch Calibration',
+  },
+  'sing-in-tune-without-piano': {
+    path: '/tutorials/pitch-calibration-10',
+    title: '10-Minute Pitch Calibration',
+  },
+  'fix-wavering-pitch': {
+    path: '/tutorials/pitch-calibration-10',
+    title: '10-Minute Pitch Calibration',
+  },
 };
 
 export function getBlogPracticeTutorial(slug) {
