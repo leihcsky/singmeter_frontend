@@ -99,6 +99,18 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/pitch-calibration-10',
     title: '10-Minute Pitch Calibration',
   },
+  'choir-audition-range-prep': {
+    path: '/tutorials/vocal-range-test-guided',
+    title: 'Your First Vocal Range Test',
+  },
+  'singing-quietly-in-tune': {
+    path: '/tutorials/pitch-calibration-10',
+    title: '10-Minute Pitch Calibration',
+  },
+  'first-week-singing-practice-plan': {
+    path: '/tutorials/vocal-range-test-guided',
+    title: 'Your First Vocal Range Test',
+  },
 };
 
 export function getBlogPracticeTutorial(slug) {

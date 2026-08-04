@@ -25,6 +25,7 @@ const FAQPage = lazy(() => import('./pages/FAQPage'))
 const ToneGeneratorPage = lazy(() => import('./pages/ToneGeneratorPage'))
 const MetronomePage = lazy(() => import('./pages/MetronomePage'))
 const SongKeyFinderPage = lazy(() => import('./pages/SongKeyFinderPage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 
 function RouteFallback() {
   return (
@@ -120,6 +121,7 @@ function App() {
           <Route path="/tone-generator" element={<ToneGeneratorPage />} />
           <Route path="/metronome" element={<MetronomePage />} />
           <Route path="/song-key-finder" element={<SongKeyFinderPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         </Suspense>
       </div>

@@ -1,11 +1,12 @@
 /**
  * Full editorial book review — /resources/books/:slug
  */
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getBookBySlug, bookReviews } from '../resources/bookReviews';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import NotFoundPage from './NotFoundPage';
 
 const TITLE_BRAND = ' | SingMeter';
 
@@ -14,7 +15,7 @@ const ResourceBookReviewPage = () => {
   const book = getBookBySlug(slug);
 
   if (!book) {
-    return <Navigate to="/resources" replace />;
+    return <NotFoundPage />;
   }
 
   const others = bookReviews.filter((b) => b.slug !== book.slug).slice(0, 2);

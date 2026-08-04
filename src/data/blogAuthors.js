@@ -45,12 +45,14 @@ const slugToAuthorId = {
   'vocal-range-chart': BLOG_AUTHOR_IDS.MAX,
   'can-vocal-range-change': BLOG_AUTHOR_IDS.MAX,
   'tessitura-and-comfortable-range': BLOG_AUTHOR_IDS.MAX,
+  'choir-audition-range-prep': BLOG_AUTHOR_IDS.MAX,
 
   // Pitch & ear — Jordan / Max on flagship tool piece
   'improve-singing-pitch': BLOG_AUTHOR_IDS.MAX,
   'ear-training-for-singers': BLOG_AUTHOR_IDS.JORDAN,
   'why-you-sing-flat': BLOG_AUTHOR_IDS.JORDAN,
   'why-you-sing-sharp': BLOG_AUTHOR_IDS.JORDAN,
+  'singing-quietly-in-tune': BLOG_AUTHOR_IDS.JORDAN,
 
   // Practice habits & repertoire — Max
   'daily-singing-practice-routine': BLOG_AUTHOR_IDS.MAX,
@@ -59,6 +61,7 @@ const slugToAuthorId = {
 
   // Scenarios & editorial — Sam
   'karaoke-warmup-and-song-key': BLOG_AUTHOR_IDS.SAM,
+  'first-week-singing-practice-plan': BLOG_AUTHOR_IDS.SAM,
 
   // Recording & pitch feedback — Jordan
   'record-yourself-to-improve-singing': BLOG_AUTHOR_IDS.JORDAN,

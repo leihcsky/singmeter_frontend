@@ -6,9 +6,9 @@ const meta = {
   seoDescription:
     'Yes, your usable range can grow with training within natural limits. Learn what changes with age, safe expansion tips, and how to track progress with a range test.',
   category: 'Vocal Range',
-  readTime: '7 min read',
+  readTime: '14 min read',
   date: '2025-12-02',
-  updatedDate: '2026-05-16',
+  updatedDate: '2026-08-04',
   author: 'Max Ray',
   excerpt:
     'Wondering if you can expand your vocal range? Learn what really changes with training, what to expect at different ages, and how to grow your range safely.',
@@ -28,6 +28,14 @@ const content = `
     but you can absolutely make your current range <strong>stronger, freer, and more reliable</strong>.
   </p>
 
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Myths vs. Facts About Range Change</h2>
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+    <li><strong>Myth:</strong> &quot;You are born with a fixed range like your height.&quot; <strong>Fact:</strong> your <em>usable</em> range responds to training, health, and coordination—even if anatomy sets outer limits.</li>
+    <li><strong>Myth:</strong> &quot;More range always sounds better.&quot; <strong>Fact:</strong> a reliable two-octave span with good tone beats a wide range full of strained notes.</li>
+    <li><strong>Myth:</strong> &quot;Push until it hurts to grow.&quot; <strong>Fact:</strong> pain and hoarseness slow progress. Gentle, consistent work wins.</li>
+    <li><strong>Myth:</strong> &quot;If I cannot hit a note today, I never will.&quot; <strong>Fact:</strong> range varies by warm-up, sleep, hydration, and technique—retest on good days before deciding.</li>
+  </ul>
+
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">First: Know Your Starting Point</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Before you work on changing your range, you need to know where you are right now. The easiest way is to use
@@ -41,9 +49,12 @@ const content = `
     </li>
     <li>Write down the result, for example: <strong>A2–E4</strong> or <strong>G3–C6</strong>.</li>
     <li>Repeat on another day to make sure the numbers are similar.</li>
+    <li>Log time of day and how warmed up you were—morning cold tests often read a semitone lower on top notes.</li>
   </ul>
   <p class="text-gray-600 mb-4 leading-relaxed">
     This gives you a clear baseline so you can see <strong>real progress</strong> over time instead of guessing.
+    For the full testing method, see
+    <a href="/blog/how-to-test-vocal-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">how to test your vocal range</a>.
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">What Typically Changes with Training</h2>
@@ -55,6 +66,7 @@ const content = `
     <li><strong>Bottom notes become clearer:</strong> low notes you used to mumble become more stable and resonant.</li>
     <li><strong>Middle range strengthens:</strong> your &quot;everyday&quot; singing area gains power and flexibility.</li>
     <li><strong>Transitions smooth out:</strong> switching between chest, mix, and head voice feels more natural.</li>
+    <li><strong>Tessitura widens slightly:</strong> the band where you sound best may grow even if your absolute peak moves only a note or two.</li>
   </ul>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">What Probably Won&apos;t Change</h2>
@@ -78,16 +90,27 @@ const content = `
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>
       <strong>Teens:</strong> voices can change quickly, especially for boys during puberty. Be gentle and avoid
-      forcing high notes.
+      forcing high notes. Retest monthly, not weekly.
     </li>
     <li>
       <strong>20s–40s:</strong> with regular practice, this is often the most stable and flexible period for range
-      expansion.
+      expansion. Expect slow gains of a semitone or two per year with good habits.
     </li>
     <li>
       <strong>50s and beyond:</strong> some very high notes may soften, but good technique can keep your range
-      healthy and expressive for a long time.
+      healthy and expressive for a long time. Focus on maintaining tessitura and tone, not chasing teenage peaks.
     </li>
+  </ul>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Decision Tree: Should You Push Today?</h2>
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+    <li><strong>Voice feels clear and warm?</strong> Proceed with edge work—slides and semitone ladders below your peak.</li>
+    <li><strong>Hoarse, tired, or post-cold?</strong> Skip peak training. Use mid-range humming only; see
+      <a href="/blog/singing-when-tired-or-hoarse" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">singing when tired or hoarse</a>.</li>
+    <li><strong>Top note was easy yesterday but hard today?</strong> Do not force parity. Log the day and train the middle.</li>
+    <li><strong>Pain or sharp scratchiness?</strong> Stop immediately. Rest and retry in 24–48 hours.</li>
+    <li><strong>Same ceiling for six weeks?</strong> You may have hit a coordination plateau—shift to mix/bridge work in the
+      <a href="/tutorials/bridge-and-mix-practice" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">bridge &amp; mix tutorial</a> instead of pushing louder.</li>
   </ul>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Safe Ways to Work on Expanding Your Range</h2>
@@ -95,11 +118,13 @@ const content = `
     The goal is to <strong>nudge</strong> your limits, not attack them. Here is a simple, safe approach:
   </p>
   <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
-    <li>Warm up gently with humming, lip trills, and light scales.</li>
-    <li>Use a piano, app, or
+    <li>Warm up gently with humming, lip trills, and light scales—see
+      <a href="/blog/high-notes-warmup-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">high notes warm-up routine</a>.</li>
+    <li>Use the
+      <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Tone Generator</a>
+      or
       <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">pitch detector</a>
-      to provide clear reference notes.
-    </li>
+      to provide clear reference notes.</li>
     <li>Start in your comfortable middle range and slowly move one or two notes higher or lower.</li>
     <li>Stop immediately if you feel <strong>pain, scratching, or strong tightness</strong>.</li>
     <li>Practice a little bit every day instead of long, exhausting sessions once a week.</li>
@@ -124,9 +149,20 @@ const content = `
     </li>
     <li>
       <strong>2 minutes – Song application:</strong> sing an easy song that touches the edges of your range,
-      but doesn&apos;t force them.
+      but doesn&apos;t force them. Transpose with
+      <a href="/song-key-finder" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Song Key Finder</a>
+      if needed.
     </li>
   </ol>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Troubleshooting Plateaus and Setbacks</h2>
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+    <li><strong>Top note got worse after a big push:</strong> rest two days, return at one semitone below your old ceiling for a week.</li>
+    <li><strong>Low notes stay muddy:</strong> work breath and posture—see
+      <a href="/blog/breathing-and-posture-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">breathing and posture for singers</a>—before forcing lower.</li>
+    <li><strong>Range shrank after illness:</strong> normal. Retest when healthy; do not compare to pre-cold numbers for two weeks.</li>
+    <li><strong>Numbers unchanged but songs feel easier:</strong> that is progress. Tessitura and control often improve before extreme notes move.</li>
+  </ul>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">How to Track Your Progress</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
@@ -138,11 +174,12 @@ const content = `
       <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Vocal Range Test</a>
       once every few weeks, not every day.
     </li>
-    <li>Write down your results in a notebook or notes app.</li>
+    <li>Write down your results in a notebook or notes app with date, warm-up length, and time of day.</li>
     <li>
       Pay attention not only to &quot;new&quot; notes, but to how <strong>easy</strong> your old high and low notes
       feel now.
     </li>
+    <li>Compare tessitura comfort in real songs—not just test numbers.</li>
   </ul>
 
   <div class="bg-indigo-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">

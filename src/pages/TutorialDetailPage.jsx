@@ -1,7 +1,7 @@
 /**
  * Individual practice tutorial (/tutorials/:slug)
  */
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getTutorialBySlug, tutorialIndex } from '../tutorials';
 import Header from '../components/Header';
@@ -10,6 +10,7 @@ import TutorialArticle from '../components/TutorialArticle';
 import TutorialDetailFooter from '../components/TutorialDetailFooter';
 import LearnHubNav from '../components/LearnHubNav';
 import { tutorialPracticeInsightsBySlug } from '../data/tutorialPracticeInsights';
+import NotFoundPage from './NotFoundPage';
 
 const TITLE_BRAND = ' | SingMeter';
 const MAX_TITLE_TOTAL = 60;
@@ -29,7 +30,7 @@ const TutorialDetailPage = () => {
   const tutorial = getTutorialBySlug(slug);
 
   if (!tutorial) {
-    return <Navigate to="/tutorials" replace />;
+    return <NotFoundPage />;
   }
 
   const { meta, intro, tools, steps, selfCheck, goDeeper, nextTutorial } = tutorial;

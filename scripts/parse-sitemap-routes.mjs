@@ -24,6 +24,22 @@ export function getRoutesFromSitemap(sitemapPath) {
   return [...new Set(routes)];
 }
 
+/**
+ * noindex hub pages stay out of sitemap (AdSense/crawl signal) but still need
+ * prerender so direct visits and internal links do not soft-404 to homepage.
+ */
+export const PRERENDER_EXTRA_ROUTES = [
+  '/tutorials',
+  '/resources',
+  '/glossary',
+  '/faq',
+  '/disclaimer',
+];
+
+export function getPrerenderRoutes(sitemapPath = defaultSitemapPath()) {
+  return [...new Set([...getRoutesFromSitemap(sitemapPath), ...PRERENDER_EXTRA_ROUTES])];
+}
+
 export function defaultSitemapPath() {
   return path.join(__dirname, '..', 'public', 'sitemap.xml');
 }

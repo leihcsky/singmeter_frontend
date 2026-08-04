@@ -13,19 +13,23 @@
     <meta name="author" content="SingMeter" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Per-URL canonical in initial HTML (SPA); React updates title/description after load -->
+    <!-- Per-URL canonical in initial HTML (SPA); keep exactly one tag (dedupe leftovers). -->
     <script>
       (function () {
         var origin = 'https://www.singmeter.com';
         var path = location.pathname.replace(/\/+$/, '') || '/';
         var href = origin + (path === '/' ? '' : path);
-        var link = document.querySelector('link[rel="canonical"]');
+        var links = document.querySelectorAll('link[rel="canonical"]');
+        var link = links[0];
         if (!link) {
           link = document.createElement('link');
           link.rel = 'canonical';
           document.head.appendChild(link);
         }
         link.href = href;
+        for (var i = 1; i < links.length; i++) {
+          links[i].parentNode.removeChild(links[i]);
+        }
       })();
     </script>
 

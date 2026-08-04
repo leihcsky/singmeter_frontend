@@ -5,6 +5,7 @@
       "PUPPETEER_SKIP_DOWNLOAD": "true"
     }
   },
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/:path+/",
@@ -17,6 +18,5 @@
       "destination": "https://www.singmeter.com/:path*",
       "permanent": true
     }
-  ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  ]
 }

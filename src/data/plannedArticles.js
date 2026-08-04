@@ -148,7 +148,7 @@ export const plannedArticlesStretch = [
     angle: 'Part placement from tessitura, not ego highs; what to show a director.',
     cluster: 'scenarios',
     targetWords: 1100,
-    status: 'planned',
+    status: 'published',
   },
   {
     priority: 14,
@@ -157,7 +157,7 @@ export const plannedArticlesStretch = [
     angle: 'Dynamics vs support; quiet ≠ whisper; detector checks at low volume.',
     cluster: 'pitch',
     targetWords: 1000,
-    status: 'planned',
+    status: 'published',
   },
   {
     priority: 15,
@@ -166,6 +166,6 @@ export const plannedArticlesStretch = [
     angle: 'Day-by-day for absolute beginners using only SingMeter free tools.',
     cluster: 'practice-habits',
     targetWords: 1200,
-    status: 'planned',
+    status: 'published',
   },
 ];

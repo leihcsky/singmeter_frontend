@@ -21,6 +21,7 @@ const blogTopics = [
       'record-yourself-to-improve-singing',
       'sing-in-tune-without-piano',
       'fix-wavering-pitch',
+      'singing-quietly-in-tune',
     ],
   },
   {
@@ -35,6 +36,7 @@ const blogTopics = [
       'tessitura-and-comfortable-range',
       'songs-that-fit-your-vocal-range',
       'transpose-songs-for-your-voice',
+      'choir-audition-range-prep',
     ],
   },
   {
@@ -59,6 +61,7 @@ const blogTopics = [
       'singing-when-tired-or-hoarse',
       'karaoke-warmup-and-song-key',
       'metronome-practice-for-singers',
+      'first-week-singing-practice-plan',
     ],
   },
 ];

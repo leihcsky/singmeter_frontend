@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import http from 'node:http';
 import Beasties from 'beasties';
-import { defaultSitemapPath, getRoutesFromSitemap } from './parse-sitemap-routes.mjs';
+import { defaultSitemapPath, getPrerenderRoutes } from './parse-sitemap-routes.mjs';
 
 // @sparticuz/chromium picks AL2 vs AL2023 libs from this at import/runtime (Vercel Fluid needs it)
 if (process.env.VERCEL === '1' || process.env.VERCEL_ENV) {
@@ -129,12 +129,58 @@ function outputHtmlPath(route) {
   return path.join(DIST, ...segments, 'index.html');
 }
 
+const SITE_ORIGIN = 'https://www.singmeter.com';
+const SPA_SHELL = path.join(DIST, '.prerender-spa-shell.html');
+
+function canonicalHrefForRoute(route) {
+  return route === '/' ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${route}`;
+}
+
+/**
+ * Collapse duplicate canonical tags left by SPA-fallback onto a prerendered homepage shell.
+ */
+function normalizeCanonicalInHtml(html, route) {
+  const href = canonicalHrefForRoute(route);
+  const without = html
+    .replace(/<link\b[^>]*\brel\s*=\s*["']canonical["'][^>]*>/gi, '')
+    .replace(/<link\b[^>]*\bhref\s*=\s*["'][^"']*["'][^>]*\brel\s*=\s*["']canonical["'][^>]*>/gi, '');
+  if (/<head[^>]*>/i.test(without)) {
+    return without.replace(/<head([^>]*)>/i, `<head$1>\n    <link rel="canonical" href="${href}">`);
+  }
+  return without;
+}
+
+function restoreSpaShell() {
+  if (!fs.existsSync(SPA_SHELL)) return;
+  fs.copyFileSync(SPA_SHELL, path.join(DIST, 'index.html'));
+}
+
 async function prerenderRoute(page, route, beasties) {
+  // Non-home routes must not SPA-fallback onto a previously written homepage
+  // snapshot (that bakes a second canonical pointing at /).
+  if (route !== '/') {
+    restoreSpaShell();
+  }
+
   const url = `${PREVIEW_ORIGIN}${route === '/' ? '/' : route}`;
   await page.goto(url, { waitUntil: 'networkidle0', timeout: 120000 });
 
   await page.waitForSelector('#root main', { timeout: 60000 });
   await page.waitForSelector('html[data-prerender-ready="true"]', { timeout: 60000 });
+
+  // Force a single correct canonical in the live DOM before snapshot.
+  await page.evaluate((href) => {
+    const links = [...document.querySelectorAll('link[rel="canonical"]')];
+    if (links.length === 0) {
+      const el = document.createElement('link');
+      el.setAttribute('rel', 'canonical');
+      el.setAttribute('href', href);
+      document.head.appendChild(el);
+      return;
+    }
+    links[0].setAttribute('href', href);
+    for (let i = 1; i < links.length; i += 1) links[i].remove();
+  }, canonicalHrefForRoute(route));
 
   const title = await page.title();
   const description = await page.$eval('meta[name="description"]', (el) => el.content).catch(() => '');
@@ -145,12 +191,14 @@ async function prerenderRoute(page, route, beasties) {
   }
 
   let html = await page.content();
+  html = normalizeCanonicalInHtml(html, route);
 
   // Inline this route's above-the-fold CSS and make the full stylesheet load
   // async, so first paint isn't blocked on the render-blocking CSS round-trip.
   if (beasties) {
     try {
       html = await beasties.process(html);
+      html = normalizeCanonicalInHtml(html, route);
     } catch (err) {
       log(`  ⚠ critical CSS inline failed for ${route}: ${err.message}`);
     }
@@ -177,8 +225,14 @@ async function main() {
     process.exit(1);
   }
 
-  const routes = getRoutesFromSitemap(defaultSitemapPath());
-  log(`routes: ${routes.length} from sitemap.xml`);
+  const routes = getPrerenderRoutes(defaultSitemapPath());
+  // Prerender "/" last so intermediate SPA fallbacks never hit a homepage snapshot.
+  const ordered = [...routes.filter((r) => r !== '/'), ...routes.filter((r) => r === '/')];
+  log(`routes: ${ordered.length} (sitemap + noindex hubs; home last)`);
+
+  // Preserve the Vite SPA shell before any route overwrites dist/index.html.
+  const indexHtml = path.join(DIST, 'index.html');
+  fs.copyFileSync(indexHtml, SPA_SHELL);
 
   const beasties = new Beasties({
     path: DIST,
@@ -222,7 +276,7 @@ async function main() {
       });
     });
 
-    for (const route of routes) {
+    for (const route of ordered) {
       try {
         await prerenderRoute(page, route, beasties);
       } catch (err) {
@@ -233,6 +287,13 @@ async function main() {
   } finally {
     if (browser) await browser.close();
     if (preview) preview.kill('SIGTERM');
+    if (fs.existsSync(SPA_SHELL)) {
+      try {
+        fs.unlinkSync(SPA_SHELL);
+      } catch {
+        // ignore
+      }
+    }
   }
 
   if (process.exitCode) {

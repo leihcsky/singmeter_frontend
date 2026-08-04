@@ -6,9 +6,9 @@ const meta = {
 	seoDescription:
 	  'Improve pitch accuracy with breath, vowels, scales, intervals, and a short daily routine using a pitch detector. Fix sharp or flat habits and track progress over time.',
 	category: 'Guides',
-	readTime: '14 min read',
+	readTime: '16 min read',
 	date: '2025-11-21',
-	updatedDate: '2026-07-16',
+	updatedDate: '2026-08-04',
 	author: 'Max Ray',
 	excerpt:
 	  'A complete pitch-training guide you can run at home: how to read cents, fix flat or sharp bias, and follow a 15-minute daily loop with SingMeter tools.',
@@ -143,6 +143,52 @@ const content = `
 	        <li>Skipping warm-up, then blaming the detector for &quot;bad days.&quot;</li>
 	        <li>Expecting overnight results; pitch habits take consistent short sessions.</li>
 	      </ul>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Troubleshooting by Symptom</h2>
+	      <ul class="list-disc list-outside text-gray-600 space-y-3 mb-6 ml-4">
+	        <li>
+	          <strong>Flat on descending lines only:</strong> support drops at phrase ends—sing shorter chunks and renew breath before each landing note.
+	        </li>
+	        <li>
+	          <strong>Sharp when nervous or loud:</strong> excess tension; practice the same phrase at whisper volume until cents stabilize.
+	        </li>
+	        <li>
+	          <strong>Wobble on long notes:</strong> breath or closure issue—hold single notes with the
+	          <a href="/metronome" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Metronome</a>
+	          at 60 BPM for 8 counts before adding vibrato.
+	        </li>
+	        <li>
+	          <strong>Wrong on one vowel only:</strong> jaw/tongue shape—swap to a narrower vowel (&quot;ee&quot; or &quot;oo&quot;) on the problem pitch, then return to the lyric vowel slowly.
+	        </li>
+	        <li>
+	          <strong>Detector says flat but you hear &quot;right&quot;:</strong> run ear-training drills in
+	          <a href="/blog/ear-training-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Ear Training for Singers</a>
+	          and trust the meter for confirmation.
+	        </li>
+	      </ul>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sing Without a Piano: Reference Pitch Workflow</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        No keyboard? Use the Tone Generator and Pitch Detector together:
+	      </p>
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Play a target note on the Tone Generator for two seconds.</li>
+	        <li>Sing the same pitch and match until cents stay inside ±10.</li>
+	        <li>Mute the generator and hold the note solo for 8 seconds—this tests memory, not just copying.</li>
+	        <li>For intervals, play root → play second note → sing both from memory → check landing pitch on the detector.</li>
+	      </ol>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        For singing in tune when you have no reference at all, see
+	        <a href="/blog/sing-in-tune-without-piano" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">sing in tune without a piano</a>.
+	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Recording Yourself (Optional Check)</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Once per week, record one phrase you practiced with the detector. Listen back for drift the meter already flagged—
+	        flat phrase endings, sharp peaks, or scooping into notes. Read
+	        <a href="/blog/record-yourself-to-improve-singing" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">record yourself to improve singing</a>
+	        for a simple review habit that complements cents logging.
+	      </p>
 
 	      <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
 	        <p class="text-indigo-900 leading-relaxed mb-4">

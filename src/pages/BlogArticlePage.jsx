@@ -94,8 +94,16 @@ const BlogArticlePage = () => {
   useEffect(() => {
     if (!article) {
       document.title = 'Page Not Found | SingMeter';
+      let robots = document.querySelector('meta[name="robots"]');
+      if (!robots) {
+        robots = document.createElement('meta');
+        robots.setAttribute('name', 'robots');
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute('content', 'noindex, follow');
       return () => {
         document.title = 'SingMeter';
+        robots.setAttribute('content', 'index, follow');
       };
     }
     // Set or update meta tags

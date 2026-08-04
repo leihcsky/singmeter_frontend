@@ -3,9 +3,9 @@ const meta = {
   slug: 'high-notes-warmup-routine',
   title: 'High Notes Warm-Up Routine: 15 Minutes to Sing Higher Safely',
   category: 'Practice Routines',
-  readTime: '7 min read',
+  readTime: '14 min read',
   date: '2025-12-02',
-  updatedDate: '2026-06-25',
+  updatedDate: '2026-08-04',
   author: 'Elena V.',
   excerpt:
     'A practical 15-minute warm-up routine designed to prepare your voice for high notes, reduce strain, and track your progress over time.',
@@ -54,18 +54,23 @@ const content = `
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">1. 3 Minutes &mdash; Gentle Body and Breath Activation</h3>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Roll your shoulders, neck, and jaw to release tension.</li>
-    <li>Take slow, deep breaths into your lower ribs and belly.</li>
+    <li>Take slow, deep breaths into your lower ribs and belly—see
+      <a href="/blog/breathing-and-posture-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">breathing and posture for singers</a>.</li>
     <li>Sigh gently on &quot;ah&quot; from mid to low notes to relax the throat.</li>
+    <li>Optional: set the
+      <a href="/metronome" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Metronome</a>
+      to 60 BPM and exhale on a counted 4-beat sigh twice.</li>
   </ul>
 
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">2. 4 Minutes &mdash; Light Sirens and Slides</h3>
 <p class="text-gray-600 mb-4 leading-relaxed">
-    On &quot;ng&quot; or &quot;oo&quot;, slide smoothly from low to high and back down.
+    On &quot;ng&quot; or &quot;oo&quot;, slide smoothly from low to high and back down. Start around your speaking pitch and widen gradually.
   </p>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Keep the volume medium or soft, focusing on smooth connection.</li>
     <li>Use the Pitch Detector to watch how your pitch moves through your range.</li>
     <li>If your voice cracks, lighten the sound rather than pushing harder.</li>
+    <li>Do 4–6 sirens; stop the set if the top gets breathy twice in a row.</li>
   </ul>
 
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">3. 4 Minutes &mdash; 5-Note Scales Toward the Top</h3>
@@ -73,19 +78,31 @@ const content = `
     Sing 5-note scales (1&ndash;2&ndash;3&ndash;4&ndash;5&ndash;4&ndash;3&ndash;2&ndash;1) on &quot;gee&quot; or &quot;nay&quot;:
   </p>
   <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
-    <li>Start in a comfortable mid-range key.</li>
+    <li>Start in a comfortable mid-range key—use the Tone Generator for a starting pitch if needed.</li>
     <li>Move the pattern up by semitones, stopping <strong>one or two notes below</strong> your very top.</li>
     <li>Keep the tone buzzy and forward, not heavy and shouty.</li>
+    <li>Example: if your test high is F4, run scales topping out at D4 or Eb4 today.</li>
   </ol>
 
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">4. 3 Minutes &mdash; Short High-Note Phrases</h3>
   <p class="text-gray-600 mb-4 leading-relaxed">
-    Choose a simple phrase from a song that includes a higher note you want to practice.
+    Choose a simple phrase from a song that includes a higher note you want to practice. Transpose with
+    <a href="/song-key-finder" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Song Key Finder</a>
+    if the original key sits above your current warm-up ceiling.
   </p>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Sing it slowly and softly at first, focusing on clean transitions.</li>
     <li>Use the Pitch Detector to confirm you&apos;re hitting the pitch, not sliding under it.</li>
     <li>Only add volume once it feels easy at a softer level.</li>
+    <li>Repeat the phrase three times max—quality over repetition.</li>
+  </ul>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Decision Tree: Stop or Keep Going?</h2>
+  <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+    <li><strong>Crack on every siren?</strong> Stay in step 1–2 another 3 minutes; do not jump to scales.</li>
+    <li><strong>Scales clean but phrase fails?</strong> The song line may still be too high—transpose down one semitone.</li>
+    <li><strong>Throat feels tight after step 3?</strong> Skip step 4; cooldown and end the session.</li>
+    <li><strong>Everything easy?</strong> You may add one cautious semitone to scales next time—not in the same session.</li>
   </ul>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Are You Actually Warmed Up? A Readiness Check</h2>
@@ -110,7 +127,8 @@ const content = `
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">After the Warm-Up: How to Use It in Real Songs</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Once your voice is warm, move into your actual repertoire. Start with songs that sit mostly in your <strong>tessitura</strong>
-    and only briefly touch your highest notes.
+    and only briefly touch your highest notes. Save the &quot;hero note&quot; songs for the middle of your practice block, not the first
+    five minutes after warm-up.
   </p>
 	  <p class="text-gray-600 mb-4 leading-relaxed">
 	    On days when you want to focus on technique, combine this routine with
@@ -120,6 +138,10 @@ const content = `
 	    and for register coordination keep revisiting
 	    <a href="/tutorials/bridge-and-mix-practice" class="ml-1 text-indigo-600 hover:text-indigo-700 font-semibold underline">Mixed Voice Practice tutorial</a>.
 	  </p>
+	  <p class="text-gray-600 mb-4 leading-relaxed">
+	    Before a performance, run only steps 1–3 of this routine (about 11 minutes) plus the readiness check—skip heavy phrase work
+	    so you arrive fresh. After performing, gentle cooldown hums for 2 minutes help reset the voice for the next day.
+	  </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Tracking Progress Over Time</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
@@ -128,8 +150,16 @@ const content = `
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Run the Vocal Range Test every few weeks to check if your top notes feel easier.</li>
     <li>Notice whether high notes in songs feel less scary and more reliable.</li>
-    <li>Pay attention to how quickly your voice warms up compared to before.</li>
+    <li>Pay attention to how quickly your voice warms up compared to before—fewer cracks in step 2 means real progress.</li>
+    <li>Log which step failed on bad days; patterns (always failing step 4?) point to key or tessitura issues, not &quot;bad technique.&quot;</li>
   </ul>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Pair this routine with
+    <a href="/blog/singing-high-notes-techniques" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">high note techniques</a>
+    on technique days, and
+    <a href="/blog/daily-singing-practice-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">daily practice routine</a>
+    for general maintenance on other days.
+  </p>
 
   <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
     <p class="text-indigo-900 leading-relaxed mb-2">

@@ -13,6 +13,7 @@ export const VOCAL_RANGE_SPOKE_SLUGS = [
   'tessitura-and-comfortable-range',
   'songs-that-fit-your-vocal-range',
   'transpose-songs-for-your-voice',
+  'choir-audition-range-prep',
 ];
 
 export const PITCH_HUB_SLUG = 'improve-singing-pitch';
@@ -26,6 +27,7 @@ export const PITCH_SPOKE_SLUGS = [
   'record-yourself-to-improve-singing',
   'sing-in-tune-without-piano',
   'fix-wavering-pitch',
+  'singing-quietly-in-tune',
 ];
 
 export const HIGH_NOTES_HUB_SLUG = 'singing-high-notes-techniques';

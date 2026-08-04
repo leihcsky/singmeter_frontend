@@ -931,13 +931,44 @@ const VocalRangeTestPage = () => {
                     note, and let the analyzer calculate your range and closest voice type. Never push into pain or scream—comfortable
                     notes only.
                   </p>
+                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">What counts as a usable note</h3>
+                  <ul className="list-disc list-outside ml-4 space-y-2 text-gray-700 mb-4">
+                    <li>Clear tone for about 1–2 seconds (not a scrape or scream)</li>
+                    <li>No sharp throat pain; mild stretch at the edge is OK, pain is not</li>
+                    <li>You could repeat the note tomorrow without fearing it</li>
+                    <li>Whispery fry at the bottom or flippy squeaks at the top usually do <strong>not</strong> count</li>
+                  </ul>
+                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">After the result: three useful next steps</h3>
+                  <ol className="list-decimal list-outside ml-4 space-y-2 text-gray-700 mb-4">
+                    <li>
+                      Write your comfortable low and high (not just the heroic extremes). That band is closer to{' '}
+                      <Link to="/blog/tessitura-and-comfortable-range" className="text-indigo-600 font-semibold underline">
+                        tessitura
+                      </Link>
+                      .
+                    </li>
+                    <li>
+                      Open the{' '}
+                      <Link to="/song-key-finder" className="text-indigo-600 font-semibold underline">
+                        Song Key Finder
+                      </Link>{' '}
+                      and transpose one song so the chorus peaks sit inside that band.
+                    </li>
+                    <li>
+                      Retest every 4–6 weeks after consistent practice—not every day. Daily swings are mostly fatigue and room noise.
+                    </li>
+                  </ol>
                   <p>
                     For a guided 12-minute walkthrough with microphone setup, the exact descend/ascend method, and the most common
                     mistakes to avoid, follow our{' '}
                     <Link to="/tutorials/vocal-range-test-guided" className="text-indigo-600 hover:text-indigo-700 font-semibold underline">
                       step-by-step Vocal Range Test tutorial
                     </Link>
-                    . Otherwise, scroll up and start the test now.
+                    . Full written guide:{' '}
+                    <Link to="/blog/how-to-test-vocal-range" className="text-indigo-600 font-semibold underline">
+                      how to test vocal range
+                    </Link>
+                    .
                   </p>
                 </ContentSection>
               </div>

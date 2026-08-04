@@ -1,3 +1,6 @@
+import ChoirAuditionRangePrepArticle from './articles/ChoirAuditionRangePrepArticle';
+import SingingQuietlyInTuneArticle from './articles/SingingQuietlyInTuneArticle';
+import FirstWeekSingingPracticePlanArticle from './articles/FirstWeekSingingPracticePlanArticle';
 import ImproveSingingPitchArticle from './articles/ImproveSingingPitchArticle';
 import HowToTestVocalRangeArticle from './articles/HowToTestVocalRangeArticle';
 import SingingHighNotesTechniquesArticle from './articles/SingingHighNotesTechniquesArticle';
@@ -25,6 +28,9 @@ import FixWaveringPitchArticle from './articles/FixWaveringPitchArticle';
 import { enrichBlogMeta } from '../data/blogAuthors';
 
 export const blogIndex = [
+  { ...enrichBlogMeta(FirstWeekSingingPracticePlanArticle.meta), component: FirstWeekSingingPracticePlanArticle },
+  { ...enrichBlogMeta(SingingQuietlyInTuneArticle.meta), component: SingingQuietlyInTuneArticle },
+  { ...enrichBlogMeta(ChoirAuditionRangePrepArticle.meta), component: ChoirAuditionRangePrepArticle },
   { ...enrichBlogMeta(MetronomePracticeForSingersArticle.meta), component: MetronomePracticeForSingersArticle },
   { ...enrichBlogMeta(SingInTuneWithoutPianoArticle.meta), component: SingInTuneWithoutPianoArticle },
   { ...enrichBlogMeta(FixWaveringPitchArticle.meta), component: FixWaveringPitchArticle },

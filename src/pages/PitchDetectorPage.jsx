@@ -852,10 +852,51 @@ const PitchDetectorPage = () => {
             </p>
           </ContentSection>
 
-          <ContentSection title="Structured Pitch Practice">
+          <ContentSection title="A 10-Minute Pitch Honesty Protocol">
             <p className="text-gray-600 mb-4 leading-relaxed">
-              Siren slides, long tones, interval jumps, and scale work are best followed step-by-step—not repeated here.
-              Use the timed tutorial for a first session on SingMeter, or the pitch hub for problem-specific fixes (flat vs sharp, ear training, daily loop).
+              Use this loop on mid-range notes before you touch a song. Keep volume at speaking-plus—loud practice often
+              creates sharp bias and hides the real error.
+            </p>
+            <ol className="list-decimal list-outside ml-4 space-y-2 text-gray-700 mb-4">
+              <li>
+                Warm with 60 seconds of easy humming. Open the{' '}
+                <Link to="/tone-generator" className="text-indigo-600 font-semibold underline">
+                  Tone Generator
+                </Link>{' '}
+                and play one comfortable note.
+              </li>
+              <li>Match it softly while both tones are audible, then mute the generator and hold 6–8 seconds on this Pitch Detector.</li>
+              <li>
+                Log bias: mostly flat, mostly sharp, or wavering. Fix one habit only—see{' '}
+                <Link to="/blog/why-you-sing-flat" className="text-indigo-600 font-semibold underline">
+                  flat
+                </Link>
+                ,{' '}
+                <Link to="/blog/why-you-sing-sharp" className="text-indigo-600 font-semibold underline">
+                  sharp
+                </Link>
+                , or{' '}
+                <Link to="/blog/fix-wavering-pitch" className="text-indigo-600 font-semibold underline">
+                  wavering
+                </Link>
+                .
+              </li>
+              <li>Repeat on two more mid-range notes (same three notes for at least two weeks so progress is visible).</li>
+              <li>
+                Spend the last 3 minutes on one song syllable that usually fails—not a full chorus. Re-check cents, then stop.
+              </li>
+            </ol>
+            <p className="text-gray-600 mb-4 leading-relaxed">
+              Target: hold near ±10 cents for several seconds at soft volume before adding intensity. If soft is centered and
+              loud is sharp, volume is the lever—not &quot;more ear training&quot; alone. For a timed script, run the{' '}
+              <Link to="/tutorials/pitch-calibration-10" className="text-indigo-600 font-semibold underline">
+                10-minute pitch calibration tutorial
+              </Link>
+              . Broader plan:{' '}
+              <Link to="/blog/improve-singing-pitch" className="text-indigo-600 font-semibold underline">
+                improve singing pitch
+              </Link>
+              .
             </p>
             <div className="flex flex-wrap gap-3 not-prose">
               <Link
@@ -871,10 +912,10 @@ const PitchDetectorPage = () => {
                 Pitch training hub
               </Link>
               <Link
-                to="/blog/why-you-sing-flat"
+                to="/blog/sing-in-tune-without-piano"
                 className="inline-flex items-center px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
               >
-                Why you sing flat
+                Practice without a piano
               </Link>
             </div>
           </ContentSection>

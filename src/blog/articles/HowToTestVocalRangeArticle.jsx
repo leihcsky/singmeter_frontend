@@ -6,9 +6,9 @@ const meta = {
 	seoDescription:
 	  'Learn how to test your vocal range correctly: what counts as a usable note, how to read notation, a step-by-step home method, and common mistakes that skew results.',
 	category: 'Guides',
-	readTime: '12 min read',
+	readTime: '15 min read',
 		date: '2025-11-11',
-		updatedDate: '2026-07-16',
+		updatedDate: '2026-08-04',
 		author: 'Max Ray',
 	excerpt:
 	  'A complete home method for testing vocal range: usable notes vs forced sounds, scientific pitch notation, a step-by-step SingMeter session, and how often to retest.',
@@ -57,6 +57,42 @@ const content = `
 	        is what you should protect in practice. Details:
 	        <a href="/blog/tessitura-and-comfortable-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tessitura and comfortable range</a>.
 	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Decision Tree: Does This Note Count?</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Before you write down an edge note, ask:
+	      </p>
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Could you sing it in a song?</strong> If not, it is not usable range.</li>
+	        <li><strong>Can you hold it 2–3 seconds with steady pitch?</strong> Check on the Pitch Detector—wild cents mean revise inward.</li>
+	        <li><strong>Is the tone clear—not fry, whisper, or shout?</strong> Vocal fry at the bottom and squeezed cracks at the top do not count.</li>
+	        <li><strong>Can you repeat it twice in a row?</strong> One lucky attempt is not a range note.</li>
+	        <li><strong>Would you use it tomorrow without warming up extensively?</strong> If it requires a hero effort every time, log it as &quot;stretch&quot; not &quot;comfortable.&quot;</li>
+	      </ul>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Morning vs. Evening: When to Test</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Range shifts with time of day. Many singers read a semitone lower on top notes in the morning before full warm-up,
+	        and slightly wider after an evening practice session. For consistent tracking:
+	      </p>
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>Pick one time of day (late morning or early evening works for most people).</li>
+	        <li>Use the same warm-up length before each test—3–5 minutes of humming and lip trills.</li>
+	        <li>Average two or three tests on different days before treating a new note as &quot;official.&quot;</li>
+	        <li>After a cold or heavy gig, wait until your voice feels normal before comparing to old baselines.</li>
+	      </ul>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Worked Example: A Complete Test Session</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Here is what an honest home test might look like for an untrained alto-ish singer:
+	      </p>
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li>After 4 minutes of humming, lowest clear note: <strong>F3</strong> (E3 was fry—does not count).</li>
+	        <li>Highest chest/mix note held cleanly: <strong>C5</strong> (C#5 cracked twice—does not count).</li>
+	        <li>Head voice usable to <strong>E5</strong>—logged separately for pop repertoire, not merged into one number.</li>
+	        <li>Pitch Detector check: F3 and C5 both within ±15 cents for 3 seconds—pass.</li>
+	        <li>Written result: <strong>F3–C5 (primary), head to E5</strong>, date and &quot;evening, 5-min warm-up.&quot;</li>
+	      </ol>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step-by-Step: Test at Home with SingMeter</h2>
 	      <ol class="list-decimal list-outside text-gray-600 space-y-3 mb-6 ml-4">
@@ -124,6 +160,18 @@ const content = `
 	        For classical Fach-style labels, often only the primary register counts. For contemporary singing, include head voice
 	        if you use it in performance—but write it separately so you do not confuse choir placement with pop repertoire options.
 	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Troubleshooting Bad or Inconsistent Results</h2>
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Mic not detecting low notes:</strong> move closer, reduce room noise, or switch to Manual mode and confirm by ear with the Tone Generator.</li>
+	        <li><strong>Top note jumps around between tests:</strong> fatigue or inconsistent warm-up—standardize timing and stop counting forced peaks.</li>
+	        <li><strong>Range feels smaller after training hard:</strong> normal short-term—retest after 48 hours of lighter use.</li>
+	        <li><strong>Huge range on paper but songs still hard:</strong> you measured extremes, not tessitura. See
+	          <a href="/blog/tessitura-and-comfortable-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tessitura and comfortable range</a>.</li>
+	        <li><strong>Want to grow the number safely:</strong> read
+	          <a href="/blog/can-vocal-range-change" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">can your vocal range change?</a>
+	          and retest every 2–3 months, not daily.</li>
+	      </ul>
 
 	      <div class="bg-indigo-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
 	        <p class="text-indigo-700 leading-relaxed mb-4">

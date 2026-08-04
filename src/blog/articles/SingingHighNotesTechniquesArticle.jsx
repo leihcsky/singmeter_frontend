@@ -6,9 +6,9 @@ const meta = {
   seoDescription:
     'Learn how to sing high notes with support, mix, and a SingMeter range-first workflow. Includes a 10-minute check-in, practice drills, and when to stop.',
   category: 'Techniques',
-  readTime: '13 min read',
+  readTime: '15 min read',
   date: '2025-01-30',
-  updatedDate: '2026-07-16',
+  updatedDate: '2026-08-04',
   author: 'Elena V.',
   excerpt:
     'A practical high-notes guide: range-first workflow, support vs push, mix basics, and drills you can run with SingMeter before you chase peaks.',
@@ -111,22 +111,70 @@ const content = `
 	        Gentle descending hums or lip trills. Do not chase one more peak &quot;for the road.&quot;
 	      </p>
 
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">20-Minute Extended Session (Optional)</h2>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        On days when the 10-minute check-in passes all steps, add this block once or twice per week:
+	      </p>
+	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>5 min:</strong> Full
+	          <a href="/blog/high-notes-warmup-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">high-notes warm-up</a>
+	          through the readiness check.</li>
+	        <li><strong>5 min:</strong> Semitone ladder on &quot;gee&quot;—stop at today&apos;s ceiling.</li>
+	        <li><strong>5 min:</strong> Two problem phrases at half volume with Pitch Detector open.</li>
+	        <li><strong>5 min:</strong> One phrase at target volume only if half-volume runs were clean three times.</li>
+	      </ol>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Use the
+	        <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Tone Generator</a>
+	        for reference if you do not have a keyboard. Retest range monthly with the Vocal Range Test to confirm peaks are sustainable, not forced.
+	      </p>
+
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Common Mistakes</h2>
 	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li>Pushing volume instead of support</li>
-	        <li>Skipping warm-up before peak notes</li>
-	        <li>Lifting the chin or closing the throat</li>
-	        <li>Singing through pain or significant strain</li>
-	        <li>Comparing your top note to recordings without checking key and production</li>
+	        <li>Pushing volume instead of support—if the throat tightens, the note is too high or too loud for today.</li>
+	        <li>Skipping warm-up before peak notes—even a 3-minute hum cycle prevents most cracks.</li>
+	        <li>Lifting the chin or closing the throat—keep eyes level and jaw loose on sirens.</li>
+	        <li>Singing through pain or significant strain—stop and log a rest day instead.</li>
+	        <li>Comparing your top note to recordings without checking key and production—studio vocals are often comped and tuned.</li>
+	        <li>Practicing high notes daily without mid-range maintenance—fatigue accumulates. Alternate with
+	          <a href="/blog/daily-singing-practice-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">daily practice routine</a>
+	          days that skip peak work.</li>
 	      </ul>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">When Something Goes Wrong</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        <strong>Cracks or breaks:</strong> slow sirens and mixed-voice work—not more volume.
+	        <strong>Cracks or breaks:</strong> slow sirens and mixed-voice work—not more volume. Read
+	        <a href="/blog/mixed-voice-explained" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">mixed voice explained</a>
+	        and practice the bridge tutorial before retrying the phrase.
+	      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Weak or breathy highs:</strong> check closure with light &quot;ng&quot; hums before adding power.
+	        If breathiness persists, drop a semitone and rebuild the ladder over several sessions.
+	      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        <strong>Cannot reach the note:</strong> confirm your range with a test; you may be above today&apos;s comfortable top.
+	        Use Song Key Finder to transpose the line down, then retry with the detector.
+	      </p>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        <strong>Sharp on every high note:</strong> excess tension or volume—see
+	        <a href="/blog/why-you-sing-sharp" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">why you sing sharp</a>
+	        and practice at half volume first.
+	      </p>
+	      <p class="text-gray-600 mb-6 leading-relaxed">
 	        For recovery after strain, use the
 	        <a href="/tutorials/vocal-health-recovery-day" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal health recovery tutorial</a>.
+	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Register-Specific Tips</h2>
+	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
+	        <li><strong>Lower voices (bass/baritone):</strong> spend extra time on sirens through your passaggio before peak work. Your top may feel &quot;small&quot; before it feels free—that is normal.</li>
+	        <li><strong>Middle voices (tenor/alto):</strong> mix coordination usually unlocks the next semitone. Prioritize &quot;nay&quot; and &quot;gee&quot; exercises over shouting.</li>
+	        <li><strong>Higher voices (soprano/mezzo):</strong> watch for over-singing early in the session. Light sirens prevent fatigue that masquerades as &quot;no range today.&quot;</li>
+	      </ul>
+	      <p class="text-gray-600 mb-4 leading-relaxed">
+	        Match repertoire to your tessitura after range work—see
+	        <a href="/blog/tessitura-and-comfortable-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tessitura and comfortable range</a>
+	        so high notes in songs stay repeatable, not one-time peaks.
 	      </p>
 
 	      <div class="bg-purple-50 border-l-4 border-purple-400 p-6 mt-8 rounded-r-lg">
