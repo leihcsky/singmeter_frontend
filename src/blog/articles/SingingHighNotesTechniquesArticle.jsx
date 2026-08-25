@@ -25,10 +25,8 @@ const content = `
 	        add timed routines; you can still complete a useful session from this page alone.
 	      </p>
 	      <p class="text-gray-600 mb-4 leading-relaxed text-sm">
-	        <strong>Safety:</strong> Stop if you feel pain, tickling that worsens, or hoarseness that appears during the session.
-	        SingMeter is for practice feedback—not medical care. See our
-	        <a href="/disclaimer" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">disclaimer</a>
-	        and
+	        <strong>Stop if it hurts:</strong> pain, worsening tickling, or hoarseness that shows up during the session means end the drill.
+	        For load and recovery habits, see
 	        <a href="/blog/vocal-health-and-maintenance" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal health basics</a>.
 	      </p>
 

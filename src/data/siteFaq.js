@@ -14,7 +14,7 @@ export const siteFaqData = [
     category: 'About SingMeter',
     icon: '🎵',
     question: 'What is SingMeter and who is it for?',
-    answer: `SingMeter is a **free online singing practice platform** for anyone who wants to understand their voice, check pitch, and practice more effectively — from beginners to hobbyists and choir singers. You get browser-based tools plus guides on our blog, without installing an app.`,
+    answer: `SingMeter is a **singing practice publisher** for home singers: original guides and tutorials first, then free browser tools for range, pitch, key, and tempo. No app install or account required.`,
   },
   {
     category: 'About SingMeter',

@@ -39,6 +39,14 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/vocal-health-recovery-day',
     title: 'Vocal Health Recovery Day',
   },
+  'vocal-cooldown-after-practice': {
+    path: '/tutorials/daily-warmup-15',
+    title: '15-Minute Daily Warm-Up',
+  },
+  'singing-with-a-cold-or-allergies': {
+    path: '/tutorials/vocal-health-recovery-day',
+    title: 'Vocal Health Recovery Day',
+  },
   'singing-high-notes-techniques': {
     path: '/tutorials/bridge-and-mix-practice',
     title: 'Mixed Voice Practice',

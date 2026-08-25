@@ -29,8 +29,7 @@ const content = `
     and the Pitch Detector still shows a readable pitch (not noise) at the transition. Loud belt comes later—if ever.
   </p>
   <p class="text-gray-600 mb-4 leading-relaxed text-sm">
-    Stop if you feel pain. Mix training is gradual. SingMeter is practice feedback, not a diagnosis—see our
-    <a href="/disclaimer" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">disclaimer</a>.
+    Stop if you feel pain. Mix training is gradual—add volume only when the break stays smooth.
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Chest, Head, and the Break</h2>

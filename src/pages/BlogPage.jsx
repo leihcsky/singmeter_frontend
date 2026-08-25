@@ -58,6 +58,8 @@ const blogTopics = [
       'daily-singing-practice-routine',
       'breathing-and-posture-for-singers',
       'vocal-health-and-maintenance',
+      'vocal-cooldown-after-practice',
+      'singing-with-a-cold-or-allergies',
       'singing-when-tired-or-hoarse',
       'karaoke-warmup-and-song-key',
       'metronome-practice-for-singers',

@@ -10,17 +10,17 @@ const BlogAuthorNote = ({ author = 'SingMeter Team', authorRole }) => (
         Written by {author}
         {authorRole ? ` · ${authorRole}` : ''}.
       </span>{' '}
-      Reviewed for clarity and safety as part of the SingMeter editorial process—not medical advice.{' '}
+      Reviewed against our{' '}
+      <Link to="/editorial-standards" className="text-indigo-700 font-semibold hover:underline">
+        editorial standards
+      </Link>{' '}
+      for clarity and safe home practice.{' '}
       <Link to="/about" className="text-indigo-700 font-semibold hover:underline">
         Meet the team
       </Link>
       {' · '}
-      <Link to="/editorial-standards" className="text-indigo-700 font-semibold hover:underline">
-        Editorial standards
-      </Link>
-      {' · '}
       <Link to="/disclaimer" className="text-indigo-700 font-semibold hover:underline">
-        Disclaimer
+        Scope &amp; limits
       </Link>
     </p>
   </div>

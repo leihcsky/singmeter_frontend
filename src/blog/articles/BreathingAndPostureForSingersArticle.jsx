@@ -29,8 +29,7 @@ const content = `
     drops—SingMeter&apos;s pitch display is useful because pitch often sags or spikes when breath timing falls apart.
   </p>
   <p class="text-gray-600 mb-4 leading-relaxed text-sm">
-    Educational only—not medical advice. Stop if you feel pain or dizziness. See our
-    <a href="/disclaimer" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">disclaimer</a>.
+    Stop if you feel pain or dizziness while doing the drills.
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Posture Checklist (30 Seconds)</h2>

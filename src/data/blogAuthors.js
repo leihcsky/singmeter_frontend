@@ -76,6 +76,8 @@ const slugToAuthorId = {
   'breathing-and-posture-for-singers': BLOG_AUTHOR_IDS.ELENA,
   'mixed-voice-explained': BLOG_AUTHOR_IDS.ELENA,
   'singing-when-tired-or-hoarse': BLOG_AUTHOR_IDS.ELENA,
+  'vocal-cooldown-after-practice': BLOG_AUTHOR_IDS.ELENA,
+  'singing-with-a-cold-or-allergies': BLOG_AUTHOR_IDS.ELENA,
   'fix-wavering-pitch': BLOG_AUTHOR_IDS.ELENA,
 };
 

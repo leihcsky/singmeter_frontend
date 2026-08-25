@@ -29,7 +29,6 @@ const content = `
     <li><strong>Normal practice:</strong> voice feels clear after a short warm-up</li>
   </ul>
   <p class="text-gray-600 mb-4 leading-relaxed">
-    This guide is practical, not medical advice. Pain, blood, persistent hoarseness over two weeks, or sudden loss—see a clinician.
     For day-to-day choices, follow the checks below and the
     <a href="/tutorials/vocal-health-recovery-day" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal health recovery day tutorial</a>.
   </p>
@@ -137,7 +136,8 @@ const content = `
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Mild cold, no fever</h3>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Often red for singing, yellow at best for recovery hums. Congestion changes resonance; do not judge your technique.
-    Reschedule recordings and performances if you can.
+    Reschedule recordings and performances if you can. Full split on colds vs allergies:
+    <a href="/blog/singing-with-a-cold-or-allergies" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">singing with a cold or allergies</a>.
   </p>
 
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Dry office air / AC all day</h3>
@@ -206,6 +206,13 @@ const content = `
     <li><strong>Clear and stable:</strong> normal plan</li>
     <li><strong>Worse after singing:</strong> stop; rest tomorrow</li>
   </ul>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">When to see a clinician</h2>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    This decision tree covers everyday practice at home. See an ENT or laryngologist if you have pain when speaking or swallowing,
+    hoarseness that lasts more than two weeks, sudden voice loss, blood, or hoarseness that keeps worsening despite rest.
+    SingMeter helps you spot patterns—it does not replace someone who can look at your throat.
+  </p>
 
   <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
     <p class="text-indigo-900 leading-relaxed mb-4">

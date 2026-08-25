@@ -14,6 +14,8 @@ import TessituraAndComfortableRangeArticle from './articles/TessituraAndComforta
 import BeltHighNotesSafelyArticle from './articles/BeltHighNotesSafelyArticle';
 import HighNotesWarmupRoutineArticle from './articles/HighNotesWarmupRoutineArticle';
 import VocalHealthArticle from './articles/VocalHealthArticle';
+import VocalCooldownAfterPracticeArticle from './articles/VocalCooldownAfterPracticeArticle';
+import SingingWithAColdOrAllergiesArticle from './articles/SingingWithAColdOrAllergiesArticle';
 import DailySingingPracticeRoutineArticle from './articles/DailySingingPracticeRoutineArticle';
 import SongsThatFitYourVocalRangeArticle from './articles/SongsThatFitYourVocalRangeArticle';
 import BreathingAndPostureForSingersArticle from './articles/BreathingAndPostureForSingersArticle';
@@ -28,6 +30,8 @@ import FixWaveringPitchArticle from './articles/FixWaveringPitchArticle';
 import { enrichBlogMeta } from '../data/blogAuthors';
 
 export const blogIndex = [
+  { ...enrichBlogMeta(SingingWithAColdOrAllergiesArticle.meta), component: SingingWithAColdOrAllergiesArticle },
+  { ...enrichBlogMeta(VocalCooldownAfterPracticeArticle.meta), component: VocalCooldownAfterPracticeArticle },
   { ...enrichBlogMeta(FirstWeekSingingPracticePlanArticle.meta), component: FirstWeekSingingPracticePlanArticle },
   { ...enrichBlogMeta(SingingQuietlyInTuneArticle.meta), component: SingingQuietlyInTuneArticle },
   { ...enrichBlogMeta(ChoirAuditionRangePrepArticle.meta), component: ChoirAuditionRangePrepArticle },

@@ -37,7 +37,7 @@ const steps = [
   {
     title: 'Stop and assess (no singing yet)',
     duration: '2 min',
-    body: `Rate your voice 1–5: 1 = normal, 5 = very hoarse or painful.\n\nIf 4–5 with pain, stop all singing and consider medical advice.\n\nIf 2–3 (tired, dull tone): continue this recovery protocol.\n\nNo Vocal Range Test, Song Key Finder belting, or long Pitch Detector sessions today.`,
+    body: `Rate your voice 1–5: 1 = normal, 5 = very hoarse or painful.\n\nIf 4–5 with pain, stop all singing and see a clinician.\n\nIf 2–3 (tired, dull tone): continue this recovery protocol.\n\nNo Vocal Range Test, Song Key Finder belting, or long Pitch Detector sessions today.`,
   },
   {
     title: 'Hydration and environment',

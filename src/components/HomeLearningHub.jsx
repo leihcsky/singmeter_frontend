@@ -34,7 +34,7 @@ const HomeLearningHub = () => {
             SingMeter Learning Hub
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            Free tools plus original tutorials, guides, and reviews.{' '}
+            Original tutorials, guides, and editor reviews—with free tools as practice checkpoints.{' '}
             <strong className="text-gray-800">Tutorials</strong> are step-by-step practice;{' '}
             <strong className="text-gray-800">blog</strong> articles explain the why;{' '}
             <strong className="text-gray-800">resources</strong> hold editor picks—not generic search links.
@@ -139,8 +139,7 @@ const HomeLearningHub = () => {
           <div className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8 flex flex-col">
             <h3 className="text-xl font-bold text-gray-900 mb-2">Editorial picks</h3>
             <p className="text-sm text-gray-600 mb-4">
-              We write our own tutorials and book reviews. SingMeter is for practice at home—not medical
-              treatment.
+              We write our own tutorials and book reviews for singers practicing at home.
             </p>
             <ul className="text-sm text-gray-700 space-y-2 mb-6">
               <li className="flex items-start gap-2">

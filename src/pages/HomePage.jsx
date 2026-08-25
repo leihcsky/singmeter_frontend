@@ -1,5 +1,5 @@
 /**
- * Home Page - Tools Collection Landing Page
+ * Home Page — publisher-first: original guides & tutorials lead; tools support practice.
  */
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import FAQSection from '../components/FAQSection';
 import HomeLearningHub from '../components/HomeLearningHub';
 import { homeFaqItems } from '../data/siteFaq';
+import { getLatestBlogPosts } from '../data/learningHub';
 
 // Lightweight static hero backdrop — pure CSS gradients, no animated/blurred
 // layers or large inline SVG, so it stays cheap to parse and paint on mobile.
@@ -21,6 +22,7 @@ const BackgroundPattern = () => (
 
 const HomePage = () => {
   const activeTools = getActiveTools();
+  const featuredGuides = getLatestBlogPosts(6);
 
   const toolIcons = {
     'vocal-range-test': (
@@ -52,7 +54,7 @@ const HomePage = () => {
 
   // Set document title and meta tags
   useEffect(() => {
-    document.title = 'SingMeter - Singing Practice Platform & Free Tools';
+    document.title = 'SingMeter — Singing Guides, Tutorials & Free Practice Tools';
 
     const setMetaTag = (name, content, isProperty = false) => {
       const attribute = isProperty ? 'property' : 'name';
@@ -75,10 +77,10 @@ const HomePage = () => {
         element.setAttribute('href', href);
     };
 
-    setMetaTag('description', 'SingMeter helps singers understand their voice, sing in tune, and practice effectively with free online singing tests and tools. From vocal range to pitch accuracy, improve your singing step by step.');
+    setMetaTag('description', 'SingMeter publishes original singing guides and tutorials for home practice—plus free browser tools for vocal range, pitch, key, and tempo when you need a checkpoint.');
     setMetaTag(
       'keywords',
-      'singing test, singing practice tools, vocal range test, pitch detector, tone generator, metronome, song key finder, sing meter, voice training'
+      'singing guides, singing tutorials, vocal practice, vocal range test, pitch detector, tone generator, metronome, song key finder, sing meter, voice training'
     );
     safeSetLinkTag('canonical', 'https://www.singmeter.com/');
 
@@ -103,7 +105,7 @@ const HomePage = () => {
           "@type": "WebSite",
           "name": "SingMeter",
           "url": "https://www.singmeter.com",
-          "description": "SingMeter helps singers understand their voice, sing in tune, and practice effectively with free online tools.",
+          "description": "SingMeter publishes original singing guides and tutorials, with free browser tools for vocal range, pitch, and practice checkpoints.",
           "publisher": {
             "@type": "Organization",
             "name": "SingMeter",
@@ -119,59 +121,102 @@ const HomePage = () => {
         <Header />
 
         <main className="flex-grow relative">
-          {/* Hero Section */}
+          {/* Hero — publisher-first: brand + guides, tools secondary */}
           <section className="relative w-full overflow-hidden bg-white">
             <BackgroundPattern />
-            
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32 flex flex-col items-center text-center z-10">
-              <div className="relative z-10 max-w-5xl">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-8 leading-tight text-gray-900 tracking-tight">
-                  SingMeter helps singers
-                  <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mt-2 pb-2">
-                    understand their voice, sing in tune, and practice effectively
-                  </span>
-                  <span className="text-3xl sm:text-4xl md:text-5xl text-gray-600 mt-6 block font-bold">
-                    — with free online singing tests & tools.
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 z-10">
+              <div className="relative z-10 max-w-4xl mx-auto text-center">
+                <p className="text-sm sm:text-base font-semibold text-indigo-600 uppercase tracking-wide mb-4">
+                  SingMeter
+                </p>
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-gray-900 tracking-tight">
+                  Original singing guides
+                  <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mt-2 pb-1">
+                    that help you practice with purpose
                   </span>
                 </h1>
 
-                <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-                  From vocal range to pitch accuracy, follow a clear practice path and improve your singing step by step.
+                <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+                  Long-form articles and step-by-step tutorials written for home singers—then free browser tools
+                  when you need a range check, pitch readout, or metronome.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <button
-                    onClick={() => scrollToSection('practice-path')}
-                    className="inline-flex items-center px-8 py-4 bg-gray-900 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-gray-800 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 cursor-pointer w-full sm:w-auto justify-center"
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+                  <Link
+                    to="/blog"
+                    className="inline-flex items-center px-8 py-4 bg-gray-900 text-white text-lg font-bold rounded-xl shadow-lg hover:bg-gray-800 hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto justify-center"
                   >
-                    Start Singing Practice
+                    Read singing guides
                     <svg className="w-5 h-5 ml-2 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
-                  </button>
-                  
+                  </Link>
                   <button
-                    onClick={() => scrollToSection('problem-solver')}
+                    type="button"
+                    onClick={() => scrollToSection('learning-hub')}
                     className="inline-flex items-center px-8 py-4 bg-white text-gray-700 text-lg font-bold rounded-xl shadow-sm hover:shadow-md border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 cursor-pointer w-full sm:w-auto justify-center"
                   >
-                    Find the Right Tool for You
-                    <svg className="w-5 h-5 ml-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                    </svg>
+                    Learning Hub
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection('problem-solver')}
+                    className="inline-flex items-center px-6 py-3 text-indigo-700 text-base font-semibold hover:text-indigo-900 transition cursor-pointer"
+                  >
+                    Free tools ↓
                   </button>
                 </div>
               </div>
+
+              {featuredGuides.length > 0 && (
+                <div className="relative z-10 max-w-5xl mx-auto">
+                  <div className="flex items-end justify-between gap-4 mb-4 px-1">
+                    <h2 className="text-lg sm:text-xl font-bold text-gray-900 text-left">
+                      Featured guides
+                    </h2>
+                    <Link
+                      to="/blog"
+                      className="text-sm font-semibold text-indigo-600 hover:text-indigo-800 whitespace-nowrap"
+                    >
+                      All guides →
+                    </Link>
+                  </div>
+                  <ul className="grid sm:grid-cols-2 gap-3 text-left">
+                    {featuredGuides.map((post) => (
+                      <li key={post.slug}>
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="group flex flex-col h-full rounded-xl border border-gray-100 bg-white/90 px-4 py-3 hover:border-indigo-200 hover:shadow-sm transition"
+                        >
+                          <span className="text-xs font-semibold text-indigo-700 mb-1">
+                            {post.category}
+                            {post.readTime ? ` · ${post.readTime}` : ''}
+                          </span>
+                          <span className="font-semibold text-gray-900 group-hover:text-indigo-600 transition line-clamp-2 text-sm sm:text-base">
+                            {post.title}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </section>
 
-          {/* Core Module 1: Three Core Questions (Problem Solver) */}
+          <HomeLearningHub />
+
+          {/* Tools by goal — below editorial hub */}
           <section id="problem-solver" className="py-20 bg-white relative z-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
                   What do you want to improve?
                 </h2>
-                <p className="mt-4 text-xl text-gray-500">Select a goal to find the right tools for you.</p>
+                <p className="mt-4 text-xl text-gray-500">
+                  Pick a goal, then use a free tool as a checkpoint—not as a substitute for practice guides.
+                </p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-8">
@@ -253,8 +298,6 @@ const HomePage = () => {
             </div>
           </section>
 
-          <HomeLearningHub />
-
           {/* Core Module 2: Practice Path */}
           <section id="practice-path" className="py-16 bg-gray-900 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -263,7 +306,7 @@ const HomePage = () => {
                   A Simple Singing Practice Path
                 </h2>
                 <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                  Open these five tools in order. For guided lessons on the same journey, see the{' '}
+                  After you read a guide, open these five tools in order as checkpoints. For minute-by-minute lessons, use the{' '}
                   <button
                     type="button"
                     onClick={() => scrollToSection('learning-hub')}
@@ -350,9 +393,9 @@ const HomePage = () => {
           <section className="py-16 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900">Explore All Tools</h2>
+                <h2 className="text-3xl font-bold text-gray-900">Free practice tools</h2>
                 <p className="mt-4 text-xl text-gray-500">
-                  Simple, focused tools to help you become a better singer.
+                  Use these after a guide or tutorial—quick checks for range, pitch, key, tone, and tempo.
                 </p>
               </div>
 
@@ -393,24 +436,20 @@ const HomePage = () => {
           {/* Why SingMeter Section (SEO Content) */}
           <section className="py-16 bg-white border-t border-gray-100">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Why Practice with SingMeter?</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Why SingMeter?</h2>
               <div className="prose prose-lg mx-auto text-gray-600">
                 <p className="mb-6">
-                  Singing is a skill that can be learned and improved with the right tools and consistent practice. 
-                  SingMeter provides a comprehensive suite of <strong>free online singing tests</strong> and practice tools designed to help vocalists of all levels 
-                  visualize their voice and track their progress.
+                  SingMeter publishes original singing guides and step-by-step tutorials for home practice—
+                  how to warm up, stay in tune, choose a song key, and build a routine you can repeat.
+                  Free browser tools sit beside that writing so you can check range, pitch, or tempo when a lesson asks for it.
                 </p>
                 <p className="mb-6">
-                  Whether you are a beginner trying to find your vocal range or an advanced singer working on 
-                  pitch accuracy, our platform offers immediate visual feedback. This "biofeedback" mechanism is 
-                  crucial for ear training, as it bridges the gap between what you hear in your head and the 
-                  actual sound you produce.
+                  Whether you are finding your voice type or cleaning up pitch accuracy, start with an article or
+                  Learning Hub track, then use visual feedback as a checkpoint—not as a substitute for practice.
                 </p>
                 <p>
-                  Our tools run directly in your browser, ensuring privacy and ease of use. 
-                  Take a quick <strong>singing test</strong> to analyze your voice type with our <strong>Vocal Range Test</strong>, 
-                  or use our <strong>Pitch Detector</strong> to see your exact note in real-time. 
-                  SingMeter is your dedicated digital vocal coach available 24/7.
+                  Everything runs in your browser with no account required. Read the guides, follow a tutorial,
+                  and open the Vocal Range Test or Pitch Detector only when you need a clear number to work from.
                 </p>
               </div>
             </div>

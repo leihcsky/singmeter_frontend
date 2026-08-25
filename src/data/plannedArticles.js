@@ -139,6 +139,37 @@ export const plannedArticles = [
   },
 ];
 
+/** P1 content depth — health hub + spokes (Aug 2026). */
+export const plannedArticlesP1 = [
+  {
+    priority: 'P1-0',
+    slug: 'vocal-health-and-maintenance',
+    title: 'Vocal Health Basics (hub thicken)',
+    cluster: 'health',
+    status: 'published',
+  },
+  {
+    priority: 'P1-1',
+    slug: 'vocal-cooldown-after-practice',
+    title: 'What to Do After You Sing: A Simple Vocal Cool-Down',
+    angle: 'Post-practice exit ramp—5–8 min protocol, when to skip, no “one more high note.”',
+    cluster: 'health',
+    targetWords: 1200,
+    singmeterTools: ['/tutorials/daily-warmup-15', '/pitch-detector', '/blog/vocal-health-and-maintenance'],
+    status: 'published',
+  },
+  {
+    priority: 'P1-2',
+    slug: 'singing-with-a-cold-or-allergies',
+    title: 'Can You Sing With a Cold or Allergies?',
+    angle: 'Cold vs allergy split; meds drying voice; range test as stop signal—not duplicate of tired/hoarse tree.',
+    cluster: 'health',
+    targetWords: 1200,
+    singmeterTools: ['/vocal-range-test', '/tutorials/vocal-health-recovery-day', '/pitch-detector'],
+    status: 'published',
+  },
+];
+
 /** Optional stretch topics if you want 13–15 before reapplying. */
 export const plannedArticlesStretch = [
   {

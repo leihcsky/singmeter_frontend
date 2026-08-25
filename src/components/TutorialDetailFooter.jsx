@@ -19,14 +19,13 @@ const TutorialDetailFooter = ({ slug }) => {
         )}
       </div>
       <p className="text-xs text-gray-500 leading-relaxed">
-        For educational practice at home only—not medical advice, diagnosis, or voice therapy. Stop if you
-        feel pain or hoarseness. See our{' '}
+        Reviewed for safe home practice. Stop if you feel pain or hoarseness.{' '}
         <Link to="/disclaimer" className="text-indigo-600 font-semibold hover:underline">
-          disclaimer
-        </Link>{' '}
-        and{' '}
+          Scope &amp; limits
+        </Link>
+        {' · '}
         <Link to="/about" className="text-indigo-600 font-semibold hover:underline">
-          team
+          Team
         </Link>
         .
       </p>

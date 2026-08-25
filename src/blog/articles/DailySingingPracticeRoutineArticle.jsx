@@ -105,7 +105,9 @@ const content = `
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Block D — Cooldown + log (2–3 minutes)</h3>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Easy descending hums. Write one line: date, bias (flat/sharp/mixed), and whether the song phrase felt easier than yesterday.
-    That log is how a short routine compounds.
+    That log is how a short routine compounds. If you went harder than this template—peaks, belt, long sets—use the full
+    <a href="/blog/vocal-cooldown-after-practice" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">post-practice cool-down</a>
+    instead of stopping at two minutes.
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sample Log (Copy This)</h2>
