@@ -138,7 +138,9 @@ const content = `
   </p>
   <p class="text-gray-600 mb-4 leading-relaxed">
     If the line still falls apart, the problem may be key or phrase length rather than &quot;weak diaphragm.&quot; Shorten the line or
-    transpose before inventing more abdominal effort.     Support should make singing feel simpler, not like holding a plank.
+    transpose before inventing more abdominal effort. For mapping mid-phrase breaths and practicing long lines in halves, see
+    <a href="/blog/long-phrases-breath-planning" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">breath planning for long phrases</a>.
+    Support should make singing feel simpler, not like holding a plank.
     Re-check the same line tomorrow; if it only worked once under ideal focus, the habit is not installed yet—repeat the quiet inhale plan
     before adding new drills. Consistency across two or three days matters more than one perfect take.
   </p>

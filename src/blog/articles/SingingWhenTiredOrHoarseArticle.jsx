@@ -151,6 +151,8 @@ const content = `
     Often green-yellow: modified practice, breath and posture focus—
     <a href="/blog/breathing-and-posture-for-singers" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">breathing and posture</a>—
     instead of high repertoire. Fix sleep before you fix high notes.
+    If the day was also talk-heavy (teaching, calls, noisy rooms), treat speech load first—
+    <a href="/blog/voice-fatigue-from-talking" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">voice fatigue from talking</a>.
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Signs You Pushed Too Far</h2>

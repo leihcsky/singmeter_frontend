@@ -47,6 +47,10 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/vocal-health-recovery-day',
     title: 'Vocal Health Recovery Day',
   },
+  'voice-fatigue-from-talking': {
+    path: '/tutorials/vocal-health-recovery-day',
+    title: 'Vocal Health Recovery Day',
+  },
   'singing-high-notes-techniques': {
     path: '/tutorials/bridge-and-mix-practice',
     title: 'Mixed Voice Practice',
@@ -63,6 +67,10 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/daily-warmup-15',
     title: '15-Minute Daily Warm-Up',
   },
+  'how-to-learn-a-song-phrase-by-phrase': {
+    path: '/tutorials/song-in-the-right-key',
+    title: 'Choose & Practice a Song in Your Key',
+  },
   'songs-that-fit-your-vocal-range': {
     path: '/tutorials/song-in-the-right-key',
     title: 'Choose & Practice a Song in Your Key',
@@ -71,11 +79,23 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/breath-and-posture-basics',
     title: 'Breath & Posture Basics',
   },
+  'long-phrases-breath-planning': {
+    path: '/tutorials/breath-and-posture-basics',
+    title: 'Breath & Posture Basics',
+  },
   'mixed-voice-explained': {
     path: '/tutorials/bridge-and-mix-practice',
     title: 'Mixed Voice Practice',
   },
+  'chest-voice-vs-head-voice-basics': {
+    path: '/tutorials/bridge-and-mix-practice',
+    title: 'Mixed Voice Practice',
+  },
   'why-you-sing-sharp': {
+    path: '/tutorials/pitch-calibration-10',
+    title: '10-Minute Pitch Calibration',
+  },
+  'nervous-pitch-before-performing': {
     path: '/tutorials/pitch-calibration-10',
     title: '10-Minute Pitch Calibration',
   },

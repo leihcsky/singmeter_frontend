@@ -168,6 +168,60 @@ export const plannedArticlesP1 = [
     singmeterTools: ['/vocal-range-test', '/tutorials/vocal-health-recovery-day', '/pitch-detector'],
     status: 'published',
   },
+  {
+    priority: 'P1-3',
+    slug: 'voice-fatigue-from-talking',
+    title: 'Voice Fatigue From Talking: Why Your Singing Feels Gone After Work',
+    angle: 'Speech load as second shift; talk-heavy day protocol; not cold, not pure technique stall.',
+    cluster: 'health',
+    targetWords: 1200,
+    singmeterTools: ['/pitch-detector', '/vocal-range-test', '/tutorials/vocal-health-recovery-day'],
+    status: 'published',
+  },
+];
+
+/** P1 method / technique depth (after health cluster). */
+export const plannedArticlesP1Method = [
+  {
+    priority: 'P1-4',
+    slug: 'how-to-learn-a-song-phrase-by-phrase',
+    title: 'How to Learn a Song Phrase by Phrase',
+    angle: 'Stop full-song loops; map, isolate, slow, stitch—distinct from record-yourself listen-back.',
+    cluster: 'practice',
+    targetWords: 1200,
+    singmeterTools: ['/pitch-detector', '/metronome', '/song-key-finder', '/tutorials/song-in-the-right-key'],
+    status: 'published',
+  },
+  {
+    priority: 'P1-5',
+    slug: 'chest-voice-vs-head-voice-basics',
+    title: 'Chest Voice vs Head Voice: A Simple Home Guide',
+    angle: 'Register primer before mix; find each gear; break is normal—not a duplicate of mixed-voice-explained.',
+    cluster: 'registers',
+    targetWords: 1200,
+    singmeterTools: ['/pitch-detector', '/tone-generator', '/vocal-range-test', '/tutorials/bridge-and-mix-practice'],
+    status: 'published',
+  },
+  {
+    priority: 'P1-6',
+    slug: 'long-phrases-breath-planning',
+    title: 'How to Plan Breaths for Long Singing Phrases',
+    angle: 'Breath marks + metronome + halves then connect—not a duplicate of posture/support basics.',
+    cluster: 'fundamentals',
+    targetWords: 1200,
+    singmeterTools: ['/metronome', '/pitch-detector', '/tutorials/breath-and-posture-basics'],
+    status: 'published',
+  },
+  {
+    priority: 'P1-7',
+    slug: 'nervous-pitch-before-performing',
+    title: 'Nervous Before You Sing? Why Pitch Goes Weird—and What to Do',
+    angle: 'Pre-show adrenaline pitch reset—not karaoke key checklist, not home flat/sharp drills.',
+    cluster: 'scenarios',
+    targetWords: 1200,
+    singmeterTools: ['/tone-generator', '/pitch-detector', '/tutorials/pitch-calibration-10'],
+    status: 'published',
+  },
 ];
 
 /** Optional stretch topics if you want 13–15 before reapplying. */

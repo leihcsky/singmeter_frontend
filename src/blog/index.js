@@ -16,6 +16,11 @@ import HighNotesWarmupRoutineArticle from './articles/HighNotesWarmupRoutineArti
 import VocalHealthArticle from './articles/VocalHealthArticle';
 import VocalCooldownAfterPracticeArticle from './articles/VocalCooldownAfterPracticeArticle';
 import SingingWithAColdOrAllergiesArticle from './articles/SingingWithAColdOrAllergiesArticle';
+import VoiceFatigueFromTalkingArticle from './articles/VoiceFatigueFromTalkingArticle';
+import HowToLearnASongPhraseByPhraseArticle from './articles/HowToLearnASongPhraseByPhraseArticle';
+import ChestVoiceVsHeadVoiceBasicsArticle from './articles/ChestVoiceVsHeadVoiceBasicsArticle';
+import LongPhrasesBreathPlanningArticle from './articles/LongPhrasesBreathPlanningArticle';
+import NervousPitchBeforePerformingArticle from './articles/NervousPitchBeforePerformingArticle';
 import DailySingingPracticeRoutineArticle from './articles/DailySingingPracticeRoutineArticle';
 import SongsThatFitYourVocalRangeArticle from './articles/SongsThatFitYourVocalRangeArticle';
 import BreathingAndPostureForSingersArticle from './articles/BreathingAndPostureForSingersArticle';
@@ -30,6 +35,11 @@ import FixWaveringPitchArticle from './articles/FixWaveringPitchArticle';
 import { enrichBlogMeta } from '../data/blogAuthors';
 
 export const blogIndex = [
+  { ...enrichBlogMeta(NervousPitchBeforePerformingArticle.meta), component: NervousPitchBeforePerformingArticle },
+  { ...enrichBlogMeta(LongPhrasesBreathPlanningArticle.meta), component: LongPhrasesBreathPlanningArticle },
+  { ...enrichBlogMeta(ChestVoiceVsHeadVoiceBasicsArticle.meta), component: ChestVoiceVsHeadVoiceBasicsArticle },
+  { ...enrichBlogMeta(HowToLearnASongPhraseByPhraseArticle.meta), component: HowToLearnASongPhraseByPhraseArticle },
+  { ...enrichBlogMeta(VoiceFatigueFromTalkingArticle.meta), component: VoiceFatigueFromTalkingArticle },
   { ...enrichBlogMeta(SingingWithAColdOrAllergiesArticle.meta), component: SingingWithAColdOrAllergiesArticle },
   { ...enrichBlogMeta(VocalCooldownAfterPracticeArticle.meta), component: VocalCooldownAfterPracticeArticle },
   { ...enrichBlogMeta(FirstWeekSingingPracticePlanArticle.meta), component: FirstWeekSingingPracticePlanArticle },

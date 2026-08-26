@@ -52,10 +52,12 @@ const slugToAuthorId = {
   'ear-training-for-singers': BLOG_AUTHOR_IDS.JORDAN,
   'why-you-sing-flat': BLOG_AUTHOR_IDS.JORDAN,
   'why-you-sing-sharp': BLOG_AUTHOR_IDS.JORDAN,
+  'nervous-pitch-before-performing': BLOG_AUTHOR_IDS.JORDAN,
   'singing-quietly-in-tune': BLOG_AUTHOR_IDS.JORDAN,
 
   // Practice habits & repertoire — Max
   'daily-singing-practice-routine': BLOG_AUTHOR_IDS.MAX,
+  'how-to-learn-a-song-phrase-by-phrase': BLOG_AUTHOR_IDS.MAX,
   'songs-that-fit-your-vocal-range': BLOG_AUTHOR_IDS.MAX,
   'transpose-songs-for-your-voice': BLOG_AUTHOR_IDS.MAX,
 
@@ -74,10 +76,13 @@ const slugToAuthorId = {
   'belt-high-notes-safely': BLOG_AUTHOR_IDS.ELENA,
   'high-notes-warmup-routine': BLOG_AUTHOR_IDS.ELENA,
   'breathing-and-posture-for-singers': BLOG_AUTHOR_IDS.ELENA,
+  'long-phrases-breath-planning': BLOG_AUTHOR_IDS.ELENA,
   'mixed-voice-explained': BLOG_AUTHOR_IDS.ELENA,
+  'chest-voice-vs-head-voice-basics': BLOG_AUTHOR_IDS.ELENA,
   'singing-when-tired-or-hoarse': BLOG_AUTHOR_IDS.ELENA,
   'vocal-cooldown-after-practice': BLOG_AUTHOR_IDS.ELENA,
   'singing-with-a-cold-or-allergies': BLOG_AUTHOR_IDS.ELENA,
+  'voice-fatigue-from-talking': BLOG_AUTHOR_IDS.ELENA,
   'fix-wavering-pitch': BLOG_AUTHOR_IDS.ELENA,
 };
 

@@ -27,6 +27,9 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     At home, success looks like: the same vowel can travel through the break at soft-to-moderate volume without a flip,
     and the Pitch Detector still shows a readable pitch (not noise) at the transition. Loud belt comes later—if ever.
+    New to registers? Start with
+    <a href="/blog/chest-voice-vs-head-voice-basics" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">chest vs head voice basics</a>
+    before grinding mix drills.
   </p>
   <p class="text-gray-600 mb-4 leading-relaxed text-sm">
     Stop if you feel pain. Mix training is gradual—add volume only when the break stays smooth.

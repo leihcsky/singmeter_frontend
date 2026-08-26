@@ -26,7 +26,9 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     This guide is a <strong>15-minute pre-karaoke routine</strong> you can do in a car, a bathroom, or a quiet corner of the bar.
     It is not meant to replace long-term practice—it is meant to give you a repeatable checklist so you walk on stage
-  knowing whether tonight&apos;s song is actually in your wheelhouse.
+    knowing whether tonight&apos;s song is actually in your wheelhouse.
+    If pitch usually falls apart from adrenaline more than from key choice, add the short reset in
+    <a href="/blog/nervous-pitch-before-performing" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">nervous pitch before performing</a>.
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">What You Need (5 Minutes to Gather)</h2>

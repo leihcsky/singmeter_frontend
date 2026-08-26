@@ -81,6 +81,8 @@ const content = `
       </ul>
       <p class="text-gray-600 mb-4 leading-relaxed">
         If mid-range notes feel fine but you &quot;have no top left,&quot; check talking load before blaming technique. Log talk-heavy days next to practice notes for two weeks—patterns show up quickly.
+        Full guide for teachers, calls, and noisy rooms:
+        <a href="/blog/voice-fatigue-from-talking" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">voice fatigue from talking</a>.
       </p>
 
       <h2 id="environment" class="text-2xl font-bold text-gray-900 mt-8 mb-4">Environment: dry air, AC, and masks</h2>

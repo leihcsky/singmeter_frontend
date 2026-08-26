@@ -85,6 +85,10 @@ const content = `
 
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Block C — One song phrase (6–8 minutes)</h3>
   <p class="text-gray-600 mb-4 leading-relaxed">
+    Pick <strong>one</strong> hard line—not a whole chorus on loop from the top. For the full map → isolate → slow → stitch method, see
+    <a href="/blog/how-to-learn-a-song-phrase-by-phrase" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">learn a song phrase by phrase</a>.
+  </p>
+  <p class="text-gray-600 mb-4 leading-relaxed">
     Choose a single line that usually goes wrong—not the whole chorus. Sing it slowly with the detector running.
     If the line sits too high, transpose first with
     <a href="/song-key-finder" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Song Key Finder</a>
