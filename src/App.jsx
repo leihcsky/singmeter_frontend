@@ -2,10 +2,11 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { useEffect, lazy, Suspense } from 'react'
 import './App.css'
 import { applyRobots } from './seo/applyRouteSeo'
+import HomePage from './pages/HomePage'
 
 // Route-level code splitting: each page (and its heavy deps such as Tone.js /
 // pitchy) loads only when its route is visited, keeping the initial bundle small.
-const HomePage = lazy(() => import('./pages/HomePage'))
+// HomePage is eager — it's the LCP route and is prerendered at /.
 const VocalRangeTestPage = lazy(() => import('./pages/VocalRangeTestPage'))
 const PitchDetectorPage = lazy(() => import('./pages/PitchDetectorPage'))
 const BlogPage = lazy(() => import('./pages/BlogPage'))

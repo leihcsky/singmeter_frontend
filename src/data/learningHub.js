@@ -1,7 +1,7 @@
 /**
  * Homepage learning hub — latest blog posts sorted by recency.
  */
-import { blogIndex } from '../blog';
+import { blogCatalog } from '../blog';
 
 function articleSortKey(article) {
   const raw = article.updatedDate || article.date;
@@ -12,10 +12,9 @@ function articleSortKey(article) {
 
 /**
  * @param {number} [limit=3]
- * @returns {Array<typeof blogIndex[number]>}
  */
 export function getLatestBlogPosts(limit = 3) {
-  return [...blogIndex]
+  return [...blogCatalog]
     .sort((a, b) => articleSortKey(b) - articleSortKey(a))
     .slice(0, limit)
     .map((article) => ({

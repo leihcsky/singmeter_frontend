@@ -2,8 +2,8 @@
  * Blog Article Page - Individual Article View
  */
 import { useParams, Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { blogIndex } from '../blog';
+import { useEffect, useState } from 'react';
+import { blogCatalog, getBlogCatalogEntry, loadBlogArticle } from '../blog';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BlogAuthorNote from '../components/BlogAuthorNote';
@@ -88,11 +88,28 @@ function BlogArticleNotFound() {
 
 const BlogArticlePage = () => {
   const { slug } = useParams();
-  const article = blogIndex.find((a) => a.slug === slug);
+  const catalogEntry = getBlogCatalogEntry(slug);
+  const [article, setArticle] = useState(null);
+
+  useEffect(() => {
+    if (!catalogEntry) {
+      setArticle(null);
+      return undefined;
+    }
+    let cancelled = false;
+    loadBlogArticle(slug).then((loaded) => {
+      if (!cancelled) setArticle(loaded);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, catalogEntry]);
+
+  const metaArticle = catalogEntry;
 
   // Set document title and meta tags
   useEffect(() => {
-    if (!article) {
+    if (!metaArticle) {
       document.title = 'Page Not Found | SingMeter';
       let robots = document.querySelector('meta[name="robots"]');
       if (!robots) {
@@ -128,30 +145,30 @@ const BlogArticlePage = () => {
 	      element.setAttribute('href', href);
 	    };
 
-		const canonicalUrl = `https://www.singmeter.com/blog/${article.slug}`;
-		const metaTitle = buildMetaTitle(article);
-		const metaDescription = buildMetaDescription(article);
-		const metaKeywords = buildKeywords(article);
+		const canonicalUrl = `https://www.singmeter.com/blog/${metaArticle.slug}`;
+		const metaTitle = buildMetaTitle(metaArticle);
+		const metaDescription = buildMetaDescription(metaArticle);
+		const metaKeywords = buildKeywords(metaArticle);
 
 		document.title = metaTitle;
 
 		// Basic meta tags
 		setMetaTag('description', metaDescription);
 		setMetaTag('keywords', metaKeywords);
-		setMetaTag('author', article.author || 'Max Ray');
+		setMetaTag('author', metaArticle.author || 'Max Ray');
 
 		// Open Graph tags
 		setMetaTag('og:type', 'article', true);
-		setMetaTag('og:title', buildSocialTitle(article), true);
+		setMetaTag('og:title', buildSocialTitle(metaArticle), true);
 		setMetaTag('og:description', metaDescription, true);
 			setMetaTag('og:url', canonicalUrl, true);
-		setMetaTag('article:published_time', article.date, true);
-		setMetaTag('article:modified_time', article.updatedDate || article.date, true);
-		setMetaTag('article:section', article.category, true);
+		setMetaTag('article:published_time', metaArticle.date, true);
+		setMetaTag('article:modified_time', metaArticle.updatedDate || metaArticle.date, true);
+		setMetaTag('article:section', metaArticle.category, true);
 
     // Twitter tags
     setMetaTag('twitter:card', 'summary_large_image');
-    setMetaTag('twitter:title', buildSocialTitle(article));
+    setMetaTag('twitter:title', buildSocialTitle(metaArticle));
     setMetaTag('twitter:description', metaDescription);
 
 			// Canonical link
@@ -169,13 +186,13 @@ const BlogArticlePage = () => {
 		script.textContent = JSON.stringify({
 		  "@context": "https://schema.org",
 		  "@type": "Article",
-		  "headline": article.title,
+		  "headline": metaArticle.title,
 		  "description": metaDescription,
-		  "datePublished": article.date,
-		  "dateModified": article.updatedDate || article.date,
+		  "datePublished": metaArticle.date,
+		  "dateModified": metaArticle.updatedDate || metaArticle.date,
 		  "author": {
 		    "@type": "Person",
-		    "name": article.author || "Max Ray",
+		    "name": metaArticle.author || "Max Ray",
 		    "url": "https://www.singmeter.com/about"
 		  },
 				  "publisher": {
@@ -190,7 +207,7 @@ const BlogArticlePage = () => {
 				    "@type": "WebPage",
 				    "@id": canonicalUrl
 				  },
-		  "articleSection": article.category,
+		  "articleSection": metaArticle.category,
 		  "keywords": metaKeywords
 		});
     document.head.appendChild(script);
@@ -198,21 +215,23 @@ const BlogArticlePage = () => {
     return () => {
       document.title = 'SingMeter';
     };
-  }, [article]);
+  }, [metaArticle]);
 
-  if (!article) {
+  if (!catalogEntry) {
     return <BlogArticleNotFound />;
   }
 
+  const ArticleBody = article?.component;
+
   // Related articles — exclude noindex / deprioritized posts
-  const relatedArticles = blogIndex
-    .filter((a) => a.id !== article.id && !isNoIndexBlogSlug(a.slug))
+  const relatedArticles = blogCatalog
+    .filter((a) => a.id !== catalogEntry.id && !isNoIndexBlogSlug(a.slug))
     .slice(0, 2);
 
   // Dates and author information
-  const publishedDate = new Date(article.date);
-  const updatedDate = article.updatedDate ? new Date(article.updatedDate) : publishedDate;
-  const hasBeenUpdated = !!article.updatedDate && article.updatedDate !== article.date;
+  const publishedDate = new Date(catalogEntry.date);
+  const updatedDate = catalogEntry.updatedDate ? new Date(catalogEntry.updatedDate) : publishedDate;
+  const hasBeenUpdated = !!catalogEntry.updatedDate && catalogEntry.updatedDate !== catalogEntry.date;
   const formattedPublishedDate = publishedDate.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -250,7 +269,7 @@ const BlogArticlePage = () => {
                 <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
               </svg>
             </li>
-            <li className="text-gray-900 font-medium truncate">{article.title}</li>
+            <li className="text-gray-900 font-medium truncate">{catalogEntry.title}</li>
           </ol>
         </nav>
 
@@ -260,16 +279,16 @@ const BlogArticlePage = () => {
             {/* Meta Info */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <span className="px-4 py-1.5 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">
-                {article.category}
+                {catalogEntry.category}
               </span>
-              <span className="text-gray-500 text-sm">{article.readTime}</span>
+              <span className="text-gray-500 text-sm">{catalogEntry.readTime}</span>
               <span className="text-gray-500 text-sm">
                 By{' '}
                 <Link to="/about" className="font-medium text-gray-800 hover:text-indigo-600">
-                  {article.author || 'SingMeter Team'}
+                  {catalogEntry.author || 'SingMeter Team'}
                 </Link>
-                {article.authorRole && (
-                  <span className="text-gray-400"> · {article.authorRole}</span>
+                {catalogEntry.authorRole && (
+                  <span className="text-gray-400"> · {catalogEntry.authorRole}</span>
                 )}
               </span>
 	              <span className="text-gray-500 text-sm">
@@ -281,23 +300,27 @@ const BlogArticlePage = () => {
 
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-              {article.title}
+              {catalogEntry.title}
             </h1>
 
             {/* Excerpt */}
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              {article.excerpt}
+              {catalogEntry.excerpt}
             </p>
 
             {/* Divider */}
             <div className="border-t border-gray-200 mb-8"></div>
-            <BlogHubCallout slug={article.slug} />
+            <BlogHubCallout slug={catalogEntry.slug} />
             {/* Article Content */}
             <div className="blog-article-content max-w-none">
-              {article.component && <article.component />}
+              {ArticleBody ? (
+                <ArticleBody />
+              ) : (
+                <div className="min-h-[24rem]" aria-busy="true" aria-label="Loading article" />
+              )}
             </div>
-            <BlogPracticeTutorial slug={article.slug} />
-            <BlogAuthorNote author={article.author} authorRole={article.authorRole} />
+            <BlogPracticeTutorial slug={catalogEntry.slug} />
+            <BlogAuthorNote author={catalogEntry.author} authorRole={catalogEntry.authorRole} />
           </div>
         </article>
 

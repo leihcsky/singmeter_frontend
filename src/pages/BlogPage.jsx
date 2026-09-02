@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { blogIndex } from '../blog';
+import { blogCatalog } from '../blog';
 
 // Blog Topics - thematic content clusters for the blog
 const blogTopics = [
@@ -127,7 +127,7 @@ const BlogPage = () => {
         {/* Topic Sections */}
         <div className="space-y-12">
           {blogTopics.map((topic) => {
-            const topicArticles = blogIndex.filter((article) =>
+            const topicArticles = blogCatalog.filter((article) =>
               topic.articleIds.includes(article.id)
             );
 

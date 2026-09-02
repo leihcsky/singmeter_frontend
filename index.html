@@ -51,10 +51,9 @@
     }
     </script>
 
-    <!-- Self-hosted fonts (latin subset, woff2). Preload the above-the-fold faces
-         (body Inter + hero h1 Poppins 800) so the LCP text paints in its final
-         font early instead of repainting on a late web-font swap. -->
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin>
+    <!-- Self-hosted fonts (latin subset, woff2). Preload only the hero h1 face;
+         use optional display so a late font swap cannot push LCP. Body Inter loads
+         without preload so bandwidth favors the LCP text on slow mobile links. -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-800-latin.woff2" crossorigin>
     <style>
       @font-face {
@@ -69,7 +68,7 @@
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 600;
-        font-display: swap;
+        font-display: optional;
         src: url('/fonts/poppins-600-latin.woff2') format('woff2');
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
@@ -77,7 +76,7 @@
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 700;
-        font-display: swap;
+        font-display: optional;
         src: url('/fonts/poppins-700-latin.woff2') format('woff2');
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
@@ -85,7 +84,7 @@
         font-family: 'Poppins';
         font-style: normal;
         font-weight: 800;
-        font-display: swap;
+        font-display: optional;
         src: url('/fonts/poppins-800-latin.woff2') format('woff2');
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }

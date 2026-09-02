@@ -28,6 +28,12 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+/* Skip layout/paint for below-fold sections until near viewport (mobile Speed Index). */
+.defer-paint {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
+}
+
 /* Performance optimizations */
 .will-change-contents {
   will-change: contents;

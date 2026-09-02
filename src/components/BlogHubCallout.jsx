@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { blogIndex } from '../blog';
+import { blogCatalog } from '../blog';
 import { getBlogCluster } from '../data/blogHub';
 
 const BlogHubCallout = ({ slug }) => {
@@ -7,7 +7,7 @@ const BlogHubCallout = ({ slug }) => {
   if (!cluster) return null;
 
   const spokes = cluster.spokeSlugs
-    .map((s) => blogIndex.find((a) => a.slug === s))
+    .map((s) => blogCatalog.find((a) => a.slug === s))
     .filter(Boolean);
 
   if (cluster.role === 'hub') {

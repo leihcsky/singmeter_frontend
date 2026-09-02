@@ -208,7 +208,7 @@ const HomePage = () => {
           <HomeLearningHub />
 
           {/* Tools by goal — below editorial hub */}
-          <section id="problem-solver" className="py-20 bg-white relative z-10">
+          <section id="problem-solver" className="defer-paint py-20 bg-white relative z-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
@@ -299,7 +299,7 @@ const HomePage = () => {
           </section>
 
           {/* Core Module 2: Practice Path */}
-          <section id="practice-path" className="py-16 bg-gray-900 text-white">
+          <section id="practice-path" className="defer-paint py-16 bg-gray-900 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
@@ -390,7 +390,7 @@ const HomePage = () => {
           </section>
 
           {/* Core Module 3: All Tools */}
-          <section className="py-16 bg-white">
+          <section className="defer-paint py-16 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-gray-900">Free practice tools</h2>
@@ -434,7 +434,7 @@ const HomePage = () => {
           </section>
 
           {/* Why SingMeter Section (SEO Content) */}
-          <section className="py-16 bg-white border-t border-gray-100">
+          <section className="defer-paint py-16 bg-white border-t border-gray-100">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Why SingMeter?</h2>
               <div className="prose prose-lg mx-auto text-gray-600">
@@ -456,7 +456,9 @@ const HomePage = () => {
           </section>
 
           {/* FAQ Section */}
-          <FAQSection items={homeFaqItems} />
+          <div className="defer-paint">
+            <FAQSection items={homeFaqItems} />
+          </div>
         </main>
 
         <Footer />

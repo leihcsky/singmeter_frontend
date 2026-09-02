@@ -22,7 +22,7 @@ const HomeLearningHub = () => {
   return (
     <section
       id="learning-hub"
-      className="py-16 sm:py-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50 border-y border-indigo-100/80 scroll-mt-20"
+      className="defer-paint py-16 sm:py-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50 border-y border-indigo-100/80 scroll-mt-20"
       aria-labelledby="learning-hub-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
