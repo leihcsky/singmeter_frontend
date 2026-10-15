@@ -9,7 +9,7 @@ const meta = {
   readTime: '14 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'Before “mixed voice,” you need a clear chest and a usable head. Here’s how to tell them apart, practice each safely, and stop yelling through the break.',
   seoKeywords:

@@ -10,12 +10,12 @@ export const blogCatalog = [
     "readTime": "14 min read",
     "date": "2026-08-26",
     "updatedDate": "2026-08-26",
-    "author": "Jordan L.",
+    "author": "Max Ray",
     "excerpt": "You can sing the song at home. Backstage your hands shake and the first note shoots sharp. Here’s a short pitch reset for nerves—not a pep talk.",
     "seoKeywords": "nervous before singing, stage fright pitch, singing sharp when nervous, performance anxiety singing, warm up before performance pitch, calm nerves before singing",
-    "authorRole": "Audio engineering",
-    "authorId": "jordan-l",
-    "authorTeamMemberId": "audio"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "long-phrases-breath-planning",
@@ -27,12 +27,12 @@ export const blogCatalog = [
     "readTime": "14 min read",
     "date": "2026-08-26",
     "updatedDate": "2026-08-26",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "Long phrases fail less from “weak lungs” than from no plan. Here’s how to mark breaths, practice the line in pieces, then connect—without gasping on the money note.",
     "seoKeywords": "breath planning singing, long phrases singing, where to breathe in a song, running out of breath singing, singer breath marks, practice long vocal phrases",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "chest-voice-vs-head-voice-basics",
@@ -44,12 +44,12 @@ export const blogCatalog = [
     "readTime": "14 min read",
     "date": "2026-08-26",
     "updatedDate": "2026-08-26",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "Before “mixed voice,” you need a clear chest and a usable head. Here’s how to tell them apart, practice each safely, and stop yelling through the break.",
     "seoKeywords": "chest voice vs head voice, what is chest voice, what is head voice, vocal registers beginners, falsetto vs head voice, find chest voice, find head voice singing",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "how-to-learn-a-song-phrase-by-phrase",
@@ -78,12 +78,12 @@ export const blogCatalog = [
     "readTime": "14 min read",
     "date": "2026-08-26",
     "updatedDate": "2026-08-26",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "Same folds for speech and song. If you spent the day talking over noise, your evening practice budget is already half spent—here’s how to tell, and what to do instead of pushing peaks.",
     "seoKeywords": "voice fatigue from talking, talking too much singing, teacher voice fatigue, vocal fatigue after work, speech load singers, save voice for singing, occupational voice singers",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "singing-with-a-cold-or-allergies",
@@ -95,12 +95,12 @@ export const blogCatalog = [
     "readTime": "14 min read",
     "date": "2026-08-25",
     "updatedDate": "2026-08-25",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "Your nose is blocked, your audition is Thursday, and you’re googling “just one light practice.” Here’s how to tell a cold from allergies—and what each one actually allows.",
     "seoKeywords": "singing with a cold, sing with allergies, stuffy nose singing, should I sing when sick, allergy season singing, congested voice practice, post nasal drip singing",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "vocal-cooldown-after-practice",
@@ -112,12 +112,12 @@ export const blogCatalog = [
     "readTime": "14 min read",
     "date": "2026-08-25",
     "updatedDate": "2026-08-25",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "You warmed up. You worked. Then you closed the laptop and went to bed. Here’s the missing five minutes that keeps tomorrow’s voice from feeling like sandpaper.",
     "seoKeywords": "vocal cool down, cool down after singing, vocal recovery after practice, post singing routine, voice cool down exercises, hoarse after singing practice",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "first-week-singing-practice-plan",
@@ -129,12 +129,12 @@ export const blogCatalog = [
     "readTime": "17 min read",
     "date": "2026-08-04",
     "updatedDate": "2026-08-04",
-    "author": "Sam K.",
+    "author": "Max Ray",
     "excerpt": "No piano, no teacher required for week one. Seven short sessions with clear daily goals—measure your voice, calibrate pitch, warm up safely, and sing one phrase you can actually finish.",
     "seoKeywords": "beginner singing practice, first week singing, how to start singing, singing practice plan beginner, learn to sing at home, singing exercises for beginners",
-    "authorRole": "Content & editorial",
-    "authorId": "sam-k",
-    "authorTeamMemberId": "editorial"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "choir-audition-range-prep",
@@ -163,12 +163,12 @@ export const blogCatalog = [
     "readTime": "15 min read",
     "date": "2026-07-26",
     "updatedDate": "2026-07-26",
-    "author": "Jordan L.",
+    "author": "Max Ray",
     "excerpt": "Pitch gets the blame when timing is the real problem. Learn singer-specific metronome drills—subdivisions, long notes, and phrase work—that transfer to songs.",
     "seoKeywords": "metronome for singers, singing timing practice, metronome vocal exercises, how to practice with metronome singing, singer tempo training",
-    "authorRole": "Audio engineering",
-    "authorId": "jordan-l",
-    "authorTeamMemberId": "audio"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "karaoke-warmup-and-song-key",
@@ -180,12 +180,12 @@ export const blogCatalog = [
     "readTime": "15 min read",
     "date": "2026-07-21",
     "updatedDate": "2026-07-21",
-    "author": "Sam K.",
+    "author": "Max Ray",
     "excerpt": "Karaoke is not a voice lesson—but 15 minutes of honest prep saves your throat and your pitch. Warm-up, key check, and a clear go/no-go rule for the big high song.",
     "seoKeywords": "karaoke warm up, karaoke singing tips, karaoke key change, pre karaoke vocal warm up, karaoke night prep, sing karaoke in tune",
-    "authorRole": "Content & editorial",
-    "authorId": "sam-k",
-    "authorTeamMemberId": "editorial"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "record-yourself-to-improve-singing",
@@ -197,12 +197,12 @@ export const blogCatalog = [
     "readTime": "15 min read",
     "date": "2026-07-21",
     "updatedDate": "2026-07-21",
-    "author": "Jordan L.",
+    "author": "Max Ray",
     "excerpt": "Recording yourself is not vanity—it is feedback. Learn a phrase-first listen-back method paired with the Pitch Detector so practice sessions actually change how you sing.",
     "seoKeywords": "record yourself singing, how to record vocals on phone, improve singing by recording, vocal practice recording, listen back singing, home vocal recording tips",
-    "authorRole": "Audio engineering",
-    "authorId": "jordan-l",
-    "authorTeamMemberId": "audio"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "transpose-songs-for-your-voice",
@@ -231,12 +231,12 @@ export const blogCatalog = [
     "readTime": "15 min read",
     "date": "2026-07-21",
     "updatedDate": "2026-07-21",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "Not every scratchy morning needs a day off—but not every day off is lazy. Use this decision tree to choose rest, recovery, or light practice without guessing.",
     "seoKeywords": "singing when hoarse, practice singing tired, vocal rest, hoarse voice singing, should I sing with a cold, vocal recovery, tired voice practice",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "daily-singing-practice-routine",
@@ -282,12 +282,12 @@ export const blogCatalog = [
     "readTime": "15 min read",
     "date": "2026-07-17",
     "updatedDate": "2026-07-18",
-    "author": "Jordan L.",
+    "author": "Max Ray",
     "excerpt": "If your pitch sits above the target, ease volume and tension first. Practical fixes with the Pitch Detector—paired with our flat-singing guide for the opposite bias.",
     "seoKeywords": "why do I sing sharp, singing sharp, how to stop singing sharp, sharp vs flat singing, pitch too high, fix sharp notes",
-    "authorRole": "Audio engineering",
-    "authorId": "jordan-l",
-    "authorTeamMemberId": "audio"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "mixed-voice-explained",
@@ -299,12 +299,12 @@ export const blogCatalog = [
     "readTime": "16 min read",
     "date": "2026-07-17",
     "updatedDate": "2026-07-18",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "What mixed voice actually is, how to feel a smoother break, and home drills with pitch feedback—without forcing belt volume.",
     "seoKeywords": "mixed voice, what is mixed voice, vocal break, passaggio, chest voice vs head voice, smooth vocal transition",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "breathing-and-posture-for-singers",
@@ -316,12 +316,12 @@ export const blogCatalog = [
     "readTime": "15 min read",
     "date": "2026-07-17",
     "updatedDate": "2026-07-18",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "Practical breath support and posture for home singers—four drills you can finish today, plus how to spot posture problems with SingMeter pitch feedback.",
     "seoKeywords": "breathing for singers, breath support singing, posture for singing, diaphragmatic breathing singers, singing posture exercises",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "improve-singing-pitch",
@@ -367,12 +367,12 @@ export const blogCatalog = [
     "readTime": "15 min read",
     "date": "2025-01-30",
     "updatedDate": "2026-08-04",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "A practical high-notes guide: range-first workflow, support vs push, mix basics, and drills you can run with SingMeter before you chase peaks.",
     "seoKeywords": "how to sing high notes, singing high notes techniques, vocal range extension, belt high notes safely, mixed voice high notes",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "why-you-sing-flat",
@@ -384,12 +384,12 @@ export const blogCatalog = [
     "readTime": "9 min read",
     "date": "2025-12-02",
     "updatedDate": "2026-06-01",
-    "author": "Jordan L.",
+    "author": "Max Ray",
     "excerpt": "Find out the real reasons why you sing flat and learn practical exercises to finally fix your pitch for good. We'll show you how to use simple techniques and tools to get in tune and stay there.",
     "seoKeywords": "why do I sing flat, singing flat, how to stop singing flat, sing flat vs sing sharp, pitch problems, fix pitch issues, off pitch singing, sing in tune",
-    "authorRole": "Audio engineering",
-    "authorId": "jordan-l",
-    "authorTeamMemberId": "audio"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "ear-training-for-singers",
@@ -401,12 +401,12 @@ export const blogCatalog = [
     "readTime": "10 min read",
     "date": "2025-12-02",
     "updatedDate": "2026-06-01",
-    "author": "Jordan L.",
+    "author": "Max Ray",
     "excerpt": "Build a reliable musical ear so you can hear notes accurately and match pitch with confidence. This guide shows singers how to train the ear step by step, even without music theory background.",
     "seoKeywords": "ear training for singers, how to match pitch, pitch ear training, sing in tune, aural skills for singers, interval ear training, relative pitch, beginner ear training exercises",
-    "authorRole": "Audio engineering",
-    "authorId": "jordan-l",
-    "authorTeamMemberId": "audio"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   },
   {
     "id": "how-to-find-your-voice-type",
@@ -484,11 +484,11 @@ export const blogCatalog = [
     "readTime": "18 min read",
     "date": "2025-12-25",
     "updatedDate": "2026-08-25",
-    "author": "Elena V.",
+    "author": "Max Ray",
     "excerpt": "A maintenance hub for home singers: hydration, talking load, cool-down, environment, weekly/monthly load limits, and SingMeter early-warning checks—plus when to open the tired/hoarse decision guide.",
     "seoKeywords": "vocal health tips, singer hydration, vocal rest, cool down after singing, talking voice fatigue, singer diet, voice care, vocal fatigue recovery, practice load management",
-    "authorRole": "Voice pedagogy advisor",
-    "authorId": "elena-v",
-    "authorTeamMemberId": "pedagogy"
+    "authorRole": "Founder & product",
+    "authorId": "max-ray",
+    "authorTeamMemberId": "founder"
   }
 ];

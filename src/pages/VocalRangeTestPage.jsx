@@ -565,11 +565,11 @@ const VocalRangeTestPage = () => {
             "price": "0",
             "priceCurrency": "USD"
           },
-          "description": "Test your vocal range online for free. Discover your voice type (Soprano, Alto, Tenor, Bass) and get personalized song recommendations. No signup required.",
+          "description": "Test your vocal range online for free. Discover your voice type (Soprano, Alto, Tenor, Bass) and save your range to find comfortable song keys. No signup required.",
           "featureList": [
             "Find your lowest and highest notes",
             "Discover your voice type classification",
-            "Get personalized song recommendations",
+            "Save your range to find comfortable song keys",
             "Two testing modes: Sing or Manual",
             "Real-time pitch detection",
             "Visual piano keyboard display"
@@ -606,7 +606,7 @@ const VocalRangeTestPage = () => {
               "@type": "HowToStep",
               "position": 3,
               "name": "Get Your Results",
-              "text": "View your vocal range, voice type classification, and personalized song recommendations."
+              "text": "View your vocal range, voice type classification, and a short practice plan for your range."
             }
           ],
           "totalTime": "PT3M"
@@ -730,7 +730,7 @@ const VocalRangeTestPage = () => {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Get Your Results</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Click "Analyze My Range" to discover your voice type, see your vocal range in semitones, and get personalized song recommendations.
+                      Click "Analyze My Range" to discover your voice type, see your vocal range in semitones, and get a short practice plan for your range.
                     </p>
                   </div>
                 </div>
@@ -770,9 +770,9 @@ const VocalRangeTestPage = () => {
                     <div className="flex items-start">
                       <div className="text-3xl mr-4">🎵</div>
                       <div>
-                        <h3 className="font-bold text-gray-900 mb-2">Personalized Song Recommendations</h3>
+                        <h3 className="font-bold text-gray-900 mb-2">Range Saved for Song Key Finder</h3>
                         <p className="text-gray-600 text-sm">
-                          Get a curated list of songs that match your vocal range and voice type perfectly.
+                          Your result is saved in your browser, so Song Key Finder can suggest a comfortable key for songs in its list.
                         </p>
                       </div>
                     </div>
@@ -842,7 +842,7 @@ const VocalRangeTestPage = () => {
                   },
                 ]}
                 nextTools={[
-                  { to: '/tutorials/pitch-calibration-10', label: 'Pitch calibration tutorial', hint: 'Next in the Start track' },
+                  { to: '/tutorials/pitch-calibration-10', label: 'Pitch calibration tutorial', hint: 'Guided session 2 of 3' },
                   { to: '/tutorials/song-in-the-right-key', label: 'Song in your key', hint: 'After you know your range' },
                 ]}
                 blogLink={{ to: '/blog/how-to-test-vocal-range', label: 'How to test vocal range (full guide)' }}

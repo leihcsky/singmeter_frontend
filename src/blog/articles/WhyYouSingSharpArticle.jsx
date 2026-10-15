@@ -9,7 +9,7 @@ const meta = {
   readTime: '15 min read',
   date: '2026-07-17',
   updatedDate: '2026-07-18',
-  author: 'Jordan L.',
+  author: 'Max Ray',
   excerpt:
     'If your pitch sits above the target, ease volume and tension first. Practical fixes with the Pitch Detector—paired with our flat-singing guide for the opposite bias.',
   seoKeywords:

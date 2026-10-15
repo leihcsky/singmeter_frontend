@@ -9,7 +9,7 @@ const meta = {
   readTime: '15 min read',
   date: '2026-07-21',
   updatedDate: '2026-07-21',
-  author: 'Jordan L.',
+  author: 'Max Ray',
   excerpt:
     'Recording yourself is not vanity—it is feedback. Learn a phrase-first listen-back method paired with the Pitch Detector so practice sessions actually change how you sing.',
   seoKeywords:

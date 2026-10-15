@@ -67,7 +67,7 @@ const EditorialStandardsPage = () => {
         <article className="bg-white rounded-2xl shadow-lg overflow-hidden">
           <div className="p-8 sm:p-12">
             <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Editorial Standards</h1>
-            <p className="text-sm text-gray-500 mb-8">Last updated: May 22, 2026</p>
+            <p className="text-sm text-gray-500 mb-8">Last updated: October 15, 2026</p>
 
             <div className="prose prose-lg max-w-none text-gray-600">
               <p className="leading-relaxed mb-6">
@@ -108,9 +108,9 @@ const EditorialStandardsPage = () => {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who creates content</h2>
               <p className="mb-4 leading-relaxed">
-                Every article and tutorial names its author. SingMeter was founded by <strong>Max Ray</strong> (product and
-                engineering), with review from collaborators in audio engineering, voice pedagogy, and editorial. We are
-                educators and tool builders, not licensed clinicians. For who does what, see{' '}
+                Every article, tutorial, and book review is written by <strong>Max Ray</strong>, who founded SingMeter and
+                builds its tools. He is a singer and software developer, not a licensed voice teacher or clinician, so
+                health-related pages point you to a qualified professional when symptoms persist. For more, see{' '}
                 <Link to="/about" className="text-indigo-600 hover:underline">
                   About SingMeter
                 </Link>
@@ -126,7 +126,8 @@ const EditorialStandardsPage = () => {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Affiliate &amp; external links</h2>
               <p className="mb-4 leading-relaxed">
-                Some book reviews link to Amazon with an affiliate tag. We may earn a commission at no extra cost to you. We only
+                Book reviews link to the book&apos;s Amazon page. Some of these links may be affiliate links, and we may earn a
+                commission at no extra cost to you. We only
                 review books we believe help singers and we state who each book is (and is not) for. We do not publish app,
                 channel, or video directories, or generic search-result URLs as “recommendations.”
               </p>

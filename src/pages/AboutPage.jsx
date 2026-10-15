@@ -9,7 +9,7 @@ import TeamMemberCards from '../components/TeamMemberCards';
 
 const AboutPage = () => {
 	useEffect(() => {
-		document.title = 'About SingMeter - Free Vocal Range Test & Pitch Detector Team';
+		document.title = 'About SingMeter - Who Writes the Guides & Builds the Tools';
 
 		const setMetaTag = (name, content) => {
 			let element = document.querySelector(`meta[name="${name}"]`);
@@ -33,11 +33,11 @@ const AboutPage = () => {
 
 		setMetaTag(
 			'description',
-			'Meet the SingMeter team led by Max Ray—developer and singer—plus collaborators in audio, voice pedagogy, and editorial. Free singing tools and practice tutorials.'
+			'SingMeter is an independent project by Max Ray, a developer and singer who writes the singing guides and practice tutorials and builds the free browser tools.'
 		);
 		setMetaTag(
 			'keywords',
-			'about singmeter, singmeter team, vocal range test team, pitch detector team, about singing tools, who made singmeter'
+			'about singmeter, who made singmeter, max ray singmeter, singing guides author, about singing tools'
 		);
 		setLinkTag('canonical', 'https://www.singmeter.com/about');
 
@@ -117,12 +117,12 @@ const AboutPage = () => {
                 uploaded or stored by us.
               </p>
 
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">SingMeter Team</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who runs SingMeter</h2>
               <TeamMemberCards />
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How we write</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Guides and tutorials are written from hands-on practice and checked for safe home use. We correct mistakes
+                Guides and tutorials are written from hands-on practice with safe home use in mind. We correct mistakes
                 when readers point them out. Our{' '}
                 <Link to="/editorial-standards" className="text-indigo-600 font-semibold hover:underline">
                   editorial standards

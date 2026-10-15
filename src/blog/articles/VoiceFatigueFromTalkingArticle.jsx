@@ -9,7 +9,7 @@ const meta = {
   readTime: '14 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'Same folds for speech and song. If you spent the day talking over noise, your evening practice budget is already half spent—here’s how to tell, and what to do instead of pushing peaks.',
   seoKeywords:

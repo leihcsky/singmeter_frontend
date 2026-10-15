@@ -22,7 +22,7 @@ export const tools = [
     icon: '🎤',
     name: 'Vocal Range Test',
     shortName: 'Range', // For mobile bottom nav
-    description: 'Discover your singing range and voice type in just 3 minutes. Perfect for beginners and pros alike - get personalized song recommendations that match your voice.',
+    description: 'Discover your singing range and voice type in about 3 minutes. Your result is saved so Song Key Finder can suggest comfortable keys for your voice.',
     category: 'Testing Tools',
     priority: 1, // Lower number = higher priority (shows first)
     badge: 'Popular',

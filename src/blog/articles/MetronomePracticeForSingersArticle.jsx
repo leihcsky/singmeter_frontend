@@ -9,7 +9,7 @@ const meta = {
   readTime: '15 min read',
   date: '2026-07-26',
   updatedDate: '2026-07-26',
-  author: 'Jordan L.',
+  author: 'Max Ray',
   excerpt:
     'Pitch gets the blame when timing is the real problem. Learn singer-specific metronome drills—subdivisions, long notes, and phrase work—that transfer to songs.',
   seoKeywords:

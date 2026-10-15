@@ -9,7 +9,7 @@ const meta = {
   readTime: '18 min read',
   date: '2025-12-25',
   updatedDate: '2026-08-25',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'A maintenance hub for home singers: hydration, talking load, cool-down, environment, weekly/monthly load limits, and SingMeter early-warning checks—plus when to open the tired/hoarse decision guide.',
   seoKeywords:

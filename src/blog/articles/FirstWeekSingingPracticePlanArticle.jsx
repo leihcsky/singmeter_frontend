@@ -9,7 +9,7 @@ const meta = {
   readTime: '17 min read',
   date: '2026-08-04',
   updatedDate: '2026-08-04',
-  author: 'Sam K.',
+  author: 'Max Ray',
   excerpt:
     'No piano, no teacher required for week one. Seven short sessions with clear daily goals—measure your voice, calibrate pitch, warm up safely, and sing one phrase you can actually finish.',
   seoKeywords:

@@ -9,7 +9,7 @@ const meta = {
   readTime: '15 min read',
   date: '2026-07-21',
   updatedDate: '2026-07-21',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'Not every scratchy morning needs a day off—but not every day off is lazy. Use this decision tree to choose rest, recovery, or light practice without guessing.',
   seoKeywords:

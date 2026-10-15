@@ -9,7 +9,7 @@ const meta = {
   readTime: '14 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'Long phrases fail less from “weak lungs” than from no plan. Here’s how to mark breaths, practice the line in pieces, then connect—without gasping on the money note.',
   seoKeywords:

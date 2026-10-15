@@ -9,7 +9,7 @@ const meta = {
   readTime: '15 min read',
   date: '2026-07-21',
   updatedDate: '2026-07-21',
-  author: 'Sam K.',
+  author: 'Max Ray',
   excerpt:
     'Karaoke is not a voice lesson—but 15 minutes of honest prep saves your throat and your pitch. Warm-up, key check, and a clear go/no-go rule for the big high song.',
   seoKeywords:

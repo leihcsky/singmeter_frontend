@@ -9,7 +9,7 @@ const meta = {
   readTime: '15 min read',
   date: '2026-07-17',
   updatedDate: '2026-07-18',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'Practical breath support and posture for home singers—four drills you can finish today, plus how to spot posture problems with SingMeter pitch feedback.',
   seoKeywords:

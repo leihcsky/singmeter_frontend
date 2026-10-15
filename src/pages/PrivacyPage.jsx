@@ -97,7 +97,7 @@ const PrivacyPage = () => {
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Usage Data</h3>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                We may collect anonymous usage statistics such as:
+                We collect usage data such as:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
                 <li>Browser type and version</li>
@@ -106,7 +106,22 @@ const PrivacyPage = () => {
                 <li>General location (country/region level only)</li>
               </ul>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                This data is collected through Google Analytics and is used solely to improve our service.
+                This data is collected through Google Analytics and Microsoft Clarity using cookies and similar identifiers.
+                We look at it in aggregate to improve the site; it does not give us your name or contact details.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Information You Send Us</h3>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                If you use our contact form or email us, we receive your name, email address, and message. Contact form
+                messages are delivered to our inbox through Web3Forms, a form-delivery service. We use this information only
+                to reply to you and do not add you to a mailing list.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Data Stored in Your Browser</h3>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                When you finish the vocal range test, your result is saved in your browser&apos;s local storage so Song Key
+                Finder can suggest a comfortable key. It stays on your device and is not sent to us. You can remove it by
+                clearing your browser&apos;s site data.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How We Use Your Information</h2>
@@ -149,8 +164,8 @@ const PrivacyPage = () => {
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Third-Party Services</h2>
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Google Analytics</h3>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                We use Google Analytics to understand how visitors use our site. Google Analytics collects 
-                information anonymously and reports website trends without identifying individual visitors.
+                We use Google Analytics to understand how visitors use our site. Google Analytics uses cookies to collect
+                information such as pages visited, device type, and approximate location, and reports it to us in aggregate.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Google AdSense</h3>
@@ -163,6 +178,10 @@ const PrivacyPage = () => {
                 <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">Google Ads Settings</a>
                 {' '}or by visiting{' '}
                 <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">www.aboutads.info</a>.
+              </p>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                To learn more about how Google collects and uses data when you use our site, see{' '}
+                <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">How Google uses information from sites or apps that use our services</a>.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Microsoft Clarity</h3>

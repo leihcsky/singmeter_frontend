@@ -146,12 +146,12 @@ const DisclaimerPage = () => {
                 another. Always consider your unique circumstances and consult with qualified professionals when needed.
               </p>
 
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Song Recommendations Disclaimer</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Key Suggestions Disclaimer</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Song recommendations provided based on your vocal range are suggestions only. The suitability of any song
-                depends on many factors beyond vocal range, including vocal technique, style, experience level, and
-                personal preference. We do not guarantee that recommended songs will be appropriate or comfortable for you
-                to sing.
+                Key and transposition suggestions based on your vocal range, and the original keys listed in Song Key Finder,
+                are guides only. Whether a song feels comfortable depends on many factors beyond range, including vocal
+                technique, style, experience level, and the arrangement you sing. We do not guarantee that a suggested key
+                will suit your voice.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Advertising Disclaimer</h2>

@@ -9,7 +9,7 @@ const meta = {
   readTime: '14 min read',
   date: '2026-08-25',
   updatedDate: '2026-08-25',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'Your nose is blocked, your audition is Thursday, and you’re googling “just one light practice.” Here’s how to tell a cold from allergies—and what each one actually allows.',
   seoKeywords:

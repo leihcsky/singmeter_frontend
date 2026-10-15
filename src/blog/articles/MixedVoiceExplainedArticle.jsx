@@ -9,7 +9,7 @@ const meta = {
   readTime: '16 min read',
   date: '2026-07-17',
   updatedDate: '2026-07-18',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'What mixed voice actually is, how to feel a smoother break, and home drills with pitch feedback—without forcing belt volume.',
   seoKeywords:

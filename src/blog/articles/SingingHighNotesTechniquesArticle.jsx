@@ -9,7 +9,7 @@ const meta = {
   readTime: '15 min read',
   date: '2025-01-30',
   updatedDate: '2026-08-04',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'A practical high-notes guide: range-first workflow, support vs push, mix basics, and drills you can run with SingMeter before you chase peaks.',
   seoKeywords:

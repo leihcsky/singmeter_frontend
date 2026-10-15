@@ -9,7 +9,7 @@ const meta = {
   readTime: '14 min read',
   date: '2026-08-25',
   updatedDate: '2026-08-25',
-  author: 'Elena V.',
+  author: 'Max Ray',
   excerpt:
     'You warmed up. You worked. Then you closed the laptop and went to bed. Here’s the missing five minutes that keeps tomorrow’s voice from feeling like sandpaper.',
   seoKeywords:

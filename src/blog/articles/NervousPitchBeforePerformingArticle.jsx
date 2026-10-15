@@ -9,7 +9,7 @@ const meta = {
   readTime: '14 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',
-  author: 'Jordan L.',
+  author: 'Max Ray',
   excerpt:
     'You can sing the song at home. Backstage your hands shake and the first note shoots sharp. Here’s a short pitch reset for nerves—not a pep talk.',
   seoKeywords:
