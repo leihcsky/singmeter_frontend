@@ -177,11 +177,6 @@ const content = `
 	        <li>Mute the generator and hold the note solo for 8 seconds—this tests memory, not just copying.</li>
 	        <li>For intervals, play root → play second note → sing both from memory → check landing pitch on the detector.</li>
 	      </ol>
-	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        For singing in tune when you have no reference at all, see
-	        <a href="/blog/sing-in-tune-without-piano" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">sing in tune without a piano</a>.
-	      </p>
-
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Recording Yourself (Optional Check)</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Once per week, record one phrase you practiced with the detector. Listen back for drift the meter already flagged—

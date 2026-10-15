@@ -77,7 +77,7 @@ const selfCheck = [
 ];
 
 const goDeeper = [
-  { to: '/blog/high-notes-warmup-routine', label: 'High Notes Warm-Up Routine (extended version)' },
+  { to: '/blog/singing-high-notes-techniques', label: 'How to Sing High Notes (hub guide)' },
   { to: '/blog/vocal-health-and-maintenance', label: 'Vocal Health and Maintenance' },
 ];
 

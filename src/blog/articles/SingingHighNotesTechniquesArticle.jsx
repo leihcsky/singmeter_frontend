@@ -44,8 +44,8 @@ const content = `
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">10-Minute SingMeter Check-In (Go / No-Go)</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
 	        Use this short loop on days you want to touch high notes—not as a full warm-up, but as a decision tool so you do not climb into strain.
-	        For a full timed warm-up, see the
-	        <a href="/blog/high-notes-warmup-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">15-minute high-notes warm-up</a>.
+	        For a full timed warm-up, run the
+	        <a href="/tutorials/daily-warmup-15" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">15-minute daily warm-up</a>.
 	      </p>
 	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-4 ml-4">
 	        <li><strong>Minutes 0–3:</strong> Light humming or lip trills—no peak notes yet.</li>
@@ -81,7 +81,7 @@ const content = `
 	        <li>
 	          <strong>Mix instead of dragged chest:</strong> power above your break needs blended coordination.
 	          For intense pop/musical-theatre peaks, read
-	          <a href="/blog/belt-high-notes-safely" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">How to Belt High Notes Safely</a>
+	          <a href="/blog/mixed-voice-explained" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">mixed voice explained</a>
 	          and practice
 	          <a href="/tutorials/bridge-and-mix-practice" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">bridge &amp; mix</a>
 	          before stacking volume.
@@ -114,9 +114,7 @@ const content = `
 	        On days when the 10-minute check-in passes all steps, add this block once or twice per week:
 	      </p>
 	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
-	        <li><strong>5 min:</strong> Full
-	          <a href="/blog/high-notes-warmup-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">high-notes warm-up</a>
-	          through the readiness check.</li>
+	        <li><strong>5 min:</strong> Light humming, lip trills, and sirens, then the 10-minute check-in above.</li>
 	        <li><strong>5 min:</strong> Semitone ladder on &quot;gee&quot;—stop at today&apos;s ceiling.</li>
 	        <li><strong>5 min:</strong> Two problem phrases at half volume with Pitch Detector open.</li>
 	        <li><strong>5 min:</strong> One phrase at target volume only if half-volume runs were clean three times.</li>
@@ -183,11 +181,11 @@ const content = `
 	          <a href="/vocal-range-test" class="blog-cta inline-block px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition">
 	            Test Your Range
 	          </a>
-	          <a href="/blog/high-notes-warmup-routine" class="blog-cta inline-block px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
+	          <a href="/tutorials/daily-warmup-15" class="blog-cta inline-block px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
 	            15-Min Warm-Up
 	          </a>
-	          <a href="/blog/belt-high-notes-safely" class="blog-cta inline-block px-6 py-2 bg-white text-purple-700 font-semibold rounded-lg border border-purple-200 hover:bg-purple-50 transition">
-	            Belt Safely Guide
+	          <a href="/blog/mixed-voice-explained" class="blog-cta inline-block px-6 py-2 bg-white text-purple-700 font-semibold rounded-lg border border-purple-200 hover:bg-purple-50 transition">
+	            Mixed Voice Guide
 	          </a>
 	        </div>
 	      </div>

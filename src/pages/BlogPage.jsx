@@ -19,9 +19,6 @@ const blogTopics = [
       'why-you-sing-sharp',
       'ear-training-for-singers',
       'record-yourself-to-improve-singing',
-      'sing-in-tune-without-piano',
-      'fix-wavering-pitch',
-      'singing-quietly-in-tune',
       'nervous-pitch-before-performing',
     ],
   },
@@ -46,8 +43,6 @@ const blogTopics = [
     description: 'Build the technique and control you need to sing high notes with power and confidence.',
     articleIds: [
       'singing-high-notes-techniques',
-      'belt-high-notes-safely',
-      'high-notes-warmup-routine',
       'chest-voice-vs-head-voice-basics',
       'mixed-voice-explained',
     ],

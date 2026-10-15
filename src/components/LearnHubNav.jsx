@@ -1,13 +1,12 @@
 /**
- * Cross-links between learning hub pages (tutorials, resources, blog).
+ * Cross-links between learning hub pages (blog guides, tutorials, book reviews).
  */
 import { Link, useLocation } from 'react-router-dom';
 
 const LINKS = [
+  { to: '/blog', label: 'Singing guides', match: /^\/blog/ },
   { to: '/tutorials', label: 'Practice tutorials', match: /^\/tutorials/ },
-  { to: '/resources', label: 'Resources & reviews', match: /^\/resources/ },
-  { to: '/blog', label: 'Blog guides', match: /^\/blog/ },
-  { to: '/glossary', label: 'Glossary', match: /^\/glossary/ },
+  { to: '/resources', label: 'Book reviews', match: /^\/resources/ },
 ];
 
 const LearnHubNav = ({ className = '' }) => {

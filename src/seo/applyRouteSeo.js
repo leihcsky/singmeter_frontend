@@ -20,6 +20,7 @@ export function normalizePath(pathname) {
  * These paths are NOT in sitemap; prerender still covers them via PRERENDER_EXTRA_ROUTES.
  */
 const NOINDEX_EXACT_PATHS = new Set([
+  '/blog',
   '/disclaimer',
   '/faq',
   '/glossary',

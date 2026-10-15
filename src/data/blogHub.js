@@ -25,9 +25,6 @@ export const PITCH_SPOKE_SLUGS = [
   'why-you-sing-sharp',
   'ear-training-for-singers',
   'record-yourself-to-improve-singing',
-  'sing-in-tune-without-piano',
-  'fix-wavering-pitch',
-  'singing-quietly-in-tune',
 ];
 
 export const HIGH_NOTES_HUB_SLUG = 'singing-high-notes-techniques';
@@ -35,8 +32,6 @@ export const HIGH_NOTES_HUB_PATH = `/blog/${HIGH_NOTES_HUB_SLUG}`;
 export const HIGH_NOTES_HUB_TITLE = 'How to Sing High Notes: Techniques and Tips';
 
 export const HIGH_NOTES_SPOKE_SLUGS = [
-  'belt-high-notes-safely',
-  'high-notes-warmup-routine',
   'mixed-voice-explained',
 ];
 
@@ -47,6 +42,11 @@ export const RETIRED_BLOG_SLUGS = new Set([
   'famous-singers-vocal-ranges',
   'mixed-voice-vs-head-voice',
   'songs-for-your-voice-type',
+  'singing-quietly-in-tune',
+  'sing-in-tune-without-piano',
+  'fix-wavering-pitch',
+  'high-notes-warmup-routine',
+  'belt-high-notes-safely',
 ]);
 
 const CLUSTERS = [

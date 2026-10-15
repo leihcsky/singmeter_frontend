@@ -11,11 +11,8 @@ const articleLoaders = {
   'singing-with-a-cold-or-allergies': () => import('./articles/SingingWithAColdOrAllergiesArticle'),
   'vocal-cooldown-after-practice': () => import('./articles/VocalCooldownAfterPracticeArticle'),
   'first-week-singing-practice-plan': () => import('./articles/FirstWeekSingingPracticePlanArticle'),
-  'singing-quietly-in-tune': () => import('./articles/SingingQuietlyInTuneArticle'),
   'choir-audition-range-prep': () => import('./articles/ChoirAuditionRangePrepArticle'),
   'metronome-practice-for-singers': () => import('./articles/MetronomePracticeForSingersArticle'),
-  'sing-in-tune-without-piano': () => import('./articles/SingInTuneWithoutPianoArticle'),
-  'fix-wavering-pitch': () => import('./articles/FixWaveringPitchArticle'),
   'karaoke-warmup-and-song-key': () => import('./articles/KaraokeWarmupAndSongKeyArticle'),
   'record-yourself-to-improve-singing': () => import('./articles/RecordYourselfToImproveSingingArticle'),
   'transpose-songs-for-your-voice': () => import('./articles/TransposeSongsForYourVoiceArticle'),
@@ -34,8 +31,6 @@ const articleLoaders = {
   'vocal-range-chart': () => import('./articles/VocalRangeChartArticle'),
   'can-vocal-range-change': () => import('./articles/CanVocalRangeChangeArticle'),
   'tessitura-and-comfortable-range': () => import('./articles/TessituraAndComfortableRangeArticle'),
-  'belt-high-notes-safely': () => import('./articles/BeltHighNotesSafelyArticle'),
-  'high-notes-warmup-routine': () => import('./articles/HighNotesWarmupRoutineArticle'),
   'vocal-health-and-maintenance': () => import('./articles/VocalHealthArticle'),
 };
 

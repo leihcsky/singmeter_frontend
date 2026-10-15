@@ -110,8 +110,8 @@ const content = `
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Mix vs Belt</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     <strong>Belt</strong> is a speech-like intensity carried higher—it needs mix foundations and careful limits.
-    Do not jump into belt challenges before sirens and soft bridging feel easy. When you are ready, read
-    <a href="/blog/belt-high-notes-safely" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">How to Belt High Notes Safely</a>
+    Do not jump into belt challenges before sirens and soft bridging feel easy. When you are ready, review the
+    <a href="/blog/singing-high-notes-techniques" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">high notes guide</a>
     and use the
     <a href="/tutorials/belt-prep-safe" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">safe belt prep tutorial</a>.
   </p>

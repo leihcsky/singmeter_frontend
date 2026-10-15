@@ -1,6 +1,6 @@
 /**
- * Resources Page — editor reviews + a few trusted external picks.
- * Kept lean for AdSense: no third-party app directories, limited video list.
+ * Resources Page — original editor book reviews only.
+ * Kept lean for AdSense: no third-party app, channel, or video directories.
  */
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,12 +8,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LearnHubNav from '../components/LearnHubNav';
 import { bookReviews } from '../resources/bookReviews';
-import { videoPicks } from '../resources/videoPicks';
 import { tools } from '../config/tools';
 
 const ResourcesPage = () => {
   useEffect(() => {
-    document.title = 'Singing Resources - Book Reviews & Editor Picks | SingMeter';
+    document.title = 'Singing Book Reviews by SingMeter Editors | SingMeter';
 
     const setMetaTag = (name, content) => {
       let element = document.querySelector(`meta[name="${name}"]`);
@@ -37,7 +36,7 @@ const ResourcesPage = () => {
 
     setMetaTag(
       'description',
-      'SingMeter editor book reviews and two trusted video picks—with notes on who each is for and how to pair them with our free practice tools. Not an app or link directory.'
+      'Full SingMeter editor reviews of singing books—who each title is for, honest limits, and how to pair it with home practice. Not an app or link directory.'
     );
     setMetaTag(
       'keywords',
@@ -71,38 +70,17 @@ const ResourcesPage = () => {
                 />
               </svg>
             </li>
-            <li className="text-gray-900 font-medium">Resources</li>
+            <li className="text-gray-900 font-medium">Book reviews</li>
           </ol>
         </nav>
 
-        <div className="text-center mb-8">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">Singing Resources</h1>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">Singing Book Reviews</h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Editor book reviews and a small set of trusted video picks—each with who it is for and how to use it with
-            SingMeter. For step-by-step practice, use our tutorials and blog guides.
+            Full editor reviews written for home singers—who each title helps, where it falls short, and how to pair
+            it with practice. For step-by-step sessions, use our tutorials and singing guides.
           </p>
           <LearnHubNav className="max-w-3xl mx-auto justify-center" />
-        </div>
-
-        <div className="grid sm:grid-cols-3 gap-4 mb-12">
-          <Link
-            to="/tutorials"
-            className="bg-white rounded-xl p-5 border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition text-center"
-          >
-            <h2 className="font-bold text-gray-900">Practice tutorials</h2>
-            <p className="text-sm text-gray-600 mt-1">Step-by-step lessons with our tools</p>
-          </Link>
-          <div className="bg-indigo-50 rounded-xl p-5 border-2 border-indigo-200 text-center">
-            <h2 className="font-bold text-gray-900">You are here</h2>
-            <p className="text-sm text-gray-600 mt-1">Reviews &amp; editor picks</p>
-          </div>
-          <Link
-            to="/blog"
-            className="bg-white rounded-xl p-5 border border-gray-100 hover:border-indigo-200 hover:shadow-md transition text-center"
-          >
-            <h2 className="font-bold text-gray-900">Blog guides</h2>
-            <p className="text-sm text-gray-600 mt-1">Deep dives on technique</p>
-          </Link>
         </div>
 
         {/* Books first — original editorial content */}
@@ -145,65 +123,6 @@ const ResourcesPage = () => {
                   </a>
                 </div>
               </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Two video picks only */}
-        <section className="mb-16">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">Two video picks we trust</h2>
-            <p className="text-gray-600 mt-2 max-w-2xl">
-              We keep this list short on purpose. Watch after you have a SingMeter drill planned—not instead of
-              practicing with feedback.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {videoPicks.map((video) => (
-              <div key={video.id} className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
-                <p className="text-sm text-gray-600 mb-2">
-                  <strong>Best for:</strong> {video.bestFor}
-                </p>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{video.title}</h3>
-                <p className="text-sm text-gray-600 mb-2">by {video.creator}</p>
-                <p className="text-gray-600 text-sm mb-3 leading-relaxed">{video.description}</p>
-                {video.whyRecommend && (
-                  <p className="text-sm text-gray-700 mb-2">
-                    <strong className="text-gray-900">Why we recommend it:</strong> {video.whyRecommend}
-                  </p>
-                )}
-                {video.singmeterPairing && (
-                  <p className="text-sm text-indigo-900 bg-indigo-50 rounded-lg p-3 mb-3">
-                    <strong>With SingMeter:</strong> {video.singmeterPairing}
-                  </p>
-                )}
-                {video.notIdealFor && (
-                  <p className="text-xs text-gray-500 mb-3">
-                    <strong>Not ideal for:</strong> {video.notIdealFor}
-                  </p>
-                )}
-                <div className="flex flex-wrap gap-x-4 gap-y-2">
-                  <a
-                    href={video.link}
-                    className="text-indigo-600 hover:text-indigo-700 font-semibold text-sm"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch on YouTube →
-                  </a>
-                  {video.tutorialLink && (
-                    <Link to={video.tutorialLink} className="text-indigo-600 hover:underline text-sm font-semibold">
-                      Our practice tutorial →
-                    </Link>
-                  )}
-                  {video.blogLink && (
-                    <Link to={video.blogLink} className="text-indigo-600 hover:underline text-sm font-semibold">
-                      Related guide →
-                    </Link>
-                  )}
-                </div>
-              </div>
             ))}
           </div>
         </section>

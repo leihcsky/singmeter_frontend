@@ -124,7 +124,7 @@ export const plannedArticles = [
     cluster: 'pitch',
     targetWords: 1100,
     singmeterTools: ['/tone-generator', '/pitch-detector', '/tutorials/pitch-calibration-10'],
-    status: 'published',
+    status: 'retired',
   },
   {
     priority: 12,
@@ -135,7 +135,7 @@ export const plannedArticles = [
     cluster: 'pitch',
     targetWords: 1100,
     singmeterTools: ['/pitch-detector', '/tone-generator'],
-    status: 'published',
+    status: 'retired',
   },
 ];
 
@@ -242,7 +242,7 @@ export const plannedArticlesStretch = [
     angle: 'Dynamics vs support; quiet ≠ whisper; detector checks at low volume.',
     cluster: 'pitch',
     targetWords: 1000,
-    status: 'published',
+    status: 'retired',
   },
   {
     priority: 15,

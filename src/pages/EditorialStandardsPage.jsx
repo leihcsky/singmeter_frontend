@@ -134,8 +134,8 @@ const EditorialStandardsPage = () => {
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Affiliate &amp; external links</h2>
               <p className="mb-4 leading-relaxed">
                 Some book reviews link to Amazon with an affiliate tag. We may earn a commission at no extra cost to you. We only
-                review books we believe help singers and we state who each book is (and is not) for. Video picks link to
-                official channels only—we do not publish app directories or generic search-result URLs as “recommendations.”
+                review books we believe help singers and we state who each book is (and is not) for. We do not publish app,
+                channel, or video directories, or generic search-result URLs as “recommendations.”
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Updates</h2>

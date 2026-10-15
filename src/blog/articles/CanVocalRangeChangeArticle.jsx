@@ -118,8 +118,8 @@ const content = `
     The goal is to <strong>nudge</strong> your limits, not attack them. Here is a simple, safe approach:
   </p>
   <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
-    <li>Warm up gently with humming, lip trills, and light scales—see
-      <a href="/blog/high-notes-warmup-routine" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">high notes warm-up routine</a>.</li>
+    <li>Warm up gently with humming, lip trills, and light scales—see the
+      <a href="/tutorials/daily-warmup-15" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">15-minute daily warm-up</a>.</li>
     <li>Use the
       <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Tone Generator</a>
       or

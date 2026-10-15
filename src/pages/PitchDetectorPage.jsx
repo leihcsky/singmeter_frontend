@@ -871,15 +871,11 @@ const PitchDetectorPage = () => {
                 <Link to="/blog/why-you-sing-flat" className="text-indigo-600 font-semibold underline">
                   flat
                 </Link>
-                ,{' '}
+                {' '}or{' '}
                 <Link to="/blog/why-you-sing-sharp" className="text-indigo-600 font-semibold underline">
                   sharp
                 </Link>
-                , or{' '}
-                <Link to="/blog/fix-wavering-pitch" className="text-indigo-600 font-semibold underline">
-                  wavering
-                </Link>
-                .
+                ; for wavering, start with the long-tone drills in the pitch training hub.
               </li>
               <li>Repeat on two more mid-range notes (same three notes for at least two weeks so progress is visible).</li>
               <li>
@@ -910,12 +906,6 @@ const PitchDetectorPage = () => {
                 className="inline-flex items-center px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
               >
                 Pitch training hub
-              </Link>
-              <Link
-                to="/blog/sing-in-tune-without-piano"
-                className="inline-flex items-center px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
-              >
-                Practice without a piano
               </Link>
             </div>
           </ContentSection>

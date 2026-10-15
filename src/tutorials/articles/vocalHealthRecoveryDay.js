@@ -70,7 +70,7 @@ const selfCheck = [
 
 const goDeeper = [
   { to: '/blog/vocal-health-and-maintenance', label: 'Vocal health basics (full article)' },
-  { to: '/blog/high-notes-warmup-routine', label: 'High Notes Warm-Up (for return days only)' },
+  { to: '/blog/vocal-cooldown-after-practice', label: 'Vocal Cool-Down After Practice' },
 ];
 
 export default { meta, intro, tools, steps, selfCheck, goDeeper };

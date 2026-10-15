@@ -6,10 +6,11 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { tools } from '../config/tools';
+import { FLAGSHIP_TUTORIALS } from '../data/flagshipTutorials';
 
 const Header = () => {
   const [showToolsDropdown, setShowToolsDropdown] = useState(false);
-  const [showLearnDropdown, setShowLearnDropdown] = useState(false);
+  const [showPracticeDropdown, setShowPracticeDropdown] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const location = useLocation();
 
@@ -68,23 +69,10 @@ const Header = () => {
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
       </svg>
-    ),
-    Resources: (props) => (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-      </svg>
-    ),
-    Glossary: (props) => (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-      </svg>
-    ),
-    FAQ: (props) => (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
-      </svg>
     )
   };
+
+  const isGuidesActive = location.pathname === '/blog' || location.pathname.startsWith('/blog/');
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -116,6 +104,87 @@ const Header = () => {
               <Icons.Home className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
               <span>Home</span>
             </Link>
+
+            <Link
+              to="/blog"
+              className={`flex items-center space-x-1 font-medium transition group ${
+                isGuidesActive ? 'text-indigo-600' : 'text-gray-600 hover:text-indigo-600'
+              }`}
+            >
+              <Icons.Blog className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
+              <span>Guides</span>
+            </Link>
+
+            {/* Practice — flagship tutorials only */}
+            <div
+              className="relative"
+              onMouseEnter={() => setShowPracticeDropdown(true)}
+              onMouseLeave={() => setShowPracticeDropdown(false)}
+            >
+              <button
+                onClick={() => setShowPracticeDropdown(!showPracticeDropdown)}
+                className="flex items-center space-x-1 text-gray-700 hover:text-indigo-600 font-medium transition group"
+              >
+                <Icons.Learn className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
+                <span>Practice</span>
+                <svg
+                  className={`w-4 h-4 transition-transform ${showPracticeDropdown ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {showPracticeDropdown && (
+                <>
+                  {/* Invisible bridge to prevent gap between button and dropdown */}
+                  <div className="absolute left-0 top-full w-72 h-2" />
+                  <div className="absolute left-0 top-full mt-2 w-72 bg-white rounded-xl shadow-xl border border-gray-100 p-2">
+                    <p className="px-3 pt-1.5 pb-2 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+                      Guided sessions · start here
+                    </p>
+                    <ol>
+                      {FLAGSHIP_TUTORIALS.map((tutorial, index) => {
+                        const path = `/tutorials/${tutorial.slug}`;
+                        const active = location.pathname === path;
+                        return (
+                          <li key={tutorial.slug}>
+                            <Link
+                              to={path}
+                              className={`group/item flex items-start gap-3 rounded-lg px-3 py-2.5 transition ${
+                                active ? 'bg-indigo-50' : 'hover:bg-gray-50'
+                              }`}
+                              onClick={() => setShowPracticeDropdown(false)}
+                            >
+                              <span
+                                className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                                  active
+                                    ? 'bg-indigo-600 text-white'
+                                    : 'bg-indigo-50 text-indigo-600 group-hover/item:bg-indigo-600 group-hover/item:text-white'
+                                }`}
+                              >
+                                {index + 1}
+                              </span>
+                              <span className="min-w-0 flex-1">
+                                <span className="flex items-baseline justify-between gap-2">
+                                  <span className={`text-sm font-semibold ${active ? 'text-indigo-700' : 'text-gray-900'}`}>
+                                    {tutorial.navLabel}
+                                  </span>
+                                  <span className="text-[11px] text-gray-400 flex-shrink-0">{tutorial.duration}</span>
+                                </span>
+                                <span className="block text-xs text-gray-500 mt-0.5 truncate">{tutorial.navHint}</span>
+                              </span>
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  </div>
+                </>
+              )}
+            </div>
 
             {/* Tools Navigation - Always dropdown */}
             <div 
@@ -183,101 +252,6 @@ const Header = () => {
               )}
             </div>
 
-            {/* Learn Navigation - Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setShowLearnDropdown(true)}
-              onMouseLeave={() => setShowLearnDropdown(false)}
-            >
-              <button
-                onClick={() => setShowLearnDropdown(!showLearnDropdown)}
-                className="flex items-center space-x-1 text-gray-700 hover:text-indigo-600 font-medium transition group"
-              >
-                <Icons.Learn className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
-                <span>Learn</span>
-                <svg
-                  className={`w-4 h-4 transition-transform ${showLearnDropdown ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {/* Learn Dropdown Menu */}
-              {showLearnDropdown && (
-                <>
-                  {/* Invisible bridge to prevent gap between button and dropdown */}
-                  <div className="absolute left-0 top-full w-56 h-2" />
-                  <div
-                    className="absolute left-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2"
-                  >
-                  <Link
-                    to="/tutorials"
-                    className={`flex items-center space-x-3 px-4 py-2 text-sm transition ${
-                      location.pathname === '/tutorials'
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'hover:bg-gray-50 text-gray-800'
-                    }`}
-                    onClick={() => setShowLearnDropdown(false)}
-                  >
-                    <Icons.Tutorials className="w-5 h-5 flex-shrink-0 text-indigo-500" />
-                    <span className="font-medium">Tutorials</span>
-                  </Link>
-                  <Link
-                    to="/resources"
-                    className={`flex items-center space-x-3 px-4 py-2 text-sm transition ${
-                      location.pathname === '/resources'
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'hover:bg-gray-50 text-gray-800'
-                    }`}
-                    onClick={() => setShowLearnDropdown(false)}
-                  >
-                    <Icons.Resources className="w-5 h-5 flex-shrink-0 text-orange-500" />
-                    <span className="font-medium">Resources</span>
-                  </Link>
-                  <Link
-                    to="/glossary"
-                    className={`flex items-center space-x-3 px-4 py-2 text-sm transition ${
-                      location.pathname === '/glossary'
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'hover:bg-gray-50 text-gray-800'
-                    }`}
-                    onClick={() => setShowLearnDropdown(false)}
-                  >
-                    <Icons.Glossary className="w-5 h-5 flex-shrink-0 text-emerald-500" />
-                    <span className="font-medium">Glossary</span>
-                  </Link>
-                  <Link
-                    to="/faq"
-                    className={`flex items-center space-x-3 px-4 py-2 text-sm transition ${
-                      location.pathname === '/faq'
-                        ? 'bg-indigo-50 text-indigo-700'
-                        : 'hover:bg-gray-50 text-gray-800'
-                    }`}
-                    onClick={() => setShowLearnDropdown(false)}
-                  >
-                    <Icons.FAQ className="w-5 h-5 flex-shrink-0 text-blue-500" />
-                    <span className="font-medium">FAQ</span>
-                  </Link>
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* Other Navigation Links */}
-            <Link
-              to="/blog"
-              className={`flex items-center space-x-1 font-medium transition group ${
-                location.pathname === '/blog' || location.pathname.startsWith('/blog/')
-                  ? 'text-indigo-600'
-                  : 'text-gray-600 hover:text-indigo-600'
-              }`}
-            >
-              <Icons.Blog className="w-5 h-5 text-gray-500 group-hover:text-indigo-600 transition" />
-              <span>Blog</span>
-            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -311,9 +285,51 @@ const Header = () => {
                 <Icons.Home className="w-5 h-5 flex-shrink-0 text-gray-500" />
                 <span className="font-medium flex-1">Home</span>
               </Link>
+              <Link
+                to="/blog"
+                onClick={() => setShowMobileMenu(false)}
+                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
+                  isGuidesActive ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <Icons.Blog className="w-5 h-5 flex-shrink-0 text-gray-500" />
+                <span className="font-medium flex-1">Singing guides</span>
+              </Link>
+
+              {/* Practice Section */}
+              <div className="flex items-center px-2 mt-4 mb-2 text-gray-500">
+                <Icons.Learn className="w-4 h-4 mr-2" />
+                <div className="text-xs font-semibold uppercase tracking-wider">
+                    Practice
+                </div>
+              </div>
+              {FLAGSHIP_TUTORIALS.map((tutorial, index) => {
+                const path = `/tutorials/${tutorial.slug}`;
+                const active = location.pathname === path;
+                return (
+                  <Link
+                    key={tutorial.slug}
+                    to={path}
+                    onClick={() => setShowMobileMenu(false)}
+                    className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
+                      active ? 'bg-indigo-50 text-indigo-600' : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <span
+                      className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                        active ? 'bg-indigo-600 text-white' : 'bg-indigo-50 text-indigo-600'
+                      }`}
+                    >
+                      {index + 1}
+                    </span>
+                    <span className="font-medium flex-1">{tutorial.navLabel}</span>
+                    <span className="text-xs text-gray-400 flex-shrink-0">{tutorial.duration}</span>
+                  </Link>
+                );
+              })}
 
               {/* Tools Section */}
-              <div className="flex items-center px-2 mb-2 text-gray-500">
+              <div className="flex items-center px-2 mt-4 mb-2 text-gray-500">
                 <Icons.Tools className="w-4 h-4 mr-2" />
                 <div className="text-xs font-semibold uppercase tracking-wider">
                     Tools
@@ -336,75 +352,6 @@ const Header = () => {
                   <span className="font-medium flex-1">{tool.name}</span>
                 </Link>
               ))}
-
-              {/* Learn Section */}
-              <div className="flex items-center px-2 mt-4 mb-2 text-gray-500">
-                <Icons.Learn className="w-4 h-4 mr-2" />
-                <div className="text-xs font-semibold uppercase tracking-wider">
-                    Learn
-                </div>
-              </div>
-              <Link
-                to="/tutorials"
-                onClick={() => setShowMobileMenu(false)}
-                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
-                  location.pathname === '/tutorials'
-                    ? 'bg-indigo-50 text-indigo-600'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                <Icons.Tutorials className="w-5 h-5 flex-shrink-0 text-indigo-500" />
-                <span className="font-medium flex-1">Tutorials</span>
-              </Link>
-              <Link
-                to="/resources"
-                onClick={() => setShowMobileMenu(false)}
-                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
-                  location.pathname === '/resources'
-                    ? 'bg-indigo-50 text-indigo-600'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                <Icons.Resources className="w-5 h-5 flex-shrink-0 text-orange-500" />
-                <span className="font-medium flex-1">Resources</span>
-              </Link>
-              <Link
-                to="/glossary"
-                onClick={() => setShowMobileMenu(false)}
-                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
-                  location.pathname === '/glossary'
-                    ? 'bg-indigo-50 text-indigo-600'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                <Icons.Glossary className="w-5 h-5 flex-shrink-0 text-emerald-500" />
-                <span className="font-medium flex-1">Glossary</span>
-              </Link>
-              <Link
-                to="/faq"
-                onClick={() => setShowMobileMenu(false)}
-                className={`flex items-center space-x-3 px-2 py-2 rounded-lg transition ${
-                  location.pathname === '/faq'
-                    ? 'bg-indigo-50 text-indigo-600'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                <Icons.FAQ className="w-5 h-5 flex-shrink-0 text-blue-500" />
-                <span className="font-medium flex-1">FAQ</span>
-              </Link>
-
-              <Link
-                to="/blog"
-                onClick={() => setShowMobileMenu(false)}
-                className={`flex items-center space-x-3 px-2 py-2 mt-2 rounded-lg transition border-t border-gray-100 pt-4 ${
-                  location.pathname === '/blog' || location.pathname.startsWith('/blog/')
-                    ? 'bg-indigo-50 text-indigo-600'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                <Icons.Blog className="w-5 h-5 flex-shrink-0 text-gray-500" />
-                <span className="font-medium flex-1">Blog</span>
-              </Link>
             </div>
           </div>
         )}

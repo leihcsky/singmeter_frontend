@@ -85,7 +85,6 @@ const TutorialsPage = () => {
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
             Step-by-step lessons you do with SingMeter tools—timed exercises, tool settings, and self-checks.
           </p>
-          <LearnHubNav className="max-w-3xl mx-auto justify-center mb-6" />
           <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
             <span>
               <strong className="text-gray-900">{tutorialIndex.length}</strong> practice tutorials
@@ -95,27 +94,6 @@ const TutorialsPage = () => {
             <span>·</span>
             <span>4 learning tracks</span>
           </div>
-        </div>
-
-        <div className="grid sm:grid-cols-3 gap-4 mb-10 max-w-4xl mx-auto">
-          <div className="bg-indigo-50 rounded-xl p-4 border-2 border-indigo-200 text-center">
-            <p className="text-xs font-bold text-indigo-600 uppercase">Hub</p>
-            <p className="font-bold text-gray-900 mt-1">Tutorials (active)</p>
-          </div>
-          <Link
-            to="/resources#books"
-            className="bg-white rounded-xl p-4 border border-gray-100 hover:border-indigo-200 text-center transition"
-          >
-            <p className="text-xs font-bold text-gray-500 uppercase">Reviews</p>
-            <p className="font-bold text-gray-900 mt-1">Book reviews →</p>
-          </Link>
-          <Link
-            to="/blog"
-            className="bg-white rounded-xl p-4 border border-gray-100 hover:border-indigo-200 text-center transition"
-          >
-            <p className="text-xs font-bold text-gray-500 uppercase">Theory</p>
-            <p className="font-bold text-gray-900 mt-1">Blog guides →</p>
-          </Link>
         </div>
 
         <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mb-12 max-w-3xl mx-auto rounded-r-lg text-left">
@@ -233,7 +211,7 @@ const TutorialsPage = () => {
         <section className="bg-white rounded-2xl p-8 shadow-md">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Learning hub</h2>
           <p className="text-gray-600 mb-6 text-sm">
-            Tutorials = do; blog = understand; resources = book reviews and a few editor video picks.
+            Tutorials = do; blog = understand; resources = editor book reviews.
           </p>
           <LearnHubNav />
         </section>

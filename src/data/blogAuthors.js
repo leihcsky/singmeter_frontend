@@ -53,7 +53,6 @@ const slugToAuthorId = {
   'why-you-sing-flat': BLOG_AUTHOR_IDS.JORDAN,
   'why-you-sing-sharp': BLOG_AUTHOR_IDS.JORDAN,
   'nervous-pitch-before-performing': BLOG_AUTHOR_IDS.JORDAN,
-  'singing-quietly-in-tune': BLOG_AUTHOR_IDS.JORDAN,
 
   // Practice habits & repertoire — Max
   'daily-singing-practice-routine': BLOG_AUTHOR_IDS.MAX,
@@ -68,13 +67,10 @@ const slugToAuthorId = {
   // Recording & pitch feedback — Jordan
   'record-yourself-to-improve-singing': BLOG_AUTHOR_IDS.JORDAN,
   'metronome-practice-for-singers': BLOG_AUTHOR_IDS.JORDAN,
-  'sing-in-tune-without-piano': BLOG_AUTHOR_IDS.JORDAN,
 
   // Technique, health, high notes — Elena
   'vocal-health-and-maintenance': BLOG_AUTHOR_IDS.ELENA,
   'singing-high-notes-techniques': BLOG_AUTHOR_IDS.ELENA,
-  'belt-high-notes-safely': BLOG_AUTHOR_IDS.ELENA,
-  'high-notes-warmup-routine': BLOG_AUTHOR_IDS.ELENA,
   'breathing-and-posture-for-singers': BLOG_AUTHOR_IDS.ELENA,
   'long-phrases-breath-planning': BLOG_AUTHOR_IDS.ELENA,
   'mixed-voice-explained': BLOG_AUTHOR_IDS.ELENA,
@@ -83,7 +79,6 @@ const slugToAuthorId = {
   'vocal-cooldown-after-practice': BLOG_AUTHOR_IDS.ELENA,
   'singing-with-a-cold-or-allergies': BLOG_AUTHOR_IDS.ELENA,
   'voice-fatigue-from-talking': BLOG_AUTHOR_IDS.ELENA,
-  'fix-wavering-pitch': BLOG_AUTHOR_IDS.ELENA,
 };
 
 export function getBlogAuthorForSlug(slug) {

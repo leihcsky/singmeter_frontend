@@ -71,7 +71,7 @@ const selfCheck = [
 ];
 
 const goDeeper = [
-  { to: '/blog/belt-high-notes-safely', label: 'How to Belt High Notes Safely' },
+  { to: '/blog/singing-high-notes-techniques', label: 'How to Sing High Notes (hub guide)' },
   { to: '/blog/vocal-health-and-maintenance', label: 'Vocal Health and Maintenance' },
 ];
 

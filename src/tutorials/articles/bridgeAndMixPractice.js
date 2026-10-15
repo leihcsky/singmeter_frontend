@@ -73,7 +73,7 @@ const selfCheck = [
 
 const goDeeper = [
   { to: '/blog/singing-high-notes-techniques', label: 'How to Sing High Notes (hub guide)' },
-  { to: '/blog/belt-high-notes-safely', label: 'Belt High Notes Safely' },
+  { to: '/blog/mixed-voice-explained', label: 'Mixed Voice Explained' },
 ];
 
 export default { meta, intro, tools, steps, selfCheck, goDeeper };

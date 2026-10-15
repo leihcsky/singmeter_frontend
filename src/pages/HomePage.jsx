@@ -157,11 +157,11 @@ const HomePage = () => {
                     onClick={() => scrollToSection('learning-hub')}
                     className="inline-flex items-center px-8 py-4 bg-white text-gray-700 text-lg font-bold rounded-xl shadow-sm hover:shadow-md border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 cursor-pointer w-full sm:w-auto justify-center"
                   >
-                    Learning Hub
+                    Guided practice
                   </button>
                   <button
                     type="button"
-                    onClick={() => scrollToSection('problem-solver')}
+                    onClick={() => scrollToSection('free-tools')}
                     className="inline-flex items-center px-6 py-3 text-indigo-700 text-base font-semibold hover:text-indigo-900 transition cursor-pointer"
                   >
                     Free tools ↓
@@ -207,195 +207,14 @@ const HomePage = () => {
 
           <HomeLearningHub />
 
-          {/* Tools by goal — below editorial hub */}
-          <section id="problem-solver" className="defer-paint py-20 bg-white relative z-10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                  What do you want to improve?
-                </h2>
-                <p className="mt-4 text-xl text-gray-500">
-                  Pick a goal, then use a free tool as a checkpoint—not as a substitute for practice guides.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                {/* Question 1: Pitch */}
-                <div className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-indigo-100 transition-all duration-300 flex flex-col relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                  
-                  <div className="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6 text-indigo-600 relative z-10">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                    </svg>
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 relative z-10">Am I singing in tune?</h3>
-                  <p className="text-gray-600 mb-8 flex-grow relative z-10">
-                    Use our real-time feedback tools to visualize your pitch accuracy and train your ear to match notes perfectly.
-                  </p>
-                  
-                  <div className="space-y-3 mt-auto relative z-10">
-                    <Link to="/pitch-detector" className="flex items-center justify-center w-full py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-sm hover:shadow">
-                      Pitch Detector
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                    </Link>
-                    <Link to="/tone-generator" className="flex items-center justify-center w-full py-3 bg-white text-gray-700 border border-gray-200 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
-                      Tone Generator
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Question 2: Voice Type */}
-                <div className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-purple-100 transition-all duration-300 flex flex-col relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-purple-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                  
-                  <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 text-purple-600 relative z-10">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                    </svg>
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 relative z-10">What is my voice type?</h3>
-                  <p className="text-gray-600 mb-8 flex-grow relative z-10">
-                    Discover your unique vocal range (lowest to highest notes) and find out if you are a Soprano, Alto, Tenor, or Bass.
-                  </p>
-                  
-                  <div className="mt-auto relative z-10">
-                    <Link to="/vocal-range-test" className="flex items-center justify-center w-full py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors shadow-sm hover:shadow">
-                      Take Vocal Range Test
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Question 3: Practice Path */}
-                <div className="group bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-pink-100 transition-all duration-300 flex flex-col relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-pink-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                  
-                  <div className="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center mb-6 text-pink-600 relative z-10">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                  </div>
-
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 relative z-10">How should I practice?</h3>
-                  <p className="text-gray-600 mb-8 flex-grow relative z-10">
-                    Don't know where to start? Follow our structured, step-by-step practice path to build a solid vocal foundation.
-                  </p>
-                  
-                  <div className="mt-auto relative z-10">
-                    <button 
-                      onClick={() => scrollToSection('learning-hub')}
-                      className="flex items-center justify-center w-full py-3 bg-pink-600 text-white rounded-lg font-semibold hover:bg-pink-700 transition-colors shadow-sm hover:shadow cursor-pointer"
-                    >
-                      Explore Learning Hub
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Core Module 2: Practice Path */}
-          <section id="practice-path" className="defer-paint py-16 bg-gray-900 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
-                  A Simple Singing Practice Path
-                </h2>
-                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                  After you read a guide, open these five tools in order as checkpoints. For minute-by-minute lessons, use the{' '}
-                  <button
-                    type="button"
-                    onClick={() => scrollToSection('learning-hub')}
-                    className="text-indigo-300 font-semibold hover:text-white underline cursor-pointer"
-                  >
-                    Learning Hub
-                  </button>{' '}
-                  above.
-                </p>
-              </div>
-
-              <div className="relative">
-                {/* Connecting Line (Desktop) */}
-                <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-gray-700 -translate-y-1/2 z-0"></div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 relative z-10">
-                  {/* Step 1 */}
-                  <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-indigo-500 transition-colors text-center lg:text-left">
-                    <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0">1</div>
-                    <h3 className="text-lg font-bold mb-2">Discover Range</h3>
-                    <p className="text-sm text-gray-400 mb-4">Find your lowest and highest notes.</p>
-                    <Link to="/vocal-range-test" className="text-indigo-400 text-sm font-semibold hover:text-indigo-300">
-                      Vocal Range Test &rarr;
-                    </Link>
-                  </div>
-
-                  {/* Step 2 */}
-                  <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-colors text-center lg:text-left">
-                    <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0">2</div>
-                    <h3 className="text-lg font-bold mb-2">Find Key</h3>
-                    <p className="text-sm text-gray-400 mb-4">Get the right key for your voice.</p>
-                    <Link to="/song-key-finder" className="text-purple-400 text-sm font-semibold hover:text-purple-300">
-                      Song Key Finder &rarr;
-                    </Link>
-                  </div>
-
-                  {/* Step 3 */}
-                  <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-colors text-center lg:text-left">
-                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0">3</div>
-                    <h3 className="text-lg font-bold mb-2">Reference Note</h3>
-                    <p className="text-sm text-gray-400 mb-4">Train your ear with target notes.</p>
-                    <Link to="/tone-generator" className="text-blue-400 text-sm font-semibold hover:text-blue-300">
-                      Tone Generator &rarr;
-                    </Link>
-                  </div>
-
-                  {/* Step 4 */}
-                  <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-colors text-center lg:text-left">
-                    <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0">4</div>
-                    <h3 className="text-lg font-bold mb-2">Check Pitch</h3>
-                    <p className="text-sm text-gray-400 mb-4">Match pitch with visual feedback.</p>
-                    <Link to="/pitch-detector" className="text-green-400 text-sm font-semibold hover:text-green-300">
-                      Pitch Detector &rarr;
-                    </Link>
-                  </div>
-
-                  {/* Step 5 */}
-                  <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-orange-500 transition-colors text-center lg:text-left">
-                    <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center font-bold text-lg mb-4 mx-auto lg:mx-0">5</div>
-                    <h3 className="text-lg font-bold mb-2">Steady Timing</h3>
-                    <p className="text-sm text-gray-400 mb-4">Practice rhythm and tempo.</p>
-                    <Link to="/metronome" className="text-orange-400 text-sm font-semibold hover:text-orange-300">
-                      Online Metronome &rarr;
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-12 text-center">
-                <Link
-                  to="/tutorials/vocal-range-test-guided"
-                  className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-500 transition"
-                >
-                  Start guided range tutorial
-                  <span className="ml-2" aria-hidden>
-                    →
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          {/* Core Module 3: All Tools */}
-          <section className="defer-paint py-16 bg-white">
+          {/* Free tools — checkpoints that support the guides */}
+          <section id="free-tools" className="defer-paint py-16 bg-white scroll-mt-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-gray-900">Free practice tools</h2>
-                <p className="mt-4 text-xl text-gray-500">
-                  Use these after a guide or tutorial—quick checks for range, pitch, key, tone, and tempo.
+                <p className="mt-4 text-xl text-gray-500 max-w-3xl mx-auto">
+                  Use these after a guide or tutorial—quick checks for range, pitch, key, tone, and tempo. New here?
+                  Test your range first, find a song key that fits, then check pitch against a reference tone.
                 </p>
               </div>
 
@@ -445,7 +264,7 @@ const HomePage = () => {
                 </p>
                 <p className="mb-6">
                   Whether you are finding your voice type or cleaning up pitch accuracy, start with an article or
-                  Learning Hub track, then use visual feedback as a checkpoint—not as a substitute for practice.
+                  a guided tutorial, then use visual feedback as a checkpoint—not as a substitute for practice.
                 </p>
                 <p>
                   Everything runs in your browser with no account required. Read the guides, follow a tutorial,
@@ -458,6 +277,13 @@ const HomePage = () => {
           {/* FAQ Section */}
           <div className="defer-paint">
             <FAQSection items={homeFaqItems} />
+            <p className="-mt-6 mb-12 text-center text-sm text-gray-600">
+              More questions?{' '}
+              <Link to="/faq" className="font-semibold text-indigo-600 hover:underline">
+                Read the full FAQ
+              </Link>
+              .
+            </p>
           </div>
         </main>
 

@@ -55,14 +55,6 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/bridge-and-mix-practice',
     title: 'Mixed Voice Practice',
   },
-  'belt-high-notes-safely': {
-    path: '/tutorials/belt-prep-safe',
-    title: 'Safe Belt Prep',
-  },
-  'high-notes-warmup-routine': {
-    path: '/tutorials/daily-warmup-15',
-    title: '15-Minute Daily Warm-Up',
-  },
   'daily-singing-practice-routine': {
     path: '/tutorials/daily-warmup-15',
     title: '15-Minute Daily Warm-Up',
@@ -119,21 +111,9 @@ export const blogPracticeTutorialBySlug = {
     path: '/tutorials/pitch-calibration-10',
     title: '10-Minute Pitch Calibration',
   },
-  'sing-in-tune-without-piano': {
-    path: '/tutorials/pitch-calibration-10',
-    title: '10-Minute Pitch Calibration',
-  },
-  'fix-wavering-pitch': {
-    path: '/tutorials/pitch-calibration-10',
-    title: '10-Minute Pitch Calibration',
-  },
   'choir-audition-range-prep': {
     path: '/tutorials/vocal-range-test-guided',
     title: 'Your First Vocal Range Test',
-  },
-  'singing-quietly-in-tune': {
-    path: '/tutorials/pitch-calibration-10',
-    title: '10-Minute Pitch Calibration',
   },
   'first-week-singing-practice-plan': {
     path: '/tutorials/vocal-range-test-guided',

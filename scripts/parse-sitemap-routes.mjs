@@ -25,15 +25,32 @@ export function getRoutesFromSitemap(sitemapPath) {
 }
 
 /**
+ * Non-flagship tutorials: noindex (see src/seo/indexingPolicy.js) but still
+ * reachable from blog CTAs, so they must be prerendered or Vercel returns 404.
+ */
+const NOINDEX_TUTORIAL_PRERENDER_ROUTES = [
+  '/tutorials/breath-and-posture-basics',
+  '/tutorials/transpose-a-song',
+  '/tutorials/ear-training-starter',
+  '/tutorials/song-in-the-right-key',
+  '/tutorials/vocal-health-recovery-day',
+  '/tutorials/home-recording-vocal-check',
+  '/tutorials/bridge-and-mix-practice',
+  '/tutorials/belt-prep-safe',
+];
+
+/**
  * noindex hub pages stay out of sitemap (AdSense/crawl signal) but still need
  * prerender so direct visits and internal links do not soft-404 to homepage.
  */
 export const PRERENDER_EXTRA_ROUTES = [
+  '/blog',
   '/tutorials',
   '/resources',
   '/glossary',
   '/faq',
   '/disclaimer',
+  ...NOINDEX_TUTORIAL_PRERENDER_ROUTES,
 ];
 
 export function getPrerenderRoutes(sitemapPath = defaultSitemapPath()) {

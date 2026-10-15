@@ -134,7 +134,7 @@ export const glossaryTerms = [
     category: 'Vocal Techniques',
     definition:
       'A strong, speech-like sound carried higher than classical head-voice transition—common in musical theater and pop. Safe belting needs support and coaching, not throat pushing.',
-    readMore: { slug: 'belt-high-notes-safely', label: 'Belt high notes safely' },
+    readMore: { slug: 'singing-high-notes-techniques', label: 'Singing high notes' },
   },
   {
     term: 'Legato',
@@ -190,7 +190,7 @@ export const glossaryTerms = [
     category: 'Practice',
     definition:
       'Gentle exercises before singing to wake up breath, folds, and range. Start soft, then expand—usually 10–20 minutes before hard repertoire.',
-    readMore: { slug: 'high-notes-warmup-routine', label: 'High-notes warm-up routine' },
+    readMore: { slug: 'daily-singing-practice-routine', label: 'Daily singing practice routine' },
   },
   {
     term: 'Vocal Cool-Down',

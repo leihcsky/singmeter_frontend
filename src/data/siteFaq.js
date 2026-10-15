@@ -133,10 +133,8 @@ export const homeFaqItems = siteFaqData
   .filter((item) =>
     [
       'Is SingMeter really free?',
-      'What tools does SingMeter offer?',
-      'Do I need a microphone?',
-      'Can I use SingMeter on my phone or tablet?',
       'Is my voice recorded or stored when I use SingMeter?',
+      'Where can I learn vocal technique beyond the tools?',
     ].includes(item.question)
   )
   .map(({ question, answer }) => ({ question, answer }));

@@ -5,11 +5,15 @@ import { Link } from 'react-router-dom';
 import { getActiveTools } from '../config/tools';
 
 const LEARN_LINKS = [
-  { to: '/tutorials', label: 'Tutorials' },
-  { to: '/resources', label: 'Resources' },
-  { to: '/glossary', label: 'Glossary' },
+  { to: '/blog', label: 'Singing guides' },
+  { to: '/tutorials', label: 'Practice tutorials' },
+  { to: '/resources', label: 'Book reviews' },
+];
+
+/** Reference pages — kept reachable but out of the main columns. */
+const SECONDARY_LINKS = [
   { to: '/faq', label: 'FAQ' },
-  { to: '/blog', label: 'Blog' },
+  { to: '/glossary', label: 'Glossary' },
 ];
 
 const COMPANY_LINKS = [
@@ -65,13 +69,14 @@ const Footer = ({ variant = 'default', compact = false }) => {
               />
             </Link>
             <p className="mt-3 text-sm text-gray-600 leading-relaxed max-w-sm">
-              Free browser tools for vocal range, pitch practice, ear training, and rhythm — privacy-first, no signup required.
+              Original singing guides and step-by-step practice tutorials for home singers, with free browser tools
+              for range, pitch, and tempo checks.
             </p>
             <Link
-              to="/vocal-range-test"
+              to="/blog"
               className="inline-flex mt-4 text-sm font-semibold text-indigo-600 hover:text-indigo-700"
             >
-              Start with Vocal Range Test →
+              Read the singing guides →
             </Link>
           </div>
 
@@ -139,6 +144,11 @@ const Footer = ({ variant = 'default', compact = false }) => {
             <Link to="/" className={`${linkClass} text-gray-500`}>
               Home
             </Link>
+            {SECONDARY_LINKS.map(({ to, label }) => (
+              <Link key={to} to={to} className={`${linkClass} text-gray-500`}>
+                {label}
+              </Link>
+            ))}
             <span className="hidden sm:inline text-gray-300" aria-hidden>
               |
             </span>
