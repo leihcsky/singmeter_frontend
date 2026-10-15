@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Choose Songs That Fit Your Vocal Range',
   seoDescription:
     'Pick songs that fit your voice using tessitura—not just peak notes. Map your range test to melody highs, then transpose with Song Key Finder for comfortable practice.',
-  category: 'Guides',
+  category: 'Vocal Range & Song Key',
   readTime: '15 min read',
   date: '2026-07-17',
   updatedDate: '2026-07-18',

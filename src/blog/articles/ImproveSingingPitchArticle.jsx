@@ -5,7 +5,7 @@ const meta = {
 	seoTitle: 'Improve Singing Pitch: Exercises & Routine',
 	seoDescription:
 	  'Improve pitch accuracy with breath, vowels, scales, intervals, and a short daily routine using a pitch detector. Fix sharp or flat habits and track progress over time.',
-	category: 'Guides',
+	category: 'Pitch & Ear Training',
 	readTime: '16 min read',
 	date: '2025-11-21',
 	updatedDate: '2026-08-04',

@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Ear Training for Singers: Match Pitch',
   seoDescription:
     'Train your ear to hear intervals, match pitch, and sing more in tune. Step-by-step exercises you can do at home with a pitch detector and reference tones.',
-  category: 'Pitch & Intonation',
+  category: 'Pitch & Ear Training',
   readTime: '10 min read',
   date: '2025-12-02',
   updatedDate: '2026-06-01',

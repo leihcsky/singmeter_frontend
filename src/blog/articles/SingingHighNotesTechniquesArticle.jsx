@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'How to Sing High Notes Safely',
   seoDescription:
     'Learn how to sing high notes with support, mix, and a SingMeter range-first workflow. Includes a 10-minute check-in, practice drills, and when to stop.',
-  category: 'Techniques',
+  category: 'Technique',
   readTime: '15 min read',
   date: '2025-01-30',
   updatedDate: '2026-08-04',

@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Choir Audition Prep: Range & Part Placement',
   seoDescription:
     'Prepare for choir auditions with honest range data, tessitura-based part placement, and a go/no-go checklist—using Vocal Range Test and Song Key Finder before you walk in.',
-  category: 'Guides',
+  category: 'Vocal Range & Song Key',
   readTime: '15 min read',
   date: '2026-08-04',
   updatedDate: '2026-08-04',

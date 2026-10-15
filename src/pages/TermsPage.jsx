@@ -75,7 +75,7 @@ const TermsPage = () => {
               Terms of Service
             </h1>
             <p className="text-gray-600 mb-8">
-              Last updated: May 22, 2026
+              Last updated: October 15, 2026
             </p>
 
             {/* Content */}
@@ -88,14 +88,15 @@ const TermsPage = () => {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">2. Description of Service</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter is a free online vocal range testing tool that uses your device's microphone to analyze your 
-                singing voice and determine your vocal range. The Service provides:
+                SingMeter is a free educational website for people who practice singing at home. The Service provides:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li>Real-time pitch detection and analysis</li>
-                <li>Voice type classification (Bass, Baritone, Tenor, Alto, Mezzo-Soprano, Soprano)</li>
-                <li>Educational content about vocal ranges and singing</li>
-                <li>Results sharing capabilities</li>
+                <li>Original singing guides and step-by-step practice tutorials</li>
+                <li>
+                  Browser-based practice tools (vocal range test, pitch detector, tone generator, metronome, and song key
+                  finder) that use your device's microphone or speakers
+                </li>
+                <li>Editorial reviews of singing books</li>
               </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">3. User Eligibility</h2>
@@ -240,22 +241,6 @@ const TermsPage = () => {
             </div>
           </div>
         </article>
-
-        {/* CTA Section */}
-        <div className="mt-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-xl p-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to Test Your Vocal Range?
-          </h2>
-          <p className="text-indigo-100 mb-6 text-lg">
-            Discover your voice type in just 60 seconds with our free online tool
-          </p>
-          <Link
-            to="/"
-            className="inline-block px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
-          >
-            Start Your Test Now →
-          </Link>
-        </div>
       </main>
 
       {/* Footer */}

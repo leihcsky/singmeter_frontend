@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Breath Planning for Long Phrases | Singer Guide',
   seoDescription:
     'Running out of air mid-line? Map where to breathe, practice long phrases with a metronome, and stop gasping—without turning every song into a lung contest.',
-  category: 'Techniques',
+  category: 'Technique',
   readTime: '14 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',

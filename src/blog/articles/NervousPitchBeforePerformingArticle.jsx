@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Nervous Pitch Before Performing | Fix Stage Jitters',
   seoDescription:
     'Adrenaline makes pitch sharp, flat, or rushed. A simple pre-performance reset: breath, anchor note, soft first phrase, and what not to do in the last ten minutes.',
-  category: 'Pitch & Intonation',
+  category: 'Pitch & Ear Training',
   readTime: '14 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',

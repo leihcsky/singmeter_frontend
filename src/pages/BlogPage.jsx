@@ -6,67 +6,16 @@ import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { blogCatalog } from '../blog';
+import { BLOG_TOPICS } from '../data/blogTopics';
+import { HIGH_NOTES_HUB_SLUG, PITCH_HUB_SLUG, VOCAL_RANGE_HUB_SLUG } from '../data/blogHub';
 
-// Blog Topics - thematic content clusters for the blog
-const blogTopics = [
-  {
-    id: 'pitch-training',
-    title: 'Pitch & Intonation Training',
-    description: 'Improve your pitch accuracy and learn how to sing in tune using practical exercises and tools.',
-    articleIds: [
-      'improve-singing-pitch',
-      'why-you-sing-flat',
-      'why-you-sing-sharp',
-      'ear-training-for-singers',
-      'record-yourself-to-improve-singing',
-      'nervous-pitch-before-performing',
-    ],
-  },
-  {
-    id: 'vocal-range-and-voice-type',
-    title: 'Vocal Range & Voice Type',
-    description: 'Measure your vocal range, understand your voice type, and choose songs that fit your voice.',
-    articleIds: [
-      'how-to-test-vocal-range',
-      'how-to-find-your-voice-type',
-      'vocal-range-chart',
-      'can-vocal-range-change',
-      'tessitura-and-comfortable-range',
-      'songs-that-fit-your-vocal-range',
-      'transpose-songs-for-your-voice',
-      'choir-audition-range-prep',
-    ],
-  },
-  {
-    id: 'high-notes-and-power',
-    title: 'High Notes & Advanced Techniques',
-    description: 'Build the technique and control you need to sing high notes with power and confidence.',
-    articleIds: [
-      'singing-high-notes-techniques',
-      'chest-voice-vs-head-voice-basics',
-      'mixed-voice-explained',
-    ],
-  },
-  {
-    id: 'foundation-and-health',
-    title: 'Foundation & Vocal Health',
-    description: 'Breath, posture, daily practice habits, and care that keep your voice healthy for long-term singing.',
-    articleIds: [
-      'daily-singing-practice-routine',
-      'how-to-learn-a-song-phrase-by-phrase',
-      'breathing-and-posture-for-singers',
-      'long-phrases-breath-planning',
-      'vocal-health-and-maintenance',
-      'vocal-cooldown-after-practice',
-      'singing-with-a-cold-or-allergies',
-      'voice-fatigue-from-talking',
-      'singing-when-tired-or-hoarse',
-      'karaoke-warmup-and-song-key',
-      'metronome-practice-for-singers',
-      'first-week-singing-practice-plan',
-    ],
-  },
-];
+const HUB_SLUGS = new Set([PITCH_HUB_SLUG, VOCAL_RANGE_HUB_SLUG, HIGH_NOTES_HUB_SLUG]);
+
+/** Topic hubs (pillar guides) first, then the rest in catalog order. */
+const articlesForTopic = (category) =>
+  blogCatalog
+    .filter((article) => article.category === category)
+    .sort((a, b) => Number(HUB_SLUGS.has(b.slug)) - Number(HUB_SLUGS.has(a.slug)));
 
 const BlogPage = () => {
   // Set document title and meta tags
@@ -121,18 +70,16 @@ const BlogPage = () => {
 
         {/* Topic Sections */}
         <div className="space-y-12">
-          {blogTopics.map((topic) => {
-            const topicArticles = blogCatalog.filter((article) =>
-              topic.articleIds.includes(article.id)
-            );
+          {BLOG_TOPICS.map((topic) => {
+            const topicArticles = articlesForTopic(topic.category);
 
             if (!topicArticles.length) return null;
 
             return (
-              <section key={topic.id}>
+              <section key={topic.id} id={topic.id}>
                 <div className="mb-6">
                   <h2 className="text-2xl font-bold text-gray-900">
-                    {topic.title}
+                    {topic.category}
                   </h2>
                   <p className="text-gray-600 mt-2">
                     {topic.description}
@@ -147,18 +94,14 @@ const BlogPage = () => {
                       className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
                     >
                       <div className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">
-                            {article.category}
-                          </span>
-                          <span className="text-sm text-gray-500">{article.readTime}</span>
-                        </div>
                         <p className="text-xs text-gray-500 mb-3">
                           By <span className="font-medium text-gray-700">{article.author}</span>
+                          <span aria-hidden="true"> · </span>
+                          {article.readTime}
                         </p>
-                        <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition">
                           {article.title}
-                        </h2>
+                        </h3>
                         <p className="text-gray-600 mb-4 line-clamp-3">
                           {article.excerpt}
                         </p>

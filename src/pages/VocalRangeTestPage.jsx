@@ -1,5 +1,5 @@
 /**
- * Vocal Range Test Page - Wrapper for ModernVocalTest component
+ * Vocal Range Test Page
  */
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';

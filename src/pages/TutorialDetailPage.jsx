@@ -8,8 +8,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TutorialArticle from '../components/TutorialArticle';
 import TutorialDetailFooter from '../components/TutorialDetailFooter';
-import LearnHubNav from '../components/LearnHubNav';
 import { tutorialPracticeInsightsBySlug } from '../data/tutorialPracticeInsights';
+import { FLAGSHIP_TUTORIALS } from '../data/flagshipTutorials';
 import NotFoundPage from './NotFoundPage';
 
 const TITLE_BRAND = ' | SingMeter';
@@ -33,8 +33,16 @@ const TutorialDetailPage = () => {
     return <NotFoundPage />;
   }
 
+  return <TutorialDetail key={slug} tutorial={tutorial} />;
+};
+
+const TutorialDetail = ({ tutorial }) => {
   const { meta, intro, tools, steps, selfCheck, goDeeper, nextTutorial } = tutorial;
-  const related = tutorialIndex.filter((t) => t.slug !== meta.slug).slice(0, 3);
+  const flagshipIndex = FLAGSHIP_TUTORIALS.findIndex((t) => t.slug === meta.slug);
+  const related = FLAGSHIP_TUTORIALS.filter((t) => t.slug !== meta.slug).map((flagship) => ({
+    ...tutorialIndex.find((t) => t.slug === flagship.slug),
+    step: FLAGSHIP_TUTORIALS.indexOf(flagship) + 1,
+  }));
   const practiceInsights = tutorialPracticeInsightsBySlug[meta.slug];
 
   useEffect(() => {
@@ -113,13 +121,6 @@ const TutorialDetailPage = () => {
     Advanced: 'bg-purple-100 text-purple-800',
   };
 
-  const trackBadge = {
-    start: 'bg-indigo-100 text-indigo-800',
-    apply: 'bg-blue-100 text-blue-800',
-    care: 'bg-amber-100 text-amber-800',
-    advanced: 'bg-purple-100 text-purple-800',
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       <Header />
@@ -143,21 +144,19 @@ const TutorialDetailPage = () => {
           </ol>
         </nav>
 
-        <LearnHubNav className="mb-8" />
-
         <header className="mb-10">
           <div className="flex flex-wrap items-center gap-2 mb-4">
+            {flagshipIndex >= 0 && (
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800">
+                Guided session {flagshipIndex + 1} of {FLAGSHIP_TUTORIALS.length}
+              </span>
+            )}
             <span
               className={`px-3 py-1 text-xs font-semibold rounded-full ${levelColors[meta.level] || 'bg-gray-100 text-gray-800'}`}
             >
               {meta.level}
             </span>
             <span className="text-sm text-gray-500">{meta.duration}</span>
-            <span
-              className={`text-xs font-semibold px-2 py-0.5 rounded-full ${trackBadge[meta.track] || 'bg-gray-100 text-gray-700'}`}
-            >
-              {meta.trackLabel}
-            </span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">{meta.title}</h1>
           <p className="text-lg text-gray-600 leading-relaxed">{meta.excerpt}</p>
@@ -178,15 +177,17 @@ const TutorialDetailPage = () => {
 
         {related.length > 0 && (
           <section className="mb-12">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">More practice tutorials</h2>
-            <div className="grid sm:grid-cols-3 gap-4">
+            <h2 className="text-xl font-bold text-gray-900 mb-4">
+              {flagshipIndex >= 0 ? 'The other guided sessions' : 'Guided sessions · start here'}
+            </h2>
+            <div className={`grid gap-4 ${related.length === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
               {related.map((t) => (
                 <Link
                   key={t.slug}
                   to={`/tutorials/${t.slug}`}
-                  className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:border-indigo-200 hover:shadow-md transition"
+                  className="group bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:border-indigo-200 hover:shadow-md transition"
                 >
-                  <span className="text-xs font-semibold text-indigo-600">{t.level}</span>
+                  <span className="text-xs font-semibold text-indigo-600">Session {t.step}</span>
                   <h3 className="font-bold text-gray-900 mt-1 group-hover:text-indigo-600">{t.title}</h3>
                   <p className="text-xs text-gray-500 mt-1">{t.duration}</p>
                 </Link>

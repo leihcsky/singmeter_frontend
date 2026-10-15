@@ -423,7 +423,7 @@ const SongKeyFinderPage = () => {
               "@type": "HowToStep",
               "position": 2,
               "name": "View Key Information",
-              "text": "For uploaded files, wait for analysis to complete. For sample songs, click a title to see its original key, vocal range, and genre."
+              "text": "For uploaded files, wait for analysis to complete. For sample songs, click a title to see its original key and genre."
             },
             {
               "@type": "HowToStep",
@@ -475,8 +475,8 @@ const SongKeyFinderPage = () => {
             Song Key Finder
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
-            Upload any audio file for automatic key detection—the main way to analyze your song. Below that, browse{' '}
-            <strong>{SAMPLE_SONG_COUNT} sample titles</strong> (popular covers) for quick keys and transposition ideas.
+            Upload any audio file for automatic key detection—the main way to analyze your song. Below that, a short
+            list of popular songs gives you quick keys and transposition ideas.
           </p>
         </div>
 
@@ -798,18 +798,10 @@ const SongKeyFinderPage = () => {
               </button>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-100">
-                <h3 className="text-sm font-semibold text-gray-600 mb-2">Original Key</h3>
-                <div className="text-3xl font-bold text-purple-700 mb-2">{selectedSong.key}</div>
-                <div className="text-sm text-gray-600">Original Key: {selectedSong.originalKey}</div>
-              </div>
-
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
-                <h3 className="text-sm font-semibold text-gray-600 mb-2">Vocal Range</h3>
-                <div className="text-2xl font-bold text-indigo-700 mb-2">{selectedSong.vocalRange}</div>
-                <div className="text-sm text-gray-600">Genre: {selectedSong.genre}</div>
-              </div>
+            <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-100 mb-6">
+              <h3 className="text-sm font-semibold text-gray-600 mb-2">Original Key</h3>
+              <div className="text-3xl font-bold text-purple-700 mb-2">{selectedSong.key}</div>
+              <div className="text-sm text-gray-600">Genre: {selectedSong.genre}</div>
             </div>
 
             {/* Transposition Suggestions */}
@@ -1051,8 +1043,8 @@ const SongKeyFinderPage = () => {
             </ul>
 
             <p className="text-gray-600 leading-relaxed mb-4">
-              Upload audio for any song, or browse our sample list of {SAMPLE_SONG_COUNT} popular titles. 
-              Select a song to see its original key and vocal range, then get personalized transposition 
+              Upload audio for any song, or browse a short sample list of popular titles.
+              Select a song to see its original key, then get personalized transposition
               suggestions based on your own vocal range.
             </p>
 
@@ -1083,7 +1075,7 @@ const SongKeyFinderPage = () => {
                 body: (
                   <p>
                     For any song, upload an audio file at the top of the page. For quick reference, scroll the sample
-                    list ({SAMPLE_SONG_COUNT} titles)—use genre pills and the filter box to narrow by title or artist.
+                    list—use genre pills and the filter box to narrow by title or artist.
                     Not listed? Upload always works.
                   </p>
                 ),
@@ -1094,9 +1086,8 @@ const SongKeyFinderPage = () => {
                 title: 'View Key Information',
                 body: (
                   <p>
-                    Click on a song to see detailed information including the original key, vocal range required,
-                    genre, and artist. This information helps you understand whether the song is a good fit for your voice
-                    in its original key.
+                    Click on a song to see its original key and genre. Knowing the original key is the starting point
+                    for deciding whether to sing it as recorded or transpose it.
                   </p>
                 ),
               },

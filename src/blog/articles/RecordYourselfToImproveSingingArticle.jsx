@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Record Yourself to Improve Singing',
   seoDescription:
     'A listen-back protocol for singers: phrase isolation, pitch-check with your phone, and when to stop re-recording full songs. Practical home recording without expensive gear.',
-  category: 'Pitch & Intonation',
+  category: 'Pitch & Ear Training',
   readTime: '15 min read',
   date: '2026-07-21',
   updatedDate: '2026-07-21',

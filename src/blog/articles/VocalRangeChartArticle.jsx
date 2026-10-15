@@ -8,7 +8,7 @@ const meta = {
   seoTitle: 'Vocal Range Chart: Male, Female & SATB',
   seoDescription:
     'Visual vocal range chart for bass, baritone, tenor, alto, mezzo, soprano and SATB. Learn how to read the bars, compare your voice, and test your range free.',
-  category: 'Vocal Range',
+  category: 'Vocal Range & Song Key',
   readTime: '9 min read',
   date: '2025-12-02',
   updatedDate: '2026-06-01',

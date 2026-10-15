@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'First Week Singing Practice Plan',
   seoDescription:
     'A day-by-day beginner singing plan for week one—15–20 minutes per day using only free SingMeter tools: range test, pitch detector, warm-up tutorial, and tone generator.',
-  category: 'Guides',
+  category: 'Practice & Vocal Health',
   readTime: '17 min read',
   date: '2026-08-04',
   updatedDate: '2026-08-04',

@@ -13,7 +13,7 @@ const meta = {
   duration: '10 min',
   date: '2026-05-22',
   prerequisites: ['vocal-range-test-guided'],
-  nextSlug: 'transpose-a-song',
+  nextSlug: 'daily-warmup-15',
   category: 'Pitch & Intonation',
 };
 

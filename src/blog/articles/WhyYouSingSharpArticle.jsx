@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Why You Sing Sharp (and How to Fix It)',
   seoDescription:
     'Singing sharp is often tension or excess volume—not “trying too hard to be in tune.” Learn causes, detector-based drills, and how to settle pitch without going flat.',
-  category: 'Pitch & Intonation',
+  category: 'Pitch & Ear Training',
   readTime: '15 min read',
   date: '2026-07-17',
   updatedDate: '2026-07-18',

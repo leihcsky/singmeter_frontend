@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Singing With a Cold or Allergies: What to Do',
   seoDescription:
     'Stuffy nose, allergy season, mild cold—can you still practice? A plain decision guide: when to rest, when recovery hums are OK, and why congestion lies to your ears.',
-  category: 'Vocal Health',
+  category: 'Practice & Vocal Health',
   readTime: '14 min read',
   date: '2026-08-25',
   updatedDate: '2026-08-25',

@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Daily Singing Practice Routine (20–30 Min)',
   seoDescription:
     'A realistic 20–30 minute daily singing practice plan: warm-up, pitch check, one song phrase, and cooldown—with SingMeter tool checkpoints you can finish at home.',
-  category: 'Guides',
+  category: 'Practice & Vocal Health',
   readTime: '16 min read',
   date: '2026-07-17',
   updatedDate: '2026-07-18',

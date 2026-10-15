@@ -2,7 +2,7 @@ const meta = {
   id: 'tessitura-and-comfortable-range',
   slug: 'tessitura-and-comfortable-range',
   title: 'Tessitura and Comfortable Singing Range: Sing Where Your Voice Shines',
-  category: 'Vocal Range',
+  category: 'Vocal Range & Song Key',
   readTime: '14 min read',
   date: '2025-12-02',
   updatedDate: '2026-08-04',

@@ -5,7 +5,7 @@ const meta = {
 	seoTitle: 'How to Test Your Vocal Range at Home',
 	seoDescription:
 	  'Learn how to test your vocal range correctly: what counts as a usable note, how to read notation, a step-by-step home method, and common mistakes that skew results.',
-	category: 'Guides',
+	category: 'Vocal Range & Song Key',
 	readTime: '15 min read',
 		date: '2025-11-11',
 		updatedDate: '2026-08-04',

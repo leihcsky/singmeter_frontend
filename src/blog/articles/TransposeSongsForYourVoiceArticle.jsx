@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Transpose a Song Into Your Comfortable Key',
   seoDescription:
     'Step-by-step: find a song\'s key, compare melody peaks to your vocal range, move by semitones, and verify with Tone Generator and Pitch Detector—without a piano.',
-  category: 'Vocal Range',
+  category: 'Vocal Range & Song Key',
   readTime: '16 min read',
   date: '2026-07-21',
   updatedDate: '2026-07-21',

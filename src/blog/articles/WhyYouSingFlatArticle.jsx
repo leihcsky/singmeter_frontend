@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Why You Sing Flat (and How to Fix It)',
   seoDescription:
     'Flat singing is common and fixable: breath support, vowels, registration, and listening habits. Exercises plus how to use a pitch detector to see cents in real time.',
-  category: 'Pitch & Intonation',
+  category: 'Pitch & Ear Training',
   readTime: '9 min read',
   date: '2025-12-02',
   updatedDate: '2026-06-01',

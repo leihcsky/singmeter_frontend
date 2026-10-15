@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Mixed Voice Explained for Home Singers',
   seoDescription:
     'Understand mixed voice in plain language: how it differs from chest and head, drills to smooth your break, and when to stop—plus SingMeter practice checkpoints.',
-  category: 'Techniques',
+  category: 'Technique',
   readTime: '16 min read',
   date: '2026-07-17',
   updatedDate: '2026-07-18',

@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Can Your Vocal Range Change?',
   seoDescription:
     'Yes, your usable range can grow with training within natural limits. Learn what changes with age, safe expansion tips, and how to track progress with a range test.',
-  category: 'Vocal Range',
+  category: 'Vocal Range & Song Key',
   readTime: '14 min read',
   date: '2025-12-02',
   updatedDate: '2026-08-04',

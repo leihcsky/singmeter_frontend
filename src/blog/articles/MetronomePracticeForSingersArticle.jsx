@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Metronome Practice for Singers',
   seoDescription:
     'Practical metronome drills for singers: subdivisions, long-note timing, rushing vs dragging, and how to combine a metronome with pitch practice at home.',
-  category: 'Guides',
+  category: 'Practice & Vocal Health',
   readTime: '15 min read',
   date: '2026-07-26',
   updatedDate: '2026-07-26',

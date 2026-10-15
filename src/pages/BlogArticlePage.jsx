@@ -6,10 +6,11 @@ import { useEffect, useState } from 'react';
 import { blogCatalog, getBlogCatalogEntry, loadBlogArticle } from '../blog';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import BlogAuthorNote from '../components/BlogAuthorNote';
+import BlogArticleFooter from '../components/BlogArticleFooter';
 import BlogHubCallout from '../components/BlogHubCallout';
-import BlogPracticeTutorial from '../components/BlogPracticeTutorial';
 import { isNoIndexBlogSlug } from '../seo/indexingPolicy';
+
+const RELATED_COUNT = 3;
 
 /** Shorter brand suffix; total browser title length capped in buildMetaTitle */
 const TITLE_BRAND = ' | SingMeter';
@@ -223,10 +224,14 @@ const BlogArticlePage = () => {
 
   const ArticleBody = article?.component;
 
-  // Related articles — exclude noindex / deprioritized posts
   const relatedArticles = blogCatalog
-    .filter((a) => a.id !== catalogEntry.id && !isNoIndexBlogSlug(a.slug))
-    .slice(0, 2);
+    .filter(
+      (a) =>
+        a.id !== catalogEntry.id &&
+        a.category === catalogEntry.category &&
+        !isNoIndexBlogSlug(a.slug)
+    )
+    .slice(0, RELATED_COUNT);
 
   // Dates and author information
   const publishedDate = new Date(catalogEntry.date);
@@ -319,52 +324,41 @@ const BlogArticlePage = () => {
                 <div className="min-h-[24rem]" aria-busy="true" aria-label="Loading article" />
               )}
             </div>
-            <BlogPracticeTutorial slug={catalogEntry.slug} />
-            <BlogAuthorNote author={catalogEntry.author} authorRole={catalogEntry.authorRole} />
+            <BlogArticleFooter
+              slug={catalogEntry.slug}
+              author={catalogEntry.author}
+              authorRole={catalogEntry.authorRole}
+            />
           </div>
         </article>
 
-        {/* Related Articles */}
         {relatedArticles.length > 0 && (
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Articles</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+          <section className="mt-14">
+            <div className="flex items-baseline justify-between gap-4 mb-5">
+              <h2 className="text-2xl font-bold text-gray-900">More on {catalogEntry.category}</h2>
+              <Link to="/blog" className="text-sm font-semibold text-indigo-600 hover:text-indigo-700 shrink-0">
+                All guides →
+              </Link>
+            </div>
+            <div className="grid md:grid-cols-3 gap-5">
               {relatedArticles.map((related) => (
                 <Link
                   key={related.id}
                   to={`/blog/${related.slug}`}
-                  className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 group"
+                  className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-5 group"
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-medium">
-                      {related.category}
-                    </span>
-                    <span className="text-sm text-gray-500">{related.readTime}</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition">
+                  <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition">
                     {related.title}
                   </h3>
                   <p className="text-gray-600 text-sm line-clamp-2">
                     {related.excerpt}
                   </p>
+                  <p className="text-xs text-gray-500 mt-3">{related.readTime}</p>
                 </Link>
               ))}
             </div>
-          </div>
+          </section>
         )}
-
-        {/* Back to Blog */}
-        <div className="mt-12 text-center">
-          <Link
-            to="/blog"
-            className="inline-flex items-center space-x-2 text-indigo-600 hover:text-indigo-700 font-semibold"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span>Back to All Articles</span>
-          </Link>
-        </div>
       </main>
 
       <Footer variant="muted" />

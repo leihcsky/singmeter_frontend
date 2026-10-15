@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Chest Voice vs Head Voice for Beginners',
   seoDescription:
     'What chest voice and head voice actually feel like, how to find each at home, when the flip is normal, and when to stop dragging chest up—before you worry about mix.',
-  category: 'Techniques',
+  category: 'Technique',
   readTime: '14 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',

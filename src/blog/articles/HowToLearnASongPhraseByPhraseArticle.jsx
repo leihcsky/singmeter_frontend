@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Learn a Song Phrase by Phrase | Singer Practice Method',
   seoDescription:
     'Stop looping the whole track and stalling on the hard line. A phrase-by-phrase method to learn songs at home—map, isolate, slow practice, stitch, and know when to move on.',
-  category: 'Guides',
+  category: 'Practice & Vocal Health',
   readTime: '15 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',

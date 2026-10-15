@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Voice Fatigue From Talking (Teachers, Calls, Noisy Rooms)',
   seoDescription:
     'You barely practiced—but after a day of teaching, calls, or noisy rooms, high notes are gone. How to budget talking load, recover before practice, and stop blaming “bad technique.”',
-  category: 'Vocal Health',
+  category: 'Practice & Vocal Health',
   readTime: '14 min read',
   date: '2026-08-26',
   updatedDate: '2026-08-26',

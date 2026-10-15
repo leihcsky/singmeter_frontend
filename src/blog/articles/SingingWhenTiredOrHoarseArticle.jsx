@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Practice When Tired or Hoarse? A Singer\'s Guide',
   seoDescription:
     'A clear decision tree for tired or hoarse days: full rest, recovery protocol, or light mid-range practice—and how to tell the difference before you damage your voice.',
-  category: 'Vocal Health',
+  category: 'Practice & Vocal Health',
   readTime: '15 min read',
   date: '2026-07-21',
   updatedDate: '2026-07-21',

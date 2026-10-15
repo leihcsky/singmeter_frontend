@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Breathing & Posture for Singers at Home',
   seoDescription:
     'Learn singer breath support and posture at home: what support feels like, four practical drills, and how poor posture shows up as flat or unstable pitch on a detector.',
-  category: 'Techniques',
+  category: 'Technique',
   readTime: '15 min read',
   date: '2026-07-17',
   updatedDate: '2026-07-18',

@@ -45,35 +45,3 @@ export function getTutorialBySlug(slug) {
       : undefined,
   };
 }
-
-export const tutorialTracks = [
-  {
-    id: 'start',
-    title: 'Start here',
-    description: 'Foundations: range, pitch, warm-up, and breath support.',
-    slugs: [
-      'vocal-range-test-guided',
-      'pitch-calibration-10',
-      'daily-warmup-15',
-      'breath-and-posture-basics',
-    ],
-  },
-  {
-    id: 'apply',
-    title: 'Apply your range',
-    description: 'Transpose songs, train your ear, and rehearse in the right key.',
-    slugs: ['transpose-a-song', 'ear-training-starter', 'song-in-the-right-key'],
-  },
-  {
-    id: 'care',
-    title: 'Care & recording',
-    description: 'Recovery when tired and a home-recording pitch check.',
-    slugs: ['vocal-health-recovery-day', 'home-recording-vocal-check'],
-  },
-  {
-    id: 'advanced',
-    title: 'Advanced technique',
-    description: 'Register blend and safe belt preparation—with tool feedback.',
-    slugs: ['bridge-and-mix-practice', 'belt-prep-safe'],
-  },
-];

@@ -27,6 +27,8 @@ const THEMES = {
   },
 };
 
+const COUNT_WORDS = { 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five' };
+
 /**
  * @param {{
  *   theme?: 'blue' | 'orange' | 'purple',
@@ -83,7 +85,11 @@ const PracticePathSection = ({
         </ol>
       </div>
 
-      <h3 className="text-lg font-bold text-gray-900 mb-4">Three routines you can repeat daily</h3>
+      <h3 className="text-lg font-bold text-gray-900 mb-4">
+        {routines.length === 1
+          ? 'A routine you can repeat daily'
+          : `${COUNT_WORDS[routines.length] || routines.length} routines you can repeat daily`}
+      </h3>
       <div className="space-y-5 mb-8">
         {routines.map((routine, index) => (
           <div

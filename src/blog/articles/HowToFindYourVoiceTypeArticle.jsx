@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'How to Find Your Voice Type at Home',
   seoDescription:
     'Find your voice type using range, tessitura, and tone at home. Step-by-step guide with our free vocal range test—no vocal coach required.',
-  category: 'Guides',
+  category: 'Vocal Range & Song Key',
   readTime: '13 min read',
   date: '2025-12-02',
   updatedDate: '2026-07-16',

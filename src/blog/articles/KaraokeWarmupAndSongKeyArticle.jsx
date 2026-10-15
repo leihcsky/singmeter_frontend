@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Karaoke Night Prep: Warm-Up & Key Check',
   seoDescription:
     'A practical 15-minute pre-karaoke plan: warm up without overdoing it, check your song key against your range, and know when to skip the crowd-pleaser high note.',
-  category: 'Guides',
+  category: 'Practice & Vocal Health',
   readTime: '15 min read',
   date: '2026-07-21',
   updatedDate: '2026-07-21',

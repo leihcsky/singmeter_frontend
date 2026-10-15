@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { getActiveTools } from '../config/tools';
 import TeamMemberCards from '../components/TeamMemberCards';
 
 const AboutPage = () => {
@@ -47,8 +46,6 @@ const AboutPage = () => {
 		};
 	}, []);
 
-  const tools = [...getActiveTools()].sort((a, b) => a.priority - b.priority);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Header */}
@@ -80,7 +77,7 @@ const AboutPage = () => {
             </h1>
 
             <div className="mb-10 pb-8 border-b border-gray-100 not-prose">
-              <blockquote className="text-lg sm:text-xl text-gray-700 leading-relaxed border-l-4 border-indigo-500 pl-5 mb-4">
+              <blockquote className="text-lg sm:text-xl text-gray-700 leading-relaxed border-l-4 border-indigo-500 pl-5">
                 <p>
                   &ldquo;I built SingMeter after too many practice sessions with unclear feedback&mdash;I wanted range and
                   pitch readings as straightforward as a tuner, without uploading voice recordings to a server.&rdquo;
@@ -89,183 +86,58 @@ const AboutPage = () => {
                   &mdash; Max Ray, founder
                 </footer>
               </blockquote>
-              <Link
-                to="/editorial-standards"
-                className="inline-flex items-center text-indigo-600 font-semibold hover:text-indigo-800 hover:underline"
-              >
-                How we write &amp; review
-                <span aria-hidden className="ml-1">
-                  &rarr;
-                </span>
-              </Link>
             </div>
 
-            {/* Content */}
             <div className="prose prose-lg max-w-none">
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Mission</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">What we publish</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter exists for people who love singing. Whether you sing in a choir, at karaoke, in lessons, or just for
-                yourself at home, we offer free, easy-to-use online tools and practical guides to help you explore your voice,
-                hear yourself more clearly, and sing with a little more confidence.
-              </p>
-
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Tools</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                Five free browser tools—no install, no signup. Audio stays on your device:
+                SingMeter is a small, independent site for people who practice singing at home—in a choir, at karaoke, in
+                lessons, or just for themselves. Everything here is built around one path:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                {tools.map((tool) => (
-                  <li key={tool.id}>
-                    <Link to={tool.path} className="text-indigo-600 font-semibold hover:underline">
-                      {tool.name}
-                    </Link>
-                    : {tool.description}
-                  </li>
-                ))}
-              </ul>
-
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Learning on SingMeter</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                Tools work best with structured practice—not random scrolling. We publish:
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+                <li>
+                  <Link to="/blog" className="text-indigo-600 font-semibold hover:underline">
+                    Singing guides
+                  </Link>{' '}
+                  explain pitch, range, technique, and vocal health in plain language.
+                </li>
                 <li>
                   <Link to="/tutorials" className="text-indigo-600 font-semibold hover:underline">
                     Practice tutorials
-                  </Link>
-                  — step-by-step sessions that use our tools (start with the guided vocal range test)
+                  </Link>{' '}
+                  turn those ideas into timed, step-by-step sessions.
                 </li>
                 <li>
-                  <Link to="/blog" className="text-indigo-600 font-semibold hover:underline">
-                    Blog guides
-                  </Link>
-                  — deeper articles on technique, range, and vocal health
-                </li>
-                <li>
-                  <Link to="/resources#books" className="text-indigo-600 font-semibold hover:underline">
-                    Book reviews &amp; curated resources
-                  </Link>
-                  — editorial reviews and vetted external picks
-                </li>
-                <li>
-                  <Link to="/glossary" className="text-indigo-600 font-semibold hover:underline">
-                    Vocal glossary
-                  </Link>
-                  — definitions for common singing terms
+                  Free browser tools—a vocal range test, pitch detector, tone generator, metronome, and song key
+                  finder—give you a quick check while you practice.
                 </li>
               </ul>
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How It Works</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter uses cutting-edge Web Audio API technology to analyze your voice directly in your browser.
-                Here's what makes us special:
+                The tools run in your browser with no signup. Microphone audio is analyzed on your device and is never
+                uploaded or stored by us.
               </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Privacy First:</strong> All audio processing happens locally on your device - we never record or store your voice</li>
-                <li><strong>Instant Results:</strong> Get real-time feedback and analysis as you sing</li>
-                <li><strong>Reliable feedback:</strong> Our algorithms are tuned to give you clear, dependable readings for practice at home</li>
-                <li><strong>Free Forever:</strong> No sign-up, no credit card, no hidden fees - all tools are completely free</li>
-                <li><strong>Works Everywhere:</strong> Use on any device with a microphone - desktop, laptop, tablet, or smartphone</li>
-              </ul>
-
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Why Use SingMeter</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                Our tools help you:
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Discover Your Voice:</strong> Learn your vocal range, voice type, and unique characteristics</li>
-                <li><strong>Improve Pitch Accuracy:</strong> Practice singing in tune with real-time visual feedback</li>
-                <li><strong>Choose Better Songs:</strong> Find songs that match your range and showcase your voice</li>
-                <li><strong>Track Progress:</strong> Monitor your vocal development over time</li>
-                <li><strong>Prepare for groups &amp; shows:</strong> Know your voice type for choir, musical theater, or other singing situations</li>
-                <li><strong>Protect Your Voice:</strong> Avoid strain by staying within your comfortable range</li>
-              </ul>
-
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Technology</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                SingMeter is built with modern web technologies:
-              </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Web Audio API:</strong> For real-time audio processing and analysis</li>
-                <li><strong>Advanced Pitch Detection:</strong> Using the Pitchy library for accurate frequency analysis (±1 cent accuracy)</li>
-                <li><strong>React 19:</strong> For a smooth, responsive, and modern user interface</li>
-                <li><strong>Privacy-Focused Design:</strong> All processing happens in your browser - no server-side audio processing or storage</li>
-                <li><strong>Responsive Design:</strong> Works seamlessly on desktop, tablet, and mobile devices</li>
-              </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">SingMeter Team</h2>
               <TeamMemberCards />
-              <p className="text-gray-600 mt-8 mb-4 leading-relaxed text-sm">
-                Questions about how we work? Read our{' '}
+
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How we write</h2>
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                Guides and tutorials are written from hands-on practice and checked for safe home use. We correct mistakes
+                when readers point them out. Our{' '}
                 <Link to="/editorial-standards" className="text-indigo-600 font-semibold hover:underline">
                   editorial standards
                 </Link>{' '}
-                or explore the{' '}
-                <Link to="/#learning-hub" className="text-indigo-600 font-semibold hover:underline">
-                  Learning Hub
-                </Link>{' '}
-                on the homepage.
+                explain how articles are researched, reviewed, and updated.
               </p>
 
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who We Serve</h2>
-	            	  <p className="text-gray-600 mb-4 leading-relaxed">
-	            	    SingMeter is designed for singers of all levels:
-	            	  </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Aspiring Singers:</strong> Discover your voice type and potential</li>
-                <li><strong>Vocal Students:</strong> Track your progress and improve pitch accuracy</li>
-                <li><strong>Choir Members:</strong> Find your perfect vocal part and practice staying in tune</li>
-                <li><strong>Music Teachers:</strong> Quick assessment tools for students</li>
-                <li><strong>Karaoke Enthusiasts:</strong> Find songs that fit your range and practice before performing</li>
-                <li><strong>Anyone who sings often:</strong> Warm up, check pitch, and keep an eye on vocal comfort</li>
-                <li><strong>Curious Minds:</strong> Anyone who wants to learn about their voice</li>
-              </ul>
-
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Our Commitment</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Get in touch</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                We are committed to:
+                Questions, corrections, or feedback are welcome—please{' '}
+                <Link to="/contact" className="text-indigo-600 hover:text-indigo-700 underline">contact us</Link>.
               </p>
-              <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li><strong>Accessibility:</strong> Keeping all tools free and easy to use for everyone</li>
-                <li><strong>Privacy:</strong> Never recording, storing, or sharing your audio data</li>
-                <li><strong>Accuracy:</strong> Continuously improving our pitch detection and analysis algorithms</li>
-                <li><strong>Education:</strong> Providing helpful resources about vocal health, technique, and development</li>
-                <li><strong>Innovation:</strong> Adding new tools and features based on user feedback</li>
-                <li><strong>Quality:</strong> Keeping our tools accurate, stable, and pleasant to use</li>
-              </ul>
-
-              <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Get in Touch</h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
-                We love hearing from our users! Whether you have questions, feedback, suggestions, or need support, please don't
-                hesitate to <Link to="/contact" className="text-indigo-600 hover:text-indigo-700 underline">contact us</Link>.
-              </p>
-
             </div>
           </div>
         </article>
-
-        {/* CTA Section */}
-        <div className="mt-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-xl p-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to Discover Your Voice?
-          </h2>
-          <p className="text-indigo-100 mb-6 text-lg">
-            Try our free vocal tools and unlock your singing potential
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/vocal-range-test"
-              className="inline-block px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
-            >
-              Test Your Range →
-            </Link>
-            <Link
-              to="/pitch-detector"
-              className="inline-block px-8 py-3 bg-white text-purple-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
-            >
-              Try Pitch Detector →
-            </Link>
-          </div>
-        </div>
       </main>
 
       <Footer />
@@ -274,4 +146,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-

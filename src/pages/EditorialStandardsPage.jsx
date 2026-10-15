@@ -71,8 +71,9 @@ const EditorialStandardsPage = () => {
 
             <div className="prose prose-lg max-w-none text-gray-600">
               <p className="leading-relaxed mb-6">
-                SingMeter is a practice platform: free browser tools plus original guides. This page explains how we create
-                content, where our limits are, and how we handle recommendations and affiliate links.
+                SingMeter publishes original singing guides and practice tutorials for home practice, with free browser tools
+                to check your progress. This page explains how we create content, where our limits are, and how we handle
+                book recommendations and affiliate links.
               </p>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">What we publish</h2>
@@ -91,10 +92,6 @@ const EditorialStandardsPage = () => {
                   </Link>
                   , not generic store search links.
                 </li>
-                <li>
-                  <strong>Curated external picks</strong> — a small set of books and video sources we name with a clear “why we recommend”
-                  note and pairing with our tutorials.
-                </li>
               </ul>
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How we write</h2>
@@ -104,10 +101,6 @@ const EditorialStandardsPage = () => {
                   instead of copying the same paragraphs on two URLs.
                 </li>
                 <li>
-                  Tool pages keep their existing titles and meta descriptions for search stability; we add practice paths and
-                  educational sections below the interactive tool.
-                </li>
-                <li>
                   Health-related content includes rest, “stop if it hurts,” and a reminder that SingMeter is not medical care.
                   See our <Link to="/disclaimer" className="text-indigo-600 hover:underline">Disclaimer</Link>.
                 </li>
@@ -115,9 +108,9 @@ const EditorialStandardsPage = () => {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Who creates content</h2>
               <p className="mb-4 leading-relaxed">
-                Articles are credited to the <strong>SingMeter Team</strong>. SingMeter was founded by{' '}
-                <strong>Max Ray</strong> (product and engineering), with review from collaborators in audio engineering, voice
-                pedagogy, and editorial. We are educators and tool builders, not licensed clinicians. For who does what, see{' '}
+                Every article and tutorial names its author. SingMeter was founded by <strong>Max Ray</strong> (product and
+                engineering), with review from collaborators in audio engineering, voice pedagogy, and editorial. We are
+                educators and tool builders, not licensed clinicians. For who does what, see{' '}
                 <Link to="/about" className="text-indigo-600 hover:underline">
                   About SingMeter
                 </Link>

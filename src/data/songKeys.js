@@ -51,7 +51,6 @@ export const songKeysDatabase = [
   
   // Country Songs
   { title: 'Jolene', artist: 'Dolly Parton', key: 'C Major', originalKey: 'C', vocalRange: 'F3-F5', genre: 'Country' },
-  { title: 'I Will Always Love You', artist: 'Dolly Parton', key: 'A Major', originalKey: 'A', vocalRange: 'F3-F5', genre: 'Country' },
   { title: 'Ring of Fire', artist: 'Johnny Cash', key: 'C Major', originalKey: 'C', vocalRange: 'E2-E4', genre: 'Country' },
   { title: 'Folsom Prison Blues', artist: 'Johnny Cash', key: 'E Major', originalKey: 'E', vocalRange: 'E2-E4', genre: 'Country' },
   

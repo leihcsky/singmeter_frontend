@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Vocal Cool-Down After Singing (5–8 Minutes)',
   seoDescription:
     'Stop ending practice on a high note and waking up hoarse. A simple 5–8 minute vocal cool-down after singing—what to do, what to skip, and when it actually matters.',
-  category: 'Vocal Health',
+  category: 'Practice & Vocal Health',
   readTime: '14 min read',
   date: '2026-08-25',
   updatedDate: '2026-08-25',

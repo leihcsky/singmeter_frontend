@@ -75,7 +75,7 @@ const PrivacyPage = () => {
               Privacy Policy
             </h1>
             <p className="text-gray-600 mb-8">
-              Last updated: July 16, 2026
+              Last updated: October 15, 2026
             </p>
 
             {/* Content */}
@@ -90,7 +90,7 @@ const PrivacyPage = () => {
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Information We Collect</h2>
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Audio Data</h3>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                When you use our vocal range test, we temporarily access your device's microphone to analyze your voice. 
+                When you use a tool that listens (such as the vocal range test or pitch detector), we temporarily access your device's microphone to analyze your voice. 
                 <strong> We do not record, store, or transmit your audio data.</strong> All pitch detection happens locally 
                 in your browser, and no audio files are saved or sent to our servers.
               </p>
@@ -114,7 +114,7 @@ const PrivacyPage = () => {
                 We use the collected information to:
               </p>
               <ul className="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
-                <li>Provide and maintain our vocal range testing service</li>
+                <li>Provide and maintain our guides, tutorials, and practice tools</li>
                 <li>Analyze usage patterns to improve user experience</li>
                 <li>Monitor and analyze technical performance</li>
                 <li>Detect and prevent technical issues</li>
@@ -214,22 +214,6 @@ const PrivacyPage = () => {
             </div>
           </div>
         </article>
-
-        {/* CTA Section */}
-        <div className="mt-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-xl p-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to Test Your Vocal Range?
-          </h2>
-          <p className="text-indigo-100 mb-6 text-lg">
-            Discover your voice type in just 60 seconds with our free online tool
-          </p>
-          <Link
-            to="/"
-            className="inline-block px-8 py-3 bg-white text-indigo-600 font-bold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105"
-          >
-            Start Your Test Now →
-          </Link>
-        </div>
       </main>
 
       <Footer />

@@ -5,7 +5,7 @@ const meta = {
   seoTitle: 'Vocal Health Basics for Singers | Hydration, Load & Recovery',
   seoDescription:
     'Keep your singing voice healthy: hydration timing, talking-load budgeting, cool-downs, dry-air habits, safe practice limits, and when to rest.',
-  category: 'Guides',
+  category: 'Practice & Vocal Health',
   readTime: '18 min read',
   date: '2025-12-25',
   updatedDate: '2026-08-25',
