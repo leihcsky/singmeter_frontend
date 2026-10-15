@@ -79,13 +79,27 @@ const AboutPage = () => {
             <div className="mb-10 pb-8 border-b border-gray-100 not-prose">
               <blockquote className="text-lg sm:text-xl text-gray-700 leading-relaxed border-l-4 border-indigo-500 pl-5">
                 <p>
-                  &ldquo;I built SingMeter after too many practice sessions with unclear feedback&mdash;I wanted range and
-                  pitch readings as straightforward as a tuner, without uploading voice recordings to a server.&rdquo;
+                  &ldquo;I started practicing singing at home and at karaoke in late 2025, and kept hitting the same wall: I
+                  didn&apos;t know my own range, so half the songs I picked sat too high or too low. I built the Vocal Range
+                  Test to answer that for myself&mdash;and it&apos;s still the tool I open most.&rdquo;
                 </p>
                 <footer className="mt-3 text-base font-semibold text-gray-900">
                   &mdash; Max Ray, founder
                 </footer>
               </blockquote>
+              <figure className="mt-8">
+                <img
+                  src="/images/screenshots/vocal-range-test-result-bass.png"
+                  alt="Max Ray's own Vocal Range Test result: Bass, F#2 to A3, 1.2 octaves (14 semitones)"
+                  width={1228}
+                  height={703}
+                  loading="lazy"
+                  className="w-full h-auto rounded-lg border border-gray-200 shadow-sm"
+                />
+                <figcaption className="text-sm text-gray-500 mt-2 text-center">
+                  My own result from the Vocal Range Test: F#2&ndash;A3, about 1.2 octaves, which the test labels Bass.
+                </figcaption>
+              </figure>
             </div>
 
             <div className="prose prose-lg max-w-none">
@@ -122,8 +136,10 @@ const AboutPage = () => {
 
               <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">How we write</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Guides and tutorials are written from hands-on practice with safe home use in mind. We correct mistakes
-                when readers point them out. Our{' '}
+                I&apos;m still a learner myself, so guides are written from the learner&apos;s side: what I practice, what
+                trusted sources such as the NIDCD, NHS, and Mayo Clinic say, and how to check your progress with the
+                tools. Most health and technique guides list their sources at the end. I correct mistakes when readers point
+                them out. The{' '}
                 <Link to="/editorial-standards" className="text-indigo-600 font-semibold hover:underline">
                   editorial standards
                 </Link>{' '}

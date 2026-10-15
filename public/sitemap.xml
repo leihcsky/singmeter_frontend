@@ -98,7 +98,7 @@
   <!-- Trust & legal (must prerender correctly for AdSense / crawlers) -->
   <url>
     <loc>https://www.singmeter.com/about</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -141,7 +141,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/first-week-singing-practice-plan</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -155,7 +155,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/karaoke-warmup-and-song-key</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -169,14 +169,14 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/transpose-songs-for-your-voice</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/blog/singing-when-tired-or-hoarse</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -204,7 +204,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/mixed-voice-explained</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -218,28 +218,28 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/vocal-health-and-maintenance</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/blog/vocal-cooldown-after-practice</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/blog/singing-with-a-cold-or-allergies</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/blog/voice-fatigue-from-talking</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -253,7 +253,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/chest-voice-vs-head-voice-basics</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -288,14 +288,14 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/singing-high-notes-techniques</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://www.singmeter.com/blog/why-you-sing-flat</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -309,7 +309,7 @@
 
   <url>
     <loc>https://www.singmeter.com/blog/how-to-find-your-voice-type</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>

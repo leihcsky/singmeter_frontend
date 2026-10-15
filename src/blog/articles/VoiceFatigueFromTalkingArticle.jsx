@@ -8,7 +8,7 @@ const meta = {
   category: 'Practice & Vocal Health',
   readTime: '14 min read',
   date: '2026-08-26',
-  updatedDate: '2026-08-26',
+  updatedDate: '2026-10-15',
   author: 'Max Ray',
   excerpt:
     'Same folds for speech and song. If you spent the day talking over noise, your evening practice budget is already half spent—here’s how to tell, and what to do instead of pushing peaks.',
@@ -33,6 +33,11 @@ const content = `
     <a href="/blog/singing-when-tired-or-hoarse" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tired or hoarse?</a>).
     Here it’s: <em>I talked a lot → singing feels spent.</em>
   </p>
+  <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+    <p class="text-sm text-slate-700 leading-relaxed">
+      <strong>Where this comes from:</strong> The core idea—that talking and singing use the same vocal folds, and that loud or long speech is real vocal load—comes from public guidance by the NIDCD and ENT Health, which both single out teachers and other heavy talkers. I’m not a voice clinician. The talk-heavy / talk-light log and the evening reset are practical habits I suggest on top of that guidance, not a clinical protocol.
+    </p>
+  </div>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Speech counts as practice—whether you meant it to</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
@@ -45,6 +50,9 @@ const content = `
     <li><strong>Retail / bars / events:</strong> talking over noise</li>
     <li><strong>Parents / carers:</strong> call-outs across rooms, storytelling, “use your indoor voice” irony</li>
   </ul>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    The NIDCD names singers, teachers, salespeople, and public speakers among the people who make the heaviest demands on their voices, and notes that teachers have a particularly high rate of voice disorders.
+  </p>
   <p class="text-gray-600 mb-4 leading-relaxed">
     If your job is your voice, treat “evening sing practice” like a second shift. Sometimes you skip the second shift. That’s not laziness—that’s budgeting.
   </p>
@@ -65,7 +73,7 @@ const content = `
     Coming home and jumping straight into peaks is how talk-heavy days turn into “why am I worse at singing?”
   </p>
   <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
-    <li><strong>Vocal nap (10–20 min):</strong> true quiet—no humming, no “just checking.” Soft speech only if you must.</li>
+    <li><strong>Vocal nap (10–20 min):</strong> true quiet—no humming, no “just checking.” Soft speech only if you must. (Vocal naps are on the NIDCD’s list of healthy voice habits.)</li>
     <li><strong>Water + air:</strong> sip; if the room is desert-dry, steam or a humidifier while you change clothes. Habits live in
       <a href="/blog/vocal-health-and-maintenance" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal health basics</a>.</li>
     <li><strong>Speaking test:</strong> one normal sentence. Rough but easy → yellow. Pain or whisper-only → stop singing tonight.</li>
@@ -103,8 +111,8 @@ const content = `
   </p>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Closer, not louder:</strong> move nearer the person / mic instead of projecting across the room</li>
-    <li><strong>Mic when you can:</strong> even a cheap headset beats eight hours of raised speech</li>
-    <li><strong>Quieter room for calls:</strong> leave the café if you’re talking for an hour</li>
+    <li><strong>Mic when you can:</strong> even a cheap headset beats eight hours of raised speech—the NIDCD and ENT Health both recommend amplification for classrooms and similar rooms</li>
+    <li><strong>Quieter room for calls:</strong> leave the café if you’re talking for an hour; talking over noise is one of the strains the NIDCD tells people to avoid</li>
     <li><strong>Text / chat for the fifth “quick sync”:</strong> not every follow-up needs your folds</li>
     <li><strong>Stack hard singing on talk-light days:</strong> peaks on quieter calendar days; mid-range on lecture days</li>
   </ul>
@@ -148,7 +156,7 @@ const content = `
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">What not to do</h2>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
-    <li>Whisper all evening “to rest”—often harder than soft speech</li>
+    <li>Whisper all evening “to rest”—the NHS lists whispering as straining, just like loud talking</li>
     <li>Throat-clearing loops between calls—sip, swallow, pause</li>
     <li>Double practice tomorrow to “catch up” after a talk-heavy skip</li>
     <li>Blame mix technique for a pattern that only appears after eight hours of speech</li>
@@ -157,8 +165,18 @@ const content = `
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">When to see a clinician</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     If voice fatigue from talking is constant—pain, hoarseness that lasts more than two weeks, sudden voice change, or you need to push harder every month just to teach—see an ENT or a voice-specialized clinician.
-    Occupational voice strain is a real thing; SingMeter can show range and pitch sliding, but it doesn’t diagnose nodules or prescribe treatment.
+    Occupational voice strain is a real thing—ENT Health lists “vocal professionals who cannot do their job” as a reason to see a specialist on its own. SingMeter can show range and pitch sliding, but it doesn’t diagnose nodules or prescribe treatment.
   </p>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sources</h2>
+  <p class="text-gray-600 mb-3 leading-relaxed text-sm">
+    Guidance I checked while writing and updating this guide (accessed October 2026):
+  </p>
+  <ol class="list-decimal list-outside text-gray-600 text-sm space-y-2 mb-6 ml-4">
+    <li>National Institute on Deafness and Other Communication Disorders (NIDCD). <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Taking Care of Your Voice</a>. Occupations with heavy voice demands, vocal naps, microphones, noisy rooms.</li>
+    <li>American Academy of Otolaryngology–Head and Neck Surgery, ENT Health. <a href="https://www.enthealth.org/conditions/hoarseness/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Hoarseness</a>. Voice amplification at work, being aware of how much and how loudly you talk, when to see a specialist.</li>
+    <li>NHS. <a href="https://www.nhs.uk/conditions/laryngitis/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Laryngitis</a>. Speaking as little as possible and avoiding whispering when the voice is irritated.</li>
+  </ol>
 
   <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
     <p class="text-indigo-900 leading-relaxed mb-4">

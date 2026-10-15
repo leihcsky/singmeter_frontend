@@ -8,7 +8,7 @@ const meta = {
   category: 'Pitch & Ear Training',
   readTime: '9 min read',
   date: '2025-12-02',
-  updatedDate: '2026-06-01',
+  updatedDate: '2026-10-16',
   author: 'Max Ray',
   excerpt:
     "Find out the real reasons why you sing flat and learn practical exercises to finally fix your pitch for good. We'll show you how to use simple techniques and tools to get in tune and stay there.",
@@ -60,6 +60,10 @@ const content = `
         <li>If it stays around <strong>-10 to -20 cents</strong>, you are slightly flat but still close.</li>
         <li>If it drops to <strong>-30, -40, -50 cents or more</strong>, you are clearly under the note.</li>
       </ul>
+      <figure class="my-6">
+        <img src="/images/screenshots/pitch-detector-g2-flat.png" alt="SingMeter Pitch Detector showing G2 at 95.50 Hz, marked Too Flat with the needle at about -45 cents" width="1256" height="703" loading="lazy" class="w-full h-auto rounded-lg border border-gray-200 shadow-sm" />
+        <figcaption class="text-sm text-gray-500 mt-2 text-center">One of my own low notes: the detector reads G2 at 95.5 Hz, about 45 cents flat—clearly under the note.</figcaption>
+      </figure>
       <p class="text-gray-600 mb-4 leading-relaxed">
         Do this test on a few different notes. You might discover a pattern: for example, maybe you are fine in the middle but
         always flat on low notes or at the end of long phrases. That information is valuable&mdash;it tells you where to focus.

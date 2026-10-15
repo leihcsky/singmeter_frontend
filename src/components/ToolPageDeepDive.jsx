@@ -31,7 +31,7 @@ const ACCENTS = {
 /**
  * @param {{
  *   accent?: 'orange' | 'blue' | 'purple',
- *   howWeTest: { intro: string, bullets: string[] },
+ *   howWeTest: { title?: string, intro: string, bullets: string[] },
  *   practiceCase: { title: string, duration: string, steps: string[] },
  *   misconceptions: Array<{ myth: string, reality: string }>,
  *   blogLink: { to: string, label: string },
@@ -63,7 +63,7 @@ const ToolPageDeepDive = ({
       </p>
 
       <div className="mb-8">
-        <h3 className="text-lg font-bold text-gray-900 mb-3">How we test this tool</h3>
+        <h3 className="text-lg font-bold text-gray-900 mb-3">{howWeTest.title || 'How we test this tool'}</h3>
         <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">{howWeTest.intro}</p>
         <ul className="space-y-2">
           {howWeTest.bullets.map((item) => (

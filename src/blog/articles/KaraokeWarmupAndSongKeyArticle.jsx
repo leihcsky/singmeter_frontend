@@ -8,7 +8,7 @@ const meta = {
   category: 'Practice & Vocal Health',
   readTime: '15 min read',
   date: '2026-07-21',
-  updatedDate: '2026-07-21',
+  updatedDate: '2026-10-16',
   author: 'Max Ray',
   excerpt:
     'Karaoke is not a voice lesson—but 15 minutes of honest prep saves your throat and your pitch. Warm-up, key check, and a clear go/no-go rule for the big high song.',
@@ -74,6 +74,10 @@ const content = `
     Tessitura matters more than a single high note:
     <a href="/blog/tessitura-and-comfortable-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tessitura and comfortable range</a>.
   </p>
+  <figure class="my-6">
+    <img src="/images/screenshots/song-key-finder-folsom-prison-blues.png" alt="Song Key Finder for Folsom Prison Blues (original key E major) with the range F#2-A3 entered, recommending D, two semitones down, as the best match" width="765" height="802" loading="lazy" class="w-full sm:w-3/4 mx-auto h-auto rounded-lg border border-gray-200 shadow-sm" />
+    <figcaption class="text-sm text-gray-500 mt-2 text-center">My range (F#2–A3) entered for Folsom Prison Blues, originally in E. Best Match is D, two semitones down; the keys below it are the ones to try if it still feels too high or too low.</figcaption>
+  </figure>
   <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Identify the top 2–3 notes that repeat in the chorus</li>
     <li>Play them on the <a href="/tone-generator" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Tone Generator</a> and hum-match softly</li>

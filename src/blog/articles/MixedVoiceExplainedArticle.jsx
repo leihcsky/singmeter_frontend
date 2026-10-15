@@ -8,7 +8,7 @@ const meta = {
   category: 'Technique',
   readTime: '16 min read',
   date: '2026-07-17',
-  updatedDate: '2026-07-18',
+  updatedDate: '2026-10-15',
   author: 'Max Ray',
   excerpt:
     'What mixed voice actually is, how to feel a smoother break, and home drills with pitch feedback—without forcing belt volume.',
@@ -34,6 +34,11 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed text-sm">
     Stop if you feel pain. Mix training is gradual—add volume only when the break stays smooth.
   </p>
+  <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+    <p class="text-sm text-slate-700 leading-relaxed">
+      <strong>How I wrote this:</strong> I&apos;m a home singer, not a voice teacher, and &quot;mixed voice&quot; is a term teachers define differently—some describe a blend of registers, others a set of adjustments within one register. Rather than pick a side, this guide sticks to what you can hear and check at home: fewer cracks, a readable pitch, steady volume. Terms like register and passaggio follow the references under Sources. For hands-on work through the break, a live teacher beats any article, this one included.
+    </p>
+  </div>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Chest, Head, and the Break</h2>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
@@ -45,6 +50,9 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     If you only drag chest upward, you often hit a shouty ceiling. If you only flip early to falsetto, ballads lose body.
     Mix is the middle path—trained with small intervals and gentle volume first.
+  </p>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Voice teachers use the Italian word <em>passaggio</em> (&quot;passage&quot;) for that transition zone. Where it sits varies by voice type and from person to person, which is why this guide has you find yours with a slide instead of quoting a note.
   </p>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sensations That Usually Mean You Are On Track</h2>
@@ -173,6 +181,14 @@ const content = `
     <li>Skipping warm-up and going straight to belt clips</li>
     <li>Judging mix by Instagram belters instead of your own crack frequency</li>
   </ul>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sources and further reading</h2>
+  <ol class="list-decimal list-outside text-gray-600 text-sm space-y-2 mb-6 ml-4">
+    <li>Wikipedia. <a href="https://en.wikipedia.org/wiki/Vocal_register" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Vocal register</a>. Overview of register terms and why teachers disagree about them.</li>
+    <li>Wikipedia. <a href="https://en.wikipedia.org/wiki/Passaggio" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Passaggio</a>. The transition zone between registers.</li>
+    <li>Anne Peckham. <em>The Contemporary Singer</em> (Berklee Press). A contemporary technique workbook with guided exercises—see <a href="/resources/books/the-contemporary-singer" class="text-indigo-600 hover:text-indigo-700 underline">my review</a>.</li>
+    <li>Richard Miller. <em>The Structure of Singing: System and Art in Vocal Technique</em> (Schirmer Books, 1986). A classical pedagogy text with detailed chapters on registration.</li>
+  </ol>
 
   <div class="bg-purple-50 border-l-4 border-purple-400 p-6 mt-8 rounded-r-lg">
     <p class="text-purple-700 leading-relaxed mb-4">

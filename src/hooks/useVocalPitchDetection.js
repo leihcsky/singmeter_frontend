@@ -63,6 +63,7 @@ export const useVocalPitchDetection = ({
     const updateInterval = 33; // ~30fps
     let firstValidTime = null;
     let lastValidTime = null;
+    let displayCleared = true;
     const detectionStartTime = Date.now();
     let timeoutId = null;
     let timeLeftIntervalId = null;
@@ -146,6 +147,7 @@ export const useVocalPitchDetection = ({
         if (now - lastUpdateTime >= updateInterval) {
           setCurrentPitch(pitch);
           setCurrentNote(noteInfo);
+          displayCleared = false;
           lastUpdateTime = now;
         }
 
@@ -221,10 +223,13 @@ export const useVocalPitchDetection = ({
             console.log(`✅ ${type} note captured:`, finalNote.fullNote);
           }
         }
-      } else {
-        lastValidTime = null;
+      } else if (!displayCleared && lastValidTime !== null && now - lastValidTime > 400) {
+        // Too quiet to read: show the "Sing" prompt instead of a frozen note
+        setCurrentPitch(null);
+        setCurrentNote(null);
+        displayCleared = true;
       }
-    });
+    }, { reuseCalibration: true });
   }, [detectorRef, maxDetectionTimeMs, minHoldMs, otherValuesRef, type]);
 
   // Clean up on unmount

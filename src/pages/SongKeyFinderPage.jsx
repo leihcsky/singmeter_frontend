@@ -15,7 +15,7 @@ import { songKeysDatabase, transposeKey, SAMPLE_SONG_COUNT, SAMPLE_GENRES } from
 const songKeyFinderFaqItems = [
   {
     question: "How accurate is the sample song list?",
-    answer: `Our browse list includes ${SAMPLE_SONG_COUNT} popular cover songs with keys sourced from common recorded versions. Live performances and covers sometimes use different keys. For any song not in the list, upload an audio clip—the analyzer works on your file directly in the browser.`
+    answer: `Our browse list includes ${SAMPLE_SONG_COUNT} popular cover songs with keys sourced from common recorded versions. Live performances and covers sometimes use different keys. Each song's range is an approximate profile based on the voice type it is usually sung by, not an exact melody transcription, so treat key suggestions as a starting point. For any song not in the list, upload an audio clip—the analyzer works on your file directly in the browser.`
   },
   {
     question: "What if my song isn't in the sample list?",
@@ -23,7 +23,7 @@ const songKeyFinderFaqItems = [
   },
   {
     question: "How do I know which transposition suggestion to use?",
-    answer: "Suggestions marked as \"Best Match\" are calculated to place the song's vocal range in the center of your comfortable range. Start with the \"Best Match\" suggestions, but feel free to try others. The best key is the one that feels most comfortable and allows you to sing with expression and confidence."
+    answer: "The suggestion marked \"Best Match\" shifts the song's approximate range so its middle sits in the middle of your range. Start there, then try the neighbouring keys listed below it if the song still feels too high or too low. The best key is the one that feels most comfortable and allows you to sing with expression and confidence."
   },
   {
     question: "Can I transpose a song too much?",
@@ -42,6 +42,15 @@ const getNoteMidi = (note, octave) => {
   const noteMap = { 'C': 0, 'C#': 1, 'D': 2, 'D#': 3, 'E': 4, 'F': 5, 'F#': 6, 'G': 7, 'G#': 8, 'A': 9, 'A#': 10, 'B': 11 };
   const noteIndex = noteMap[note.toUpperCase()] || 0;
   return (octave + 1) * 12 + noteIndex;
+};
+
+const getSavedVocalRange = () => {
+  try {
+    const parsed = JSON.parse(localStorage.getItem('singmeter_user_vocal_range') || 'null');
+    return parsed?.low && parsed?.high ? `${parsed.low}-${parsed.high}` : null;
+  } catch {
+    return null;
+  }
 };
 
 const SongKeyFinderPage = () => {
@@ -156,76 +165,42 @@ const SongKeyFinderPage = () => {
     const songHighMidi = getNoteMidi(songHighNote, parseInt(songHighOctave));
     const songRangeCenter = (songLowMidi + songHighMidi) / 2;
 
-    // Calculate semitone difference
-    const semitoneDiff = Math.round(songRangeCenter - userRangeCenter);
-    
-    // Helper to generate explanation
-    const getExplanation = (semitones) => {
-      const direction = semitones > 0 ? "up" : "down";
-      const absSemitones = Math.abs(semitones);
-      
-      // If semitones (transposition amount) is negative, we are lowering the song.
-      const shiftDesc = semitones === 0 
-        ? "keeps the song's range as is" 
-        : `shifts the song's range ${direction} by ${absSemitones} semitone${absSemitones > 1 ? 's' : ''}`;
-        
-      return `This key ${shiftDesc}, aligning the song's "sweet spot" with your vocal center.`;
+    // Shift that puts the song's center on the user's center. Singers usually take songs
+    // written for another voice an octave down/up, so split it into octaves + a key change of -6..+6.
+    const idealShift = Math.round(userRangeCenter - songRangeCenter);
+    const octaves = Math.round(idealShift / 12);
+    const bestKeyChange = idealShift - octaves * 12;
+
+    const octaveNote = (() => {
+      if (octaves === 0) return '';
+      const count = Math.abs(octaves) === 1 ? 'one octave' : `${Math.abs(octaves)} octaves`;
+      return ` Sing it ${count} ${octaves < 0 ? 'lower' : 'higher'} than the original melody.`;
+    })();
+
+    const describeChange = (change) => {
+      if (change === 0) return 'Keep the original key';
+      const abs = Math.abs(change);
+      return `${change < 0 ? 'Lower' : 'Raise'} by ${abs} semitone${abs > 1 ? 's' : ''}`;
     };
 
-    // Generate suggestions
-    const suggestions = [];
-    const originalKey = song.originalKey;
-    
-    // Suggest transposing down if song is too high
-    if (semitoneDiff > 3) {
-      for (let i = 1; i <= Math.min(5, Math.ceil(semitoneDiff / 2)); i++) {
-        const newKey = transposeKey(originalKey, -i);
-        suggestions.push({
-          key: newKey,
-          semitones: -i,
-          reason: `Lower by ${i} semitone${i > 1 ? 's' : ''} to better fit your range`,
-          explanation: getExplanation(-i),
-          priority: i <= 2 ? 'high' : 'medium'
-        });
-      }
-    }
-    
-    // Suggest transposing up if song is too low
-    if (semitoneDiff < -3) {
-      for (let i = 1; i <= Math.min(5, Math.ceil(Math.abs(semitoneDiff) / 2)); i++) {
-        const newKey = transposeKey(originalKey, i);
-        suggestions.push({
-          key: newKey,
-          semitones: i,
-          reason: `Raise by ${i} semitone${i > 1 ? 's' : ''} to better fit your range`,
-          explanation: getExplanation(i),
-          priority: i <= 2 ? 'high' : 'medium'
-        });
-      }
-    }
+    // Best key first, then the neighbours a singer would try next (lower before higher)
+    const changes = [0, -1, 1, -2, 2]
+      .map((offset) => bestKeyChange + offset)
+      .filter((change) => change >= -6 && change <= 6);
 
-    // If range is close, suggest keeping original or minor adjustments
-    if (Math.abs(semitoneDiff) <= 3) {
-      if (semitoneDiff !== 0) {
-        const newKey = transposeKey(originalKey, -semitoneDiff);
-        suggestions.push({
-          key: newKey,
-          semitones: -semitoneDiff,
-          reason: `Adjust by ${Math.abs(semitoneDiff)} semitone${Math.abs(semitoneDiff) > 1 ? 's' : ''} for optimal fit`,
-          explanation: getExplanation(-semitoneDiff),
-          priority: 'high'
-        });
-      }
-      suggestions.push({
-        key: originalKey,
-        semitones: 0,
-        reason: 'Original key should work well for your range',
-        explanation: getExplanation(0),
-        priority: 'high'
-      });
-    }
+    const suggestions = changes.map((change, index) => ({
+      key: transposeKey(song.originalKey, change),
+      semitones: change,
+      reason: index === 0
+        ? `${describeChange(change)} for the best fit with your range`
+        : `${describeChange(change)} if the best match feels ${change < bestKeyChange ? 'too high' : 'too low'}`,
+      explanation: index === 0
+        ? `This centers the song's range on the middle of your range.${octaveNote}`
+        : `One step from the best match.${octaveNote}`,
+      priority: index === 0 ? 'high' : 'medium'
+    }));
 
-    setTranspositionSuggestions(suggestions.slice(0, 5)); // Limit to 5 suggestions
+    setTranspositionSuggestions(suggestions);
   }, [userVocalRange]);
 
   // Recalculate suggestions when userVocalRange changes
@@ -237,28 +212,21 @@ const SongKeyFinderPage = () => {
     }
   }, [userVocalRange, selectedSong, calculateTranspositionSuggestions]);
 
-  // Re-load vocal range after Vocal Range Test (same tab return or refocus)
+  // Re-load vocal range after Vocal Range Test (same tab return or refocus).
+  // Only a newly saved test result overwrites the field, so manual edits stick.
+  const lastSyncedRangeRef = useRef(null);
   useEffect(() => {
     const syncRangeFromStorage = () => {
-      try {
-        const savedRange = localStorage.getItem('singmeter_user_vocal_range');
-        if (!savedRange) return;
-        const parsed = JSON.parse(savedRange);
-        if (!parsed.low || !parsed.high) return;
-        const range = `${parsed.low}-${parsed.high}`;
-        setUserVocalRange((prev) => (prev === range ? prev : range));
-        if (selectedSong) {
-          calculateTranspositionSuggestions(selectedSong, range);
-        }
-      } catch (e) {
-        console.error('Failed to sync vocal range from storage', e);
-      }
+      const range = getSavedVocalRange();
+      if (!range || range === lastSyncedRangeRef.current) return;
+      lastSyncedRangeRef.current = range;
+      setUserVocalRange(range);
     };
 
     syncRangeFromStorage();
     window.addEventListener('focus', syncRangeFromStorage);
     return () => window.removeEventListener('focus', syncRangeFromStorage);
-  }, [selectedSong, calculateTranspositionSuggestions]);
+  }, []);
 
   const browsableSongs = useMemo(() => {
     let songs = songKeysDatabase;
@@ -392,7 +360,7 @@ const SongKeyFinderPage = () => {
             `Browse sample library of ${SAMPLE_SONG_COUNT} popular songs`,
             "Detect musical key and BPM",
             "Get transposition suggestions based on your vocal range",
-            "Krumhansl-Schmuckler algorithm for accurate key detection",
+            "Key estimation with Krumhansl-Schmuckler key profiles",
             "Support for MP3, WAV, and M4A files"
           ],
           "screenshot": "https://www.singmeter.com/og-image.svg",
@@ -602,7 +570,7 @@ const SongKeyFinderPage = () => {
                           <div className="text-lg font-bold text-gray-900">
                             {suggestion.key} {suggestion.semitones !== 0 && (
                               <span className="text-sm font-normal text-gray-600">
-                                ({suggestion.semitones > 0 ? '+' : ''}{suggestion.semitones} semitones)
+                                ({suggestion.semitones > 0 ? '+' : ''}{suggestion.semitones} semitone{Math.abs(suggestion.semitones) === 1 ? '' : 's'})
                               </span>
                             )}
                           </div>
@@ -832,7 +800,7 @@ const SongKeyFinderPage = () => {
                       className="w-full sm:w-48 px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none transition"
                     />
                     {/* Auto-filled indicator */}
-                    {userVocalRange && localStorage.getItem('singmeter_user_vocal_range') && (
+                    {userVocalRange && userVocalRange === getSavedVocalRange() && (
                       <span className="absolute -top-6 right-0 text-xs text-green-600 font-semibold bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
                         ✓ Loaded from your test
                       </span>
@@ -873,7 +841,7 @@ const SongKeyFinderPage = () => {
                             <span className={`ml-2 text-sm font-medium px-2 py-0.5 rounded ${
                               suggestion.semitones > 0 ? 'bg-indigo-100 text-indigo-700' : 'bg-pink-100 text-pink-700'
                             }`}>
-                              {suggestion.semitones > 0 ? '+' : ''}{suggestion.semitones} semitones
+                              {suggestion.semitones > 0 ? '+' : ''}{suggestion.semitones} semitone{Math.abs(suggestion.semitones) === 1 ? '' : 's'}
                             </span>
                           )}
                         </div>
@@ -902,13 +870,14 @@ const SongKeyFinderPage = () => {
           accent="purple"
           heading="Transpose from your measured range — not a generic key chart"
           howWeTest={{
+            title: 'How it works—and its limits',
             intro:
-              'We maintain the sample song list against common recorded keys and run upload tests with studio MP3s, phone voice memos, and karaoke exports. Transposition suggestions are checked so the melody span sits inside the range you enter—not just touching your lowest and highest notes.',
+              'Each song in the browse list stores its commonly recorded key plus an approximate range profile based on the voice type it is usually sung by—not a note-by-note transcription of the melody. Suggestions shift that profile so its middle lines up with the middle of your range. That gets you close; your ears make the final call.',
             bullets: [
-              `Browse list: ${SAMPLE_SONG_COUNT} entries cross-checked against published charts; live versions may differ—we label suggestions “Best Match” from your range, not from chart fame.`,
-              'Upload analyzer: short clips (chorus or verse) processed in-browser; we test major vs minor detection on clean pop vocals and flag noisy files with a clear error instead of a random key.',
-              'Range overlay: when you load results from the Vocal Range Test, we verify the high note of the song span is not sitting on your top comfortable semitone unless you have headroom.',
-              'Transpose math: semitone shifts are applied to the displayed key name and checked against our internal key circle so +2 from C major reads D major, not an enharmonic mismatch.',
+              `Browse list: ${SAMPLE_SONG_COUNT} songs with keys from common recorded versions. Live versions and covers often use a different key.`,
+              'Best Match: the key change (up to 6 semitones either way) that centers the song’s range profile on your range. If a song was written for a much higher or lower voice, the suggestion also tells you to sing it an octave down or up.',
+              'Upload analyzer: runs in your browser on the clip you choose and estimates the key and major/minor mode from the overall pitch content (Krumhansl-Schmuckler key profiles). Clean choruses work best; noisy clips or speech can return a wrong key, so double-check by ear.',
+              'Transpose math: key names move around a 12-note circle, so +2 from C reads D. Sharps are used throughout (A# rather than Bb).',
             ],
           }}
           practiceCase={{
@@ -1100,7 +1069,7 @@ const SongKeyFinderPage = () => {
         <section className="bg-white rounded-2xl shadow-md p-6 sm:p-8 mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">How to Find a Song's Key Manually</h2>
           <p className="text-gray-600 leading-relaxed mb-6">
-            While digital tools like our Song Key Finder are fast and accurate, learning to identify a key by ear is a valuable skill for any musician. 
+            While digital tools like our Song Key Finder are fast, learning to identify a key by ear is a valuable skill for any musician. 
             Here is a simple method to try:
           </p>
           

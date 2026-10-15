@@ -8,7 +8,7 @@ const meta = {
   category: 'Practice & Vocal Health',
   readTime: '14 min read',
   date: '2026-08-25',
-  updatedDate: '2026-08-25',
+  updatedDate: '2026-10-15',
   author: 'Max Ray',
   excerpt:
     'Your nose is blocked, your audition is Thursday, and you’re googling “just one light practice.” Here’s how to tell a cold from allergies—and what each one actually allows.',
@@ -29,12 +29,20 @@ const content = `
     <a href="/blog/singing-when-tired-or-hoarse" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tired or hoarse?</a>
     instead—that’s a different decision tree.
   </p>
+  <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+    <p class="text-sm text-slate-700 leading-relaxed">
+      <strong>A note before you start:</strong> I’m not a doctor or pharmacist, and nothing here is medical advice. The cold-vs-allergy differences and the medication cautions below come from NHS, NIDCD, and Mayo Clinic pages listed under Sources. The red / yellow / green practice tiers are my own home-practice framework built on top of them.
+    </p>
+  </div>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Cold vs allergies in one glance</h2>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Cold / flu-ish:</strong> often sore throat, fatigue, maybe fever, thick mucus, voice feels swollen or fragile. Singing adds collision on tissue that’s already fighting something.</li>
     <li><strong>Allergies:</strong> itch, sneeze, drip, congestion that comes and goes with pollen or dust. Folds may be fine; the <em>filter system</em> isn’t—resonance changes, post-nasal drip tickles, and drying meds can wreck hydration.</li>
   </ul>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Timing is another clue. The NHS puts it simply: a cold usually clears in 1 to 2 weeks, while hay fever can last weeks or months and gets worse when the pollen count is high.
+  </p>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Rule of thumb: if you’d stay home from work to avoid spreading it, don’t run a full vocal workout. If it’s “my face is a pollen sponge but I otherwise feel normal,” you might have options—still not peak-day options.
   </p>
@@ -54,6 +62,7 @@ const content = `
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">When it’s a cold: default to rest</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Most colds are <strong>red for singing</strong>. Not because you’re weak—because swollen or irritated folds plus mucus plus clearing your throat is a bad rehearsal recipe.
+    Mayo Clinic names colds and flu as the most common cause of short-term laryngitis, and the NIDCD’s advice is to rest your voice when you’re sick.
     You might still talk through the day; singing asks for longer, louder, more coordinated vibration. That’s a different bill.
   </p>
   <p class="text-gray-600 mb-4 leading-relaxed">
@@ -87,13 +96,14 @@ const content = `
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Meds: the sneaky part (read labels, ask a pharmacist)</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
-    We’re not telling you what to take—that’s between you and a clinician or pharmacist. Singers should know the <strong>side effects that hit the voice</strong>:
+    I’m not telling you what to take—that’s between you and a clinician or pharmacist. Singers should know the <strong>side effects that hit the voice</strong>.
+    The NIDCD specifically warns that some common cold and allergy medicines can dry out the vocal folds, and suggests asking your doctor which are safest if you have voice problems:
   </p>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Antihistamines</strong> often dry mucous membranes. Helpful for sneezing; rough for long holds and high notes. Drink more water than usual; notice if the voice feels “sticky” an hour after the pill.</li>
     <li><strong>Decongestants</strong> can shrink swelling short-term but may rebound when they wear off. Some people feel dry or jittery—not great for steady breath.</li>
     <li><strong>Cough drops with menthol</strong> feel soothing but can irritate some singers. Plain water or steam beats chaining lozenges through a practice block.</li>
-    <li><strong>Anything that says “may cause drowsiness”</strong> — don’t pair with a pitch workout and then blame your ears.</li>
+    <li><strong>Anything that says “may cause drowsiness”</strong> — don’t pair with a pitch workout and then blame your ears. The NHS notes some antihistamines make you very sleepy and suggests asking a pharmacist about non-drowsy options.</li>
   </ul>
   <p class="text-gray-600 mb-4 leading-relaxed">
     If you took a new med today and the voice feels weird, assume yellow even if you “feel fine.” Compare to how you sound on the detector, not how you wish you sounded.
@@ -162,6 +172,17 @@ const content = `
     See an ENT or your doctor if hoarseness lasts more than two weeks after the cold cleared, you have pain when speaking or swallowing, fever that won’t break, blood in mucus, wheezing, or sudden voice loss.
     SingMeter helps you notice when range and stability slide—it doesn’t diagnose infection or prescribe treatment.
   </p>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sources</h2>
+  <p class="text-gray-600 mb-3 leading-relaxed text-sm">
+    Pages I checked while writing and updating this guide (accessed October 2026):
+  </p>
+  <ol class="list-decimal list-outside text-gray-600 text-sm space-y-2 mb-6 ml-4">
+    <li>NHS. <a href="https://www.nhs.uk/conditions/hay-fever/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Hay fever</a>. How long hay fever lasts compared with a cold; drowsy antihistamines.</li>
+    <li>National Institute on Deafness and Other Communication Disorders (NIDCD). <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Taking Care of Your Voice</a>. Drying cold and allergy medicines; resting the voice when sick.</li>
+    <li>Mayo Clinic. <a href="https://www.mayoclinic.org/diseases-conditions/laryngitis/symptoms-causes/syc-20374262" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Laryngitis: Symptoms and causes</a>. Colds and flu as the usual cause of short-term laryngitis; when to see a doctor.</li>
+    <li>NHS. <a href="https://www.nhs.uk/conditions/laryngitis/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Laryngitis</a>. Fluids, moist air, and seeing a GP if symptoms do not improve after two weeks.</li>
+  </ol>
 
   <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
     <p class="text-indigo-900 leading-relaxed mb-4">

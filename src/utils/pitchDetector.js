@@ -28,13 +28,50 @@ function isLikelyPowerLineHum(frequency) {
   return false;
 }
 
-function getClarityThreshold(pitch, tracking = false) {
+/**
+ * default：Pitch Detector 实时跟唱，抗噪优先
+ * range：音域测试要唱最低/最高音，极限音清晰度和音量天然偏低，门槛需放宽
+ */
+const DETECTION_PROFILES = {
+  default: {
+    clarity: [0.8, 0.85, 0.88],
+    trackingFloor: 0.72,
+    trackingDrop: 0.07,
+    looseClarity: 0.7,
+    volumeFloor: 0.3,
+    // 点击开始后立刻开唱时，校准会混入人声
+    volumeCap: 1.5,
+    noiseMultiplier: 3.5,
+    humFilter: true,
+    // 关闭自动增益会让笔记本麦克风音量过低，读不到音高
+    desktopAudio: true,
+  },
+  range: {
+    clarity: [0.75, 0.8, 0.85],
+    trackingFloor: 0.7,
+    trackingDrop: 0.05,
+    looseClarity: 0.68,
+    volumeFloor: 0.3,
+    // 校准时若混入人声，门槛也不能高到唱不过
+    volumeCap: 1.0,
+    noiseMultiplier: 3,
+    // 100/120/150 Hz 附近的低音会被误判为电源嗡声
+    humFilter: false,
+    // 浏览器默认开启自动增益，笔记本麦克风唱低音时音量才够
+    desktopAudio: true,
+  },
+};
+
+function getClarityThreshold(pitch, tracking, profile) {
+  const [low, mid, high] = profile.clarity;
   let t;
-  if (pitch < 150) t = 0.84;
-  else if (pitch < 300) t = 0.87;
-  else t = 0.90;
-  return tracking ? Math.max(0.76, t - 0.07) : t;
+  if (pitch < 150) t = low;
+  else if (pitch < 300) t = mid;
+  else t = high;
+  return tracking ? Math.max(profile.trackingFloor, t - profile.trackingDrop) : t;
 }
+
+const CALIBRATION_PITCHED_CLARITY = 0.8;
 
 const MIN_HUMAN_FREQUENCY = 65;
 const MAX_HUMAN_FREQUENCY = 1318;
@@ -135,7 +172,12 @@ export function getVoiceType(lowestNote, highestNote) {
  * 音高检测器类
  */
 export class AudioPitchDetector {
-  constructor() {
+  /**
+   * @param {{ profile?: 'default' | 'range' }} options
+   */
+  constructor(options = {}) {
+    this.profile = DETECTION_PROFILES[options.profile] || DETECTION_PROFILES.default;
+    this.isCalibrating = false;
     this.audioContext = null;
     this.analyser = null;
     this.microphone = null;
@@ -222,16 +264,9 @@ export class AudioPitchDetector {
           throw mobileError;
         }
       } else {
-        // Desktop: prefer noise suppression for cleaner pitch reads; fall back if needed
         try {
-          stream = await navigator.mediaDevices.getUserMedia({
-            audio: {
-              echoCancellation: true,
-              noiseSuppression: true,
-              autoGainControl: false,
-            },
-          });
-          console.log('✅ Got microphone stream with noise suppression');
+          stream = await navigator.mediaDevices.getUserMedia({ audio: this.profile.desktopAudio });
+          console.log('✅ Got microphone stream', this.profile.desktopAudio);
         } catch (detailedError) {
           console.warn('⚠️ Detailed constraints failed, trying simple audio:', detailedError);
           stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -308,23 +343,60 @@ export class AudioPitchDetector {
   /**
    * 根据环境噪声校准音量门槛（启动后约 0.5s 内完成）
    */
-  calibrateNoiseFloor(rms) {
-    this.calibrationSamples.push(rms);
-    if (this.calibrationSamples.length < this.CALIBRATION_FRAMES) {
+  calibrateNoiseFloor(rms, clarity = 0) {
+    this.calibrationFrames = (this.calibrationFrames || 0) + 1;
+    // 有明确音高的帧多半是人声（用户提前开唱），不计入环境噪声
+    if (clarity < CALIBRATION_PITCHED_CLARITY) {
+      this.calibrationSamples.push(rms);
+    }
+    if (this.calibrationFrames < this.CALIBRATION_FRAMES) {
       return false;
     }
 
+    const { volumeFloor, volumeCap, noiseMultiplier } = this.profile;
     const sorted = [...this.calibrationSamples].sort((a, b) => a - b);
-    const p75 = sorted[Math.floor(sorted.length * 0.75)] ?? 0.005;
-    const p90 = sorted[Math.floor(sorted.length * 0.9)] ?? p75;
-    this.noiseFloorRms = p75;
-    // 信号需明显高于环境底噪；下限 1.0 避免安静房间误触发
-    this.volumeThreshold = Math.max(1.0, p90 * 100 * 4.5);
+    if (sorted.length < 5) {
+      this.noiseFloorRms = 0.005;
+      this.volumeThreshold = volumeFloor;
+    } else {
+      const p75 = sorted[Math.floor(sorted.length * 0.75)];
+      const p90 = sorted[Math.floor(sorted.length * 0.9)];
+      this.noiseFloorRms = p75;
+      this.volumeThreshold = Math.min(volumeCap, Math.max(volumeFloor, p90 * 100 * noiseMultiplier));
+    }
     this.calibrated = true;
     console.log(
       `✅ Noise calibrated — floor RMS: ${this.noiseFloorRms.toFixed(5)}, volume threshold: ${this.volumeThreshold.toFixed(2)}`
     );
     return true;
+  }
+
+  /**
+   * 在用户开口前（如倒计时期间）单独测环境底噪，供 startDetection({ reuseCalibration: true }) 复用
+   */
+  calibrate() {
+    if (!this.analyser || this.isRunning) return;
+
+    this.calibrated = false;
+    this.calibrationSamples = [];
+    this.calibrationFrames = 0;
+    this.isCalibrating = true;
+
+    const sample = () => {
+      if (!this.isCalibrating || this.isRunning || !this.analyser) {
+        this.isCalibrating = false;
+        return;
+      }
+      this.analyser.getFloatTimeDomainData(this.buffer);
+      const [, clarity] = this.detector.findPitch(this.buffer, this.audioContext.sampleRate);
+      if (this.calibrateNoiseFloor(computeRms(this.buffer), clarity)) {
+        this.isCalibrating = false;
+        return;
+      }
+      requestAnimationFrame(sample);
+    };
+
+    sample();
   }
 
   /**
@@ -335,14 +407,14 @@ export class AudioPitchDetector {
     if (!pitch || pitch <= 0) return false;
     if (pitch < MIN_HUMAN_FREQUENCY || pitch > MAX_HUMAN_FREQUENCY) return false;
 
-    const clarityMin = getClarityThreshold(pitch, tracking);
+    const clarityMin = getClarityThreshold(pitch, tracking, this.profile);
     const volumeMin = this.volumeThreshold * (tracking ? 0.65 : 1);
 
     if (clarity <= clarityMin) return false;
     if (volume <= volumeMin) return false;
 
     const humVolumeCap = this.volumeThreshold * (tracking ? 2.2 : 1.8);
-    if (isLikelyPowerLineHum(pitch) && volume < humVolumeCap) {
+    if (this.profile.humFilter && isLikelyPowerLineHum(pitch) && volume < humVolumeCap) {
       return false;
     }
 
@@ -356,8 +428,8 @@ export class AudioPitchDetector {
     if (!pitch || pitch <= 0) return false;
     if (pitch < MIN_HUMAN_FREQUENCY || pitch > MAX_HUMAN_FREQUENCY) return false;
     if (volume <= this.volumeThreshold * 0.55) return false;
-    if (clarity <= 0.72) return false;
-    if (isLikelyPowerLineHum(pitch) && volume < this.volumeThreshold * 1.5) return false;
+    if (clarity <= this.profile.looseClarity) return false;
+    if (this.profile.humFilter && isLikelyPowerLineHum(pitch) && volume < this.volumeThreshold * 1.5) return false;
     return true;
   }
 
@@ -412,8 +484,9 @@ export class AudioPitchDetector {
   /**
    * 开始检测音高
    * @param {function} callback - 回调函数，接收检测到的频率
+   * @param {{ reuseCalibration?: boolean }} options - 已通过 calibrate() 测过底噪时跳过开头的校准
    */
-  startDetection(callback) {
+  startDetection(callback, { reuseCalibration = false } = {}) {
     if (!this.analyser || !this.detector) {
       console.error('请先初始化音频上下文');
       return;
@@ -425,9 +498,13 @@ export class AudioPitchDetector {
       this.stopDetection();
     }
 
+    this.isCalibrating = false;
     this.isRunning = true;
-    this.calibrated = false;
-    this.calibrationSamples = [];
+    if (!reuseCalibration || !this.calibrated) {
+      this.calibrated = false;
+      this.calibrationSamples = [];
+      this.calibrationFrames = 0;
+    }
     this.pitchBuffer = [];
     this.consecutiveValidFrames = 0;
     this.isTracking = false;
@@ -445,7 +522,7 @@ export class AudioPitchDetector {
       const volume = rms * 100;
 
       if (!this.calibrated) {
-        this.calibrateNoiseFloor(rms);
+        this.calibrateNoiseFloor(rms, clarity);
         callback(null, clarity, volume);
         requestAnimationFrame(detect);
         return;

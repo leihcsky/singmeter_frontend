@@ -8,7 +8,7 @@ const meta = {
   category: 'Technique',
   readTime: '14 min read',
   date: '2026-08-26',
-  updatedDate: '2026-08-26',
+  updatedDate: '2026-10-15',
   author: 'Max Ray',
   excerpt:
     'Before “mixed voice,” you need a clear chest and a usable head. Here’s how to tell them apart, practice each safely, and stop yelling through the break.',
@@ -36,10 +36,18 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed text-sm">
     Stop if you feel pain. Registers are coordination, not a volume contest.
   </p>
+  <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+    <p class="text-sm text-slate-700 leading-relaxed">
+      <strong>A note on terms:</strong> Teachers don’t fully agree on register names—“head voice” and “falsetto” in particular get used differently in classical and pop teaching. I’m not a voice teacher, so I use the everyday meanings here and lean on the references under Sources for definitions. What matters for home practice is the test in each section: can you hold a clear, easy pitch on the Pitch Detector without shouting?
+    </p>
+  </div>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Chest voice: your “talking” gear</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
     If you say “hey” at a normal pitch, you’re basically in chest. It feels closer to speech, denser, often with vibration you can notice in the chest or sternum area—not because the sound is “made in the chest,” but because that’s the vibration pattern you’re used to.
+  </p>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Both names describe where singers <em>feel</em> vibration, not where sound is made. As the NIDCD explains, voice always starts with the vocal folds vibrating in the larynx; the throat, mouth, and nose then shape it.
   </p>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li><strong>Good for:</strong> verses, speech-like pop lines, low and mid range</li>
@@ -153,6 +161,14 @@ const content = `
     <li>After talk-heavy workdays, skip peak register work—see
       <a href="/blog/voice-fatigue-from-talking" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">voice fatigue from talking</a></li>
   </ul>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sources and further reading</h2>
+  <ol class="list-decimal list-outside text-gray-600 text-sm space-y-2 mb-6 ml-4">
+    <li>Wikipedia. <a href="https://en.wikipedia.org/wiki/Chest_voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Chest voice</a> and <a href="https://en.wikipedia.org/wiki/Head_voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Head voice</a>. How the terms are used, and how usage differs between traditions.</li>
+    <li>Wikipedia. <a href="https://en.wikipedia.org/wiki/Vocal_register" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Vocal register</a>. The wider register debate, including falsetto.</li>
+    <li>National Institute on Deafness and Other Communication Disorders (NIDCD). <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Taking Care of Your Voice</a>. How the vocal folds and resonating spaces produce voice.</li>
+    <li>Anne Peckham. <em>The Contemporary Singer</em> (Berklee Press). Guided exercises that move between registers—see <a href="/resources/books/the-contemporary-singer" class="text-indigo-600 hover:text-indigo-700 underline">my review</a>.</li>
+  </ol>
 
   <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
     <p class="text-indigo-900 leading-relaxed mb-4">

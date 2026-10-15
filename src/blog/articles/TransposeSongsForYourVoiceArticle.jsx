@@ -8,7 +8,7 @@ const meta = {
   category: 'Vocal Range & Song Key',
   readTime: '16 min read',
   date: '2026-07-21',
-  updatedDate: '2026-07-21',
+  updatedDate: '2026-10-16',
   author: 'Max Ray',
   excerpt:
     'The right key is not vanity—it is tessitura. Learn a repeatable transpose workflow using Song Key Finder, your range test, and quick pitch checks on the hardest chorus notes.',
@@ -97,6 +97,14 @@ const content = `
     In karaoke apps, use the built-in key control. At home, change the playback key in your DAW, YouTube pitch shifter (careful with quality), or a transpose-friendly app.
     <strong>Write the new key on your song list</strong> so you do not rediscover it every month.
   </p>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    If the song was written for a very different voice—a soprano showtune and a bass range, for example—a few semitones will not close the gap.
+    Singers usually take the melody an octave (or two) down first, then fine-tune the key.
+  </p>
+  <figure class="my-6">
+    <img src="/images/screenshots/song-key-finder-defying-gravity.png" alt="Song Key Finder for Defying Gravity (original key A major) with the range F#2-A3 entered, recommending B, two semitones up, sung two octaves lower than the original melody" width="765" height="794" loading="lazy" class="w-full sm:w-3/4 mx-auto h-auto rounded-lg border border-gray-200 shadow-sm" />
+    <figcaption class="text-sm text-gray-500 mt-2 text-center">Defying Gravity (A major) with my range, F#2–A3. Song Key Finder suggests B, two semitones up, sung two octaves below the original melody.</figcaption>
+  </figure>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Step 4: Verify With Tools (3-Minute Check)</h2>
   <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">

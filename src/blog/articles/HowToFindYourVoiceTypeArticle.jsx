@@ -8,7 +8,7 @@ const meta = {
   category: 'Vocal Range & Song Key',
   readTime: '13 min read',
   date: '2025-12-02',
-  updatedDate: '2026-07-16',
+  updatedDate: '2026-10-16',
   author: 'Max Ray',
   excerpt:
     'Find your voice type at home with a complete session: range test, tessitura check, tone notes, a worked example, and a 20-minute SingMeter workflow.',
@@ -62,6 +62,10 @@ const content = `
     <li>Follow the instructions to record your lowest comfortable note and highest comfortable note.</li>
     <li>Write down the result, for example: <strong>G2–E4</strong> or <strong>A3–C6</strong>.</li>
   </ul>
+  <figure class="my-6">
+    <img src="/images/screenshots/vocal-range-test-lowest-note.png" alt="SingMeter Vocal Range Test detecting a lowest note of G2 at 98 Hz while the highest-note side waits to start" width="1236" height="734" loading="lazy" class="w-full h-auto rounded-lg border border-gray-200 shadow-sm" />
+    <figcaption class="text-sm text-gray-500 mt-2 text-center">My own lowest-note test: holding a low &quot;ah&quot; that reads G2 (98 Hz). The highest note is tested separately on the right.</figcaption>
+  </figure>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Don&apos;t worry if the numbers don&apos;t look &quot;impressive&quot; — what matters is that they are
     <strong>comfortable and healthy</strong>, not forced.

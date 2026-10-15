@@ -8,7 +8,7 @@ const meta = {
   category: 'Practice & Vocal Health',
   readTime: '18 min read',
   date: '2025-12-25',
-  updatedDate: '2026-08-25',
+  updatedDate: '2026-10-15',
   author: 'Max Ray',
   excerpt:
     'A maintenance hub for home singers: hydration, talking load, cool-down, environment, weekly/monthly load limits, and SingMeter early-warning checks—plus when to open the tired/hoarse decision guide.',
@@ -26,6 +26,11 @@ const content = `
         Use this page as your <strong>maintenance hub</strong>. For the question &quot;Can I practice <em>today</em> if I am tired or hoarse?&quot; open the separate decision guide—
         <a href="/blog/singing-when-tired-or-hoarse" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Should You Practice When Tired or Hoarse?</a>—instead of guessing from generic tips.
       </p>
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+        <p class="text-sm text-slate-700 leading-relaxed">
+          <strong>Where this comes from:</strong> I&apos;m a home singer, not a voice teacher or doctor. The health basics on this page—hydration, humidity, vocal naps, not clearing your throat, when to see a specialist—follow public guidance from the NIDCD, Mayo Clinic, the NHS, and the American Academy of Otolaryngology, listed under Sources at the end. The load budgeting and SingMeter check-ins are a practical way to organize home practice around that guidance, not medical rules.
+        </p>
+      </div>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Golden Rule: Hydration</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
@@ -34,9 +39,9 @@ const content = `
       <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
         <h4 class="font-bold text-blue-900 mb-2">Hydration that actually helps</h4>
         <ul class="list-disc list-outside text-blue-800 space-y-1">
-          <li><strong>Drink water through the day:</strong> Aim for steady intake (roughly 8–10 glasses for many adults). Room temperature is easier than ice-cold gulps mid-phrase.</li>
+          <li><strong>Drink water through the day:</strong> Aim for steady intake—ENT Health suggests around 60 ounces (about 1.8 liters) a day for most adults. Room temperature is easier than ice-cold gulps mid-phrase.</li>
           <li><strong>Timing matters:</strong> Systemic hydration takes time to reach the folds. Drinking <em>before</em> practice helps more than sipping only during a hard set.</li>
-          <li><strong>Balance drying agents:</strong> Caffeine and alcohol can dehydrate. You do not need to quit coffee—pair each cup with extra water and notice evening dryness.</li>
+          <li><strong>Balance drying agents:</strong> The NIDCD and Mayo Clinic both flag caffeine and alcohol as drying. You do not need to quit coffee—pair each cup with extra water and notice evening dryness.</li>
           <li><strong>Steam vs water:</strong> Inhaling steam moistens the airway surface; water supports the body. Use both on dry days—steam is not a substitute for drinking.</li>
         </ul>
       </div>
@@ -60,8 +65,8 @@ const content = `
         <div class="bg-red-50 p-6 rounded-lg border border-red-200">
           <h3 class="text-xl font-bold text-red-900 mb-3">DON'T:</h3>
           <ul class="list-disc list-outside space-y-2 text-red-800">
-            <li><strong>Clear your throat.</strong> Swallow or sip water instead.</li>
-            <li><strong>Whisper</strong> as &quot;rest.&quot; It can strain more than soft speech.</li>
+            <li><strong>Clear your throat.</strong> Swallow or sip water instead—Mayo Clinic notes clearing can add to swelling.</li>
+            <li><strong>Whisper</strong> as &quot;rest.&quot; The NHS lists whispering and loud talking as equally straining.</li>
             <li><strong>Shout or scream</strong> in loud environments, then expect a full practice.</li>
             <li><strong>Sing through pain.</strong> Pain is a stop sign.</li>
           </ul>
@@ -77,7 +82,7 @@ const content = `
         <li><strong>Before a hard practice:</strong> Protect the morning—shorter meetings, lower volume in noisy rooms, a 20-minute vocal nap after work before you open the detector.</li>
         <li><strong>After a loud social night:</strong> Treat next-day singing as yellow by default; see the
           <a href="/blog/singing-when-tired-or-hoarse" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tired or hoarse decision tree</a>.</li>
-        <li><strong>Amplify when you can:</strong> A small mic or quieter room for speaking beats pushing speech volume all day, then wondering why highs feel stuck at night.</li>
+        <li><strong>Amplify when you can:</strong> A small mic or quieter room for speaking beats pushing speech volume all day, then wondering why highs feel stuck at night. The NIDCD recommends a lightweight mic for classrooms and similar spaces, and avoiding talking over noise.</li>
       </ul>
       <p class="text-gray-600 mb-4 leading-relaxed">
         If mid-range notes feel fine but you &quot;have no top left,&quot; check talking load before blaming technique. Log talk-heavy days next to practice notes for two weeks—patterns show up quickly.
@@ -90,7 +95,7 @@ const content = `
         Dry rooms raise friction. You can sound &quot;off&quot; in February AC even when range and pitch looked fine last weekend.
       </p>
       <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
-        <li><strong>Humidify the practice space</strong> if indoor air is desert-dry. Aim for comfort, not a swamp—enough that lips and throat do not feel papery after 20 minutes.</li>
+        <li><strong>Humidify the practice space</strong> if indoor air is desert-dry. The NIDCD suggests about 30% humidity at home, especially in winter—enough that lips and throat do not feel papery after 20 minutes.</li>
         <li><strong>Steam before peaks</strong> on dry days (shower steam or a personal steamer). Pair with water you already drank earlier.</li>
         <li><strong>Masks and travel:</strong> Mouth breathing behind a mask or on planes dries the airway. Plan a shorter session and a longer cool-down after travel days.</li>
         <li><strong>Dust and strong scents:</strong> Irritants can fake &quot;bad technique.&quot; Ventilate; do not force high work through a tickle.</li>
@@ -106,6 +111,9 @@ const content = `
         Warm-ups get attention; cool-downs get skipped. After peaks, belt work, long songs, or karaoke, a short cool-down helps the folds leave &quot;performance mode&quot; and reduces next-morning huskiness.
         For a step-by-step you can run tonight, see
         <a href="/blog/vocal-cooldown-after-practice" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">what to do after you sing</a>.
+      </p>
+      <p class="text-gray-600 mb-4 leading-relaxed">
+        The research is still thin: in a 2016 study of 20 trained singers, most reported their voices felt better in the week they used a cool-down, but the measured difference was not statistically significant. It costs five minutes, so I treat it as cheap insurance rather than a proven fix.
       </p>
       <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
         <li><strong>2 minutes — descending hums:</strong> Easy &quot;mm&quot; glides from mid-range down toward speaking pitch. No volume contests.</li>
@@ -168,7 +176,7 @@ const content = `
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Warning signs: when to stop</h2>
       <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
-        <li><strong>Hoarseness</strong> lasting more than 2 weeks—see an ENT.</li>
+        <li><strong>Hoarseness</strong> lasting more than 2 weeks—see a doctor. The NHS uses two weeks as its cue; Mayo Clinic says 2–4 weeks.</li>
         <li><strong>Loss of high notes</strong>—often early swelling or overload.</li>
         <li><strong>Tickling or pain</strong> when singing or swallowing.</li>
         <li><strong>Early fatigue</strong>—voice tired after only 10 minutes may mean forcing or too much talking load earlier.</li>
@@ -190,13 +198,13 @@ const content = `
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Foods and reflux (GERD)</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        Acid reflux can irritate the larynx overnight even if you never feel classic heartburn. Practical habits: avoid heavy meals within a few hours of lying down, limit spicy or highly acidic food late at night, and elevate the head of the bed slightly if reflux is a known issue.
+        Acid reflux can irritate the larynx overnight even if you never feel classic heartburn; the NIDCD lists reflux among the common causes of voice problems. Practical habits: avoid heavy meals within a few hours of lying down, limit spicy or highly acidic food late at night, and elevate the head of the bed slightly if reflux is a known issue.
         Persistent morning huskiness with a clear &quot;acid&quot; pattern is worth discussing with a clinician—do not self-diagnose from one scratchy morning.
       </p>
 
       <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The vocal nap</h2>
       <p class="text-gray-600 mb-4 leading-relaxed">
-        A vocal nap is 20+ minutes of true silence—no talking, humming, or whispering. Use one before a demanding session, after a long rehearsal, or between a talk-heavy workday and evening practice.
+        A vocal nap is 20+ minutes of true silence—no talking, humming, or whispering. The NIDCD recommends resting your voice in short breaks like this through the day. Use one before a demanding session, after a long rehearsal, or between a talk-heavy workday and evening practice.
         Soft speech after the nap beats jumping straight into peaks.
       </p>
 
@@ -247,6 +255,18 @@ const content = `
         <li>You need more volume every session to &quot;hit&quot; the same note → technique or fatigue; reduce load.</li>
         <li>Talk-heavy workday + dry room + planned belt session → cut peaks; cool down early.</li>
       </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sources</h2>
+      <p class="text-gray-600 mb-3 leading-relaxed text-sm">
+        Public health pages and research I checked while writing and updating this guide (accessed October 2026):
+      </p>
+      <ol class="list-decimal list-outside text-gray-600 text-sm space-y-2 mb-6 ml-4">
+        <li>National Institute on Deafness and Other Communication Disorders (NIDCD). <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Taking Care of Your Voice</a>. Hydration, 30% humidity, vocal naps, reflux, microphones and noisy rooms.</li>
+        <li>Mayo Clinic. <a href="https://www.mayoclinic.org/diseases-conditions/laryngitis/symptoms-causes/syc-20374262" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Laryngitis: Symptoms and causes</a>. Throat clearing, caffeine and alcohol, when to book an appointment.</li>
+        <li>NHS. <a href="https://www.nhs.uk/conditions/laryngitis/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Laryngitis</a>. Whispering, moist air, seeing a GP after two weeks.</li>
+        <li>American Academy of Otolaryngology–Head and Neck Surgery, ENT Health. <a href="https://www.enthealth.org/conditions/hoarseness/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Hoarseness</a>. Daily water intake, voice amplification, red-flag symptoms.</li>
+        <li>Ragan K. <a href="https://pubmed.ncbi.nlm.nih.gov/26778328/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">The Impact of Vocal Cool-down Exercises: A Subjective Study of Singers&apos; and Listeners&apos; Perceptions</a>. Journal of Voice. 2016;30(6):764.e1–764.e9.</li>
+      </ol>
 
       <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
         <p class="text-indigo-900 leading-relaxed mb-4">

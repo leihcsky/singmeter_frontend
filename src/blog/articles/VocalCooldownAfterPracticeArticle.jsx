@@ -8,7 +8,7 @@ const meta = {
   category: 'Practice & Vocal Health',
   readTime: '14 min read',
   date: '2026-08-25',
-  updatedDate: '2026-08-25',
+  updatedDate: '2026-10-15',
   author: 'Max Ray',
   excerpt:
     'You warmed up. You worked. Then you closed the laptop and went to bed. Here’s the missing five minutes that keeps tomorrow’s voice from feeling like sandpaper.',
@@ -30,6 +30,11 @@ const content = `
     That’s usually not “I need more high-note drills.” It’s “I landed the plane still at cruising altitude.”
     A vocal cool-down is the descent: a few minutes of easy, downward, quiet work so your folds aren’t still in performance mode when you walk away.
   </p>
+  <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+    <p class="text-sm text-slate-700 leading-relaxed">
+      <strong>What the research actually says:</strong> Cool-downs are widely taught, but the evidence is still early. The best-known study, by voice teacher and researcher Kari Ragan, had 20 classically trained singers do an hour of singing for a week without a cool-down and a week with one. Most said their voices felt better in the cool-down week, but the measured difference was not statistically significant, and expert listeners couldn’t reliably tell the weeks apart. I’m not a voice teacher—the routine below is a simple home version built from ingredients in that study’s protocol (straw phonation, humming, gentle descending patterns). Treat it as low-cost insurance, not a cure.
+    </p>
+  </div>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Cool-down is not “one more rep”</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
@@ -38,7 +43,7 @@ const content = `
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>“Let me try that high note one more time since it felt good”</li>
     <li>Running the chorus full volume because you finally got it</li>
-    <li>Whispering to your roommate so you don’t “use” the voice (whisper is often harder on folds than soft speech)</li>
+    <li>Whispering to your roommate so you don’t “use” the voice (the NHS lists whispering as straining, just like loud talking)</li>
   </ul>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Cool-down means <strong>less range, less volume, less ambition</strong>. You’re not fixing technique here—you’re telling your body the session is over.
@@ -62,6 +67,9 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     Mid-range only. Short patterns, not sirens up to your belt top. No straw? Lip trills work. The point is loose air, not a workout.
     If you use straw phonation in your warm-up, same idea here—half the intensity you used at the start of practice.
+  </p>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Why these two? Straws and lip trills partly close off the mouth (&quot;semi-occluded&quot; exercises). Ingo Titze’s 2006 modeling paper explains how that lets the folds vibrate efficiently with less collision force—useful when you want sound without effort.
   </p>
 
   <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">3. Speak-sing one line — about 2 minutes</h3>
@@ -153,6 +161,17 @@ const content = `
     <a href="/tutorials/daily-warmup-15" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">15-minute daily warm-up</a>—your finish deserves the same respect.
     Bookend hard work with easy work. Your future self at 9 a.m. will thank you.
   </p>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sources</h2>
+  <p class="text-gray-600 mb-3 leading-relaxed text-sm">
+    Research and guidance I checked while writing and updating this routine (accessed October 2026):
+  </p>
+  <ol class="list-decimal list-outside text-gray-600 text-sm space-y-2 mb-6 ml-4">
+    <li>Ragan K. <a href="https://pubmed.ncbi.nlm.nih.gov/26778328/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">The Impact of Vocal Cool-down Exercises: A Subjective Study of Singers’ and Listeners’ Perceptions</a>. Journal of Voice. 2016;30(6):764.e1–764.e9.</li>
+    <li>Titze IR. <a href="https://pubmed.ncbi.nlm.nih.gov/16671856/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Voice Training and Therapy With a Semi-Occluded Vocal Tract: Rationale and Scientific Underpinnings</a>. Journal of Speech, Language, and Hearing Research. 2006;49(2):448–459.</li>
+    <li>NHS. <a href="https://www.nhs.uk/conditions/laryngitis/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Laryngitis</a>. Why whispering is not rest.</li>
+    <li>National Institute on Deafness and Other Communication Disorders (NIDCD). <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Taking Care of Your Voice</a>. Vocal naps and not overusing a tired voice.</li>
+  </ol>
 
   <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
     <p class="text-indigo-900 leading-relaxed mb-4">

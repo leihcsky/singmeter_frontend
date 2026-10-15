@@ -240,7 +240,7 @@ const VocalRangeTestPage = () => {
       return { success: true }; // Already initialized
     }
 
-    detectorRef.current = new AudioPitchDetector();
+    detectorRef.current = new AudioPitchDetector({ profile: 'range' });
     const result = await detectorRef.current.initialize();
 
     if (!result.success) {
@@ -260,7 +260,8 @@ const VocalRangeTestPage = () => {
       const result = await initializeMicrophone();
       if (!result.success) return;
 
-      // Start countdown
+      // Measure room noise while the user is still silent during "Get Ready"
+      detectorRef.current.calibrate();
       lowestHook.setCountdown(3);
       let count = 3;
       const interval = setInterval(() => {
@@ -284,7 +285,8 @@ const VocalRangeTestPage = () => {
       const result = await initializeMicrophone();
       if (!result.success) return;
 
-      // Start countdown
+      // Measure room noise while the user is still silent during "Get Ready"
+      detectorRef.current.calibrate();
       highestHook.setCountdown(3);
       let count = 3;
       const interval = setInterval(() => {

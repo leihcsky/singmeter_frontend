@@ -8,7 +8,7 @@ const meta = {
   category: 'Practice & Vocal Health',
   readTime: '17 min read',
   date: '2026-08-04',
-  updatedDate: '2026-08-04',
+  updatedDate: '2026-10-16',
   author: 'Max Ray',
   excerpt:
     'No piano, no teacher required for week one. Seven short sessions with clear daily goals—measure your voice, calibrate pitch, warm up safely, and sing one phrase you can actually finish.',
@@ -59,6 +59,10 @@ const content = `
     Deeper reading for later:
     <a href="/blog/how-to-test-vocal-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">how to test vocal range</a>.
   </p>
+  <figure class="my-6">
+    <img src="/images/screenshots/vocal-range-test-7-day-plan.png" alt="SingMeter Vocal Range Test result page showing a 7-day practice plan from logging the result on day 1 to a review and retest on day 7" width="1055" height="787" loading="lazy" class="w-full h-auto rounded-lg border border-gray-200 shadow-sm" />
+    <figcaption class="text-sm text-gray-500 mt-2 text-center">The result page from my own range test ends with a short 7-day plan. It follows the same idea as this article; the days below add more detail.</figcaption>
+  </figure>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Day 2 — Posture and Breath (18 Minutes)</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">

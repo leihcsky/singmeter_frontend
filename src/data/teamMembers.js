@@ -11,7 +11,7 @@ export const teamMembers = [
     name: 'Max Ray',
     role: 'Founder & product',
     isFounder: true,
-    bio: 'Software developer and lifelong singing enthusiast. Max started SingMeter after one too many practice sessions with unclear feedback—wanting range and pitch readings that feel as straightforward as a tuner, without uploading voice recordings to a server. He builds the tools and writes the guides, tutorials, and book reviews. He is not a licensed voice teacher or clinician, so health topics point you to a professional when it matters.',
+    bio: 'Software developer and beginner singer. Max started practicing at home and at karaoke in late 2025 and built SingMeter alongside it—starting with the Vocal Range Test, because he didn’t know his own range and kept choosing songs that sat too high or too low. He builds the tools and writes the guides, tutorials, and book reviews from a learner’s point of view. He is not a licensed voice teacher or clinician, so health topics point you to a professional when it matters.',
     focuses: ['Tools & engineering', 'Guides & tutorials', 'Book reviews'],
     accent: 'indigo',
   },

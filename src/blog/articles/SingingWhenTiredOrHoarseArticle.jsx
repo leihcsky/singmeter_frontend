@@ -8,7 +8,7 @@ const meta = {
   category: 'Practice & Vocal Health',
   readTime: '15 min read',
   date: '2026-07-21',
-  updatedDate: '2026-07-21',
+  updatedDate: '2026-10-15',
   author: 'Max Ray',
   excerpt:
     'Not every scratchy morning needs a day off—but not every day off is lazy. Use this decision tree to choose rest, recovery, or light practice without guessing.',
@@ -32,6 +32,11 @@ const content = `
     For day-to-day choices, follow the checks below and the
     <a href="/tutorials/vocal-health-recovery-day" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal health recovery day tutorial</a>.
   </p>
+  <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+    <p class="text-sm text-slate-700 leading-relaxed">
+      <strong>How I put this together:</strong> The red / yellow / green tiers are my own way of making a daily call at home—they are not a clinical scale. The parts that matter most for safety (rest when hoarse, no whispering, no throat-clearing loops, when to see a doctor) come from NHS, Mayo Clinic, NIDCD, and ENT Health guidance listed at the end. I&apos;m not a clinician; if yours has told you something different, follow them.
+    </p>
+  </div>
 
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Morning Voice Check (2 Minutes)</h2>
   <p class="text-gray-600 mb-4 leading-relaxed">
@@ -60,7 +65,7 @@ const content = `
     <li>Doctor advised voice rest</li>
   </ul>
   <p class="text-gray-600 mb-4 leading-relaxed">
-    <strong>Do:</strong> hydrate, humidify, sleep, minimal talking, no whispering (whisper is harder on folds than gentle speech).
+    <strong>Do:</strong> hydrate, humidify, sleep, minimal talking, no whispering (the NHS advises against both whispering and loud talking when the voice box is irritated).
     <strong>Do not:</strong> &quot;test&quot; high notes to see if they are back.
   </p>
 
@@ -102,6 +107,7 @@ const content = `
   </p>
   <p class="text-gray-600 mb-4 leading-relaxed">
     <strong>Hoarse</strong> means tissue irritation or swelling—pitch may be fine for three notes then break.
+    Mayo Clinic lists voice strain alongside colds and flu as a common cause of short-term laryngitis, so a hoarse day after heavy use counts.
     Fix: recovery protocol or rest; do not compensate by pushing chest or shouting.
     If you are both tired and hoarse, choose the <em>hoarse</em> rule set—it is the safer default.
   </p>
@@ -117,6 +123,9 @@ const content = `
     <li>3 min speak-sing a familiar line in your comfortable tessitura</li>
     <li>2 min cool-down hum descending to speaking pitch</li>
   </ol>
+  <p class="text-gray-600 mb-4 leading-relaxed">
+    Lip trills, humming, and straw phonation are &quot;semi-occluded&quot; exercises. Voice scientist Ingo Titze&apos;s modeling suggests they make voicing more efficient with less collision force on the folds, which is why they show up in both voice therapy and warm-ups.
+  </p>
   <p class="text-gray-600 mb-4 leading-relaxed">
     Optional: one gentle pass on the Pitch Detector on a single comfortable note—if cents swing wildly, stop.
     This is not the day for
@@ -179,7 +188,7 @@ const content = `
   <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">What Not to Do on Hoarse Days</h2>
   <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
     <li>Whispering for hours—it dries and strains</li>
-    <li>Coughing and throat-clearing loops—sip water, swallow instead</li>
+    <li>Coughing and throat-clearing loops—sip water, swallow instead (Mayo Clinic notes clearing can add to swelling)</li>
     <li>Numbing sprays to &quot;get through&quot; a show</li>
     <li>Competing with loud bars or headphones at max volume</li>
     <li>Testing &quot;can I still hit that note?&quot; ten times</li>
@@ -213,8 +222,21 @@ const content = `
   <p class="text-gray-600 mb-4 leading-relaxed">
     This decision tree covers everyday practice at home. See an ENT or laryngologist if you have pain when speaking or swallowing,
     hoarseness that lasts more than two weeks, sudden voice loss, blood, or hoarseness that keeps worsening despite rest.
+    Guidance varies a little: the NHS uses two weeks as its cue to see a GP, Mayo Clinic says 2–4 weeks, and ENT Health says four weeks—or sooner if you can&apos;t do voice-dependent work. I use the earliest of those.
     SingMeter helps you spot patterns—it does not replace someone who can look at your throat.
   </p>
+
+  <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sources</h2>
+  <p class="text-gray-600 mb-3 leading-relaxed text-sm">
+    Guidance I checked while writing and updating this decision tree (accessed October 2026):
+  </p>
+  <ol class="list-decimal list-outside text-gray-600 text-sm space-y-2 mb-6 ml-4">
+    <li>NHS. <a href="https://www.nhs.uk/conditions/laryngitis/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Laryngitis</a>. Resting the voice, no whispering, when to see a GP.</li>
+    <li>Mayo Clinic. <a href="https://www.mayoclinic.org/diseases-conditions/laryngitis/symptoms-causes/syc-20374262" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Laryngitis: Symptoms and causes</a>. Causes of short-term hoarseness, throat clearing, urgent symptoms.</li>
+    <li>National Institute on Deafness and Other Communication Disorders (NIDCD). <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Taking Care of Your Voice</a>. Not singing when hoarse or tired; resting the voice when sick.</li>
+    <li>American Academy of Otolaryngology–Head and Neck Surgery, ENT Health. <a href="https://www.enthealth.org/conditions/hoarseness/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Hoarseness</a>. When to see a specialist.</li>
+    <li>Titze IR. <a href="https://pubmed.ncbi.nlm.nih.gov/16671856/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Voice Training and Therapy With a Semi-Occluded Vocal Tract: Rationale and Scientific Underpinnings</a>. Journal of Speech, Language, and Hearing Research. 2006;49(2):448–459.</li>
+  </ol>
 
   <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border-l-4 border-indigo-400 p-6 mt-8 rounded-r-lg">
     <p class="text-indigo-900 leading-relaxed mb-4">

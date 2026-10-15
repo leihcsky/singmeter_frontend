@@ -8,7 +8,7 @@ const meta = {
   category: 'Technique',
   readTime: '15 min read',
   date: '2025-01-30',
-  updatedDate: '2026-08-04',
+  updatedDate: '2026-10-15',
   author: 'Max Ray',
   excerpt:
     'A practical high-notes guide: range-first workflow, support vs push, mix basics, and drills you can run with SingMeter before you chase peaks.',
@@ -29,14 +29,22 @@ const content = `
 	        For load and recovery habits, see
 	        <a href="/blog/vocal-health-and-maintenance" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">vocal health basics</a>.
 	      </p>
+	      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
+	        <p class="text-sm text-slate-700 leading-relaxed">
+	          <strong>Where this comes from:</strong> I&apos;m not a voice teacher. The safety rules here (stop on pain, don&apos;t push through hoarseness, rest a tired voice)
+	          follow the NIDCD voice-care guidance listed under Sources. The rest is a measurement habit I&apos;d recommend to any home singer: check your range and pitch
+	          with the tools before and during high-note work, so progress is something you can see rather than guess. A teacher can give you feedback no app can—use this
+	          as a structure between lessons or before you find one.
+	        </p>
+	      </div>
 
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">SingMeter Range-First Workflow</h2>
 	      <p class="text-gray-600 mb-4 leading-relaxed">
-	        Before chasing new peaks, know your baseline. Extending range without a reference is how singers train strain.
+	        Before chasing new peaks, know your baseline. Without a reference point, it&apos;s easy to mistake straining for progress.
 	      </p>
 	      <ol class="list-decimal list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Run the <a href="/vocal-range-test" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Vocal Range Test</a> and note your comfortable high note (usable tone, not a squeak).</li>
-	        <li>Warm up lightly—humming, lip trills, gentle sirens—before any peak work.</li>
+	        <li>Warm up lightly—humming, lip trills, gentle sirens—before any peak work. Lip trills and straw work are &quot;semi-occluded&quot; exercises; Titze&apos;s 2006 paper (see Sources) explains why they let the folds vibrate with less effort.</li>
 	        <li>Practice while watching the <a href="/pitch-detector" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">Pitch Detector</a>—accuracy matters as much as height.</li>
 	        <li>Extend upward by semitones only when the current top feels easy for a full phrase at moderate volume.</li>
 	      </ol>
@@ -75,7 +83,7 @@ const content = `
 	          drop volume and rebuild from a mid-range siren.
 	        </li>
 	        <li>
-	          <strong>Forward placement:</strong> keep jaw and tongue loose. Tension is the main reason notes crack.
+	          <strong>Forward placement:</strong> keep jaw and tongue loose. Tension is one of the most common reasons notes crack.
 	          Practice sirens on &quot;ng&quot; or &quot;oo&quot; before vowels that invite jaw lock.
 	        </li>
 	        <li>
@@ -128,7 +136,7 @@ const content = `
 	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Common Mistakes</h2>
 	      <ul class="list-disc list-outside text-gray-600 space-y-2 mb-6 ml-4">
 	        <li>Pushing volume instead of support—if the throat tightens, the note is too high or too loud for today.</li>
-	        <li>Skipping warm-up before peak notes—even a 3-minute hum cycle prevents most cracks.</li>
+	        <li>Skipping warm-up before peak notes—even a 3-minute hum cycle helps.</li>
 	        <li>Lifting the chin or closing the throat—keep eyes level and jaw loose on sirens.</li>
 	        <li>Singing through pain or significant strain—stop and log a rest day instead.</li>
 	        <li>Comparing your top note to recordings without checking key and production—studio vocals are often comped and tuned.</li>
@@ -172,6 +180,15 @@ const content = `
 	        <a href="/blog/tessitura-and-comfortable-range" class="text-indigo-600 hover:text-indigo-700 font-semibold underline">tessitura and comfortable range</a>
 	        so high notes in songs stay repeatable, not one-time peaks.
 	      </p>
+
+	      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Sources and further reading</h2>
+	      <ol class="list-decimal list-outside text-gray-600 text-sm space-y-2 mb-6 ml-4">
+	        <li>National Institute on Deafness and Other Communication Disorders (NIDCD). <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Taking Care of Your Voice</a>. Voice-care and rest guidance.</li>
+	        <li>Titze IR. <a href="https://pubmed.ncbi.nlm.nih.gov/16671856/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Voice Training and Therapy With a Semi-Occluded Vocal Tract: Rationale and Scientific Underpinnings</a>. Journal of Speech, Language, and Hearing Research. 2006;49(2):448–459.</li>
+	        <li>Wikipedia. <a href="https://en.wikipedia.org/wiki/Passaggio" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Passaggio</a>. The register transition zone mentioned in the register tips.</li>
+	        <li>Wikipedia. <a href="https://en.wikipedia.org/wiki/Belting_(music)" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:text-indigo-700 underline">Belting (music)</a>. Background on loud, speech-like high singing in pop and musical theatre.</li>
+	        <li>Anne Peckham. <em>The Contemporary Singer</em> (Berklee Press). Structured range and agility exercises—see <a href="/resources/books/the-contemporary-singer" class="text-indigo-600 hover:text-indigo-700 underline">my review</a>.</li>
+	      </ol>
 
 	      <div class="bg-purple-50 border-l-4 border-purple-400 p-6 mt-8 rounded-r-lg">
 	        <p class="text-purple-700 leading-relaxed mb-4">
