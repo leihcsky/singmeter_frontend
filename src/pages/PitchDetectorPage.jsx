@@ -11,7 +11,6 @@ import Footer from '../components/Footer';
 import RealtimePianoKeyboard from '../components/RealtimePianoKeyboard';
 import { trackEvent, GA_CATEGORIES, GA_ACTIONS } from '../utils/analytics';
 import FAQSection from '../components/FAQSection';
-import PracticePathSection from '../components/PracticePathSection';
 import ToolPageDeepDive from '../components/ToolPageDeepDive';
 
 const pitchDetectorFaqItems = [
@@ -423,132 +422,6 @@ const PitchDetectorPage = () => {
           )}
         </div>
 
-        {/* Tool Integration: Tone Generator & Metronome */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
-          <Link to="/tone-generator" className="block group">
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all h-full flex flex-col">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-3 bg-indigo-50 rounded-xl group-hover:bg-indigo-100 transition">
-                  <span className="text-2xl">🎹</span>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 group-hover:text-indigo-600 transition">Need a Reference Note?</h3>
-                  <p className="text-xs text-indigo-600 font-semibold uppercase tracking-wide">Ear Training</p>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600 mb-4 flex-grow">
-                Can't find the pitch? Play a reference note first, listen carefully, then try to match it.
-              </p>
-              <div className="flex items-center text-indigo-600 font-bold text-sm">
-                Open Tone Generator
-                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
-            </div>
-          </Link>
-
-          <Link to="/metronome" className="block group">
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-purple-100 hover:border-purple-300 hover:shadow-md transition-all h-full flex flex-col">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-3 bg-purple-50 rounded-xl group-hover:bg-purple-100 transition">
-                  <span className="text-2xl">⏱️</span>
-                </div>
-                <div>
-                  <h3 className="font-bold text-gray-900 group-hover:text-purple-600 transition">Working on Rhythm?</h3>
-                  <p className="text-xs text-purple-600 font-semibold uppercase tracking-wide">Tempo Control</p>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600 mb-4 flex-grow">
-                Pitch is only half the battle. Practice your scales and songs with a steady beat.
-              </p>
-              <div className="flex items-center text-purple-600 font-bold text-sm">
-                Open Metronome
-                <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        <PracticePathSection
-          theme="blue"
-          title="Singing Practice Path"
-          intro="Use this page as the feedback step in a short loop: hear a reference on the Tone Generator, sing here, then lock rhythm on the Metronome. If you are preparing a cover, pair with the Song Key Finder after the Vocal Range Test so you practice in a key that fits your voice."
-          comboTitle="10-Minute Session: Reference → Sing → Steady Time"
-          comboSteps={[
-            <>
-              On the{' '}
-              <Link to="/tone-generator" className="text-indigo-600 font-semibold hover:underline">
-                Tone Generator
-              </Link>
-              , play a comfortable note (often C4 or a note from your{' '}
-              <Link to="/vocal-range-test" className="text-indigo-600 font-semibold hover:underline">
-                Vocal Range Test
-              </Link>
-              ) at low volume with a sine wave. Listen for two seconds.
-            </>,
-            'Return here, start the microphone, and sing the same pitch on a steady “Ah” for 3–5 seconds. Aim for the green zone (within about ±10 cents).',
-            'Repeat with a second note a major third or fifth above—play the reference, then sing without scooping.',
-            <>
-              Finish with the{' '}
-              <Link to="/metronome" className="text-indigo-600 font-semibold hover:underline">
-                Online Metronome
-              </Link>{' '}
-              at 72–80 BPM: sing a five-note scale or one phrase of your song, one syllable per beat.
-            </>,
-          ]}
-          routines={[
-            {
-              title: 'Calibration Match',
-              duration: '3 minutes',
-              settings: 'Tone Generator · sine · 30–40% volume',
-              body: 'Play Middle C (C4) or your chosen root. Stop the tone, then sing and hold. If you are flat, add breath support; if sharp, relax the jaw and tongue.',
-              goal: 'Hold the needle in the green zone for 3 seconds on one note.',
-            },
-            {
-              title: 'Stability Hold',
-              duration: '5 minutes',
-              body: 'Pick a comfortable note in your range. Sing straight tone (no vibrato) for 5 seconds per attempt. Rest 10 seconds between tries.',
-              goal: 'Keep deviation within ±10 cents without wavering.',
-            },
-            {
-              title: 'Scale + Tempo',
-              duration: '7 minutes',
-              settings: 'Metronome 72 BPM · optional Tone on first note only',
-              body: 'Sing Do–Re–Mi–Fa–Sol up and down on “La.” Use the generator only on Do and Sol to check endpoints; inner notes are from memory.',
-              goal: 'Land each scale step in the center—not sliding up into pitch.',
-            },
-          ]}
-          nextTools={[
-            {
-              to: '/tone-generator',
-              label: 'Tone Generator',
-              hint: 'Reference pitch before you sing into this detector.',
-            },
-            {
-              to: '/metronome',
-              label: 'Online Metronome',
-              hint: 'Add steady rhythm after pitch is stable.',
-            },
-            {
-              to: '/vocal-range-test',
-              label: 'Vocal Range Test',
-              hint: 'Pick practice notes inside your comfortable range.',
-            },
-            {
-              to: '/song-key-finder',
-              label: 'Song Key Finder',
-              hint: 'Transpose a song to your range, then practice phrases here.',
-            },
-          ]}
-          blogLink={{
-            to: '/blog/ear-training-for-singers',
-            label: 'Ear Training for Singers — build pitch memory step by step',
-          }}
-        />
-
         <ToolPageDeepDive
           accent="blue"
           heading="What the cents readout really tells you (and what it doesn't)"
@@ -706,6 +579,9 @@ const PitchDetectorPage = () => {
                   </div>
                 </div>
               </div>
+              <p className="text-gray-600 text-sm mt-3">
+                Around ±25 cents most listeners hear a note as out of tune; at ±50 cents you are halfway to the next note.
+              </p>
             </div>
           </div>
         </div>
@@ -749,78 +625,6 @@ const PitchDetectorPage = () => {
           </div>
         </div>
 
-	        {/* More Pitch & Intonation Articles */}
-	        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm mb-8 border border-gray-100">
-	          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
-	            Deepen Your <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Pitch &amp; Intonation</span> Training
-	          </h2>
-	          <p className="text-center text-gray-600 max-w-2xl mx-auto mb-6">
-	            Use the SingMeter Pitch Detector together with these step-by-step guides to fix flat notes, train your ear,
-	            and practice singing in tune without an instrument.
-	          </p>
-	          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-	            <Link
-	              to="/blog/why-you-sing-flat"
-	              className="group bg-indigo-50 rounded-2xl p-4 hover:bg-indigo-100 transition flex flex-col justify-between"
-	            >
-	              <div>
-	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-indigo-700">
-	                  Why You Sing Flat (&amp; How to Fix It)
-	                </h3>
-	                <p className="text-xs text-gray-600 leading-relaxed">
-	                  Understand the real reasons pitches sag and follow targeted exercises using the detector as feedback.
-	                </p>
-	              </div>
-	              <span className="mt-3 text-xs font-semibold text-indigo-700 flex items-center group-hover:translate-x-1 transition-transform">
-	                Read article
-	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-	                </svg>
-	              </span>
-	            </Link>
-
-	            <Link
-	              to="/blog/ear-training-for-singers"
-	              className="group bg-purple-50 rounded-2xl p-4 hover:bg-purple-100 transition flex flex-col justify-between"
-	            >
-	              <div>
-	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-purple-700">
-	                  Ear Training for Singers
-	                </h3>
-	                <p className="text-xs text-gray-600 leading-relaxed">
-	                  Build a reliable musical ear so you can hear intervals and keys clearly and match them with your voice.
-	                </p>
-	              </div>
-	              <span className="mt-3 text-xs font-semibold text-purple-700 flex items-center group-hover:translate-x-1 transition-transform">
-	                Start training
-	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-	                </svg>
-	              </span>
-	            </Link>
-
-	            <Link
-	              to="/blog/improve-singing-pitch"
-	              className="group bg-pink-50 rounded-2xl p-4 hover:bg-pink-100 transition flex flex-col justify-between"
-	            >
-	              <div>
-	                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-pink-700">
-	                  Improve Singing Pitch (hub guide)
-	                </h3>
-	                <p className="text-xs text-gray-600 leading-relaxed">
-	                  Daily detector routines, practice without a piano, cents explained, and links to flat-note and ear-training guides.
-	                </p>
-	              </div>
-	              <span className="mt-3 text-xs font-semibold text-pink-700 flex items-center group-hover:translate-x-1 transition-transform">
-	                View guide
-	                <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-	                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-	                </svg>
-	              </span>
-	            </Link>
-	          </div>
-	        </div>
-
 	        {/* Educational content */}
         <div className="space-y-16 mb-16">
           <ContentSection title="About This Pitch Detector">
@@ -832,23 +636,6 @@ const PitchDetectorPage = () => {
             <p>
               Unlike a simple guitar tuner, this tool is optimized for the human voice. It detects the fundamental frequency of your 
               singing and maps it to the closest musical note, showing you the deviation in "cents."
-            </p>
-          </ContentSection>
-
-
-
-          <ContentSection title="Understanding Pitch & Cents">
-            <p>
-              In music, the distance between two semitones (like C and C#) is divided into 100 smaller units called <strong>cents</strong>.
-            </p>
-            <ul>
-              <li><strong>0 cents:</strong> Perfect pitch accuracy.</li>
-              <li><strong>±10 cents:</strong> Generally considered "in tune" to the human ear.</li>
-              <li><strong>±25 cents:</strong> Noticeably out of tune for trained listeners.</li>
-              <li><strong>±50 cents:</strong> You are halfway to the next note (quarter tone).</li>
-            </ul>
-            <p className="mt-4">
-              Most professional singers naturally fluctuate within ±10-15 cents due to vibrato and expression. The goal isn't to be robotic, but to center your pitch so it feels stable.
             </p>
           </ContentSection>
 
@@ -894,20 +681,6 @@ const PitchDetectorPage = () => {
               </Link>
               .
             </p>
-            <div className="flex flex-wrap gap-3 not-prose">
-              <Link
-                to="/tutorials/pitch-calibration-10"
-                className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition"
-              >
-                10-minute calibration tutorial
-              </Link>
-              <Link
-                to="/blog/improve-singing-pitch"
-                className="inline-flex items-center px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg border border-indigo-200 hover:bg-indigo-50 transition"
-              >
-                Pitch training hub
-              </Link>
-            </div>
           </ContentSection>
 
           <ContentSection title="Limitations & Disclaimer">
@@ -916,33 +689,6 @@ const PitchDetectorPage = () => {
                 Also, remember that this is an educational tool, not a medical device. If you feel pain or strain while singing, stop immediately and consult a professional.
              </p>
           </ContentSection>
-        </div>
-
-        {/* Complete Your Vocal Toolkit */}
-        <div className="bg-gradient-to-r from-gray-900 to-indigo-900 rounded-2xl p-8 text-center text-white mb-8 shadow-xl">
-          <h2 className="text-2xl font-bold mb-8">Complete Your Vocal Toolkit</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Link to="/vocal-range-test" className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition border border-white/10">
-              <div className="text-3xl mb-3">🎤</div>
-              <h3 className="font-bold text-lg mb-2 text-indigo-100 group-hover:text-white">Vocal Range Test</h3>
-              <p className="text-sm text-indigo-200 mb-4 h-10">Discover your voice type and find your comfortable range.</p>
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-300 group-hover:text-white transition">Start Test →</span>
-            </Link>
-
-            <Link to="/tone-generator" className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition border border-white/10">
-              <div className="text-3xl mb-3">🎹</div>
-              <h3 className="font-bold text-lg mb-2 text-indigo-100 group-hover:text-white">Tone Generator</h3>
-              <p className="text-sm text-indigo-200 mb-4 h-10">Develop perfect pitch by listening to reference notes.</p>
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-300 group-hover:text-white transition">Play Tones →</span>
-            </Link>
-
-            <Link to="/metronome" className="group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition border border-white/10">
-              <div className="text-3xl mb-3">⏱️</div>
-              <h3 className="font-bold text-lg mb-2 text-indigo-100 group-hover:text-white">Metronome</h3>
-              <p className="text-sm text-indigo-200 mb-4 h-10">Master your timing and practice rhythm consistency.</p>
-              <span className="text-xs font-bold uppercase tracking-wider text-indigo-300 group-hover:text-white transition">Start Beat →</span>
-            </Link>
-          </div>
         </div>
       </main>
 

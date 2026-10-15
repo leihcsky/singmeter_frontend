@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import Footer from '../components/Footer';
-import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
-import PracticePathSection from '../components/PracticePathSection';
 import ToolPageDeepDive from '../components/ToolPageDeepDive';
 
 // Musical note frequencies (A4 = 440 Hz)
@@ -461,73 +459,6 @@ const ToneGeneratorPage = () => {
             </div>
           </div>
 
-          <PracticePathSection
-            theme="blue"
-            intro="This page works best as a pitch reference—not a tuner you glance at once. Use a sine wave at low volume, pick notes inside your comfortable range (from the Vocal Range Test), then verify every match on the Pitch Detector. The flow below is written for singers, not general audio testing."
-            comboTitle="10-Minute Session: Reference → Sing → Check"
-            comboSteps={[
-              <>
-                <Link to="/vocal-range-test" className="text-indigo-600 font-semibold hover:underline">
-                  Take the Vocal Range Test
-                </Link>{' '}
-                (or recall your last result). Choose a starting note in the middle of your comfortable range—often C4 for many voices or G3/A3 for lower voices.
-              </>,
-              'On this page: select that note preset (or matching frequency), choose sine waveform, set volume to about 30–40%, and press Play. Listen for two full seconds before you sing.',
-              'Sing the same pitch on a steady “Ah” or “Mah” for 3–5 seconds without scooping up to the note.',
-              <>
-                Open the{' '}
-                <Link to="/pitch-detector" className="text-indigo-600 font-semibold hover:underline">
-                  Pitch Detector
-                </Link>{' '}
-                in another tab, sing again, and aim to stay in the green zone (within about ±10 cents).
-              </>,
-            ]}
-            routines={[
-              {
-                title: 'Warm-Up Match (comfort notes)',
-                duration: '5 minutes',
-                settings: 'Sine wave · volume 30–40% · one note at a time',
-                body: 'Cycle through three comfortable notes (for example C4 → E4 → G4, or whatever sits in your range). Play each tone, listen, stop the tone, then sing and hold. Rest 10 seconds between notes. If your throat tightens, choose an easier note—this routine is about clean onset, not your highest pitch.',
-                goal: 'Start each note within one second of the reference, without sliding from below or above.',
-              },
-              {
-                title: 'Interval Jump (ear + voice)',
-                duration: '5–7 minutes',
-                settings: 'Sine wave · same volume',
-                body: 'Play your root note (e.g. C4). Stop. Sing a perfect fifth above (G4) from memory, then play G4 to check. Repeat with a major third (C4 → E4) and a fourth (C4 → F4). Wrong note? Replay the target tone once, re-sing, then check on the Pitch Detector.',
-                goal: 'Land the second note confidently; use the generator only to confirm, not to scoop into pitch.',
-              },
-              {
-                title: 'Scale Builder (with steady time)',
-                duration: '7 minutes',
-                settings: 'Sine on root note · optional Metronome at 70–80 BPM',
-                body: 'Play C4 (or your chosen root). Sing a five-note major scale up and down on “La” or “Mi”. Use the tone only on the first and last note of each pass; inner notes are from memory. For rhythm, turn on the Online Metronome at 72 BPM, one syllable per beat.',
-                goal: 'Finish the scale in tune on the top note—play that note on the generator to verify.',
-              },
-            ]}
-            nextTools={[
-              {
-                to: '/pitch-detector',
-                label: 'Pitch Detector',
-                hint: 'Instant feedback while you match reference tones.',
-              },
-              {
-                to: '/vocal-range-test',
-                label: 'Vocal Range Test',
-                hint: 'Pick starting notes that sit in your comfortable range.',
-              },
-              {
-                to: '/metronome',
-                label: 'Online Metronome',
-                hint: 'Keep scales and exercises rhythmically steady.',
-              },
-            ]}
-            blogLink={{
-              to: '/blog/improve-singing-pitch',
-              label: 'Improve Singing Pitch — daily detector routines',
-            }}
-          />
-
           <ToolPageDeepDive
             accent="blue"
             heading="Pitch reference tuned for vocal practice, not lab audio"
@@ -584,19 +515,15 @@ const ToneGeneratorPage = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">📖 About the Tone Generator</h2>
             <div className="prose max-w-none text-gray-600 space-y-4">
               <p>
-                The Tone Generator is a powerful tool for musicians, singers, and audio enthusiasts. It generates precise audio tones at any frequency you specify, making it perfect for pitch reference, ear training, instrument tuning, and vocal practice.
+                The Tone Generator is an online pitch generator for singers: pick a note preset such as C4 or A4 (440 Hz),
+                or set any frequency, and it plays a steady reference tone you can match with your voice. Use it to find a
+                starting note before a song, check intervals while you train your ear, or hear exactly where a phrase
+                should land.
               </p>
               <p>
-                Whether you're a beginner learning to match pitch or an experienced musician fine-tuning your instrument, this tool provides a reliable reference tone. The generator supports frequencies from 20 Hz (very low bass) to 20,000 Hz (very high treble), covering the full range of human hearing.
-              </p>
-              <p>
-                You can choose from four different waveform types, each with its own unique sound character. Sine waves produce pure, smooth tones ideal for pitch reference. Square waves have a harsher, more complex sound. Sawtooth waves are rich in harmonics, while triangle waves offer a softer alternative to square waves.
-              </p>
-              <p>
-                The tool also includes convenient musical note presets, allowing you to quickly access standard tuning frequencies like A4 (440 Hz, the concert pitch) or any note in the musical scale. This makes it easy to practice singing specific notes or tune instruments to standard pitches.
-              </p>
-              <p>
-                Use the volume control to set a comfortable listening level. We recommend starting with lower volumes, especially when using headphones, to protect your hearing. The tone will play continuously until you click the stop button, giving you plenty of time to match the pitch with your voice or instrument.
+                For pitch matching, a sine wave at low volume is easiest to sing against; square, sawtooth, and triangle
+                waves add harmonics if you find a pure tone hard to hear. The tone keeps playing until you press Stop, so
+                you have time to listen, sing, and compare. Keep the volume modest, especially on headphones.
               </p>
             </div>
           </div>
@@ -641,55 +568,6 @@ const ToneGeneratorPage = () => {
                 </div>
               </li>
             </ol>
-          </div>
-
-          {/* Tool Integration: Pitch Detector & Vocal Range Test */}
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <Link to="/pitch-detector" className="block group">
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all h-full flex flex-col">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-3 bg-indigo-50 rounded-xl group-hover:bg-indigo-100 transition">
-                    <span className="text-2xl">🎤</span>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 group-hover:text-indigo-600 transition">Check Your Accuracy</h3>
-                    <p className="text-xs text-indigo-600 font-semibold uppercase tracking-wide">Pitch Detector</p>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-600 mb-4 flex-grow">
-                  Singing along with the tone? Use our real-time pitch detector to see exactly how accurate your matching is (in cents).
-                </p>
-                <div className="flex items-center text-indigo-600 font-bold text-sm">
-                  Open Pitch Detector
-                  <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-
-            <Link to="/vocal-range-test" className="block group">
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-purple-100 hover:border-purple-300 hover:shadow-md transition-all h-full flex flex-col">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-3 bg-purple-50 rounded-xl group-hover:bg-purple-100 transition">
-                    <span className="text-2xl">📊</span>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 group-hover:text-purple-600 transition">Know Your Limits</h3>
-                    <p className="text-xs text-purple-600 font-semibold uppercase tracking-wide">Vocal Range Test</p>
-                  </div>
-                </div>
-                <p className="text-sm text-gray-600 mb-4 flex-grow">
-                  Don't know which notes to practice? Find your comfortable range first to avoid straining your voice.
-                </p>
-                <div className="flex items-center text-purple-600 font-bold text-sm">
-                  Take Range Test
-                  <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
           </div>
 
           {/* Tone Training Methods */}
@@ -752,65 +630,8 @@ const ToneGeneratorPage = () => {
             </div>
           </div>
 
-          <ContentSection title="The Physics of Sound" className="mb-8">
-            <p>
-              Understanding the physics behind sound can help you use the Tone Generator more effectively. 
-              Sound is created by vibrations that travel through the air as waves.
-            </p>
-            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Frequency and Pitch</h3>
-            <p>
-              <strong>Frequency</strong> refers to how fast the sound wave vibrates, measured in Hertz (Hz). One Hz equals one vibration per second. 
-              <strong>Pitch</strong> is how our ears perceive frequency. Higher frequency = higher pitch. 
-              Doubling a frequency (e.g., 220 Hz to 440 Hz) raises the pitch by exactly one octave. This mathematical relationship is why octaves sound so consonant.
-            </p>
-            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Waveforms and Timbre</h3>
-            <p>
-              The <strong>waveform</strong> determines the "color" or <strong>timbre</strong> of the sound.
-            </p>
-            <ul className="list-disc list-inside text-gray-600 ml-4 space-y-2">
-              <li><strong>Sine Wave:</strong> The fundamental building block of sound. It has no overtones, resulting in a pure, flute-like sound.</li>
-              <li><strong>Square Wave:</strong> Contains the fundamental frequency plus odd harmonics. It sounds hollow and reedy, like a clarinet or old video game sound.</li>
-              <li><strong>Sawtooth Wave:</strong> Contains both even and odd harmonics. It sounds buzzy and bright, similar to string instruments or brass.</li>
-              <li><strong>Triangle Wave:</strong> Like a square wave but with softer harmonics. It sounds like a muted flute.</li>
-            </ul>
-          </ContentSection>
-
           {/* FAQ Section */}
           <FAQSection items={toneGeneratorFaqItems} />
-
-          {/* Related Tools */}
-          <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 text-center text-white mb-8">
-            <h2 className="text-2xl font-bold mb-3">Enhance Your Practice</h2>
-            <p className="text-blue-100 mb-6">
-              Combine the Tone Generator with our other tools for comprehensive vocal training.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                to="/pitch-detector"
-                className="inline-block px-6 py-3 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition"
-              >
-                🎵 Pitch Detector
-              </Link>
-              <Link
-                to="/metronome"
-                className="inline-block px-6 py-3 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition"
-              >
-                🥁 Metronome
-              </Link>
-              <Link
-                to="/vocal-range-test"
-                className="inline-block px-6 py-3 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition"
-              >
-                🎤 Vocal Range Test
-              </Link>
-              <Link
-                to="/song-key-finder"
-                className="inline-block px-6 py-3 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition"
-              >
-                🎹 Song Key Finder
-              </Link>
-            </div>
-          </div>
         </main>
 
         {/* Footer */}

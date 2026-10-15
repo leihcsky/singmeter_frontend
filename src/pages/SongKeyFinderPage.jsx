@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import Footer from '../components/Footer';
-import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
-import PracticePathSection from '../components/PracticePathSection';
 import ToolPageDeepDive from '../components/ToolPageDeepDive';
 import NumberedSteps from '../components/NumberedSteps';
 import { songKeysDatabase, transposeKey, SAMPLE_SONG_COUNT, SAMPLE_GENRES } from '../data/songKeys';
@@ -900,77 +898,6 @@ const SongKeyFinderPage = () => {
           </div>
         )}
 
-        <PracticePathSection
-          theme="purple"
-          title="From Vocal Range to the Right Key"
-          intro="Song Key Finder works best when it knows your voice. Your range from the Vocal Range Test is saved automatically—pick a sample song or upload audio, review the Best Match transpose suggestion, then rehearse melody lines on the Pitch Detector in your new key."
-          comboTitle="10-Minute Session: Range → Key → Practice"
-          comboSteps={[
-            <>
-              <Link to="/vocal-range-test" className="text-indigo-600 font-semibold hover:underline">
-                Take the Vocal Range Test
-              </Link>{' '}
-              (about 3 minutes). Your low and high notes are saved for this page—return here and your range field will show “Loaded from your test.”
-            </>,
-            'Browse a sample song above or upload a clip. Note the original key and the song’s vocal span on the chart.',
-            'With your range entered, pick the suggestion marked Best Match—that key centers the melody in your comfortable zone.',
-            <>
-              Open the{' '}
-              <Link to="/pitch-detector" className="text-indigo-600 font-semibold hover:underline">
-                Pitch Detector
-              </Link>{' '}
-              and sing the chorus hook or highest phrase in your transposed key. Stay in the green zone (±10 cents) on sustained notes.
-            </>,
-          ]}
-          routines={[
-            {
-              title: 'New Song Setup',
-              duration: '5 minutes',
-              body: 'Run the Vocal Range Test if you have not in the last few weeks. Pick your target from the browse list (or upload it), confirm Best Match, and write the suggested key on your lyric sheet or in your karaoke app.',
-              goal: 'One song locked to a key you can sing without straining on the highest note.',
-            },
-            {
-              title: 'Transpose & Spot-Check',
-              duration: '7 minutes',
-              body: 'Compare Best Match with the original key. If you still strain, try the next lower suggestion (usually −1 or −2 semitones). Hum the highest line once in the new key before full lyrics.',
-              goal: 'Highest note feels reachable with steady breath, not pushed.',
-            },
-            {
-              title: 'Phrase Practice with Pitch Feedback',
-              duration: '8 minutes',
-              settings: 'Pitch Detector · one phrase at a time',
-              body: 'Sing the hardest 4–8 bars only. Hold the peak note 3 seconds; if you drift flat, support from the diaphragm rather than pushing volume. Optional: use the Tone Generator on that peak note first, then match on the detector.',
-              goal: 'Peak notes land in tune without sliding up to pitch.',
-            },
-          ]}
-          nextTools={[
-            {
-              to: '/vocal-range-test',
-              label: 'Vocal Range Test',
-              hint: 'Measure or refresh your low–high notes—feeds this page automatically.',
-            },
-            {
-              to: '/pitch-detector',
-              label: 'Pitch Detector',
-              hint: 'Rehearse melody and hooks in your transposed key with live feedback.',
-            },
-            {
-              to: '/tone-generator',
-              label: 'Tone Generator',
-              hint: 'Hear the target note before you sing the hardest line.',
-            },
-            {
-              to: '/metronome',
-              label: 'Online Metronome',
-              hint: 'Run through the song at a slower tempo once pitch feels stable.',
-            },
-          ]}
-          blogLink={{
-            to: '/blog/tessitura-and-comfortable-range',
-            label: 'Tessitura & comfortable range — why “in range” is not enough',
-          }}
-        />
-
         <ToolPageDeepDive
           accent="purple"
           heading="Transpose from your measured range — not a generic key chart"
@@ -989,7 +916,7 @@ const SongKeyFinderPage = () => {
             duration: '20 min · one song',
             steps: [
               'Run or refresh the Vocal Range Test. Return here—your low–high notes should show as loaded.',
-              'Pick a target song from the browse list (or upload your backing track). Note original key and how many semitones the melody spans.',
+              'Pick a target song from the browse list (or upload your backing track) and note its original key.',
               'Apply the Best Match suggestion. If the chorus still feels high, try the next lower option (−1/−2 semitones) even if the chart says you “fit” on paper.',
               'In your karaoke app or DAW, set the new key. Sing only the hardest 8 bars—do not run the full song yet.',
               'Open Pitch Detector on the peak note of the chorus: hold 3 seconds in the green zone. If not, transpose one more semitone down or swap to an easier song.',
@@ -1206,93 +1133,8 @@ const SongKeyFinderPage = () => {
           </div>
         </section>
 
-        <ContentSection title="The Circle of Fifths: A Singer's Guide" className="mb-8">
-          <p>
-            The <strong>Circle of Fifths</strong> is a fundamental concept in music theory that shows the relationship between the 12 tones of the chromatic scale. 
-            For singers, it's a secret weapon for understanding keys and transposition.
-          </p>
-          <div className="flex flex-col md:flex-row gap-6 items-center mt-6">
-            <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Why It Matters</h3>
-              <p className="text-gray-600 mb-4">
-                Keys that are close to each other on the circle (like C Major and G Major) share most of the same notes, making smooth transitions easy. 
-                Keys opposite each other (like C Major and F# Major) share very few notes.
-              </p>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Relative Minors</h3>
-              <p className="text-gray-600">
-                Every major key has a "relative minor" key that uses the exact same notes. 
-                For example, C Major (no sharps/flats) shares its key signature with A Minor. 
-                Knowing this helps you understand why a song might feel "sad" even if it uses the same notes as a "happy" song.
-              </p>
-            </div>
-            <div className="flex-1 bg-indigo-50 p-6 rounded-xl border border-indigo-100">
-              <h4 className="font-bold text-indigo-900 mb-3">Key Relationships</h4>
-              <ul className="space-y-2 text-sm text-indigo-800">
-                <li><strong>C Major</strong> (0 sharps/flats) ↔ <strong>A Minor</strong></li>
-                <li><strong>G Major</strong> (1 sharp) ↔ <strong>E Minor</strong></li>
-                <li><strong>D Major</strong> (2 sharps) ↔ <strong>B Minor</strong></li>
-                <li><strong>F Major</strong> (1 flat) ↔ <strong>D Minor</strong></li>
-                <li><strong>Bb Major</strong> (2 flats) ↔ <strong>G Minor</strong></li>
-              </ul>
-              <p className="mt-4 text-xs text-indigo-600 italic">
-                *Moving clockwise adds a sharp (#), moving counter-clockwise adds a flat (b).
-              </p>
-            </div>
-          </div>
-        </ContentSection>
-
         {/* FAQ Section */}
         <FAQSection items={songKeyFinderFaqItems} />
-
-        {/* Related Resources */}
-        <section className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-6 sm:p-8 text-white mb-8">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Related Tools & Resources</h2>
-          <p className="text-indigo-100 mb-6 text-lg">
-            Combine the Song Key Finder with our other tools for a complete vocal training experience.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Link
-              to="/vocal-range-test"
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
-            >
-              <div className="text-2xl mb-2">🎤</div>
-              <h3 className="font-bold mb-1">Vocal Range Test</h3>
-              <p className="text-sm text-indigo-100">Discover your vocal range to get better key suggestions</p>
-            </Link>
-            <Link
-              to="/pitch-detector"
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
-            >
-              <div className="text-2xl mb-2">🎵</div>
-              <h3 className="font-bold mb-1">Pitch Detector</h3>
-              <p className="text-sm text-indigo-100">Practice singing in the new key with real-time feedback</p>
-            </Link>
-            <Link
-              to="/tone-generator"
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
-            >
-              <div className="text-2xl mb-2">🔊</div>
-              <h3 className="font-bold mb-1">Tone Generator</h3>
-              <p className="text-sm text-indigo-100">Generate reference tones to practice singing in the transposed key</p>
-            </Link>
-            <Link
-              to="/metronome"
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
-            >
-              <div className="text-2xl mb-2">🥁</div>
-              <h3 className="font-bold mb-1">Metronome</h3>
-              <p className="text-sm text-indigo-100">Keep steady tempo while practicing songs in a new key</p>
-            </Link>
-            <Link
-              to="/blog/how-to-find-your-voice-type"
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition"
-            >
-              <div className="text-2xl mb-2">📝</div>
-              <h3 className="font-bold mb-1">Voice Type Guide</h3>
-              <p className="text-sm text-indigo-100">Find your voice type and choose songs that fit</p>
-            </Link>
-          </div>
-        </section>
       </main>
 
       {/* Bottom Navigation */}

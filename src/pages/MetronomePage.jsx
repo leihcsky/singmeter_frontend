@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import Footer from '../components/Footer';
-import ContentSection from '../components/ContentSection';
 import FAQSection from '../components/FAQSection';
 import PracticePathSection from '../components/PracticePathSection';
 import ToolPageDeepDive from '../components/ToolPageDeepDive';
@@ -254,7 +253,6 @@ const MetronomePage = () => {
 
     // Use ref to get current BPM for real-time updates
     const getCurrentInterval = () => 60000 / bpmRef.current;
-    const timeSig = currentTimeSigRef.current;
 
     // Play first beat immediately
     playBeat(true);
@@ -673,25 +671,11 @@ const MetronomePage = () => {
             ]}
             routines={[
               {
-                title: 'Long Phrase + Planned Breath',
-                duration: '6–8 minutes',
-                settings: '4/4 · 68–76 BPM · Breathing Cue ON',
-                body: 'Pick one line from a song you are learning (8–12 syllables). Sing it twice per phrase: first time half-volume to map where you need air, second time at performance volume. Take every breath on the highlighted cue beat—never gasp mid-word. If you run out of air, slow the BPM by 5 and repeat.',
-                goal: 'Complete the line without breaking rhythm and without a visible “catch-up” breath before the next phrase.',
-              },
-              {
                 title: 'Scale on the Beat',
                 duration: '5 minutes',
                 settings: '4/4 · 80 BPM (“Vocal Runs” preset) · Breathing Cue optional',
                 body: 'Sing a five-note major scale (Do–Re–Mi–Fa–Sol) up and down, one note per click. Use “La” or a light hum—consonants can hide sloppy timing. When you can do two clean passes, raise BPM by 5. If a note slides in late, stay at the current tempo until every attack lands on the beat.',
                 goal: 'Each note starts exactly with the click, not slightly after it.',
-              },
-              {
-                title: 'Tone First, Then Time (pitch + rhythm)',
-                duration: '10 minutes',
-                settings: 'Metronome 72 BPM + Tone Generator (sine, C4 or your root)',
-                body: 'Bar 1–2: play your reference tone on the Tone Generator and match pitch. Bar 3–8: stop the tone and hold the same pitch on the metronome, one “Ah” per beat. Bar 9–16: sing a slow five-note scale, one syllable per beat. Use the Pitch Detector on the last note of each pass.',
-                goal: 'Separate pitch memory from rhythm—then combine them without speeding up.',
               },
               {
                 title: 'Slow Vocal Run Prep',
@@ -701,26 +685,9 @@ const MetronomePage = () => {
                 goal: 'Clear, even notes at the goal tempo—not a blur of pitches.',
               },
             ]}
-            nextTools={[
-              {
-                to: '/tone-generator',
-                label: 'Tone Generator',
-                hint: 'Lock in the starting pitch before you add rhythm.',
-              },
-              {
-                to: '/pitch-detector',
-                label: 'Pitch Detector',
-                hint: 'See if rushing or dragging is pulling you off pitch.',
-              },
-              {
-                to: '/vocal-range-test',
-                label: 'Vocal Range Test',
-                hint: 'Choose scale patterns that sit in your comfortable range.',
-              },
-            ]}
             blogLink={{
-              to: '/blog/improve-singing-pitch',
-              label: 'Improve Singing Pitch — rhythm and intonation together',
+              to: '/blog/metronome-practice-for-singers',
+              label: 'Metronome practice for singers (full guide)',
             }}
           />
 
@@ -780,19 +747,14 @@ const MetronomePage = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">📖 About the Metronome</h2>
             <div className="prose max-w-none text-gray-600 space-y-4">
               <p>
-                A metronome is an essential tool for any musician, helping you develop a strong sense of rhythm and timing. Our online metronome provides a fun, interactive way to keep perfect time during practice sessions, whether you're singing, playing an instrument, or working on rhythm exercises.
+                This online metronome keeps a steady beat while you sing, so you can hear whether you rush long phrases or
+                drag on high notes. Set the tempo from 40 to 200 BPM, choose a time signature from 2/4 to 6/8, and pick a
+                click sound that stays out of the way of your voice.
               </p>
               <p>
-                Unlike traditional mechanical metronomes, our digital version offers precise timing, visual feedback, and customizable features. The large, animated beat indicator makes it easy to see the rhythm, while different sound types let you choose the audio feedback that works best for your practice style.
-              </p>
-              <p>
-                The metronome supports various time signatures, from simple 4/4 time to compound meters like 6/8. You can adjust the tempo (BPM - beats per minute) from very slow (40 BPM) to very fast (200 BPM), with convenient presets for common musical tempos like Largo, Andante, Allegro, and Presto.
-              </p>
-              <p>
-                Visual feedback is a key feature that makes this metronome both fun and effective. The large pulsing circle and beat indicators provide clear visual cues that complement the audio, helping you internalize the rhythm. The accent beats (typically the first beat of each measure) are highlighted more prominently, making it easy to feel the musical phrase structure.
-              </p>
-              <p>
-                Whether you're a beginner learning to keep steady time or an experienced musician working on complex rhythms, this metronome adapts to your needs. Use it for vocal warm-ups, instrument practice, rhythm training, or any musical activity that requires precise timing.
+                Vocal Practice Mode flashes a breathing cue on the last beat of each bar, which helps you plan breaths in
+                ballads and long lines instead of gasping mid-word. The pulsing circle and beat numbers give you a visual
+                check when the click is hard to hear over your own singing.
               </p>
             </div>
           </div>
@@ -804,43 +766,29 @@ const MetronomePage = () => {
               <li className="flex items-start">
                 <span className="font-bold text-orange-600 mr-3">1.</span>
                 <div>
-                  <span className="font-semibold text-gray-900">Set Your Tempo:</span>
-                  <p className="mt-1">Use the BPM slider or click a tempo preset (Largo, Andante, Allegro, etc.) to set your desired speed. BPM stands for "beats per minute" - higher numbers mean faster tempos. Start with a comfortable tempo (around 100-120 BPM) and adjust as needed.</p>
+                  <span className="font-semibold text-gray-900">Set your tempo:</span>
+                  <p className="mt-1">Use the BPM slider, a tempo preset, or Tap Tempo along with a recording. For a new song, start 5–10 BPM slower than the original.</p>
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="font-bold text-orange-600 mr-3">2.</span>
                 <div>
-                  <span className="font-semibold text-gray-900">Choose Time Signature:</span>
-                  <p className="mt-1">Select the time signature that matches your music. 4/4 (four beats per measure) is the most common. 3/4 is used for waltzes, 2/4 for marches, and 6/8 for compound time. The metronome will accent the first beat of each measure.</p>
+                  <span className="font-semibold text-gray-900">Choose time signature and sound:</span>
+                  <p className="mt-1">4/4 fits most pop songs, 3/4 waltzes, and 6/8 many ballads. The first beat of each bar is accented. Wood or Classic clicks are easiest to sing over.</p>
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="font-bold text-orange-600 mr-3">3.</span>
                 <div>
-                  <span className="font-semibold text-gray-900">Select Sound Type:</span>
-                  <p className="mt-1">Choose from Classic (traditional metronome sound), Wood (warmer, softer tone), Electronic (sharp, modern sound), or Bell (clear, resonant tone). Pick the one that's least distracting for your practice.</p>
+                  <span className="font-semibold text-gray-900">Set a comfortable volume:</span>
+                  <p className="mt-1">You should hear the click clearly without having to sing louder than usual to stay on top of it.</p>
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="font-bold text-orange-600 mr-3">4.</span>
                 <div>
-                  <span className="font-semibold text-gray-900">Adjust Volume:</span>
-                  <p className="mt-1">Set the volume to a level where you can hear the beats clearly without them overpowering your playing or singing. The metronome should be a guide, not a distraction.</p>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="font-bold text-orange-600 mr-3">5.</span>
-                <div>
-                  <span className="font-semibold text-gray-900">Start Practicing:</span>
-                  <p className="mt-1">Click "Start" and begin playing or singing along with the metronome. Watch the visual indicators to help you stay in time. Try to match the beat exactly, and don't rush or drag. The pulsing circle and beat numbers will help you see if you're ahead or behind the beat.</p>
-                </div>
-              </li>
-              <li className="flex items-start">
-                <span className="font-bold text-orange-600 mr-3">6.</span>
-                <div>
-                  <span className="font-semibold text-gray-900">Practice Gradually:</span>
-                  <p className="mt-1">Start at a slower tempo than your target speed, master the rhythm at that pace, then gradually increase the BPM. This builds muscle memory and accuracy. Use the tempo presets to find your starting point, then fine-tune with the slider.</p>
+                  <span className="font-semibold text-gray-900">Start and listen first:</span>
+                  <p className="mt-1">Press Start, let two bars go by while you count, then come in. Raise the tempo in small steps only after a clean pass.</p>
                 </div>
               </li>
             </ol>
@@ -849,7 +797,7 @@ const MetronomePage = () => {
           {/* Metronome Practice Tips */}
           <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 sm:p-8 shadow-sm mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">💡 Metronome Practice Tips</h2>
-            
+
             <div className="space-y-6">
               <div className="bg-white rounded-xl p-5 shadow-sm">
                 <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
@@ -857,49 +805,10 @@ const MetronomePage = () => {
                   Start Slow, Build Speed Gradually
                 </h3>
                 <p className="text-gray-600 mb-3">
-                  Always begin practicing a new piece or exercise at a slower tempo than your target speed. Set the metronome to 60-80% of your goal BPM. Once you can play accurately and comfortably at that speed, increase by 5-10 BPM. Repeat until you reach your target tempo. This methodical approach builds accuracy and muscle memory.
+                  Begin a new song or exercise at 60–80% of your goal tempo. Once you can sing it cleanly and comfortably, raise the tempo by 5–10 BPM and repeat until you reach the target.
                 </p>
                 <div className="bg-orange-50 rounded-lg p-3 text-sm text-orange-900">
                   <strong>Example:</strong> If your goal is 120 BPM, start at 80 BPM, then move to 90, 100, 110, and finally 120.
-                </div>
-              </div>
-
-              <div className="bg-white rounded-xl p-5 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <span className="text-2xl mr-2">👂</span>
-                  Listen Before You Play
-                </h3>
-                <p className="text-gray-600 mb-3">
-                  Before starting to play or sing, let the metronome run for a few measures. Close your eyes and internalize the rhythm. Feel the pulse, tap your foot, or nod your head. This helps you sync with the beat before you begin, reducing the chance of starting off-time.
-                </p>
-                <div className="bg-red-50 rounded-lg p-3 text-sm text-red-900">
-                  <strong>Tip:</strong> Count along with the metronome: "1, 2, 3, 4" for 4/4 time, or "1, 2, 3" for 3/4 time.
-                </div>
-              </div>
-
-              <div className="bg-white rounded-xl p-5 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <span className="text-2xl mr-2">🎵</span>
-                  Use Subdivisions for Complex Rhythms
-                </h3>
-                <p className="text-gray-600 mb-3">
-                  For difficult passages with complex rhythms, set the metronome to click on subdivisions (e.g., set to 120 BPM but think of it as 60 BPM with eighth-note clicks). This gives you more reference points and makes intricate rhythms easier to master.
-                </p>
-                <div className="bg-pink-50 rounded-lg p-3 text-sm text-pink-900">
-                  <strong>Practice:</strong> Try playing triplets by setting the metronome to 3x your base tempo.
-                </div>
-              </div>
-
-              <div className="bg-white rounded-xl p-5 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
-                  <span className="text-2xl mr-2">👁️</span>
-                  Watch the Visual Indicators
-                </h3>
-                <p className="text-gray-600 mb-3">
-                  The pulsing circle and beat numbers aren't just decorative - they're powerful visual aids. Watch them to see if you're rushing (ahead of the beat) or dragging (behind the beat). The visual feedback helps you develop a better internal sense of timing.
-                </p>
-                <div className="bg-yellow-50 rounded-lg p-3 text-sm text-yellow-900">
-                  <strong>Exercise:</strong> Try playing with your eyes closed, then open them to check if you're still aligned with the visual beat.
                 </div>
               </div>
 
@@ -909,10 +818,10 @@ const MetronomePage = () => {
                   Practice with and without the Metronome
                 </h3>
                 <p className="text-gray-600 mb-3">
-                  Alternate between practicing with the metronome and without it. Use the metronome to establish the tempo and develop accuracy, then turn it off and see if you can maintain that tempo on your own. This builds both technical precision and musical independence.
+                  Use the click to set the tempo, then turn it off and see if you can hold that tempo on your own. Turn it back on to check whether you drifted.
                 </p>
                 <div className="bg-indigo-50 rounded-lg p-3 text-sm text-indigo-900">
-                  <strong>Routine:</strong> Practice with metronome for 10 minutes, then 5 minutes without, then back to metronome to check your consistency.
+                  <strong>Routine:</strong> Sing a verse with the metronome, the next verse without it, then the chorus with it again to check your consistency.
                 </div>
               </div>
 
@@ -922,7 +831,7 @@ const MetronomePage = () => {
                   Use for Vocal Warm-ups
                 </h3>
                 <p className="text-gray-600 mb-3">
-                  Singers can use the metronome for vocal exercises, scales, and arpeggios. Set a moderate tempo (80-100 BPM) and practice your warm-up exercises in time. This helps develop rhythmic accuracy in your singing and ensures your vocal exercises are consistent.
+                  Set a moderate tempo (80–100 BPM) and sing your scales and arpeggios in time. Keeping warm-ups rhythmically steady makes them consistent from day to day.
                 </p>
                 <div className="bg-purple-50 rounded-lg p-3 text-sm text-purple-900">
                   <strong>Exercise:</strong> Sing scales (do-re-mi-fa-sol-la-ti-do) with the metronome, one note per beat.
@@ -931,67 +840,8 @@ const MetronomePage = () => {
             </div>
           </div>
 
-          <ContentSection title="Advanced Rhythm Training" className="mb-8">
-            <p>
-              Once you have mastered basic time keeping, a metronome becomes an invaluable tool for advanced rhythm training. 
-              Developing a sophisticated sense of rhythm separates good musicians from great ones.
-            </p>
-            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Polyrhythms</h3>
-            <p>
-              Polyrhythms occur when two different rhythmic pulses happen simultaneously. A common example is "2 against 3" (two beats in the same time as three beats). 
-              You can practice this with our metronome by setting it to a slow tempo and tapping "1, 2, 3" with one hand while tapping "1, 2" with the other, 
-              ensuring the "1" always aligns with the metronome click.
-            </p>
-            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Syncopation Practice</h3>
-            <p>
-              Syncopation involves stressing the weak beats (off-beats) instead of the strong beats. 
-              Set the metronome to click on the "and" of the beat (1 <strong>&</strong> 2 <strong>&</strong> 3 <strong>&</strong> 4 <strong>&</strong>) 
-              instead of the downbeat. This forces you to internalize the downbeat yourself and improves your rhythmic independence.
-            </p>
-            <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">Tempo Modulation</h3>
-            <p>
-              Practice changing between different note values while keeping the beat steady. Start with quarter notes (1 note per click), 
-              switch to eighth notes (2 notes per click), then triplets (3 notes per click), and sixteenth notes (4 notes per click). 
-              This "gear shifting" exercise builds immense rhythmic control.
-            </p>
-          </ContentSection>
-
           {/* FAQ Section */}
           <FAQSection items={metronomeFaqItems} />
-
-          {/* Related Tools */}
-          <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-8 text-center text-white mb-8">
-            <h2 className="text-2xl font-bold mb-3">Enhance Your Practice</h2>
-            <p className="text-orange-100 mb-6">
-              Combine the metronome with our other tools for comprehensive music practice.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                to="/pitch-detector"
-                className="inline-block px-6 py-3 bg-white text-orange-600 font-bold rounded-xl hover:bg-orange-50 transition"
-              >
-                🎵 Pitch Detector
-              </Link>
-              <Link
-                to="/tone-generator"
-                className="inline-block px-6 py-3 bg-white text-orange-600 font-bold rounded-xl hover:bg-orange-50 transition"
-              >
-                🔊 Tone Generator
-              </Link>
-              <Link
-                to="/vocal-range-test"
-                className="inline-block px-6 py-3 bg-white text-orange-600 font-bold rounded-xl hover:bg-orange-50 transition"
-              >
-                🎤 Vocal Range Test
-              </Link>
-              <Link
-                to="/song-key-finder"
-                className="inline-block px-6 py-3 bg-white text-orange-600 font-bold rounded-xl hover:bg-orange-50 transition"
-              >
-                🎹 Song Key Finder
-              </Link>
-            </div>
-          </div>
         </main>
 
         {/* Footer */}
